@@ -68,7 +68,7 @@ fn dot(x: &[i8], xr: usize, w: &[i8], wr: usize, k: usize) -> [[i32; 4]; 2] {
     let xp = [x.as_ptr(), x[(xr - 1) * k..].as_ptr()];
     let wp: [*const i8; 4] = std::array::from_fn(|b| w[b.min(wr - 1) * k..].as_ptr());
     #[cfg(target_arch = "aarch64")]
-    if k % 16 == 0 {
+    if k % 16 == 0 && dotprod() {
         return unsafe { neon::dot2x4(xp, wp, k) };
     }
     #[cfg(target_arch = "x86_64")]
@@ -103,8 +103,30 @@ fn avx2() -> bool {
 }
 
 #[cfg(target_arch = "aarch64")]
+fn dotprod() -> bool {
+    static F: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *F.get_or_init(|| std::arch::is_aarch64_feature_detected!("dotprod"))
+}
+
+#[cfg(target_arch = "aarch64")]
 mod neon {
     use std::arch::aarch64::*;
+
+    /// ARMv8.2 `sdot`：acc[i] += Σ a[4i..4i+3] × b[4i..4i+3]。
+    /// 用内联汇编而非 `vdotq_s32`：该内建函数仍在 unstable 特性 `stdarch_neon_dotprod` 之后
+    /// （tracking issue #117224），stable 编译器（1.97 起）会直接拒绝。
+    #[inline]
+    unsafe fn sdot(acc: int32x4_t, a: int8x16_t, b: int8x16_t) -> int32x4_t {
+        let mut out = acc;
+        std::arch::asm!(
+            "sdot {0:v}.4s, {1:v}.16b, {2:v}.16b",
+            inout(vreg) out,
+            in(vreg) a,
+            in(vreg) b,
+            options(pure, nomem, nostack),
+        );
+        out
+    }
 
     pub unsafe fn dot2x4(x: [*const i8; 2], w: [*const i8; 4], k: usize) -> [[i32; 4]; 2] {
         let mut a = [vdupq_n_s32(0); 8];
@@ -114,8 +136,8 @@ mod neon {
             let x1 = vld1q_s8(x[1].add(i));
             for b in 0..4 {
                 let wv = vld1q_s8(w[b].add(i));
-                a[b] = vdotq_s32(a[b], x0, wv);
-                a[4 + b] = vdotq_s32(a[4 + b], x1, wv);
+                a[b] = sdot(a[b], x0, wv);
+                a[4 + b] = sdot(a[4 + b], x1, wv);
             }
             i += 16;
         }
