@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "enabled": true,
+    "events": {
+      "PreToolUse": [
+        {
+          "matcher": "Write|Edit",
+          "hooks": [
+            {
+              "type": "process",
+              "command": "node",
+              "args": [
+                "/Users/tune/Develop/GitHub/voicekey/.zcode/skills/comet/scripts/comet-hook-router.mjs",
+                "--platform",
+                "zcode",
+                "--project-root",
+                "/Users/tune/Develop/GitHub/voicekey"
+              ],
+              "timeoutMs": 60000
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

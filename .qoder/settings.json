@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const r=require('node:child_process').spawnSync(process.execPath,JSON.parse(Buffer.from('WyIvVXNlcnMvdHVuZS9EZXZlbG9wL0dpdEh1Yi92b2ljZWtleS8ucW9kZXIvc2tpbGxzL2NvbWV0L3NjcmlwdHMvY29tZXQtaG9vay1yb3V0ZXIubWpzIiwiLS1wbGF0Zm9ybSIsInFvZGVyIiwiLS1wcm9qZWN0LXJvb3QiLCIvVXNlcnMvdHVuZS9EZXZlbG9wL0dpdEh1Yi92b2ljZWtleSJd','base64').toString()),{stdio:'inherit'});process.exit(r.status??1)\"",
+            "description": "Route each write to the selected Comet Native or Classic phase guard"
+          }
+        ]
+      }
+    ]
+  }
+}
