@@ -1,0 +1,75 @@
+name: Desktop Build
+
+# 手动触发的桌面端构建：产出 macOS DMG 与 Windows 安装包，供从 Actions 下载。
+# 不依赖签名密钥：macOS 用 adhoc 签名、不生成 updater 产物（fork 上无签名证书与更新私钥）。
+# 正式签名发布仍走 release.yml（推送 v* tag 触发）。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-15
+            target: universal-apple-darwin
+            rust: aarch64-apple-darwin,x86_64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            rust: x86_64-pc-windows-msvc
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Version
+        run: echo "VER=0.0.0-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      - name: Build
+        working-directory: app
+        run: |
+          npm ci
+          # 不传签名相关配置：tauri.conf.json 的 signingIdentity "-"（adhoc），且不生成 updater 产物
+          npx tauri build --target ${{ matrix.target }} --config "{\"version\":\"$VER\"}"
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p dist
+          B=target/universal-apple-darwin/release/bundle/macos
+          Scripts/dmg.sh "dist/VoiceKey-$VER.dmg" "$B/VoiceKey.app" app/src-tauri/icons/icon.icns
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          mkdir -p dist
+          B=target/x86_64-pc-windows-msvc/release/bundle
+          cp "$B"/nsis/*-setup.exe "dist/VoiceKey-$VER-x64-setup.exe"
+          cp "$B"/msi/*_zh-CN.msi "dist/VoiceKey-$VER-x64.msi"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VoiceKey-${{ runner.os }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14
