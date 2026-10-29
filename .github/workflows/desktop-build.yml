@@ -43,7 +43,8 @@ jobs:
           key: ${{ matrix.target }}
 
       - name: Version
-        run: echo "VER=0.0.0-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+        # MSI 要求版本号预发布段为纯数字且不超过 65535，故用 run 号而非 commit 哈希
+        run: echo "VER=0.0.${{ github.run_number }}" >> "$GITHUB_ENV"
 
       - name: Build
         working-directory: app
