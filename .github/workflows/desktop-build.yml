@@ -15,7 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-15
+          # macOS arm64 主机长期容量紧张，测试包改用 Intel runner；universal 构建仍同时产出 arm64
+          - os: macos-15-intel
             target: universal-apple-darwin
             rust: aarch64-apple-darwin,x86_64-apple-darwin
           - os: windows-latest
