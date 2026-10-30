@@ -13,18 +13,24 @@
   const step = $derived(steps[i]);
   const hold = $derived(holdName(app.s!, app.info!.holdKeys));
   const tap = $derived(app.s!.tapShortcut?.name);
+  let focused = $state(document.hasFocus());
 
   onMount(() => {
+    const sync = () => (focused = document.hasFocus());
+    window.addEventListener("focus", sync);
+    window.addEventListener("blur", sync);
     refreshMics();
     const iv = setInterval(refreshPerms, 1000);
     return () => {
       clearInterval(iv);
+      window.removeEventListener("focus", sync);
+      window.removeEventListener("blur", sync);
       call("meter", { on: false });
     };
   });
 
   $effect(() => {
-    call("meter", { on: step === "mic" });
+    call("meter", { on: step === "mic" && focused });
   });
 
   function next() {

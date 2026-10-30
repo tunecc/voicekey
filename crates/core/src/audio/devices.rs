@@ -111,6 +111,22 @@ pub(super) fn microphones() -> Vec<String> {
     snapshot().map(|s| s.microphones()).unwrap_or_default()
 }
 
+#[cfg(test)]
+pub(super) fn default_input() -> Option<AudioObjectID> {
+    snapshot().map(|s| s.default)
+}
+
+#[cfg(test)]
+pub(super) fn input_id(name: &str) -> Option<AudioObjectID> {
+    snapshot()?.inputs().find(|d| d.name.as_deref() == Some(name)).map(|d| d.id)
+}
+
+#[cfg(test)]
+pub(super) fn running(device: AudioObjectID) -> Option<u32> {
+    let (data, size) = property(device, &address(kAudioDevicePropertyDeviceIsRunning, kAudioObjectPropertyScopeGlobal))?;
+    (size >= size_of::<u32>()).then(|| unsafe { data.as_ptr().cast::<u32>().read() })
+}
+
 fn publish_change(previous: &mut Option<Snapshot>, current: Snapshot, on_change: impl FnOnce(Vec<String>)) {
     let changed = previous.as_ref().map(|old| old.default != current.default || !old.inputs().eq(current.inputs())).unwrap_or(true);
     if changed {

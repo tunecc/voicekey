@@ -164,6 +164,12 @@ fn named_input<D>(devices: impl Iterator<Item = D>, name: &str, device_name: imp
 fn selected_device(host: &cpal::Host, name: &str) -> Option<cpal::Device> {
     #[cfg(target_os = "macos")]
     {
+        // cpal 只为非默认设备注册断连监听，该监听与 Stream 互相持有，导致 StreamInner 与 AudioUnit 永不析构；
+        // 选中的就是系统默认设备时直接用 default_input_device，避免每轮录音泄漏一个仍在运行的音频单元。
+        let default = host.default_input_device();
+        if default.as_ref().and_then(|d| d.name().ok()).as_deref() == Some(name) {
+            return default;
+        }
         // cpal 检查输入配置会建 AudioUnit，先匹配名称，避免触碰其他蓝牙设备。
         named_input(host.devices().ok()?, name, |d| d.name().ok(), |d| {
             d.supported_input_configs().map(|mut configs| configs.any(|c| c.channels() > 0)).unwrap_or(false)
@@ -280,6 +286,8 @@ impl Recorder {
             };
             let _ = ready_tx.send(Ok(()));
             let _ = stop_rx.recv();
+            // cpal 0.15 的 CoreAudio 非默认设备 Stream 与断连监听互相持有，drop 不会停止音频单元，先显式暂停
+            let _ = stream.pause();
             drop(stream);
         });
         ready_rx.recv().map_err(|_| anyhow!("麦克风线程异常退出"))??;
@@ -333,6 +341,54 @@ mod selection_tests {
             let selected = named_input(devices.into_iter(), "Selected headset", |d| Some(d.0.into()), |d| d.1 > 0);
             assert_eq!(selected.or(Some(("Default", 1))), Some(("Default", 1)));
         }
+    }
+}
+
+#[cfg(all(test, target_os = "macos"))]
+mod live_tests {
+    use super::*;
+    use crate::audio::devices;
+    use std::time::Duration;
+
+    fn default_input_name() -> String {
+        cpal::default_host().default_input_device().expect("没有默认输入设备").name().expect("默认输入设备没有名称")
+    }
+
+    fn assert_released_after_stop(name: &str, device: coreaudio_sys::AudioObjectID) {
+        assert_eq!(devices::running(device), Some(0), "测试开始前 {name} 已被占用，无法判断结果");
+        let (mut recorder, audio) = Recorder::start(Some(name), |_| {}).expect("打开麦克风");
+        std::thread::sleep(Duration::from_millis(500));
+        assert_eq!(devices::running(device), Some(1), "{name} 在录音期间应在运行");
+        recorder.stop();
+        drop(audio);
+        std::thread::sleep(Duration::from_millis(500));
+        assert_eq!(devices::running(device), Some(0), "Recorder::stop() 后 {name} 仍在运行");
+    }
+
+    #[test]
+    #[ignore = "opens this Mac's microphone"]
+    fn live_named_default_recorder_stop_releases_device() {
+        let name = default_input_name();
+        let device = devices::default_input().expect("CoreAudio 默认输入设备");
+        assert_released_after_stop(&name, device);
+    }
+
+    #[test]
+    #[ignore = "opens this Mac's microphone; needs a second input device"]
+    fn live_named_nondefault_recorder_stop_releases_device() {
+        let default = default_input_name();
+        let Some((name, device)) = microphones()
+            .into_iter()
+            .filter(|m| m != &default)
+            .find_map(|m| {
+                let id = devices::input_id(&m)?;
+                (devices::running(id) == Some(0)).then_some((m, id))
+            })
+        else {
+            eprintln!("没有空闲的非默认输入设备，跳过");
+            return;
+        };
+        assert_released_after_stop(&name, device);
     }
 }
 
