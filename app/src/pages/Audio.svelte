@@ -9,11 +9,16 @@
   const mac = $derived(app.info?.platform === "mac");
 
   onMount(() => {
+    const sync = () => call("meter", { on: document.hasFocus() });
     refreshMics();
     window.addEventListener("focus", refreshMics);
-    call("meter", { on: true });
+    window.addEventListener("focus", sync);
+    window.addEventListener("blur", sync);
+    sync();
     return () => {
       window.removeEventListener("focus", refreshMics);
+      window.removeEventListener("focus", sync);
+      window.removeEventListener("blur", sync);
       call("meter", { on: false });
     };
   });
