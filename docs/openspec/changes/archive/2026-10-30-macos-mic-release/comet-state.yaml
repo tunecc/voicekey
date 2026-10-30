@@ -1,0 +1,3419 @@
+# comet-execution: managed-run
+change_id: 22dcc8d3-448a-4f13-bcfc-41c307f4295b
+workflow: hotfix
+language: zh-CN
+phase: archive
+context_compression: off
+build_mode: direct
+build_pause: null
+subagent_dispatch: null
+tdd_mode: direct
+review_mode: off
+isolation: branch
+verify_mode: light
+auto_transition: true
+base_ref: c9c6e47b520f322a0f5ca6b5e3213f4b2d1d3a4a
+design_doc: null
+plan: null
+verify_result: pass
+verify_failures: 0
+verification_report: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+branch_status: pending
+created_at: 2026-10-29
+verified_at: 2026-10-30
+archive_confirmation: confirmed
+archived: true
+bound_branch: comet/macos-mic-release
+direct_override: null
+handoff_context: null
+handoff_hash: null
+classic_profile: null
+classic_migration: null
+run_checkpoint:
+  schema: comet.workflow-run-checkpoint.v1
+  hash: 49dce4cfde518dc2a267f128e2ceeb78b92f75c4d78eef2003495be18f74ef84
+  run:
+    protocolVersion: 1
+    schemaVersion: 1
+    runId: macos-mic-release
+    revision: 1
+    workflow:
+      id: comet-classic-hotfix
+      version: "1"
+      hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+    definitionHashes:
+      '["comet-classic-hotfix","1"]': 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+    initialStateHash: a779a0d0976632424ac179d29e926071e8773b433ed461ca29272c64d8bfbdeb
+    input:
+      change: macos-mic-release
+      changeDir: docs/openspec/changes/macos-mic-release
+      workspaceBaseline:
+        ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+    state:
+      archiveConfirmation: confirmed
+      archived: true
+      autoTransition: true
+      baseRef: c9c6e47b520f322a0f5ca6b5e3213f4b2d1d3a4a
+      boundBranch: comet/macos-mic-release
+      branchStatus: pending
+      buildMode: direct
+      buildPause: null
+      checkEpoch: 7
+      classicMigration: null
+      classicProfile: null
+      contextCompression: off
+      createdAt: 2026-10-29
+      designDoc: null
+      directOverride: null
+      handoffContext: null
+      handoffHash: null
+      isolation: branch
+      language: zh-CN
+      phase: archive
+      plan: null
+      reviewMode: off
+      subagentDispatch: null
+      tddMode: direct
+      verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+      verifiedAt: 2026-10-30
+      verifyFailures: 0
+      verifyMode: light
+      verifyResult: pass
+      workflow: hotfix
+    status: running
+    sequence: 20
+    actions:
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-214ec917e1ef4cbc2d13a69dd8159b27515240836f3ba0e2f1b1c77d399092bf
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:1
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs: {}
+        inputHash: 955250cb67481ca5ead2c4d7c6f7820b206d54adf9c0786f3d91607ed33c09ff
+        outcome:
+          actionId: macos-mic-release:1
+          attempt: 1
+          claimToken: portable-214ec917e1ef4cbc2d13a69dd8159b27515240836f3ba0e2f1b1c77d399092bf
+          inputHash: 955250cb67481ca5ead2c4d7c6f7820b206d54adf9c0786f3d91607ed33c09ff
+          outcomeId: aed7d7e3-783f-4ffc-964f-344dc9afe352
+          output:
+            event: open-complete
+            requirementsEvidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: e45872cb2dbb71f4d3e868ae20fc4a3f4ee4ef550cb317e484dd14848f8193c6
+            outcomeId: aed7d7e3-783f-4ffc-964f-344dc9afe352
+        reconciliations: []
+        ref: comet-hotfix
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.open
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: classic-builder/macos-mic-release:3/1
+          token: portable-0a76e8d16719eec15ea56270a6f550bbdb72d59415a1c207c7d1f302cd7325f5
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:3
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        inputHash: 623a6277a1b3b5481d5264cd507092646e1b728952c0f43807aa4f07c252319a
+        outcome:
+          actionId: macos-mic-release:3
+          attempt: 1
+          claimToken: portable-0a76e8d16719eec15ea56270a6f550bbdb72d59415a1c207c7d1f302cd7325f5
+          inputHash: 623a6277a1b3b5481d5264cd507092646e1b728952c0f43807aa4f07c252319a
+          outcomeId: 192b0c4f-308c-439f-a780-d29f3a8b6bac
+          output:
+            event: build-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: f7d9a3798d931e4e091339dfd2b4460899fd32c3b85ec2156aa3f892711e846e
+            outcomeId: 192b0c4f-308c-439f-a780-d29f3a8b6bac
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-a0bf6ec9cbfcbe88feeda1e249736f41938f69e19b036629818989e3214361a5
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:4
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        inputHash: a95b5202734e2b663e48b024155554df7a07b0bca00f41105b48ee042a6b2fa5
+        outcome:
+          actionId: macos-mic-release:4
+          attempt: 1
+          claimToken: portable-a0bf6ec9cbfcbe88feeda1e249736f41938f69e19b036629818989e3214361a5
+          inputHash: a95b5202734e2b663e48b024155554df7a07b0bca00f41105b48ee042a6b2fa5
+          outcomeId: cc8dc7d5-6f5a-4220-bb53-a9cafbce8dd1
+          output:
+            argv:
+              - cargo
+              - test
+              - -p
+              - voicekey-core
+              - --lib
+              - --
+              - --include-ignored
+              - --test-threads=1
+            changedDuringExecution: []
+            checkEpoch: 1
+            contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+            cwd: .
+            environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+            exitCode: 0
+            inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+            inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+            manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+            manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: c5ebd914a62246f33b370af50ad7689e82939105073a667a27ce14aeeff2bb12
+            outcomeId: cc8dc7d5-6f5a-4220-bb53-a9cafbce8dd1
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.build.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-93cb00d7dbb6831dc2e1c3faf153389768c399faf499b871141451321143f0d8
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:6
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        inputHash: 41f82b91778f2bc302112ce4a6f888f540fd10a332c7771ce86f7f714fb6a92f
+        outcome:
+          actionId: macos-mic-release:6
+          attempt: 1
+          claimToken: portable-93cb00d7dbb6831dc2e1c3faf153389768c399faf499b871141451321143f0d8
+          inputHash: 41f82b91778f2bc302112ce4a6f888f540fd10a332c7771ce86f7f714fb6a92f
+          outcomeId: 34a1c0ca-b43c-494c-b6cf-8eb730e6312b
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: fb05a1d1cf101055ffc7829dd552451ca70ad983160ff310c0a41ea195bdf12f
+            outcomeId: 34a1c0ca-b43c-494c-b6cf-8eb730e6312b
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-1e70b6a9b4b111ada3ba13a1ba0743758071de2e971aebfc704941da510e74f2
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:8
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: 3d4c9826369be56faa225226e3f33a40692634021764c819a304a3e384f1212c
+        outcome:
+          actionId: macos-mic-release:8
+          attempt: 1
+          claimToken: portable-1e70b6a9b4b111ada3ba13a1ba0743758071de2e971aebfc704941da510e74f2
+          inputHash: 3d4c9826369be56faa225226e3f33a40692634021764c819a304a3e384f1212c
+          outcomeId: 6474fa52-6099-4e4d-82a6-11e5766f3bc2
+          output:
+            argv:
+              - sh
+              - -c
+              - cargo test -p voicekey-core --lib -- --include-ignored
+                --test-threads=1 && npm --prefix app run build
+            changedDuringExecution: []
+            checkEpoch: 2
+            contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+            cwd: .
+            deliveryInputs:
+              app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+              app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+              crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+              crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+            environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+            exitCode: 0
+            inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+            inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+            manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+            manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 55dcf6fdc42e244d12f2121e3c97653f586446c047feec2d7d4e1533aaa475c1
+            outcomeId: 6474fa52-6099-4e4d-82a6-11e5766f3bc2
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-62cf14e07e284ed5c7f4d512d4153ec7729d0381bec2754f6d0e9cdfc9ee3c41
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:10
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: 91f8af05acccdb2531a0a33d6ffa48f1d01fd0c0876523ffb7bed4ef6a8eaf7d
+        outcome:
+          actionId: macos-mic-release:10
+          attempt: 1
+          claimToken: portable-62cf14e07e284ed5c7f4d512d4153ec7729d0381bec2754f6d0e9cdfc9ee3c41
+          inputHash: 91f8af05acccdb2531a0a33d6ffa48f1d01fd0c0876523ffb7bed4ef6a8eaf7d
+          outcomeId: eb332cfd-52b5-411a-8502-5036111967b4
+          output:
+            summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+              default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+              项测试含实机释放测试，前端构建通过，报告
+              docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+              change 到
+              docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+              change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+              comet/macos-mic-release 到 origin，不创建 PR。
+            targetBranch: comet/macos-mic-release
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: d1add8bead261ae6fd9639c46413228c15f25ce5e1bc187d1bf3635bfd3ed461
+            outcomeId: eb332cfd-52b5-411a-8502-5036111967b4
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-8761cc0aeac4df079a366e07cbcf25b786001e8e70341c18ad15fbd5f6cf2c52
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:12
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.confirm:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+            hotfix.archive.prepare:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: 9303cb4440f1b6c581d5e42fa5d4605472269bb13069dcfa3449fe4d0dc6e711
+        outcome:
+          actionId: macos-mic-release:12
+          attempt: 1
+          claimToken: portable-8761cc0aeac4df079a366e07cbcf25b786001e8e70341c18ad15fbd5f6cf2c52
+          inputHash: 9303cb4440f1b6c581d5e42fa5d4605472269bb13069dcfa3449fe4d0dc6e711
+          outcomeId: 5a646daf-27ad-4067-bb29-0bac0d55f510
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: efb9195ed5660d15b90ccb1d60f5a8fcaf460b19fe1297f0fd5a3cc9cf475860
+            outcomeId: 5a646daf-27ad-4067-bb29-0bac0d55f510
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-a226819cda60bae15beb16645d1589fa44eaf24d366ec76c0c0e1dee056117cf
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:14
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.confirm:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+            hotfix.archive.prepare:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: 9303cb4440f1b6c581d5e42fa5d4605472269bb13069dcfa3449fe4d0dc6e711
+        outcome:
+          actionId: macos-mic-release:14
+          attempt: 1
+          claimToken: portable-a226819cda60bae15beb16645d1589fa44eaf24d366ec76c0c0e1dee056117cf
+          inputHash: 9303cb4440f1b6c581d5e42fa5d4605472269bb13069dcfa3449fe4d0dc6e711
+          outcomeId: 032e4608-b362-4df8-96fb-577bd3f80440
+          output:
+            argv:
+              - sh
+              - -c
+              - cargo test -p voicekey-core --lib -- --include-ignored
+                --test-threads=1 && npm --prefix app run build
+            changedDuringExecution: []
+            checkEpoch: 4
+            contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+            cwd: .
+            deliveryInputs: {}
+            environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+            exitCode: 0
+            inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+            inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+            manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+            manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 4a19a10167386d89f2fd6d6fc189a314d02ef7ed4680346978cf336c8443e1a2
+            outcomeId: 032e4608-b362-4df8-96fb-577bd3f80440
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-b326a7acf0f296e7cee50a2a677de41498561637cc0c6be74ad52577ab01df69
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:16
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.confirm:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+            hotfix.archive.prepare:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: 97db1bead7912317341819af76b5939cdf17610f66e1e9582b373bd8362a1dbd
+        outcome:
+          actionId: macos-mic-release:16
+          attempt: 1
+          claimToken: portable-b326a7acf0f296e7cee50a2a677de41498561637cc0c6be74ad52577ab01df69
+          inputHash: 97db1bead7912317341819af76b5939cdf17610f66e1e9582b373bd8362a1dbd
+          outcomeId: 5a46c972-fe2e-4041-a7df-430d5fbad5a5
+          output:
+            remote: origin
+            summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+              default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+              项测试含实机释放测试，前端构建通过，报告
+              docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+              change 到
+              docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+              change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+              comet/macos-mic-release 到 origin，不创建 PR。
+            targetBranch: comet/macos-mic-release
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 18755daeee86164e52fbca806b6e336b916c8d52436a3043801c963219952f6c
+            outcomeId: 5a46c972-fe2e-4041-a7df-430d5fbad5a5
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive-preflight
+          token: portable-5d3da4e15a52bbf27e0f9060e878f19204acbfc4269b2c60201796cfcd47d456
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:18
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.confirm:
+              choice: push
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+            hotfix.archive.prepare:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: 09a4313ae83038997c51f2229173476d81338b093346278eaa7a45061a3a705b
+        outcome:
+          actionId: macos-mic-release:18
+          attempt: 1
+          claimToken: portable-5d3da4e15a52bbf27e0f9060e878f19204acbfc4269b2c60201796cfcd47d456
+          inputHash: 09a4313ae83038997c51f2229173476d81338b093346278eaa7a45061a3a705b
+          outcomeId: 11e4a2fa-5bf7-4e8e-a478-997d6cf8ecc5
+          output:
+            baseCommit: 6ac48e8228953ec276aa25886bc4580685866f50
+            deliveryAction: push
+            remote: origin
+            remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+            targetBranch: comet/macos-mic-release
+            verifiedBranch: comet/macos-mic-release
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 66ff49d86efb16e383c6c2477999133f8f0988acf25088ed6fb5414e5f20c4e4
+            outcomeId: 11e4a2fa-5bf7-4e8e-a478-997d6cf8ecc5
+        reconciliations: []
+        ref: classic-archive-preflight
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.archive.preflight
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive
+          token: portable-de8f8a22f8f787cf07fcad986793d8dd3709df530522ad82d5333e1ef767e5a2
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: macos-mic-release:19
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.confirm:
+              choice: push
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+            hotfix.archive.preflight:
+              baseCommit: 6ac48e8228953ec276aa25886bc4580685866f50
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: comet/macos-mic-release
+              verifiedBranch: comet/macos-mic-release
+            hotfix.archive.prepare:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: ba51a2431df651d4f8fefe64c8b1143bfe0759753cc998fc30e4353140b648e7
+        outcome:
+          actionId: macos-mic-release:19
+          artifacts:
+            - sha256: dbc354824745d37647d997e485db490c70dbafea8868692aee06016a1e51098f
+              uri: docs/openspec/changes/archive/2026-10-30-macos-mic-release/.comet/archive-manifest.json
+          attempt: 1
+          claimToken: portable-de8f8a22f8f787cf07fcad986793d8dd3709df530522ad82d5333e1ef767e5a2
+          inputHash: ba51a2431df651d4f8fefe64c8b1143bfe0759753cc998fc30e4353140b648e7
+          outcomeId: 7ec67769-d6e3-4802-b661-c4de03505cee
+          output:
+            archiveDirectory: docs/openspec/changes/archive/2026-10-30-macos-mic-release
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 3757c417fe050c1e383ad022291aac7140d013331165260e09350893d2ce43b5
+            outcomeId: 7ec67769-d6e3-4802-b661-c4de03505cee
+        reconciliations: []
+        ref: classic-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: succeeded
+        stepId: hotfix.archive.execute
+        type: call_tool
+      - attempt: 1
+        id: macos-mic-release:20
+        input:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.confirm:
+              choice: push
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+            hotfix.archive.execute:
+              archiveDirectory: docs/openspec/changes/archive/2026-10-30-macos-mic-release
+            hotfix.archive.preflight:
+              baseCommit: 6ac48e8228953ec276aa25886bc4580685866f50
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: comet/macos-mic-release
+              verifiedBranch: comet/macos-mic-release
+            hotfix.archive.prepare:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+            hotfix.build.check:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+            hotfix.open.evidence:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+            hotfix.verify.check:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+            hotfix.verify.report.evidence:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        inputHash: e64a71dc566eb5607827aea94c32544aff2d653f0da27a641de115c81e7f65b6
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: macos-mic-release
+        status: pending
+        stepId: hotfix.archive.deliver
+        type: invoke_skill
+    actionContexts:
+      macos-mic-release:1:
+        results: {}
+        sequence: 1
+      macos-mic-release:10:
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 10
+      macos-mic-release:12:
+        results:
+          hotfix.archive.confirm:
+            sequence: 11
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 12
+      macos-mic-release:14:
+        results:
+          hotfix.archive.confirm:
+            sequence: 11
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 14
+      macos-mic-release:16:
+        results:
+          hotfix.archive.confirm:
+            sequence: 11
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 16
+      macos-mic-release:18:
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: push
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 18
+      macos-mic-release:19:
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: push
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.preflight:
+            sequence: 18
+            value:
+              baseCommit: 6ac48e8228953ec276aa25886bc4580685866f50
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: comet/macos-mic-release
+              verifiedBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 19
+      macos-mic-release:20:
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: push
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.execute:
+            sequence: 19
+            value:
+              archiveDirectory: docs/openspec/changes/archive/2026-10-30-macos-mic-release
+          hotfix.archive.preflight:
+            sequence: 18
+            value:
+              baseCommit: 6ac48e8228953ec276aa25886bc4580685866f50
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: comet/macos-mic-release
+              verifiedBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 20
+      macos-mic-release:3:
+        results:
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        sequence: 3
+      macos-mic-release:4:
+        results:
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        sequence: 4
+      macos-mic-release:6:
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        sequence: 6
+      macos-mic-release:8:
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        sequence: 8
+    waits:
+      - id: macos-mic-release:11
+        stepId: hotfix.archive.confirm
+        sequence: 11
+        status: resolved
+        proposal:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.prepare:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+        proposalHash: 5aefc3ab1ebd9e644abb6cc2150f5c749c460c41da992ea460911f378edef86a
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results:
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        decision:
+          id: classic-archive-5aefc3ab1ebd9e644abb6cc2150f5c749c460c41da992ea460911f378edef86a-reverify
+          choice: reverify
+          proposalHash: 5aefc3ab1ebd9e644abb6cc2150f5c749c460c41da992ea460911f378edef86a
+      - id: macos-mic-release:17
+        stepId: hotfix.archive.confirm
+        sequence: 17
+        status: resolved
+        proposal:
+          input:
+            change: macos-mic-release
+            changeDir: docs/openspec/changes/macos-mic-release
+            workspaceBaseline:
+              ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+          outputs:
+            hotfix.archive.prepare:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+        proposalHash: 5b83d7495b28ef3468473503d1316f1f822c5867f1aaeb225447af5e963990d4
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results:
+          hotfix.archive.confirm:
+            sequence: 11
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        decision:
+          id: classic-archive-5b83d7495b28ef3468473503d1316f1f822c5867f1aaeb225447af5e963990d4-push
+          choice: push
+          proposalHash: 5b83d7495b28ef3468473503d1316f1f822c5867f1aaeb225447af5e963990d4
+    evidenceWaits:
+      - id: macos-mic-release:2
+        stepId: hotfix.open.evidence
+        sequence: 2
+        kind: classic-open-artifacts
+        status: resolved
+        results:
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+        receipt:
+          ref: docs/openspec/changes/macos-mic-release
+          contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+          submissionId: 92e48441-d9b6-4b11-8b2c-bacd77fd3582
+      - id: macos-mic-release:5
+        stepId: hotfix.build.check.evidence
+        sequence: 5
+        kind: classic-build-check
+        status: resolved
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+          submissionId: 865bba42-ab9c-4fa6-8725-d61b5d62b7d5
+      - id: macos-mic-release:7
+        stepId: hotfix.verify.report.evidence
+        sequence: 7
+        kind: classic-verification-report
+        status: resolved
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        receipt:
+          ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+          submissionId: e7180e66-cbe5-461c-ba69-4d9028fa46ec
+      - id: macos-mic-release:9
+        stepId: hotfix.verify.check.evidence
+        sequence: 9
+        kind: classic-verify-check
+        status: resolved
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+          submissionId: ee9ad43a-a04b-4fb9-a80e-16ca9cd7eaf4
+      - id: macos-mic-release:13
+        stepId: hotfix.verify.report.evidence
+        sequence: 13
+        kind: classic-verification-report
+        status: resolved
+        results:
+          hotfix.archive.confirm:
+            sequence: 11
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              cwd: .
+              deliveryInputs:
+                app/src/pages/Audio.svelte: git:742d3e36032cd27e4dddc784838dca930d450e6b
+                app/src/pages/Onboard.svelte: git:7c4b83f5e3517efb7e23bdf629c57ff9f4ef3a6d
+                crates/core/src/audio.rs: git:2e06868c2b0cf1e69f7c6a10779dd7db779d283e
+                crates/core/src/audio/devices.rs: git:b90794ee45a00e398fdd76cff36eb635d8c7411b
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ad5f4f78-956c-4d3e-b8d6-865b7246fae7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        receipt:
+          ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+          submissionId: 80e20b17-4d5c-4c47-b5a9-168b66fd3043
+      - id: macos-mic-release:15
+        stepId: hotfix.verify.check.evidence
+        sequence: 15
+        kind: classic-verify-check
+        status: resolved
+        results:
+          hotfix.archive.confirm:
+            sequence: 11
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: macos-mic-release
+                  changeDir: docs/openspec/changes/macos-mic-release
+                  workspaceBaseline:
+                    ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+                outputs:
+                  hotfix.archive.prepare:
+                    summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                      default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                      项测试含实机释放测试，前端构建通过，报告
+                      docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                      change 到
+                      docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                      change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                      comet/macos-mic-release 到 origin，不创建 PR。
+                    targetBranch: comet/macos-mic-release
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                项测试含实机释放测试，前端构建通过，报告
+                docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                change 到
+                docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                comet/macos-mic-release 到 origin，不创建 PR。
+              targetBranch: comet/macos-mic-release
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - test
+                - -p
+                - voicekey-core
+                - --lib
+                - --
+                - --include-ignored
+                - --test-threads=1
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              cwd: .
+              environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+                ref: docs/openspec/changes/macos-mic-release
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+              ref: docs/openspec/changes/macos-mic-release
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - sh
+                - -c
+                - cargo test -p voicekey-core --lib -- --include-ignored
+                  --test-threads=1 && npm --prefix app run build
+              changedDuringExecution: []
+              checkEpoch: 4
+              contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+              cwd: .
+              deliveryInputs: {}
+              environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+              exitCode: 0
+              inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+              manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+              manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: b63a96147fe5e735f8232cf488218a20eba02bcb52c24894a255ec9f6d4406e0
+              ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/639bce6e-f417-43c0-b00b-b47608983867.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+              ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+          submissionId: c66bdf4c-bed2-4e70-914d-208d3f59229a
+    ready: []
+    joins: {}
+    outputs:
+      hotfix.archive.confirm:
+        sequence: 17
+        value:
+          choice: push
+          proposal:
+            input:
+              change: macos-mic-release
+              changeDir: docs/openspec/changes/macos-mic-release
+              workspaceBaseline:
+                ref: 0c8526e4-f284-4599-a88c-0f9d898f529a
+            outputs:
+              hotfix.archive.prepare:
+                remote: origin
+                summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+                  default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+                  项测试含实机释放测试，前端构建通过，报告
+                  docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+                  change 到
+                  docs/openspec/changes/archive/2026-10-30-macos-mic-release；本
+                  change 无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送
+                  comet/macos-mic-release 到 origin，不创建 PR。
+                targetBranch: comet/macos-mic-release
+      hotfix.archive.execute:
+        sequence: 19
+        value:
+          archiveDirectory: docs/openspec/changes/archive/2026-10-30-macos-mic-release
+      hotfix.archive.preflight:
+        sequence: 18
+        value:
+          baseCommit: 6ac48e8228953ec276aa25886bc4580685866f50
+          deliveryAction: push
+          remote: origin
+          remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+          targetBranch: comet/macos-mic-release
+          verifiedBranch: comet/macos-mic-release
+      hotfix.archive.prepare:
+        sequence: 16
+        value:
+          remote: origin
+          summary: 修复 macOS 语音输入结束后麦克风持续占用：停止录音时先 pause 再 drop cpal stream，系统默认设备改走
+            default_input_device 避开 cpal 引用环，电平表随窗口焦点启停。验证通过（24
+            项测试含实机释放测试，前端构建通过，报告
+            docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md）。归档将移动
+            change 到
+            docs/openspec/changes/archive/2026-10-30-macos-mic-release；本 change
+            无 delta spec。交付方式：创建 fix 提交与唯一归档提交后，推送 comet/macos-mic-release 到
+            origin，不创建 PR。
+          targetBranch: comet/macos-mic-release
+      hotfix.build.check:
+        sequence: 4
+        value:
+          argv:
+            - cargo
+            - test
+            - -p
+            - voicekey-core
+            - --lib
+            - --
+            - --include-ignored
+            - --test-threads=1
+          changedDuringExecution: []
+          checkEpoch: 1
+          contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+          cwd: .
+          environment: f179aef3c09a35921b57c309b39a3566116583bae3458ddd9eba030cbe4e8897
+          exitCode: 0
+          inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+          inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+          manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+          manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/125bcb88-7ade-4a67-b65c-d9bfebe263f3.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      hotfix.build.check.evidence:
+        sequence: 5
+        value:
+          contentHash: 65302146b8e54a9c4bbb8dafc076898e23dba409d4f4f571f8cb14024f29b460
+          ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/240ea90a-5fc0-4fdc-a28f-ff6d6f9b1f18.log
+      hotfix.build.execute:
+        sequence: 3
+        value:
+          event: build-complete
+      hotfix.open:
+        sequence: 1
+        value:
+          event: open-complete
+          requirementsEvidence:
+            contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+            ref: docs/openspec/changes/macos-mic-release
+      hotfix.open.evidence:
+        sequence: 2
+        value:
+          contentHash: 9c11f3c5562993d709222112933e7d13efd907ad9cb2c9be681e179ab468e94b
+          ref: docs/openspec/changes/macos-mic-release
+      hotfix.verify.check:
+        sequence: 14
+        value:
+          argv:
+            - sh
+            - -c
+            - cargo test -p voicekey-core --lib -- --include-ignored
+              --test-threads=1 && npm --prefix app run build
+          changedDuringExecution: []
+          checkEpoch: 4
+          contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+          cwd: .
+          deliveryInputs: {}
+          environment: 9f45b475a7295e2f8679edf35b708fad4cb39827540951889f8d30c8238ee7b9
+          exitCode: 0
+          inputAfter: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+          inputBefore: dabb3cda96ff62552594236372e0f81a282f6c2a68a1fdb339982d046c9b078c
+          manifestHash: a91dac8a2ccb838887b0ebdd9c0070530ba863294d318c645751cadacd3d1780
+          manifestRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/c43c7896-51e0-484d-8677-c14a41be5f30.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+          reusable: false
+          reused: false
+          scope: verify
+          tier: full
+          timeoutMs: 300000
+      hotfix.verify.check.evidence:
+        sequence: 15
+        value:
+          contentHash: 2c689c944140ade7e253c85280a1f837288024ca052664a833a2e4bfc67a7dec
+          ref: .comet/runtime/classic-sdk-checks/f66f05a779c3d48d280c44b6b033e1a1ddbb8ebbc26116c021e7ad6467de3b68/ddd95719-4c05-461f-857d-e48afd9a2cb3.log
+      hotfix.verify.report.evidence:
+        sequence: 13
+        value:
+          contentHash: f236e0d9e160e52349433fe3553f94d1f212def28fd1c1a0a1770f259c9eae92
+          ref: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+      hotfix.verify.run:
+        sequence: 12
+        value:
+          event: verification-ready
+          verificationReport: docs/superpowers/reports/2026-10-30-macos-mic-release-verify.md
+    children: []
+    lineage: []
+  sourceRevision: 31
+  sourceHash: 6b6521cf8209bd337bbc5f6904e75e569a168acfac16001ffbb0cd18f444a128
+check_epoch: 7
