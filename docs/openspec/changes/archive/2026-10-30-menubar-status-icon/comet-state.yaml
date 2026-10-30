@@ -1,0 +1,2231 @@
+# comet-execution: managed-run
+change_id: 3809eb9c-0f7a-4018-a783-beb16bf61dfa
+workflow: tweak
+language: zh-CN
+phase: archive
+context_compression: off
+build_mode: direct
+build_pause: null
+subagent_dispatch: null
+tdd_mode: direct
+review_mode: off
+isolation: branch
+verify_mode: light
+auto_transition: true
+base_ref: 860a7354133f3e009dae232b35df5c90fb5af284
+design_doc: null
+plan: null
+verify_result: pass
+verify_failures: 0
+verification_report: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+branch_status: pending
+created_at: 2026-10-30
+verified_at: 2026-10-30
+archive_confirmation: confirmed
+archived: true
+bound_branch: comet/menubar-status-icon
+direct_override: null
+handoff_context: null
+handoff_hash: null
+classic_profile: null
+classic_migration: null
+run_checkpoint:
+  schema: comet.workflow-run-checkpoint.v2
+  hash: d87bcac0b6037242824291c497d4ee166acd3b50d7fc4f37a120732ce6caec7a
+  run:
+    protocolVersion: 1
+    schemaVersion: 1
+    runId: menubar-status-icon
+    revision: 1
+    workflow:
+      id: comet-classic-tweak
+      version: "1"
+      hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+    definitionHashes:
+      '["comet-classic-tweak","1"]': fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+    initialStateHash: f345a0fee6245a0cc3a7f521754ef93428799b831387cec4fab3a4c13aa13c34
+    input:
+      change: menubar-status-icon
+      changeDir: docs/openspec/changes/menubar-status-icon
+      workspaceBaseline:
+        ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+    state:
+      archiveConfirmation: confirmed
+      archived: true
+      autoTransition: true
+      baseRef: 860a7354133f3e009dae232b35df5c90fb5af284
+      boundBranch: comet/menubar-status-icon
+      branchStatus: pending
+      buildMode: direct
+      buildPause: null
+      checkEpoch: 7
+      classicMigration: null
+      classicProfile: null
+      contextCompression: off
+      createdAt: 2026-10-30
+      designDoc: null
+      directOverride: null
+      handoffContext: null
+      handoffHash: null
+      isolation: branch
+      language: zh-CN
+      phase: archive
+      plan: null
+      reviewMode: off
+      subagentDispatch: null
+      tddMode: direct
+      verificationReport: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      verifiedAt: 2026-10-30
+      verifyFailures: 0
+      verifyMode: light
+      verifyResult: pass
+      workflow: tweak
+    status: running
+    sequence: 22
+    actions:
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-26179e9079c323fb758415dee814576494842a2e3f0c0afa1f5beb42df195e66
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:1
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 5d8e88d37ffc93e27f9a31d3f285511237a064ab70fbd131205faa6b5ac70964
+        outcome:
+          actionId: menubar-status-icon:1
+          attempt: 1
+          claimToken: portable-26179e9079c323fb758415dee814576494842a2e3f0c0afa1f5beb42df195e66
+          inputHash: 5d8e88d37ffc93e27f9a31d3f285511237a064ab70fbd131205faa6b5ac70964
+          outcomeId: 38d1d675-d8e7-4b2b-9edf-fc291c76eebb
+          output:
+            event: open-complete
+            requirementsEvidence:
+              contentHash: ce8d556d3460e53adc878edbdd26c737d8cc98d1d29d22912fe9ca2e836e81bd
+              ref: docs/openspec/changes/menubar-status-icon
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 3a1d62d3c916a08c9aad04f3f85bc24222370c50237bcbbba312f5d4d786ddee
+            outcomeId: 38d1d675-d8e7-4b2b-9edf-fc291c76eebb
+        reconciliations: []
+        ref: comet-tweak
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.open
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-f64d7281ee2db2b9a3d047d21cecce93837b940358c28789c283c4cf966df03e
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:3
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 8d2af8ef7f80d286935a7655bc36b7e7e766ac8e674f929621dc30fd8ece556a
+        outcome:
+          actionId: menubar-status-icon:3
+          attempt: 1
+          claimToken: portable-f64d7281ee2db2b9a3d047d21cecce93837b940358c28789c283c4cf966df03e
+          inputHash: 8d2af8ef7f80d286935a7655bc36b7e7e766ac8e674f929621dc30fd8ece556a
+          outcomeId: ff52457a-4ff2-4d1c-8883-8e0ee8f5ee45
+          output:
+            event: escalation-requested
+            proposal: 用户将菜单栏图标方向从 A/B/C 三候选改为单线波形 E/F/G，并选定 F（App 原形）；其余范围不变
+            requirementsEvidence:
+              contentHash: 0a0f97ec439f552a76b37e8cab7499f39f874c8417d34a637589d84ece83f570
+              ref: docs/openspec/changes/menubar-status-icon
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: a71057c8dfbb0350d6d7222563e519ae346ecf5ba93b779190f577718d57e624
+            outcomeId: ff52457a-4ff2-4d1c-8883-8e0ee8f5ee45
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: classic-builder/menubar-status-icon:5/1
+          token: portable-27eb95ee31000e8f6fd04f016dfeac537987f179ffb21e79d3fb470dc9763f66
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:5
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 7b60e3f454c6761e3a9e64a9d64e03bb4a692e782451a39f3a73f094e5ec353e
+        outcome:
+          actionId: menubar-status-icon:5
+          attempt: 1
+          claimToken: portable-27eb95ee31000e8f6fd04f016dfeac537987f179ffb21e79d3fb470dc9763f66
+          inputHash: 7b60e3f454c6761e3a9e64a9d64e03bb4a692e782451a39f3a73f094e5ec353e
+          outcomeId: 0ad09715-6fc1-4221-83e0-756401e65dd2
+          output:
+            event: build-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 8bfec99705dd817cfc5e5594f8968961fcf188215f6b2690527fd1c608098e34
+            outcomeId: 0ad09715-6fc1-4221-83e0-756401e65dd2
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-2e02ad7dbed6fa445a2c1395071fd0e63acebc8b110ed7cc7b73ca02e5c10101
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:6
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 2a3e334c137f406b44396d3962c9cd48a8e61b1f2760ad4c4e8825a7f763e747
+        outcome:
+          actionId: menubar-status-icon:6
+          attempt: 1
+          claimToken: portable-2e02ad7dbed6fa445a2c1395071fd0e63acebc8b110ed7cc7b73ca02e5c10101
+          inputHash: 2a3e334c137f406b44396d3962c9cd48a8e61b1f2760ad4c4e8825a7f763e747
+          outcomeId: 63abe52f-f4cc-40a5-9670-c37dbd38b0ad
+          output:
+            argv:
+              - cargo
+              - build
+            changedDuringExecution: []
+            checkEpoch: 1
+            contentHash: a9d42cc6838d99545d7cc5bd7866cee8e04707fccea0f9cf3edbb865ea85e781
+            cwd: .
+            environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+            exitCode: 0
+            inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+            inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+            manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+            manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/6437825f-33e6-469a-a9b7-acdd566a5024.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/9b6a5043-37c5-42ac-86bb-e2e0083a9295.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: b87bbc9c2a16bdcb963d076f238dbb0234ff0f538c87ef5690577bd534032211
+            outcomeId: 63abe52f-f4cc-40a5-9670-c37dbd38b0ad
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.build.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-03566eaddbba91c0acc43b45cbe4d31d05a0aab5b052b96e1be70948531808d8
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:8
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 84b920b199a61af41ff2fbab1cd2fe60918a81710d8d117d0640fea107073ead
+        outcome:
+          actionId: menubar-status-icon:8
+          attempt: 1
+          claimToken: portable-03566eaddbba91c0acc43b45cbe4d31d05a0aab5b052b96e1be70948531808d8
+          inputHash: 84b920b199a61af41ff2fbab1cd2fe60918a81710d8d117d0640fea107073ead
+          outcomeId: d3bc8dcb-3ab1-4401-9ae8-5ab017b01024
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 92b876417ce1b73cca3c57a0407b25228ac6cc9584627fbb3b89ac00158c5955
+            outcomeId: d3bc8dcb-3ab1-4401-9ae8-5ab017b01024
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-abc1f27a635de2bae47406965f0c4775e60ecae0ac7891de44c0bc48cd445fe8
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:10
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: b5ddab9af0758411d6b6fb8e97c92c72495d25a21cdc922c4446070e66182754
+        outcome:
+          actionId: menubar-status-icon:10
+          attempt: 1
+          claimToken: portable-abc1f27a635de2bae47406965f0c4775e60ecae0ac7891de44c0bc48cd445fe8
+          inputHash: b5ddab9af0758411d6b6fb8e97c92c72495d25a21cdc922c4446070e66182754
+          outcomeId: 9ded0860-b875-46e7-9fdb-2108a01998b9
+          output:
+            argv:
+              - cargo
+              - build
+            changedDuringExecution: []
+            checkEpoch: 2
+            contentHash: 5d4a5df4a52d9a05787cf7dc8c7c122ac1e58092bb1108683f5a6b3ec4262d58
+            cwd: .
+            deliveryInputs:
+              Scripts/tray-icons.swift: git:786c2c4ac48bafdbacf28183eb354d131cd2603d
+              app/src-tauri/icons/tray-active.png: git:3e93ee1956ddfd3fa5e2fe8166544e3a98fdc33b
+              app/src-tauri/icons/tray.png: git:22dc8779f5c86491fb0581f07d1552d73f8e7c24
+            environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+            exitCode: 0
+            inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+            inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+            manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+            manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/59095cb1-1eff-46fd-89f9-d07ac5c34bc6.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/167c5c77-b8fd-4039-a532-6dd280d6acdd.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 78ee44ad67fe7ec0c9e45407390bcdc5ded40b6cd1e22084f3c2ba2206762ff5
+            outcomeId: 9ded0860-b875-46e7-9fdb-2108a01998b9
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-e41d6d574a5c5ed606fcf40747b36b03ae218295685668689a5103462359ac5e
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:12
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 5ea2fc659421c5aa827a11b6ff6cfa59c73b8f649aa28d8a5a341eb97d4eb29a
+        outcome:
+          actionId: menubar-status-icon:12
+          attempt: 1
+          claimToken: portable-e41d6d574a5c5ed606fcf40747b36b03ae218295685668689a5103462359ac5e
+          inputHash: 5ea2fc659421c5aa827a11b6ff6cfa59c73b8f649aa28d8a5a341eb97d4eb29a
+          outcomeId: ace0c28d-23cd-4357-b152-8769bae5bef7
+          output:
+            summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+              tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+              Scripts/tray-icons.swift；验证报告
+              docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+              通过（light，7/7）。当前分支 comet/menubar-status-icon，无 delta spec；归档将移动
+              change 到 archive 并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向 main 创建 PR。
+            targetBranch: comet/menubar-status-icon
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 367d1787443eaa8abbb7712716fd12f39308490982e7bce07cdb3c05c711f301
+            outcomeId: ace0c28d-23cd-4357-b152-8769bae5bef7
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-b35633ce948aa25f3517bb4c0aaa5c4356af72073353d66ee71b61c2197dff9c
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:14
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 07cad9203d8c0a412dc853e436de720210560e910cbc3124d3801e3cba324449
+        outcome:
+          actionId: menubar-status-icon:14
+          attempt: 1
+          claimToken: portable-b35633ce948aa25f3517bb4c0aaa5c4356af72073353d66ee71b61c2197dff9c
+          inputHash: 07cad9203d8c0a412dc853e436de720210560e910cbc3124d3801e3cba324449
+          outcomeId: 9bc16a2f-e5b8-41d8-85a8-e2b24c929c43
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 705b5ead39a67f9564007dc86c3400b7e2cd17bb00b154fb590daad0678bd79e
+            outcomeId: 9bc16a2f-e5b8-41d8-85a8-e2b24c929c43
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-54306748081143c62fc37a8552037c43d2b6a2a8c72a54b40947d9677286ea84
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:16
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 07cad9203d8c0a412dc853e436de720210560e910cbc3124d3801e3cba324449
+        outcome:
+          actionId: menubar-status-icon:16
+          attempt: 1
+          claimToken: portable-54306748081143c62fc37a8552037c43d2b6a2a8c72a54b40947d9677286ea84
+          inputHash: 07cad9203d8c0a412dc853e436de720210560e910cbc3124d3801e3cba324449
+          outcomeId: 9efe0794-04dd-46ac-9ea4-f674cad07a47
+          output:
+            argv:
+              - cargo
+              - build
+            changedDuringExecution: []
+            checkEpoch: 4
+            contentHash: d8e7be27693f18bdd0bb2bc7fac7ff672e29e0751c2e6f3e6d114e7550864c9f
+            cwd: .
+            deliveryInputs:
+              Scripts/tray-icons.swift: git:786c2c4ac48bafdbacf28183eb354d131cd2603d
+              app/src-tauri/icons/tray-active.png: git:3e93ee1956ddfd3fa5e2fe8166544e3a98fdc33b
+              app/src-tauri/icons/tray.png: git:22dc8779f5c86491fb0581f07d1552d73f8e7c24
+            environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+            exitCode: 0
+            inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+            inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+            manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+            manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/2af2ccbf-bc46-4f6a-86b1-a3bbfff2a886.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/df137196-e342-4938-83a4-efe993a8fa2f.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 18bddcd60da5ad7857bcfbd631f142bfc2df19acfb5860df8a521d4551415b2e
+            outcomeId: 9efe0794-04dd-46ac-9ea4-f674cad07a47
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-d339ad7579c554dd7fdd0ac0893fc3ba135417f386eecf38f2a1b42483d6f6af
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:18
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 1bfca52cf08721d79d932352ab9c9d82684572e98b4f92a3332403f85a1ff4c9
+        outcome:
+          actionId: menubar-status-icon:18
+          attempt: 1
+          claimToken: portable-d339ad7579c554dd7fdd0ac0893fc3ba135417f386eecf38f2a1b42483d6f6af
+          inputHash: 1bfca52cf08721d79d932352ab9c9d82684572e98b4f92a3332403f85a1ff4c9
+          outcomeId: e0d13e9f-d2e6-458c-a665-98173dab5eca
+          output:
+            prBaseBranch: main
+            remote: origin
+            summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+              tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+              Scripts/tray-icons.swift；验证报告
+              docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+              通过（light，7/7，cargo build 通过）。当前分支 comet/menubar-status-icon，无
+              delta spec；归档将移动 change 到 archive、合并文档标注并创建唯一归档提交。交付方式 C：推送当前分支到
+              origin，并向 main 创建 PR。
+            targetBranch: comet/menubar-status-icon
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: e1885df6d8174c9cf4f1765f7e3c73e70e83a8c63f756c2cfe110a8633142de6
+            outcomeId: e0d13e9f-d2e6-458c-a665-98173dab5eca
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive-preflight
+          token: portable-a1a48f5e7c0c36d1f875ab1735bb289974381e1c9ba8d800f153b14fa934cbd3
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:20
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 41f7526261bd7e1bcffef83d1c804b91472dc5f548737ab5bb5ded6040063d23
+        outcome:
+          actionId: menubar-status-icon:20
+          attempt: 1
+          claimToken: portable-a1a48f5e7c0c36d1f875ab1735bb289974381e1c9ba8d800f153b14fa934cbd3
+          inputHash: 41f7526261bd7e1bcffef83d1c804b91472dc5f548737ab5bb5ded6040063d23
+          outcomeId: b6ddb5cc-a08e-4f80-9fca-49b14c2297b8
+          output:
+            baseCommit: 860a7354133f3e009dae232b35df5c90fb5af284
+            deliveryAction: pr
+            prBaseBranch: main
+            remote: origin
+            remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+            targetBranch: comet/menubar-status-icon
+            verifiedBranch: comet/menubar-status-icon
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 640adc3a0be6bdcacc967a537b2ea915c8b64a9cea1e3fbacdefd1684fc5a1eb
+            outcomeId: b6ddb5cc-a08e-4f80-9fca-49b14c2297b8
+        reconciliations: []
+        ref: classic-archive-preflight
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.archive.preflight
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive
+          token: portable-485e66a8c64610dc7b792da3a6fc792ade76a2cb2ca8187b1d99cb99b537a77b
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: menubar-status-icon:21
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 4943ab607be1d45a8e4f4d8c068530d4207b763dfd28d405a8c9a18ae627f5a2
+        outcome:
+          actionId: menubar-status-icon:21
+          artifacts:
+            - sha256: 693a569c0e18b3e0f182a5ef3594ddf770b19d37fa3a663a8af5660e538a43d3
+              uri: docs/openspec/changes/archive/2026-10-30-menubar-status-icon/.comet/archive-manifest.json
+          attempt: 1
+          claimToken: portable-485e66a8c64610dc7b792da3a6fc792ade76a2cb2ca8187b1d99cb99b537a77b
+          inputHash: 4943ab607be1d45a8e4f4d8c068530d4207b763dfd28d405a8c9a18ae627f5a2
+          outcomeId: 7a157a61-5d90-48a7-917c-bddc8a01188b
+          output:
+            archiveDirectory: docs/openspec/changes/archive/2026-10-30-menubar-status-icon
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: c435dc68595b36c014393c0c1ef39c0f1af8b71a8b10578e146744f381cc58c3
+            outcomeId: 7a157a61-5d90-48a7-917c-bddc8a01188b
+        reconciliations: []
+        ref: classic-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: succeeded
+        stepId: tweak.archive.execute
+        type: call_tool
+      - attempt: 1
+        id: menubar-status-icon:22
+        input:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs: {}
+        inputHash: 339c38158f37e5f05de22f9b721afe84911d3b11a029f6b11d57990e4d6f3396
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: menubar-status-icon
+        status: pending
+        stepId: tweak.archive.deliver
+        type: invoke_skill
+    actionContexts:
+      menubar-status-icon:1:
+        results: {}
+        sequence: 1
+      menubar-status-icon:10:
+        results: {}
+        sequence: 10
+      menubar-status-icon:12:
+        results: {}
+        sequence: 12
+      menubar-status-icon:14:
+        results: {}
+        sequence: 14
+      menubar-status-icon:16:
+        results: {}
+        sequence: 16
+      menubar-status-icon:18:
+        results: {}
+        sequence: 18
+      menubar-status-icon:20:
+        results: {}
+        sequence: 20
+      menubar-status-icon:21:
+        results: {}
+        sequence: 21
+      menubar-status-icon:22:
+        results: {}
+        sequence: 22
+      menubar-status-icon:3:
+        results: {}
+        sequence: 3
+      menubar-status-icon:5:
+        results: {}
+        sequence: 5
+      menubar-status-icon:6:
+        results: {}
+        sequence: 6
+      menubar-status-icon:8:
+        results: {}
+        sequence: 8
+    waits:
+      - id: menubar-status-icon:4
+        stepId: tweak.build.escalation-confirm
+        sequence: 4
+        status: resolved
+        proposal:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs:
+            tweak.build.execute:
+              event: escalation-requested
+              proposal: 用户将菜单栏图标方向从 A/B/C 三候选改为单线波形 E/F/G，并选定 F（App 原形）；其余范围不变
+              requirementsEvidence:
+                contentHash: 0a0f97ec439f552a76b37e8cab7499f39f874c8417d34a637589d84ece83f570
+                ref: docs/openspec/changes/menubar-status-icon
+        proposalHash: 0556109d8439847392a3048551e81120dc03e8894ecca44ce2cfb13cb29f9336
+        choices:
+          - continue
+          - upgrade
+        results: {}
+        decision:
+          id: classic-escalation-0556109d8439847392a3048551e81120dc03e8894ecca44ce2cfb13cb29f9336-continue
+          choice: continue
+          proposalHash: 0556109d8439847392a3048551e81120dc03e8894ecca44ce2cfb13cb29f9336
+      - id: menubar-status-icon:13
+        stepId: tweak.archive.confirm
+        sequence: 13
+        status: resolved
+        proposal:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs:
+            tweak.archive.prepare:
+              summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+                tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+                Scripts/tray-icons.swift；验证报告
+                docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+                通过（light，7/7）。当前分支 comet/menubar-status-icon，无 delta spec；归档将移动
+                change 到 archive 并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向 main 创建 PR。
+              targetBranch: comet/menubar-status-icon
+        proposalHash: 85449e471e970e2df5b7993a73887a1a1d9b7dfd192f347cf68b53948d150874
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results: {}
+        decision:
+          id: classic-archive-85449e471e970e2df5b7993a73887a1a1d9b7dfd192f347cf68b53948d150874-reverify
+          choice: reverify
+          proposalHash: 85449e471e970e2df5b7993a73887a1a1d9b7dfd192f347cf68b53948d150874
+      - id: menubar-status-icon:19
+        stepId: tweak.archive.confirm
+        sequence: 19
+        status: resolved
+        proposal:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs:
+            tweak.archive.prepare:
+              prBaseBranch: main
+              remote: origin
+              summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+                tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+                Scripts/tray-icons.swift；验证报告
+                docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+                通过（light，7/7，cargo build 通过）。当前分支 comet/menubar-status-icon，无
+                delta spec；归档将移动 change 到 archive、合并文档标注并创建唯一归档提交。交付方式 C：推送当前分支到
+                origin，并向 main 创建 PR。
+              targetBranch: comet/menubar-status-icon
+        proposalHash: a81e15ee8f689064500834f39a5e161430e94134bca11f32ef910363219cf654
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results: {}
+        decision:
+          id: classic-archive-a81e15ee8f689064500834f39a5e161430e94134bca11f32ef910363219cf654-pr
+          choice: pr
+          proposalHash: a81e15ee8f689064500834f39a5e161430e94134bca11f32ef910363219cf654
+    evidenceWaits:
+      - id: menubar-status-icon:2
+        stepId: tweak.open.evidence
+        sequence: 2
+        kind: classic-open-artifacts
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/openspec/changes/menubar-status-icon
+          contentHash: ce8d556d3460e53adc878edbdd26c737d8cc98d1d29d22912fe9ca2e836e81bd
+          submissionId: 7176ac97-fbce-487f-94a0-8ce76ff45526
+      - id: menubar-status-icon:7
+        stepId: tweak.build.check.evidence
+        sequence: 7
+        kind: classic-build-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/9b6a5043-37c5-42ac-86bb-e2e0083a9295.log
+          contentHash: a9d42cc6838d99545d7cc5bd7866cee8e04707fccea0f9cf3edbb865ea85e781
+          submissionId: 74fc7341-6a88-4434-a986-94a110cfd6dd
+      - id: menubar-status-icon:9
+        stepId: tweak.verify.report.evidence
+        sequence: 9
+        kind: classic-verification-report
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+          contentHash: 4d85080b8b542c09896bfb11e17ffdd981731dc4e9cdf755a42cbfc6abd6c0ef
+          submissionId: c4aae560-9c64-4e96-b593-6321febe03ba
+      - id: menubar-status-icon:11
+        stepId: tweak.verify.check.evidence
+        sequence: 11
+        kind: classic-verify-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/167c5c77-b8fd-4039-a532-6dd280d6acdd.log
+          contentHash: 5d4a5df4a52d9a05787cf7dc8c7c122ac1e58092bb1108683f5a6b3ec4262d58
+          submissionId: 28cb56b5-938f-409b-bec9-bf2189d69704
+      - id: menubar-status-icon:15
+        stepId: tweak.verify.report.evidence
+        sequence: 15
+        kind: classic-verification-report
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+          contentHash: 4d85080b8b542c09896bfb11e17ffdd981731dc4e9cdf755a42cbfc6abd6c0ef
+          submissionId: bf0abe0a-3945-4a3b-892c-79d5426fbe65
+      - id: menubar-status-icon:17
+        stepId: tweak.verify.check.evidence
+        sequence: 17
+        kind: classic-verify-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/df137196-e342-4938-83a4-efe993a8fa2f.log
+          contentHash: d8e7be27693f18bdd0bb2bc7fac7ff672e29e0751c2e6f3e6d114e7550864c9f
+          submissionId: b416e2dd-55a3-41ed-be13-2b6ea1a2a13d
+    ready: []
+    joins: {}
+    outputs: {}
+    children: []
+    lineage: []
+  sourceRevision: 34
+  sourceHash: f60329068f874936af81c1d353227b1aba1d5e530656a3fee4d3892ea02de94b
+  pool:
+    version: 3
+    values:
+      - event: open-complete
+        requirementsEvidence:
+          contentHash: ce8d556d3460e53adc878edbdd26c737d8cc98d1d29d22912fe9ca2e836e81bd
+          ref: docs/openspec/changes/menubar-status-icon
+      - contentHash: ce8d556d3460e53adc878edbdd26c737d8cc98d1d29d22912fe9ca2e836e81bd
+        ref: docs/openspec/changes/menubar-status-icon
+      - choice: continue
+        proposal:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs:
+            tweak.build.execute:
+              event: escalation-requested
+              proposal: 用户将菜单栏图标方向从 A/B/C 三候选改为单线波形 E/F/G，并选定 F（App 原形）；其余范围不变
+              requirementsEvidence:
+                contentHash: 0a0f97ec439f552a76b37e8cab7499f39f874c8417d34a637589d84ece83f570
+                ref: docs/openspec/changes/menubar-status-icon
+      - event: escalation-requested
+        proposal: 用户将菜单栏图标方向从 A/B/C 三候选改为单线波形 E/F/G，并选定 F（App 原形）；其余范围不变
+        requirementsEvidence:
+          contentHash: 0a0f97ec439f552a76b37e8cab7499f39f874c8417d34a637589d84ece83f570
+          ref: docs/openspec/changes/menubar-status-icon
+      - event: build-complete
+      - argv:
+          - cargo
+          - build
+        changedDuringExecution: []
+        checkEpoch: 1
+        contentHash: a9d42cc6838d99545d7cc5bd7866cee8e04707fccea0f9cf3edbb865ea85e781
+        cwd: .
+        environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+        exitCode: 0
+        inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+        inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+        manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+        manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/6437825f-33e6-469a-a9b7-acdd566a5024.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/9b6a5043-37c5-42ac-86bb-e2e0083a9295.log
+        reusable: false
+        reused: false
+        scope: build
+        tier: full
+        timeoutMs: 300000
+      - contentHash: a9d42cc6838d99545d7cc5bd7866cee8e04707fccea0f9cf3edbb865ea85e781
+        ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/9b6a5043-37c5-42ac-86bb-e2e0083a9295.log
+      - contentHash: 4d85080b8b542c09896bfb11e17ffdd981731dc4e9cdf755a42cbfc6abd6c0ef
+        ref: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      - event: verification-ready
+        verificationReport: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      - argv:
+          - cargo
+          - build
+        changedDuringExecution: []
+        checkEpoch: 2
+        contentHash: 5d4a5df4a52d9a05787cf7dc8c7c122ac1e58092bb1108683f5a6b3ec4262d58
+        cwd: .
+        deliveryInputs:
+          Scripts/tray-icons.swift: git:786c2c4ac48bafdbacf28183eb354d131cd2603d
+          app/src-tauri/icons/tray-active.png: git:3e93ee1956ddfd3fa5e2fe8166544e3a98fdc33b
+          app/src-tauri/icons/tray.png: git:22dc8779f5c86491fb0581f07d1552d73f8e7c24
+        environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+        exitCode: 0
+        inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+        inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+        manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+        manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/59095cb1-1eff-46fd-89f9-d07ac5c34bc6.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/167c5c77-b8fd-4039-a532-6dd280d6acdd.log
+        reusable: false
+        reused: false
+        scope: verify
+        tier: full
+        timeoutMs: 300000
+      - contentHash: 5d4a5df4a52d9a05787cf7dc8c7c122ac1e58092bb1108683f5a6b3ec4262d58
+        ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/167c5c77-b8fd-4039-a532-6dd280d6acdd.log
+      - choice: reverify
+        proposal:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs:
+            tweak.archive.prepare:
+              summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+                tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+                Scripts/tray-icons.swift；验证报告
+                docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+                通过（light，7/7）。当前分支 comet/menubar-status-icon，无 delta spec；归档将移动
+                change 到 archive 并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向 main 创建 PR。
+              targetBranch: comet/menubar-status-icon
+      - summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+          tray-active.png 替换为用户选定的 F 单线波形模板图标，新增 Scripts/tray-icons.swift；验证报告
+          docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+          通过（light，7/7）。当前分支 comet/menubar-status-icon，无 delta spec；归档将移动 change
+          到 archive 并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向 main 创建 PR。
+        targetBranch: comet/menubar-status-icon
+      - argv:
+          - cargo
+          - build
+        changedDuringExecution: []
+        checkEpoch: 4
+        contentHash: d8e7be27693f18bdd0bb2bc7fac7ff672e29e0751c2e6f3e6d114e7550864c9f
+        cwd: .
+        deliveryInputs:
+          Scripts/tray-icons.swift: git:786c2c4ac48bafdbacf28183eb354d131cd2603d
+          app/src-tauri/icons/tray-active.png: git:3e93ee1956ddfd3fa5e2fe8166544e3a98fdc33b
+          app/src-tauri/icons/tray.png: git:22dc8779f5c86491fb0581f07d1552d73f8e7c24
+        environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+        exitCode: 0
+        inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+        inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+        manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+        manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/2af2ccbf-bc46-4f6a-86b1-a3bbfff2a886.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/df137196-e342-4938-83a4-efe993a8fa2f.log
+        reusable: false
+        reused: false
+        scope: verify
+        tier: full
+        timeoutMs: 300000
+      - contentHash: d8e7be27693f18bdd0bb2bc7fac7ff672e29e0751c2e6f3e6d114e7550864c9f
+        ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/df137196-e342-4938-83a4-efe993a8fa2f.log
+      - choice: pr
+        proposal:
+          input:
+            change: menubar-status-icon
+            changeDir: docs/openspec/changes/menubar-status-icon
+            workspaceBaseline:
+              ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+          outputs:
+            tweak.archive.prepare:
+              prBaseBranch: main
+              remote: origin
+              summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+                tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+                Scripts/tray-icons.swift；验证报告
+                docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+                通过（light，7/7，cargo build 通过）。当前分支 comet/menubar-status-icon，无
+                delta spec；归档将移动 change 到 archive、合并文档标注并创建唯一归档提交。交付方式 C：推送当前分支到
+                origin，并向 main 创建 PR。
+              targetBranch: comet/menubar-status-icon
+      - prBaseBranch: main
+        remote: origin
+        summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+          tray-active.png 替换为用户选定的 F 单线波形模板图标，新增 Scripts/tray-icons.swift；验证报告
+          docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+          通过（light，7/7，cargo build 通过）。当前分支 comet/menubar-status-icon，无 delta
+          spec；归档将移动 change 到 archive、合并文档标注并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向
+          main 创建 PR。
+        targetBranch: comet/menubar-status-icon
+      - baseCommit: 860a7354133f3e009dae232b35df5c90fb5af284
+        deliveryAction: pr
+        prBaseBranch: main
+        remote: origin
+        remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+        targetBranch: comet/menubar-status-icon
+        verifiedBranch: comet/menubar-status-icon
+      - archiveDirectory: docs/openspec/changes/archive/2026-10-30-menubar-status-icon
+      - sequence: 6
+        value:
+          argv:
+            - cargo
+            - build
+          changedDuringExecution: []
+          checkEpoch: 1
+          contentHash: a9d42cc6838d99545d7cc5bd7866cee8e04707fccea0f9cf3edbb865ea85e781
+          cwd: .
+          environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+          exitCode: 0
+          inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+          inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+          manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+          manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/6437825f-33e6-469a-a9b7-acdd566a5024.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/9b6a5043-37c5-42ac-86bb-e2e0083a9295.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      - sequence: 7
+        value:
+          contentHash: a9d42cc6838d99545d7cc5bd7866cee8e04707fccea0f9cf3edbb865ea85e781
+          ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/9b6a5043-37c5-42ac-86bb-e2e0083a9295.log
+      - sequence: 4
+        value:
+          choice: continue
+          proposal:
+            input:
+              change: menubar-status-icon
+              changeDir: docs/openspec/changes/menubar-status-icon
+              workspaceBaseline:
+                ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+            outputs:
+              tweak.build.execute:
+                event: escalation-requested
+                proposal: 用户将菜单栏图标方向从 A/B/C 三候选改为单线波形 E/F/G，并选定 F（App 原形）；其余范围不变
+                requirementsEvidence:
+                  contentHash: 0a0f97ec439f552a76b37e8cab7499f39f874c8417d34a637589d84ece83f570
+                  ref: docs/openspec/changes/menubar-status-icon
+      - sequence: 5
+        value:
+          event: build-complete
+      - sequence: 1
+        value:
+          event: open-complete
+          requirementsEvidence:
+            contentHash: ce8d556d3460e53adc878edbdd26c737d8cc98d1d29d22912fe9ca2e836e81bd
+            ref: docs/openspec/changes/menubar-status-icon
+      - sequence: 2
+        value:
+          contentHash: ce8d556d3460e53adc878edbdd26c737d8cc98d1d29d22912fe9ca2e836e81bd
+          ref: docs/openspec/changes/menubar-status-icon
+      - sequence: 9
+        value:
+          contentHash: 4d85080b8b542c09896bfb11e17ffdd981731dc4e9cdf755a42cbfc6abd6c0ef
+          ref: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      - sequence: 8
+        value:
+          event: verification-ready
+          verificationReport: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      - sequence: 10
+        value:
+          argv:
+            - cargo
+            - build
+          changedDuringExecution: []
+          checkEpoch: 2
+          contentHash: 5d4a5df4a52d9a05787cf7dc8c7c122ac1e58092bb1108683f5a6b3ec4262d58
+          cwd: .
+          deliveryInputs:
+            Scripts/tray-icons.swift: git:786c2c4ac48bafdbacf28183eb354d131cd2603d
+            app/src-tauri/icons/tray-active.png: git:3e93ee1956ddfd3fa5e2fe8166544e3a98fdc33b
+            app/src-tauri/icons/tray.png: git:22dc8779f5c86491fb0581f07d1552d73f8e7c24
+          environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+          exitCode: 0
+          inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+          inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+          manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+          manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/59095cb1-1eff-46fd-89f9-d07ac5c34bc6.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/167c5c77-b8fd-4039-a532-6dd280d6acdd.log
+          reusable: false
+          reused: false
+          scope: verify
+          tier: full
+          timeoutMs: 300000
+      - sequence: 11
+        value:
+          contentHash: 5d4a5df4a52d9a05787cf7dc8c7c122ac1e58092bb1108683f5a6b3ec4262d58
+          ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/167c5c77-b8fd-4039-a532-6dd280d6acdd.log
+      - sequence: 13
+        value:
+          choice: reverify
+          proposal:
+            input:
+              change: menubar-status-icon
+              changeDir: docs/openspec/changes/menubar-status-icon
+              workspaceBaseline:
+                ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+            outputs:
+              tweak.archive.prepare:
+                summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+                  tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+                  Scripts/tray-icons.swift；验证报告
+                  docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+                  通过（light，7/7）。当前分支 comet/menubar-status-icon，无 delta
+                  spec；归档将移动 change 到 archive 并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向
+                  main 创建 PR。
+                targetBranch: comet/menubar-status-icon
+      - sequence: 12
+        value:
+          summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+            tray-active.png 替换为用户选定的 F 单线波形模板图标，新增 Scripts/tray-icons.swift；验证报告
+            docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+            通过（light，7/7）。当前分支 comet/menubar-status-icon，无 delta spec；归档将移动
+            change 到 archive 并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向 main 创建 PR。
+          targetBranch: comet/menubar-status-icon
+      - sequence: 15
+        value:
+          contentHash: 4d85080b8b542c09896bfb11e17ffdd981731dc4e9cdf755a42cbfc6abd6c0ef
+          ref: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      - sequence: 14
+        value:
+          event: verification-ready
+          verificationReport: docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+      - sequence: 16
+        value:
+          argv:
+            - cargo
+            - build
+          changedDuringExecution: []
+          checkEpoch: 4
+          contentHash: d8e7be27693f18bdd0bb2bc7fac7ff672e29e0751c2e6f3e6d114e7550864c9f
+          cwd: .
+          deliveryInputs:
+            Scripts/tray-icons.swift: git:786c2c4ac48bafdbacf28183eb354d131cd2603d
+            app/src-tauri/icons/tray-active.png: git:3e93ee1956ddfd3fa5e2fe8166544e3a98fdc33b
+            app/src-tauri/icons/tray.png: git:22dc8779f5c86491fb0581f07d1552d73f8e7c24
+          environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+          exitCode: 0
+          inputAfter: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+          inputBefore: 185befbc9f865add1b69b9fcc75c43d023d6dda4e463b6c1907d0875ba1fb428
+          manifestHash: a1ed1b22cc3cfaa193fa5ca4af5840db96e323b2610828f0c1d77d8e8696e427
+          manifestRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/2af2ccbf-bc46-4f6a-86b1-a3bbfff2a886.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/df137196-e342-4938-83a4-efe993a8fa2f.log
+          reusable: false
+          reused: false
+          scope: verify
+          tier: full
+          timeoutMs: 300000
+      - sequence: 17
+        value:
+          contentHash: d8e7be27693f18bdd0bb2bc7fac7ff672e29e0751c2e6f3e6d114e7550864c9f
+          ref: .comet/runtime/classic-sdk-checks/5fc662d2a30b7018b0e9da7ec4d4a862b4b61870ca5ca4c39f85dcb2c6d4d6b9/df137196-e342-4938-83a4-efe993a8fa2f.log
+      - sequence: 19
+        value:
+          choice: pr
+          proposal:
+            input:
+              change: menubar-status-icon
+              changeDir: docs/openspec/changes/menubar-status-icon
+              workspaceBaseline:
+                ref: c6a1a113-07c8-4446-8836-406d463a0d4e
+            outputs:
+              tweak.archive.prepare:
+                prBaseBranch: main
+                remote: origin
+                summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+                  tray-active.png 替换为用户选定的 F 单线波形模板图标，新增
+                  Scripts/tray-icons.swift；验证报告
+                  docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+                  通过（light，7/7，cargo build 通过）。当前分支 comet/menubar-status-icon，无
+                  delta spec；归档将移动 change 到 archive、合并文档标注并创建唯一归档提交。交付方式
+                  C：推送当前分支到 origin，并向 main 创建 PR。
+                targetBranch: comet/menubar-status-icon
+      - sequence: 18
+        value:
+          prBaseBranch: main
+          remote: origin
+          summary: 归档菜单栏图标品牌化变更 menubar-status-icon：将 app/src-tauri/icons/tray.png 与
+            tray-active.png 替换为用户选定的 F 单线波形模板图标，新增 Scripts/tray-icons.swift；验证报告
+            docs/superpowers/reports/2026-10-30-menubar-status-icon-verify.md
+            通过（light，7/7，cargo build 通过）。当前分支 comet/menubar-status-icon，无 delta
+            spec；归档将移动 change 到 archive、合并文档标注并创建唯一归档提交。交付方式 C：推送当前分支到 origin，并向
+            main 创建 PR。
+          targetBranch: comet/menubar-status-icon
+      - sequence: 20
+        value:
+          baseCommit: 860a7354133f3e009dae232b35df5c90fb5af284
+          deliveryAction: pr
+          prBaseBranch: main
+          remote: origin
+          remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+          targetBranch: comet/menubar-status-icon
+          verifiedBranch: comet/menubar-status-icon
+      - sequence: 21
+        value:
+          archiveDirectory: docs/openspec/changes/archive/2026-10-30-menubar-status-icon
+      - sequence: 3
+        value:
+          event: escalation-requested
+          proposal: 用户将菜单栏图标方向从 A/B/C 三候选改为单线波形 E/F/G，并选定 F（App 原形）；其余范围不变
+          requirementsEvidence:
+            contentHash: 0a0f97ec439f552a76b37e8cab7499f39f874c8417d34a637589d84ece83f570
+            ref: docs/openspec/changes/menubar-status-icon
+    nodes:
+      - key: tweak.open.evidence
+        value: 1
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open
+        value: 0
+        left: null
+        right: 0
+        height: 2
+      - key: tweak.build.execute
+        value: 3
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: null
+        right: 2
+        height: 2
+      - key: tweak.open
+        value: 0
+        left: 3
+        right: 0
+        height: 3
+      - key: tweak.build.execute
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: null
+        right: 5
+        height: 2
+      - key: tweak.open
+        value: 0
+        left: 6
+        right: 0
+        height: 3
+      - key: tweak.build.check.evidence
+        value: 6
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check
+        value: 5
+        left: null
+        right: 8
+        height: 2
+      - key: tweak.open
+        value: 0
+        left: 5
+        right: 0
+        height: 2
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 9
+        right: 10
+        height: 3
+      - key: tweak.open.evidence
+        value: 1
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.run
+        value: 8
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 7
+        left: 12
+        right: 13
+        height: 2
+      - key: tweak.open
+        value: 0
+        left: 5
+        right: 14
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 9
+        right: 15
+        height: 4
+      - key: tweak.open
+        value: 0
+        left: 5
+        right: null
+        height: 2
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 9
+        right: 17
+        height: 3
+      - key: tweak.verify.check.evidence
+        value: 10
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.check
+        value: 9
+        left: null
+        right: 19
+        height: 2
+      - key: tweak.verify.report.evidence
+        value: 7
+        left: 20
+        right: 13
+        height: 3
+      - key: tweak.open.evidence
+        value: 1
+        left: 18
+        right: 21
+        height: 4
+      - key: tweak.archive.prepare
+        value: 12
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.confirm
+        value: 11
+        left: null
+        right: 23
+        height: 2
+      - key: tweak.build.check
+        value: 5
+        left: 24
+        right: 8
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 25
+        right: 17
+        height: 4
+      - key: tweak.open.evidence
+        value: 1
+        left: 26
+        right: 21
+        height: 5
+      - key: tweak.verify.check.evidence
+        value: 14
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.check
+        value: 13
+        left: null
+        right: 28
+        height: 2
+      - key: tweak.verify.report.evidence
+        value: 7
+        left: 29
+        right: 13
+        height: 3
+      - key: tweak.open.evidence
+        value: 1
+        left: 26
+        right: 30
+        height: 5
+      - key: tweak.archive.prepare
+        value: 16
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.confirm
+        value: 15
+        left: null
+        right: 32
+        height: 2
+      - key: tweak.build.check
+        value: 5
+        left: 33
+        right: 8
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 34
+        right: 17
+        height: 4
+      - key: tweak.open.evidence
+        value: 1
+        left: 35
+        right: 30
+        height: 5
+      - key: tweak.archive.confirm
+        value: 15
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.prepare
+        value: 16
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.preflight
+        value: 17
+        left: 37
+        right: 38
+        height: 2
+      - key: tweak.build.check
+        value: 5
+        left: 39
+        right: 8
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 40
+        right: 17
+        height: 4
+      - key: tweak.open.evidence
+        value: 1
+        left: 41
+        right: 30
+        height: 5
+      - key: tweak.archive.execute
+        value: 18
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.confirm
+        value: 15
+        left: null
+        right: 43
+        height: 2
+      - key: tweak.build.check
+        value: 5
+        left: 38
+        right: 8
+        height: 2
+      - key: tweak.archive.preflight
+        value: 17
+        left: 44
+        right: 45
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 2
+        left: 46
+        right: 17
+        height: 4
+      - key: tweak.open.evidence
+        value: 1
+        left: 47
+        right: 30
+        height: 5
+      - key: tweak.build.check
+        value: 19
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check.evidence
+        value: 20
+        left: 49
+        right: 50
+        height: 2
+      - key: tweak.open
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.run
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 25
+        left: null
+        right: 53
+        height: 2
+      - key: tweak.open.evidence
+        value: 24
+        left: 52
+        right: 54
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 51
+        right: 55
+        height: 4
+      - key: tweak.open.evidence
+        value: 24
+        left: 52
+        right: null
+        height: 2
+      - key: tweak.verify.check.evidence
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 25
+        left: 58
+        right: 53
+        height: 2
+      - key: tweak.verify.check
+        value: 27
+        left: 57
+        right: 59
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 51
+        right: 60
+        height: 4
+      - key: tweak.archive.confirm
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check
+        value: 19
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.prepare
+        value: 30
+        left: 62
+        right: 63
+        height: 2
+      - key: tweak.build.check.evidence
+        value: 20
+        left: 64
+        right: 50
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 65
+        right: 60
+        height: 4
+      - key: tweak.verify.run
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 31
+        left: 58
+        right: 67
+        height: 2
+      - key: tweak.verify.check
+        value: 27
+        left: 57
+        right: 68
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 65
+        right: 69
+        height: 4
+      - key: tweak.verify.check.evidence
+        value: 34
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 31
+        left: 71
+        right: 67
+        height: 2
+      - key: tweak.verify.check
+        value: 33
+        left: 57
+        right: 72
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 65
+        right: 73
+        height: 4
+      - key: tweak.archive.confirm
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.prepare
+        value: 36
+        left: 75
+        right: 63
+        height: 2
+      - key: tweak.build.check.evidence
+        value: 20
+        left: 76
+        right: 50
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 77
+        right: 73
+        height: 4
+      - key: tweak.archive.preflight
+        value: 37
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.confirm
+        value: 35
+        left: null
+        right: 79
+        height: 2
+      - key: tweak.build.check.evidence
+        value: 20
+        left: 63
+        right: 50
+        height: 2
+      - key: tweak.archive.prepare
+        value: 36
+        left: 80
+        right: 81
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 82
+        right: 73
+        height: 4
+      - key: tweak.archive.confirm
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.preflight
+        value: 37
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.execute
+        value: 38
+        left: 84
+        right: 85
+        height: 2
+      - key: tweak.archive.prepare
+        value: 36
+        left: 86
+        right: 81
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 87
+        right: 73
+        height: 4
+      - key: tweak.open.evidence
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open
+        value: 23
+        left: null
+        right: 89
+        height: 2
+      - key: tweak.build.execute
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: null
+        right: 91
+        height: 2
+      - key: tweak.open
+        value: 23
+        left: 92
+        right: 89
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: null
+        right: 94
+        height: 2
+      - key: tweak.open
+        value: 23
+        left: 95
+        right: 89
+        height: 3
+      - key: tweak.build.check.evidence
+        value: 20
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check
+        value: 19
+        left: null
+        right: 97
+        height: 2
+      - key: tweak.open
+        value: 23
+        left: 94
+        right: 89
+        height: 2
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: 98
+        right: 99
+        height: 3
+      - key: tweak.build.execute
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open.evidence
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open
+        value: 23
+        left: 101
+        right: 102
+        height: 2
+      - key: tweak.archive.prepare
+        value: 30
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check.evidence
+        value: 20
+        left: null
+        right: 105
+        height: 2
+      - key: tweak.build.check
+        value: 19
+        left: 104
+        right: 106
+        height: 3
+      - key: tweak.open
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.check
+        value: 27
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open.evidence
+        value: 24
+        left: 108
+        right: 109
+        height: 2
+      - key: tweak.verify.run
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 25
+        left: null
+        right: 111
+        height: 2
+      - key: tweak.verify.check.evidence
+        value: 28
+        left: 110
+        right: 112
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 107
+        right: 113
+        height: 4
+      - key: tweak.archive.confirm
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.prepare
+        value: 36
+        left: 115
+        right: null
+        height: 2
+      - key: tweak.build.check
+        value: 19
+        left: 116
+        right: 106
+        height: 3
+      - key: tweak.verify.check
+        value: 33
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open.evidence
+        value: 24
+        left: 108
+        right: 118
+        height: 2
+      - key: tweak.verify.run
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 31
+        left: null
+        right: 120
+        height: 2
+      - key: tweak.verify.check.evidence
+        value: 34
+        left: 119
+        right: 121
+        height: 3
+      - key: tweak.build.execute
+        value: 22
+        left: 117
+        right: 122
+        height: 4
+      - key: tweak.open
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check
+        value: 19
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.execute
+        value: 22
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open.evidence
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open
+        value: 23
+        left: 126
+        right: 127
+        height: 2
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: 125
+        right: 128
+        height: 3
+      - key: tweak.build.check.evidence
+        value: 20
+        left: null
+        right: null
+        height: 1
+      - key: tweak.build.check
+        value: 19
+        left: null
+        right: 130
+        height: 2
+      - key: tweak.verify.run
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open.evidence
+        value: 24
+        left: null
+        right: 132
+        height: 2
+      - key: tweak.open
+        value: 23
+        left: 126
+        right: 133
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: 131
+        right: 134
+        height: 4
+      - key: tweak.open.evidence
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: tweak.open
+        value: 23
+        left: 126
+        right: 136
+        height: 2
+      - key: tweak.verify.report.evidence
+        value: 25
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.run
+        value: 26
+        left: 138
+        right: null
+        height: 2
+      - key: tweak.verify.check
+        value: 27
+        left: 137
+        right: 139
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: 131
+        right: 140
+        height: 4
+      - key: tweak.archive.prepare
+        value: 30
+        left: null
+        right: null
+        height: 1
+      - key: tweak.archive.confirm
+        value: 29
+        left: null
+        right: 142
+        height: 2
+      - key: tweak.build.check
+        value: 19
+        left: 143
+        right: 130
+        height: 3
+      - key: tweak.verify.check.evidence
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.run
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: tweak.verify.report.evidence
+        value: 25
+        left: 145
+        right: 146
+        height: 2
+      - key: tweak.verify.check
+        value: 27
+        left: 137
+        right: 147
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: 144
+        right: 148
+        height: 4
+      - key: tweak.verify.report.evidence
+        value: 31
+        left: 145
+        right: 146
+        height: 2
+      - key: tweak.verify.check
+        value: 33
+        left: 137
+        right: 150
+        height: 3
+      - key: tweak.build.escalation-confirm
+        value: 21
+        left: 144
+        right: 151
+        height: 4
+    maps:
+      - null
+      - 1
+      - 4
+      - 7
+      - 11
+      - 16
+      - 22
+      - 27
+      - 31
+      - 36
+      - 42
+      - 48
+      - 56
+      - 61
+      - 66
+      - 70
+      - 74
+      - 78
+      - 83
+      - 88
+      - 90
+      - 93
+      - 96
+      - 100
+      - 103
+      - 114
+      - 123
+      - 124
+      - 129
+      - 135
+      - 141
+      - 149
+      - 152
+    bindings:
+      - path:
+          - actions
+          - "0"
+          - input
+          - outputs
+        map: 0
+      - path:
+          - actions
+          - "1"
+          - input
+          - outputs
+        map: 1
+      - path:
+          - actions
+          - "2"
+          - input
+          - outputs
+        map: 2
+      - path:
+          - actions
+          - "3"
+          - input
+          - outputs
+        map: 3
+      - path:
+          - actions
+          - "4"
+          - input
+          - outputs
+        map: 4
+      - path:
+          - actions
+          - "5"
+          - input
+          - outputs
+        map: 5
+      - path:
+          - actions
+          - "6"
+          - input
+          - outputs
+        map: 6
+      - path:
+          - actions
+          - "7"
+          - input
+          - outputs
+        map: 7
+      - path:
+          - actions
+          - "8"
+          - input
+          - outputs
+        map: 7
+      - path:
+          - actions
+          - "9"
+          - input
+          - outputs
+        map: 8
+      - path:
+          - actions
+          - "10"
+          - input
+          - outputs
+        map: 9
+      - path:
+          - actions
+          - "11"
+          - input
+          - outputs
+        map: 10
+      - path:
+          - actions
+          - "12"
+          - input
+          - outputs
+        map: 11
+      - path:
+          - actionContexts
+          - menubar-status-icon:1
+          - results
+        map: 0
+      - path:
+          - actionContexts
+          - menubar-status-icon:10
+          - results
+        map: 12
+      - path:
+          - actionContexts
+          - menubar-status-icon:12
+          - results
+        map: 13
+      - path:
+          - actionContexts
+          - menubar-status-icon:14
+          - results
+        map: 14
+      - path:
+          - actionContexts
+          - menubar-status-icon:16
+          - results
+        map: 15
+      - path:
+          - actionContexts
+          - menubar-status-icon:18
+          - results
+        map: 16
+      - path:
+          - actionContexts
+          - menubar-status-icon:20
+          - results
+        map: 17
+      - path:
+          - actionContexts
+          - menubar-status-icon:21
+          - results
+        map: 18
+      - path:
+          - actionContexts
+          - menubar-status-icon:22
+          - results
+        map: 19
+      - path:
+          - actionContexts
+          - menubar-status-icon:3
+          - results
+        map: 20
+      - path:
+          - actionContexts
+          - menubar-status-icon:5
+          - results
+        map: 21
+      - path:
+          - actionContexts
+          - menubar-status-icon:6
+          - results
+        map: 22
+      - path:
+          - actionContexts
+          - menubar-status-icon:8
+          - results
+        map: 23
+      - path:
+          - outputs
+        map: 19
+      - path:
+          - waits
+          - "0"
+          - results
+        map: 24
+      - path:
+          - waits
+          - "1"
+          - results
+        map: 25
+      - path:
+          - waits
+          - "2"
+          - results
+        map: 26
+      - path:
+          - evidenceWaits
+          - "0"
+          - results
+        map: 27
+      - path:
+          - evidenceWaits
+          - "1"
+          - results
+        map: 28
+      - path:
+          - evidenceWaits
+          - "2"
+          - results
+        map: 29
+      - path:
+          - evidenceWaits
+          - "3"
+          - results
+        map: 30
+      - path:
+          - evidenceWaits
+          - "4"
+          - results
+        map: 31
+      - path:
+          - evidenceWaits
+          - "5"
+          - results
+        map: 32
+  storageHash: bc2990c8843ec5bd2ae1f8696e38e1eaf42434e7ddb4957241dfcbad75c3b386
+check_epoch: 7
