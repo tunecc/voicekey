@@ -1,16 +1,18 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { app, save, refreshMics } from "../lib/store.svelte";
-  import { call } from "../lib/api";
+  import { call, listSounds, previewSound } from "../lib/api";
   import Meter from "../lib/Meter.svelte";
 
   const s = $derived(app.s!);
   const missing = $derived(s.mic && !app.mics.includes(s.mic));
   const mac = $derived(app.info?.platform === "mac");
+  let sounds = $state<{ id: string; name: string }[]>([]);
 
   onMount(() => {
     const sync = () => call("meter", { on: document.hasFocus() });
     refreshMics();
+    listSounds().then((v) => (sounds = v));
     window.addEventListener("focus", refreshMics);
     window.addEventListener("focus", sync);
     window.addEventListener("blur", sync);
@@ -26,6 +28,13 @@
   function pick(v: string) {
     save({ mic: v });
   }
+
+  const EVENTS: { key: "soundStart" | "soundProcessing" | "soundDone" | "soundError"; label: string; desc: string }[] = [
+    { key: "soundStart", label: "录音开始", desc: "开始录入语音时" },
+    { key: "soundProcessing", label: "识别处理", desc: "录音结束进入识别时" },
+    { key: "soundDone", label: "识别完成", desc: "结果就绪或上屏时" },
+    { key: "soundError", label: "识别失败", desc: "出错、超时或没有内容时" },
+  ];
 </script>
 
 <h2>音频</h2>
@@ -53,6 +62,23 @@
     <div class="lbl">输入电平<small>对着麦克风说话测试</small></div>
     <Meter />
   </div>
+</div>
+
+<h3>提示音</h3>
+<div class="group">
+  <div class="row">
+    <div class="lbl">提示音<small>{s.soundEnabled ? "录音各阶段播放提示音" : "已关闭，录音各阶段不播放提示音"}</small></div>
+    <button class="sw" class:on={s.soundEnabled} onclick={() => save({ soundEnabled: !s.soundEnabled })} aria-label="提示音"></button>
+  </div>
+  {#each EVENTS as ev}
+    <div class="row">
+      <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
+      <select class="sel" value={s[ev.key]} onchange={(e) => save({ [ev.key]: e.currentTarget.value })} aria-label={ev.label}>
+        {#each sounds as snd}<option value={snd.id}>{snd.name}</option>{/each}
+      </select>
+      <button class="btn" onclick={() => previewSound(s[ev.key])} aria-label={`试听${ev.label}`}>试听</button>
+    </div>
+  {/each}
 </div>
 
 <style>

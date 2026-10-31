@@ -13,7 +13,9 @@ export interface Shortcut { code: number; mods: number; name: string }
 export interface Combo { codes: number[]; name: string }
 export interface Settings {
   channel: Channel; holdKey: string; holdCombo: Combo | null; tapShortcut: Shortcut | null; silence: number; silenceStop: boolean; streaming: boolean;
-  liveText: boolean; mic: string; volume: number; multi: Channel[]; lastPick: Channel | null; pickCounts: Partial<Record<Channel, number>>; autostart: boolean; theme: string; onboarded: boolean;
+  liveText: boolean; mic: string; volume: number; multi: Channel[]; lastPick: Channel | null; pickCounts: Partial<Record<Channel, number>>;
+  soundEnabled: boolean; soundStart: string; soundProcessing: string; soundDone: string; soundError: string;
+  autostart: boolean; theme: string; onboarded: boolean;
 }
 export interface OfflineStatus { state: "missing" | "downloading" | "ready" | "failed"; progress?: number; error?: string }
 export interface Perms { accessibility: boolean; mic: "granted" | "denied" | "undetermined" }
@@ -28,6 +30,8 @@ export interface Row { channel: Channel; text: string; state: RowState; ms: numb
 export interface Model { recording: boolean; rows: Row[]; sel: number }
 
 export const call = invoke;
+export const previewSound = (id: string) => call("preview_sound", { id });
+export const listSounds = () => call<{ id: string; name: string }[]>("list_sounds");
 export const holdName = (s: Settings, keys: AppInfo["holdKeys"]) =>
   s.holdKey === "custom" ? (s.holdCombo?.name ?? "") : (keys.find((k) => k.id === s.holdKey)?.name ?? "");
 export const on = <T>(name: string, f: (p: T) => void): Promise<UnlistenFn> => listen<T>(name, (e) => f(e.payload));

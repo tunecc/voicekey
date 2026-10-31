@@ -1,6 +1,7 @@
 //! 会话编排：快捷键 → 录音 → 识别 → 上屏；「全部」模式流式候选面板；设置页渠道对比
 use crate::hotkey::{HotEvent, Shared};
 use crate::settings::{Channel, Settings};
+use crate::sound::SoundEvent;
 use crate::{offline, ui, wtoffline, AppState};
 use serde::Serialize;
 use std::collections::{HashMap, VecDeque};
@@ -366,32 +367,40 @@ impl Ctl {
 
     fn start_recorder(&mut self) -> Option<voicekey_core::Audio> {
         self.meter = None;
-        if let Some(audio) = self.take_primed() {
-            return Some(audio);
-        }
-        let tx = self.tx.clone();
-        let mic = self.settings().mic;
-        #[cfg(target_os = "macos")]
-        self.lower_volume();
-        match Recorder::start(Some(&mic), move |v| {
-            let _ = tx.send(Msg::Level(v));
-        }) {
-            Ok((r, audio)) => {
-                self.recorder = Some(r);
-                self.recording = true;
-                self.heard_voice = false;
-                self.last_voice = Instant::now();
-                ui::set_tray_active(&self.app, true);
-                Some(audio)
-            }
-            Err(e) => {
-                // 没开成麦就不该停在压低状态
+        let audio = match self.take_primed() {
+            Some(audio) => Some(audio),
+            None => {
+                let tx = self.tx.clone();
+                let mic = self.settings().mic;
                 #[cfg(target_os = "macos")]
-                self.restore_volume();
-                ui::hud_error(&self.app, &format!("{e:#}"));
-                None
+                self.lower_volume();
+                match Recorder::start(Some(&mic), move |v| {
+                    let _ = tx.send(Msg::Level(v));
+                }) {
+                    Ok((r, audio)) => {
+                        self.recorder = Some(r);
+                        self.recording = true;
+                        self.heard_voice = false;
+                        self.last_voice = Instant::now();
+                        ui::set_tray_active(&self.app, true);
+                        Some(audio)
+                    }
+                    Err(e) => {
+                        // 没开成麦就不该停在压低状态
+                        #[cfg(target_os = "macos")]
+                        self.restore_volume();
+                        ui::hud_error(&self.app, &format!("{e:#}"));
+                        None
+                    }
+                }
             }
-        }
+        };
+        // 成功开麦（含预开麦转正）发开始音；开麦失败发失败音
+        crate::sound::play(
+            &self.app,
+            if audio.is_some() { SoundEvent::Start } else { SoundEvent::Error },
+        );
+        audio
     }
 
     /// 快捷键按下即开麦。短按取消或被别的键打断时关掉
@@ -692,14 +701,19 @@ impl Ctl {
                         format!("识别失败：{e}，已保留已识别的文字")
                     };
                     ui::hud_error(&self.app, &msg);
+                    crate::sound::play(&self.app, SoundEvent::Error);
                 } else if streamed {
                     ui::hud_hide(&self.app, 0);
+                    // 流式定稿：有文字即完成；什么都没识别到按失败提示
+                    crate::sound::play(&self.app, if text.is_empty() { SoundEvent::Error } else { SoundEvent::Done });
                 } else if text.is_empty() {
                     ui::hud(&self.app, "info", "没有识别到内容", ch);
                     ui::hud_hide(&self.app, 1000);
+                    crate::sound::play(&self.app, SoundEvent::Error);
                 } else {
                     ui::hud_hide(&self.app, 0);
                     pf::paste(&text);
+                    crate::sound::play(&self.app, SoundEvent::Done);
                 }
             }
             Mode::Pick | Mode::Compare => {
@@ -741,6 +755,10 @@ impl Ctl {
                         self.mode = Mode::Idle;
                         self.tasks.clear();
                     }
+                    // 全部行出结果（结果就绪）：有可用结果发完成音，全部失败发失败音；
+                    // 候选面板保持等待用户挑选，挑选上屏不再发声
+                    let has_final = self.rows.iter().any(|r| r.state == RowState::Final);
+                    crate::sound::play(&self.app, if has_final { SoundEvent::Done } else { SoundEvent::Error });
                 }
                 self.emit_rows();
             }
@@ -776,6 +794,10 @@ impl Ctl {
             return;
         }
         self.stop_recording();
+        // 进入识别处理（单候选与多渠道统一发一次；Idle 无会话不发声）
+        if !matches!(self.mode, Mode::Idle) {
+            crate::sound::play(&self.app, SoundEvent::Processing);
+        }
         match self.mode {
             Mode::Single(ch) => ui::hud(&self.app, "wait", "", ch),
             Mode::Pick | Mode::Compare => {
@@ -810,6 +832,10 @@ impl Ctl {
             Mode::Compare | Mode::Idle => String::new(),
         };
         self.cancel();
+        // 超时等异常打断发失败音；用户取消（message 为 None）保持安静
+        if message.is_some() {
+            crate::sound::play(&self.app, SoundEvent::Error);
+        }
         if mode == Mode::Pick {
             if let Some(f) = self.front.take() {
                 f.activate();
@@ -912,6 +938,12 @@ impl Ctl {
         }
         let text = r.text.clone();
         let ch = r.channel;
+        // 识别中预先挑选的行定稿后自动上屏：结果就绪与挑选同时发生，在这里发完成音
+        //（手动挑选时完成音已在全部行出结果时发过，不重复）
+        let auto_chosen = self.choose_pending;
+        if auto_chosen {
+            crate::sound::play(&self.app, SoundEvent::Done);
+        }
         crate::update_settings(&self.app, |s| {
             s.last_pick = Some(ch);
             *s.pick_counts.entry(ch).or_default() += 1;

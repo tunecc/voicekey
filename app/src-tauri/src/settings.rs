@@ -100,6 +100,16 @@ pub struct Settings {
     pub last_pick: Option<Channel>,
     /// 候选框各渠道上屏次数，次数多的排前
     pub pick_counts: HashMap<Channel, u32>,
+    /// 音频反馈提示音总开关
+    pub sound_enabled: bool,
+    /// 录音开始的提示音 id（见 crate::sound::SOUNDS）
+    pub sound_start: String,
+    /// 进入识别处理的提示音 id
+    pub sound_processing: String,
+    /// 识别完成的提示音 id
+    pub sound_done: String,
+    /// 识别失败的提示音 id
+    pub sound_error: String,
     pub autostart: bool,
     pub theme: String,
     pub onboarded: bool,
@@ -122,6 +132,11 @@ impl Default for Settings {
             multi: Channel::engines().into_iter().filter(|&c| c != Channel::WetypeOffline).collect(),
             last_pick: None,
             pick_counts: HashMap::new(),
+            sound_enabled: true,
+            sound_start: crate::sound::DEFAULT_START.into(),
+            sound_processing: crate::sound::DEFAULT_PROCESSING.into(),
+            sound_done: crate::sound::DEFAULT_DONE.into(),
+            sound_error: crate::sound::DEFAULT_ERROR.into(),
             autostart: false,
             theme: "system".into(),
             onboarded: false,
@@ -156,6 +171,16 @@ impl Settings {
         }
         self.silence = self.silence.clamp(1.0, 5.0);
         self.volume = self.volume.min(100);
+        for (id, default) in [
+            (&mut self.sound_start, crate::sound::DEFAULT_START),
+            (&mut self.sound_processing, crate::sound::DEFAULT_PROCESSING),
+            (&mut self.sound_done, crate::sound::DEFAULT_DONE),
+            (&mut self.sound_error, crate::sound::DEFAULT_ERROR),
+        ] {
+            if !crate::sound::is_known(id) {
+                *id = default.into();
+            }
+        }
         let engines = Channel::engines();
         let mut multi: Vec<Channel> = engines.iter().copied().filter(|c| self.multi.contains(c)).collect();
         if multi.len() < 2 {
@@ -176,5 +201,44 @@ impl Settings {
             Some(c) if self.hold_key == CUSTOM_HOLD => c.name.clone(),
             _ => voicekey_platform::hold_keys().iter().find(|k| k.id == self.hold_key).map_or("", |k| k.name).into(),
         }
+    }
+}
+
+#[cfg(test)]
+mod sound_settings_tests {
+    use super::*;
+
+    /// 旧版配置文件没有提示音字段：反序列化后应得到默认值，不报错
+    #[test]
+    fn legacy_config_without_sound_fields_falls_back_to_defaults() {
+        let s: Settings = serde_json::from_str(r#"{"channel":"doubao","mic":"","volume":15}"#).unwrap();
+        assert!(s.sound_enabled, "提示音总开关默认开启");
+        assert!(crate::sound::is_known(&s.sound_start), "默认开始音效必须在音效池中");
+        assert!(crate::sound::is_known(&s.sound_processing));
+        assert!(crate::sound::is_known(&s.sound_done));
+        assert!(crate::sound::is_known(&s.sound_error));
+    }
+
+    /// 配置里出现未知/已下架音效 id：sanitize 应回退为该事件默认值
+    #[test]
+    fn sanitize_reverts_unknown_sound_ids_to_defaults() {
+        let mut s = Settings::default();
+        let (start, processing, done, error) = (
+            s.sound_start.clone(),
+            s.sound_processing.clone(),
+            s.sound_done.clone(),
+            s.sound_error.clone(),
+        );
+        s.sound_start = "nope".into();
+        s.sound_done = "".into();
+        s.sanitize();
+        assert_eq!(s.sound_start, start);
+        assert_eq!(s.sound_done, done);
+        // 合法 id 原样保留
+        s.sound_processing = processing.clone();
+        s.sound_error = error.clone();
+        s.sanitize();
+        assert_eq!(s.sound_processing, processing);
+        assert_eq!(s.sound_error, error);
     }
 }
