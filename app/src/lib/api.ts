@@ -14,7 +14,7 @@ export interface Combo { codes: number[]; name: string }
 export interface Settings {
   channel: Channel; holdKey: string; holdCombo: Combo | null; tapShortcut: Shortcut | null; silence: number; silenceStop: boolean; streaming: boolean;
   liveText: boolean; mic: string; volume: number; multi: Channel[]; lastPick: Channel | null; pickCounts: Partial<Record<Channel, number>>;
-  soundEnabled: boolean; soundStart: string; soundProcessing: string; soundDone: string; soundError: string;
+  soundEnabled: boolean; soundStart: string; soundProcessing: string; soundDone: string; soundError: string; soundScheme: "simple" | "custom";
   autostart: boolean; theme: string; onboarded: boolean;
 }
 export interface OfflineStatus { state: "missing" | "downloading" | "ready" | "failed"; progress?: number; error?: string }
@@ -32,6 +32,8 @@ export interface Model { recording: boolean; rows: Row[]; sel: number }
 export const call = invoke;
 export const previewSound = (id: string) => call("preview_sound", { id });
 export const listSounds = () => call<{ id: string; name: string }[]>("list_sounds");
+export interface SimpleSchemeRow { event: "start" | "processing" | "done" | "error"; soundId: string; soundName: string }
+export const simpleScheme = () => call<SimpleSchemeRow[]>("simple_scheme");
 export const holdName = (s: Settings, keys: AppInfo["holdKeys"]) =>
   s.holdKey === "custom" ? (s.holdCombo?.name ?? "") : (keys.find((k) => k.id === s.holdKey)?.name ?? "");
 export const on = <T>(name: string, f: (p: T) => void): Promise<UnlistenFn> => listen<T>(name, (e) => f(e.payload));

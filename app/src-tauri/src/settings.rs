@@ -110,6 +110,8 @@ pub struct Settings {
     pub sound_done: String,
     /// 识别失败的提示音 id
     pub sound_error: String,
+    /// 音效方案：simple=简洁（固定映射）、custom=自定义（逐事件自选）
+    pub sound_scheme: String,
     pub autostart: bool,
     pub theme: String,
     pub onboarded: bool,
@@ -137,6 +139,7 @@ impl Default for Settings {
             sound_processing: crate::sound::DEFAULT_PROCESSING.into(),
             sound_done: crate::sound::DEFAULT_DONE.into(),
             sound_error: crate::sound::DEFAULT_ERROR.into(),
+            sound_scheme: crate::sound::SCHEME_CUSTOM.into(),
             autostart: false,
             theme: "system".into(),
             onboarded: false,
@@ -181,6 +184,9 @@ impl Settings {
                 *id = default.into();
             }
         }
+        if !crate::sound::is_known_scheme(&self.sound_scheme) {
+            self.sound_scheme = crate::sound::SCHEME_CUSTOM.into();
+        }
         let engines = Channel::engines();
         let mut multi: Vec<Channel> = engines.iter().copied().filter(|c| self.multi.contains(c)).collect();
         if multi.len() < 2 {
@@ -217,6 +223,25 @@ mod sound_settings_tests {
         assert!(crate::sound::is_known(&s.sound_processing));
         assert!(crate::sound::is_known(&s.sound_done));
         assert!(crate::sound::is_known(&s.sound_error));
+    }
+
+    /// 旧版配置没有音效方案字段：serde 兜底为自定义（保持既有用户行为）
+    #[test]
+    fn legacy_config_without_sound_scheme_falls_back_to_custom() {
+        let s: Settings = serde_json::from_str(r#"{"channel":"doubao","mic":"","volume":15}"#).unwrap();
+        assert_eq!(s.sound_scheme, crate::sound::SCHEME_CUSTOM);
+    }
+
+    /// 非法音效方案值：sanitize 回退自定义；合法值原样保留
+    #[test]
+    fn sanitize_reverts_unknown_sound_scheme_to_custom() {
+        let mut s = Settings::default();
+        s.sound_scheme = crate::sound::SCHEME_SIMPLE.into();
+        s.sanitize();
+        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE, "合法值保留");
+        s.sound_scheme = "weird".into();
+        s.sanitize();
+        assert_eq!(s.sound_scheme, crate::sound::SCHEME_CUSTOM, "非法值回退 custom");
     }
 
     /// 配置里出现未知/已下架音效 id：sanitize 应回退为该事件默认值

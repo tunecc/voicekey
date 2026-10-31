@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "taskIds": [
+    "ec7930d8-6234-4370-a4d7-66ee14299f80",
+    "03fa2e7e-5fd3-48d6-a7a3-b296bbf0cdf5",
+    "120a36dc-fc9a-4525-99c4-6015b6a46af3",
+    "35e24cc4-c508-4ece-8632-c3748bb2b0a1",
+    "f0265e22-2f91-4972-b391-2605efe0eec5",
+    "1558469e-773d-4b92-80b0-bcf9d2314113",
+    "0a777fbe-8264-446b-ab92-c8b76e811e42"
+  ],
+  "revision": "615519e9c68eac89fbc35c253461f7867266fbda4ce29a582a8dc6a6f0f29eab",
+  "stage": "task-review",
+  "sessionId": "zcode-session-9b2f18d80f485c64722107548bf4a1a3",
+  "evidence": [
+    "cargo test (app/src-tauri): 25 passed / 0 failed（纯双音语义: SIMPLE_SCHEME 两项、Done/Error 简洁不发声、系统音名按平台、rows 两行）",
+    "npm run build (app): 通过; node --test src/lib/store.test.mjs: 3 passed",
+    "首轮实现审查 FAIL(C1 serde 键名)→修复→复查 PASS；6.x 纯双音修订已实现，审查复查进行中",
+    "素材与授权：Kenney CC0（tink=tag004/drop_003 兜底），macOS 改用系统音 Tink/Pop（用户确认纯双音复刻）"
+  ],
+  "unresolved": [
+    "6.1/6.2 待复查通过后勾选",
+    "4.2/4.3/5.1/5.2 实机走查待用户配合（生产实例已退出，dev 实例按需再起）"
+  ],
+  "reviewRounds": 2
+}

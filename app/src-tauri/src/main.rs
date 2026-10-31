@@ -215,6 +215,11 @@ fn list_sounds() -> Vec<serde_json::Value> {
 }
 
 #[tauri::command]
+fn simple_scheme() -> Vec<crate::sound::SimpleSchemeRow> {
+    crate::sound::simple_scheme_rows()
+}
+
+#[tauri::command]
 fn open_url(url: String) {
     let cmd = if cfg!(target_os = "macos") { "open" } else { "explorer" };
     let _ = std::process::Command::new(cmd).arg(url).spawn();
@@ -243,7 +248,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             get_state, set_settings, perm_status, perm_action, microphones, record_shortcut,
             pick_choose, pick_key, pick_resize, compare_toggle, meter, open_url, model_download,
-            update_check, update_install, preview_sound, list_sounds
+            update_check, update_install, preview_sound, list_sounds, simple_scheme
         ])
         .setup(move |app| {
             #[cfg(target_os = "macos")]

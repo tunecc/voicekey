@@ -31,6 +31,8 @@ pub enum Msg {
     Meter(bool),
     RefreshMeter,
     MicrophonesChanged(Vec<String>),
+    /// 开始音播完后压低音量（「先播音、后压音量」时序）
+    LowerVolume,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Serialize, Debug)]
@@ -271,6 +273,13 @@ impl Ctl {
                 self.refresh_meter();
             }
             Msg::RefreshMeter => self.refresh_meter(),
+            Msg::LowerVolume => {
+                // 仅在会话仍进行中压低；会话已结束（取消/完成）时忽略，避免误压音量
+                if self.recording {
+                    #[cfg(target_os = "macos")]
+                    self.lower_volume();
+                }
+            }
             Msg::MicrophonesChanged(mics) => {
                 let _ = self.app.emit("microphones", mics);
                 self.refresh_meter();
@@ -368,12 +377,15 @@ impl Ctl {
     fn start_recorder(&mut self) -> Option<voicekey_core::Audio> {
         self.meter = None;
         let audio = match self.take_primed() {
-            Some(audio) => Some(audio),
+            Some(audio) => {
+                // 预开麦路径：arm 时已压低音量，转正先还原，让开始音以正常音量发声
+                #[cfg(target_os = "macos")]
+                self.restore_volume();
+                Some(audio)
+            }
             None => {
                 let tx = self.tx.clone();
                 let mic = self.settings().mic;
-                #[cfg(target_os = "macos")]
-                self.lower_volume();
                 match Recorder::start(Some(&mic), move |v| {
                     let _ = tx.send(Msg::Level(v));
                 }) {
@@ -386,20 +398,27 @@ impl Ctl {
                         Some(audio)
                     }
                     Err(e) => {
-                        // 没开成麦就不该停在压低状态
-                        #[cfg(target_os = "macos")]
-                        self.restore_volume();
                         ui::hud_error(&self.app, &format!("{e:#}"));
                         None
                     }
                 }
             }
         };
-        // 成功开麦（含预开麦转正）发开始音；开麦失败发失败音
+        // 成功开麦（含预开麦转正）发开始音；开麦失败发失败音。
+        // 开始音必须在压低音量之前发（cometix-dictation 同序：开麦 → 播开始音 → 压音量），
+        // 且压音量延迟到提示音播完（按 play_duration），否则音没播完就被压掉。
         crate::sound::play(
             &self.app,
             if audio.is_some() { SoundEvent::Start } else { SoundEvent::Error },
         );
+        if audio.is_some() {
+            let delay = crate::sound::play_duration(&self.app, SoundEvent::Start, &self.settings());
+            let tx = self.tx.clone();
+            tauri::async_runtime::spawn(async move {
+                tokio::time::sleep(delay).await;
+                let _ = tx.send(Msg::LowerVolume);
+            });
+        }
         audio
     }
 

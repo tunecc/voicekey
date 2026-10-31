@@ -1,0 +1,16 @@
+{
+  "change": "simple-sound-scheme",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "task_hash_policy": "task-content-v1",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "dc27c991b91ba6f92ded48eb00ca770477b54da3aca6ad7ac89f53882fa46d1d",
+  "files": [
+    { "path": "docs/openspec/changes/simple-sound-scheme/proposal.md", "sha256": "dddb2e1113d74faad28fe841523f9116907b28ce054bb3a05a1fe398905e0862" },
+    { "path": "docs/openspec/changes/simple-sound-scheme/design.md", "sha256": "6264f2f2d67a251dfff5292f922472ea0ed9e1d77fdba6ea70f8acc434a4b3e1" },
+    { "path": "docs/openspec/changes/simple-sound-scheme/tasks.md", "sha256": "c94a397529009caa595ab8b3fedc03cc7fcec232f0c7251bfd10e9b873712bf5" },
+    { "path": "docs/openspec/changes/simple-sound-scheme/.openspec.yaml", "sha256": "c6ab3a95d8d0fd469ca8750ef79234025bf4a8356d5d57856e97d7e47fc8b6c2" },
+    { "path": "docs/openspec/changes/simple-sound-scheme/specs/audio-feedback/spec.md", "sha256": "100fd6155f99182b81b85f3942507b50f6da87a5613358931e6ce725e964f5bd" }
+  ]
+}
