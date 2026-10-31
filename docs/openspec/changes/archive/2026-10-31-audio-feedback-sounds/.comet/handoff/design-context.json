@@ -1,0 +1,16 @@
+{
+  "change": "audio-feedback-sounds",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "task_hash_policy": "task-content-v1",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "a94ffa047692b9aefbe7c3fb7d5f5698b67567b245c80b51920a74e4138cd901",
+  "files": [
+    { "path": "docs/openspec/changes/audio-feedback-sounds/proposal.md", "sha256": "b4902507a37f2879b293384db11214efe58c08bf850de423600e8af4b2e39f46" },
+    { "path": "docs/openspec/changes/audio-feedback-sounds/design.md", "sha256": "9588706f4e704ed6c78f66a501dfa0fd352a85e3a4e7545530ea89a0d07d4ca4" },
+    { "path": "docs/openspec/changes/audio-feedback-sounds/tasks.md", "sha256": "1465768ba0c0889f093a6723910f4d35394bd0b94824bf13142c4da9671c6fe1" },
+    { "path": "docs/openspec/changes/audio-feedback-sounds/.openspec.yaml", "sha256": "c6ab3a95d8d0fd469ca8750ef79234025bf4a8356d5d57856e97d7e47fc8b6c2" },
+    { "path": "docs/openspec/changes/audio-feedback-sounds/specs/audio-feedback/spec.md", "sha256": "49cbf823e52d0f1ee9fe2ce986fef4a8324ee8f60bea0c72de20da48d766a4ab" }
+  ]
+}

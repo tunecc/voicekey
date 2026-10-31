@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "taskIds": [
+    "68d16b86-eb0a-4d5f-9fd4-9dca190621f7",
+    "b2b34c82-1ce5-4120-ad5c-d5781b0bf8e4",
+    "9a50e35e-8b87-4188-a69a-cdc54d748cba",
+    "267b79dd-fa37-4fff-8917-27b13362cecf",
+    "db84e1f1-f649-4a70-9cc2-254a03013a35",
+    "cd0b6b8d-f70b-4280-a4a2-196a308049ca",
+    "d33aa40a-534b-4eb8-98ff-25915a775ee3",
+    "34bed515-10d1-45da-9e0e-a837666e267f",
+    "5481c12f-150d-4f88-99ee-8e5a126fd379",
+    "cfda67bc-b8a9-4625-b05d-d3a86e292157"
+  ],
+  "revision": "1465768ba0c0889f093a6723910f4d35394bd0b94824bf13142c4da9671c6fe1",
+  "stage": "checkoff",
+  "sessionId": "zcode-session-audio-feedback-sounds-build",
+  "evidence": [
+    "cargo test --bin voicekey: 15 passed（RED→GREEN）",
+    "独立审查（子代理）：无 CRITICAL/IMPORTANT，5 MINOR（3 条已修复）",
+    "npm run build（vite）通过；npx tauri build（macOS）成功且 bundle 含 6 个 WAV + LICENSE.md",
+    "用户走查确认（2026-10-31）：开始/处理/完成/失败四音正常、取消静音、设置页逐事件选择与试听即时生效、总开关行为正确",
+    "tasks.md 10/10 已勾选"
+  ],
+  "unresolved": [],
+  "reviewRounds": 1
+}
