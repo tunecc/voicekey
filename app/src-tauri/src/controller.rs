@@ -31,7 +31,8 @@ pub enum Msg {
     Meter(bool),
     RefreshMeter,
     MicrophonesChanged(Vec<String>),
-    /// 开始音播完后压低音量（「先播音、后压音量」时序）
+    /// 开始音播完后压低音量（「先播音、后压音量」时序）。会话音量包络：
+    /// 开始音以正常音量播完 → 此处单次压低 → 录音结束还原；开始音之前不得压低
     LowerVolume,
 }
 
@@ -377,12 +378,7 @@ impl Ctl {
     fn start_recorder(&mut self) -> Option<voicekey_core::Audio> {
         self.meter = None;
         let audio = match self.take_primed() {
-            Some(audio) => {
-                // 预开麦路径：arm 时已压低音量，转正先还原，让开始音以正常音量发声
-                #[cfg(target_os = "macos")]
-                self.restore_volume();
-                Some(audio)
-            }
+            Some(audio) => Some(audio),
             None => {
                 let tx = self.tx.clone();
                 let mic = self.settings().mic;
@@ -430,14 +426,9 @@ impl Ctl {
         self.meter = None;
         let tx = self.tx.clone();
         let mic = self.settings().mic;
-        #[cfg(target_os = "macos")]
-        self.lower_volume();
         let Ok((recorder, mut audio)) = Recorder::start(Some(&mic), move |v| {
             let _ = tx.send(Msg::Level(v));
         }) else {
-            // 没开成麦就不该停在压低状态
-            #[cfg(target_os = "macos")]
-            self.restore_volume();
             if self.mode == Mode::Idle {
                 self.refresh_meter();
             }
@@ -471,9 +462,6 @@ impl Ctl {
             return;
         }
         self.primed = None;
-        // 取消预开麦，还原音量
-        #[cfg(target_os = "macos")]
-        self.restore_volume();
         if self.mode == Mode::Idle {
             self.refresh_meter();
         }
@@ -513,7 +501,9 @@ impl Ctl {
         ui::set_tray_active(&self.app, false);
     }
 
-    /// 按设置压低系统输出音量；未开启或目标为 0 时不动。仅 macOS
+    /// 按设置压低系统输出音量；未开启或目标为 0 时不动。仅 macOS。
+    /// 只在开始音播完后调用（Msg::LowerVolume），不得在开麦/预开麦时调用，
+    /// 否则开始音前音量被压低，确认时还得还原，形成「压低→还原→再压低」的音量往返
     #[cfg(target_os = "macos")]
     fn lower_volume(&self) {
         let target = self.settings().volume as f32 / 100.0;
