@@ -12,8 +12,6 @@ use tauri::{AppHandle, Emitter, Manager};
 use tokio::sync::mpsc::{self, UnboundedReceiver, UnboundedSender};
 use tauri::async_runtime::JoinHandle;
 use voicekey_core::audio::Recorder;
-#[cfg(target_os = "macos")]
-use voicekey_core::audio::volume::RecordingVolume;
 use voicekey_core::{BaiduEngine, ChatterflyEngine, DoubaoEngine, Engine, IflyEngine, QwenEngine, SogouEngine, WeTypeEngine};
 use voicekey_platform::{self as pf, Special, Typer};
 
@@ -30,10 +28,9 @@ pub enum Msg {
     CompareStop,
     Meter(bool),
     RefreshMeter,
+    /// 设置页在录音中即时调整 ducking；worker 自己负责所有权判断、平滑重定向和安全恢复。
+    VolumeDucking { enabled: bool, reduction_percent: u8 },
     MicrophonesChanged(Vec<String>),
-    /// 开始音播完后压低音量（「先播音、后压音量」时序）。会话音量包络：
-    /// 开始音以正常音量播完 → 此处单次压低 → 录音结束还原；开始音之前不得压低
-    LowerVolume,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Serialize, Debug)]
@@ -130,6 +127,7 @@ pub struct Ctl {
     recorder: Option<Recorder>,
     meter: Option<Recorder>,
     meter_enabled: bool,
+    volume_ducking: pf::OutputVolumeDucker,
     tasks: Vec<JoinHandle<()>>,
     gen: u64,
     timeout_token: u64,
@@ -151,9 +149,6 @@ pub struct Ctl {
     flush_pending: bool,
     /// 按下到判定长按之间已经打开的麦克风，确认开始后把这段音频交出去
     primed: Option<Primed>,
-    /// 录音时压低系统输出音量（仅 macOS）；录音结束后还原
-    #[cfg(target_os = "macos")]
-    volume: RecordingVolume,
 }
 
 /// 预开麦：先环形缓存，确认录音后转成实时帧流
@@ -171,6 +166,7 @@ const PREROLL: usize = 50;
 
 pub fn spawn(app: AppHandle, qwen: Arc<QwenEngine>, rx: UnboundedReceiver<Msg>) {
     let st = app.state::<AppState>();
+    let volume_fraction = st.settings.read().unwrap().retained_system_volume_fraction();
     let mut engines: HashMap<Channel, Arc<dyn Engine>> = HashMap::new();
     engines.insert(Channel::Doubao, Arc::new(DoubaoEngine));
     engines.insert(Channel::Wetype, Arc::new(WeTypeEngine::default()));
@@ -192,6 +188,7 @@ pub fn spawn(app: AppHandle, qwen: Arc<QwenEngine>, rx: UnboundedReceiver<Msg>) 
         recorder: None,
         meter: None,
         meter_enabled: false,
+        volume_ducking: pf::OutputVolumeDucker::new(volume_fraction),
         tasks: Vec::new(),
         gen: 0,
         timeout_token: 0,
@@ -212,8 +209,6 @@ pub fn spawn(app: AppHandle, qwen: Arc<QwenEngine>, rx: UnboundedReceiver<Msg>) 
         last_emit: Instant::now(),
         flush_pending: false,
         primed: None,
-        #[cfg(target_os = "macos")]
-        volume: RecordingVolume::default(),
     };
     tauri::async_runtime::spawn(ctl.run(rx));
 }
@@ -274,12 +269,9 @@ impl Ctl {
                 self.refresh_meter();
             }
             Msg::RefreshMeter => self.refresh_meter(),
-            Msg::LowerVolume => {
-                // 仅在会话仍进行中压低；会话已结束（取消/完成）时忽略，避免误压音量
-                if self.recording {
-                    #[cfg(target_os = "macos")]
-                    self.lower_volume();
-                }
+            Msg::VolumeDucking { enabled, reduction_percent } => {
+                // 设置/UI 统一使用“降低比例”；worker 只接收最终保留比例，因此只在这里做一次补数换算。
+                self.volume_ducking.configure(enabled && self.recording, 1.0 - reduction_percent as f32 / 100.0)
             }
             Msg::MicrophonesChanged(mics) => {
                 let _ = self.app.emit("microphones", mics);
@@ -322,6 +314,7 @@ impl Ctl {
                 _ => self.begin(false),
             },
             HotEvent::Release => {
+                // 点按录音由静音/Tap 结束；同键被判为长按后的 Release 不应改写点按语义。
                 if !self.auto_stop && self.mode != Mode::Compare {
                     self.end()
                 }
@@ -377,45 +370,43 @@ impl Ctl {
 
     fn start_recorder(&mut self) -> Option<voicekey_core::Audio> {
         self.meter = None;
-        let audio = match self.take_primed() {
-            Some(audio) => Some(audio),
-            None => {
-                let tx = self.tx.clone();
-                let mic = self.settings().mic;
-                match Recorder::start(Some(&mic), move |v| {
-                    let _ = tx.send(Msg::Level(v));
-                }) {
-                    Ok((r, audio)) => {
-                        self.recorder = Some(r);
-                        self.recording = true;
-                        self.heard_voice = false;
-                        self.last_voice = Instant::now();
-                        ui::set_tray_active(&self.app, true);
-                        Some(audio)
-                    }
-                    Err(e) => {
-                        ui::hud_error(&self.app, &format!("{e:#}"));
-                        None
-                    }
-                }
-            }
-        };
-        // 成功开麦（含预开麦转正）发开始音；开麦失败发失败音。
-        // 开始音必须在压低音量之前发（cometix-dictation 同序：开麦 → 播开始音 → 压音量），
-        // 且压音量延迟到提示音播完（按 play_duration），否则音没播完就被压掉。
-        crate::sound::play(
-            &self.app,
-            if audio.is_some() { SoundEvent::Start } else { SoundEvent::Error },
-        );
-        if audio.is_some() {
-            let delay = crate::sound::play_duration(&self.app, SoundEvent::Start, &self.settings());
+        let audio = if let Some(audio) = self.take_primed() {
+            audio
+        } else {
             let tx = self.tx.clone();
-            tauri::async_runtime::spawn(async move {
-                tokio::time::sleep(delay).await;
-                let _ = tx.send(Msg::LowerVolume);
-            });
-        }
-        audio
+            let mic = self.settings().mic;
+            let (r, audio) = match Recorder::start(Some(&mic), move |v| {
+                let _ = tx.send(Msg::Level(v));
+            }) {
+                Ok(v) => v,
+                Err(e) => {
+                    ui::hud_error(&self.app, &format!("{e:#}"));
+                    crate::sound::play(&self.app, SoundEvent::Error);
+                    return None;
+                }
+            };
+            self.recorder = Some(r);
+            self.recording = true;
+            self.heard_voice = false;
+            self.last_voice = Instant::now();
+            ui::set_tray_active(&self.app, true);
+            audio
+        };
+        // 成功开麦（含预开麦转正）发开始音。开始音必须在压低音量之前发
+        // （cometix-dictation 同序：开麦 → 播开始音 → 压音量），否则音没播完就被压掉。
+        crate::sound::play(&self.app, SoundEvent::Start);
+        // Press 时的 arm() 只是预开麦，误触/短按取消都不应碰系统音量；只有确认真正进入聆听后才开始 duck。
+        // 压低延迟到开始提示音播完（按 play_duration）；handler 以 enabled && self.recording 把关，
+        // 提示音播放期间会话被取消时不会压低音量。
+        let settings = self.settings();
+        let delay = crate::sound::play_duration(&self.app, SoundEvent::Start, &self.settings());
+        let (enabled, reduction_percent) = (settings.lower_system_volume, settings.lower_system_volume_percent);
+        let tx = self.tx.clone();
+        tauri::async_runtime::spawn(async move {
+            tokio::time::sleep(delay).await;
+            let _ = tx.send(Msg::VolumeDucking { enabled, reduction_percent });
+        });
+        Some(audio)
     }
 
     /// 快捷键按下即开麦。短按取消或被别的键打断时关掉
@@ -493,30 +484,12 @@ impl Ctl {
         }
         self.recording = false;
         self.auto_stop = false;
+        // 先发恢复意图；若此时还在淡入/淡出，worker 会从当前实际音量平滑反向，而不是排队跑完整段动画。
+        self.volume_ducking.set_active(false);
         if let Some(mut r) = self.recorder.take() {
             r.stop();
         }
-        #[cfg(target_os = "macos")]
-        self.restore_volume();
         ui::set_tray_active(&self.app, false);
-    }
-
-    /// 按设置压低系统输出音量；未开启或目标为 0 时不动。仅 macOS。
-    /// 只在开始音播完后调用（Msg::LowerVolume），不得在开麦/预开麦时调用，
-    /// 否则开始音前音量被压低，确认时还得还原，形成「压低→还原→再压低」的音量往返
-    #[cfg(target_os = "macos")]
-    fn lower_volume(&self) {
-        let target = self.settings().volume as f32 / 100.0;
-        if target > 0.0 && !self.volume.lower(target) {
-            eprintln!("录音时调整音量：压低系统输出音量失败");
-        }
-    }
-
-    #[cfg(target_os = "macos")]
-    fn restore_volume(&self) {
-        if self.volume.is_lowered() && !self.volume.restore() {
-            eprintln!("录音时调整音量：还原系统输出音量失败");
-        }
     }
 
     fn spawn_engine(&mut self, ch: Channel, seg: usize, audio: voicekey_core::Audio) {
@@ -887,6 +860,8 @@ impl Ctl {
         for t in self.tasks.drain(..) {
             t.abort();
         }
+        // cancel 可能发生在预开麦阶段；丢弃 Primed 会经 Recorder::Drop 同步停麦。
+        self.primed = None;
         self.stop_recording();
         if let Some(mut t) = self.typer.take() {
             t.finish();

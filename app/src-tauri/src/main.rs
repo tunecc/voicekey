@@ -125,11 +125,27 @@ fn get_state(app: AppHandle) -> serde_json::Value {
 }
 
 #[tauri::command]
-fn set_settings(app: AppHandle, settings: Settings) {
-    let mic_changed = app.state::<AppState>().settings.read().unwrap().mic != settings.mic;
+fn set_settings(app: AppHandle, mut settings: Settings) {
+    // 先归一化外部输入，持久化值和发给音量 worker 的值必须完全一致。
+    settings.sanitize();
+    let new_ducking = settings.lower_system_volume;
+    let new_ducking_percent = settings.lower_system_volume_percent;
+    let (mic_changed, ducking_changed) = {
+        let state = app.state::<AppState>();
+        let current = state.settings.read().unwrap();
+        (
+            current.mic != settings.mic,
+            current.lower_system_volume != new_ducking
+                || current.lower_system_volume_percent != new_ducking_percent,
+        )
+    };
     update_settings(&app, |s| *s = settings);
     if mic_changed {
         send(&app, Msg::RefreshMeter);
+    }
+    if ducking_changed {
+        // 开关或比例在录音中修改都立即生效；非录音状态只更新下次使用的参数。
+        send(&app, Msg::VolumeDucking { enabled: new_ducking, reduction_percent: new_ducking_percent });
     }
 }
 
@@ -281,10 +297,11 @@ fn main() {
             Ok(())
         })
         .on_window_event(|w, e| {
-            if w.label() == "main" && matches!(e, WindowEvent::Destroyed) {
+            // 先禁用电平表，再结束 Compare，避免回到 Idle 时 refresh_meter 瞬间重开麦。
+            if w.label() == "main" && matches!(e, WindowEvent::Destroyed | WindowEvent::CloseRequested { .. }) {
                 let st = w.state::<AppState>();
-                let _ = st.tx.send(Msg::CompareStop);
                 let _ = st.tx.send(Msg::Meter(false));
+                let _ = st.tx.send(Msg::CompareStop);
                 st.hk.recording.store(false, Ordering::Relaxed);
             }
         })

@@ -77,6 +77,10 @@ pub struct Combo {
 }
 
 pub const CUSTOM_HOLD: &str = "custom";
+const LOWER_SYSTEM_VOLUME_PERCENT_MIN: u8 = 20;
+const LOWER_SYSTEM_VOLUME_PERCENT_MAX: u8 = 100;
+const LOWER_SYSTEM_VOLUME_PERCENT_STEP: u8 = 5;
+const LOWER_SYSTEM_VOLUME_PERCENT_DEFAULT: u8 = 70;
 
 /// 「无」保留字：音效逐事件与长按说话的显式停用取值（见 design.md D1）
 pub const NONE: &str = "none";
@@ -95,8 +99,6 @@ pub struct Settings {
     pub streaming: bool,
     pub live_text: bool,
     pub mic: String,
-    /// 录音时把系统输出音量设为该值（0–100）；0 表示不调整。仅 macOS 生效
-    pub volume: u8,
     /// 多渠道模式下同时识别的渠道（至少 2 个）
     pub multi: Vec<Channel>,
     /// 候选框上次选中的渠道，下次默认聚焦
@@ -117,6 +119,10 @@ pub struct Settings {
     pub sound_scheme: String,
     pub autostart: bool,
     pub theme: String,
+    /// 真正进入聆听后按相对比例压低系统输出；默认关闭，升级用户不会被突然改变系统声音。
+    pub lower_system_volume: bool,
+    /// 录音时相对原始系统音量降低的百分比；持久化为 settings.json 的 lowerSystemVolumePercent。
+    pub lower_system_volume_percent: u8,
     pub onboarded: bool,
 }
 
@@ -133,7 +139,6 @@ impl Default for Settings {
             streaming: true,
             live_text: true,
             mic: String::new(),
-            volume: 15,
             multi: Channel::engines().into_iter().filter(|&c| c != Channel::WetypeOffline).collect(),
             last_pick: None,
             pick_counts: HashMap::new(),
@@ -145,6 +150,8 @@ impl Default for Settings {
             sound_scheme: crate::sound::SCHEME_CUSTOM.into(),
             autostart: false,
             theme: "system".into(),
+            lower_system_volume: false,
+            lower_system_volume_percent: LOWER_SYSTEM_VOLUME_PERCENT_DEFAULT,
             onboarded: false,
         }
     }
@@ -176,7 +183,6 @@ impl Settings {
             self.hold_key = voicekey_platform::hold_keys()[0].id.into();
         }
         self.silence = self.silence.clamp(1.0, 5.0);
-        self.volume = self.volume.min(100);
         for (id, default) in [
             (&mut self.sound_start, crate::sound::DEFAULT_START),
             (&mut self.sound_processing, crate::sound::DEFAULT_PROCESSING),
@@ -190,6 +196,12 @@ impl Settings {
         if !crate::sound::is_known_scheme(&self.sound_scheme) {
             self.sound_scheme = crate::sound::SCHEME_CUSTOM.into();
         }
+        let percent = self
+            .lower_system_volume_percent
+            .clamp(LOWER_SYSTEM_VOLUME_PERCENT_MIN, LOWER_SYSTEM_VOLUME_PERCENT_MAX);
+        self.lower_system_volume_percent = ((percent + LOWER_SYSTEM_VOLUME_PERCENT_STEP / 2)
+            / LOWER_SYSTEM_VOLUME_PERCENT_STEP)
+            * LOWER_SYSTEM_VOLUME_PERCENT_STEP;
         let engines = Channel::engines();
         let mut multi: Vec<Channel> = engines.iter().copied().filter(|c| self.multi.contains(c)).collect();
         if multi.len() < 2 {
@@ -211,6 +223,53 @@ impl Settings {
             _ if self.hold_key == NONE => "未设置".into(),
             _ => voicekey_platform::hold_keys().iter().find(|k| k.id == self.hold_key).map_or("", |k| k.name).into(),
         }
+    }
+
+    /// 音量 worker 使用“最终保留比例”，这里只在执行边界做一次 `1 - 降低比例` 换算。
+    pub fn retained_system_volume_fraction(&self) -> f32 {
+        1.0 - self.lower_system_volume_percent as f32 / 100.0
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn missing_duck_percent_uses_default() {
+        let mut value = serde_json::to_value(Settings::default()).unwrap();
+        value.as_object_mut().unwrap().remove("lowerSystemVolumePercent");
+        let settings: Settings = serde_json::from_value(value).unwrap();
+        assert_eq!(settings.lower_system_volume_percent, LOWER_SYSTEM_VOLUME_PERCENT_DEFAULT);
+    }
+
+    #[test]
+    fn duck_percent_is_clamped_and_snapped_to_step() {
+        let mut settings = Settings::default();
+
+        settings.lower_system_volume_percent = 1;
+        settings.sanitize();
+        assert_eq!(settings.lower_system_volume_percent, 20);
+
+        settings.lower_system_volume_percent = 33;
+        settings.sanitize();
+        assert_eq!(settings.lower_system_volume_percent, 35);
+
+        settings.lower_system_volume_percent = 99;
+        settings.sanitize();
+        assert_eq!(settings.lower_system_volume_percent, 100);
+    }
+
+    #[test]
+    fn duck_reduction_percent_maps_to_retained_fraction_once() {
+        let mut settings = Settings::default();
+        assert!((settings.retained_system_volume_fraction() - 0.3).abs() < f32::EPSILON);
+
+        settings.lower_system_volume_percent = 100;
+        assert!(settings.retained_system_volume_fraction().abs() < f32::EPSILON);
+
+        settings.lower_system_volume_percent = 20;
+        assert!((settings.retained_system_volume_fraction() - 0.8).abs() < f32::EPSILON);
     }
 }
 

@@ -9,8 +9,6 @@ use tokio::sync::mpsc;
 mod devices;
 #[cfg(target_os = "macos")]
 pub use devices::watch_microphones;
-#[cfg(target_os = "macos")]
-pub mod volume;
 
 pub const FRAME: usize = 320;
 /// 语音前垫的静音，给服务端 VAD 起音
@@ -224,12 +222,17 @@ impl Recorder {
     /// mic 为设备名，找不到时回落系统默认
     pub fn start(mic: Option<&str>, on_level: impl Fn(f32) + Send + 'static) -> Result<(Self, Audio)> {
         let host = cpal::default_host();
-        let device = mic
-            .filter(|m| !m.is_empty())
-            // 同名蓝牙输出/输入可能是不同 ID；实际采集仍只匹配已就绪的输入设备。
-            .and_then(|m| selected_device(&host, m))
-            .or_else(|| host.default_input_device())
-            .ok_or_else(|| anyhow!("没有可用的麦克风"))?;
+        let default_device = host.default_input_device();
+        #[cfg(target_os = "macos")]
+        let default_name = default_device.as_ref().and_then(|d| d.name().ok());
+        let device = match mic.filter(|m| !m.is_empty()) {
+            #[cfg(target_os = "macos")]
+            // 配置名仍指向当前默认设备时保留 cpal 的 default 标记，避免走 0.15.x 的非默认设备监听器路径。
+            Some(m) if default_name.as_deref() == Some(m) => default_device,
+            Some(m) => selected_device(&host, m).or(default_device),
+            None => default_device,
+        }
+        .ok_or_else(|| anyhow!("没有可用的麦克风"))?;
         let config = device.default_input_config().map_err(|e| anyhow!("麦克风打开失败：{e}"))?;
         if config.channels() == 0 {
             return Err(anyhow!("麦克风输入通道尚未就绪"));
@@ -286,8 +289,12 @@ impl Recorder {
             };
             let _ = ready_tx.send(Ok(()));
             let _ = stop_rx.recv();
-            // cpal 0.15 的 CoreAudio 非默认设备 Stream 与断连监听互相持有，drop 不会停止音频单元，先显式暂停
-            let _ = stream.pause();
+            #[cfg(target_os = "macos")]
+            {
+                // FIXME: 上游 cpal 0.15.x 的非默认 CoreAudio stream 有监听器强引用环；反复启停可能泄漏。
+                // 显式选择非默认麦克风可复现；pause 仅兜底停止占麦，待上游修复后移除。
+                let _ = stream.pause();
+            }
             drop(stream);
         });
         ready_rx.recv().map_err(|_| anyhow!("麦克风线程异常退出"))??;
