@@ -1,0 +1,16 @@
+{
+  "change": "sync-upstream-volume-duck",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "task_hash_policy": "task-content-v1",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc",
+  "files": [
+    { "path": "docs/openspec/changes/sync-upstream-volume-duck/proposal.md", "sha256": "f9e96d3dccf10fc27f45eff19459cce2a47204c41f183d259052f677cb6621d6" },
+    { "path": "docs/openspec/changes/sync-upstream-volume-duck/design.md", "sha256": "047ac91f0db98e5d10250db70cf8845370b8ee6a9cfa12a8f475aaa2118f50d1" },
+    { "path": "docs/openspec/changes/sync-upstream-volume-duck/tasks.md", "sha256": "2e466d90143b641f60fe68313ce860becb255a291102c1be91b4248936bf712b" },
+    { "path": "docs/openspec/changes/sync-upstream-volume-duck/.openspec.yaml", "sha256": "108f7b3dae33488206672f31b510275110c0194c93062eb1970e19ca60c08722" },
+    { "path": "docs/openspec/changes/sync-upstream-volume-duck/specs/recording-volume-ducking/spec.md", "sha256": "a7695857b0fcb7261212db25993fa12ebf3e87b6ca8fda3c03dcea21c3b6adb8" }
+  ]
+}

@@ -9,7 +9,7 @@
 | 方面 | 上游 | 本 fork |
 |---|---|---|
 | macOS 麦克风释放 | 按名称选择麦克风时，语音结束后可能持续占用 | 已修复 |
-| 录音时调整音量 | 不支持 | macOS 支持，默认 15% |
+| 录音时降低音量 | 支持（PR #8，默认关闭） | 同上游；另与提示音联动，开始音播完后再压低 |
 | 录音提示音 | 无 | 录音各阶段可播放提示音，极简/自定义两种方案 |
 | macOS 菜单栏图标 | 通用麦克风图形 | App 风格单线声波模板图，随菜单栏明暗自动着色 |
 | 云端安装包 | Release（需要签名 Secrets） | 手动 Desktop Build（未签名） |
@@ -37,15 +37,16 @@ cargo test -p voicekey-core --lib -- --include-ignored --test-threads=1
 
 测试通过 `kAudioDevicePropertyDeviceIsRunning` 断言停止后输入设备不再运行。
 
-## 2. 录音时调整音量（macOS）
+## 2. 录音时降低音量
 
-设置 → 音频 → **录音时调整音量**：录音开始把系统输出音量设为指定值，结束后恢复原值。默认 15%，设为 0 关闭。
+设置 → 音频 → **系统音频 → 录音时降低音量**（来自上游 PR #8）：确认开始录音后按比例平滑压低系统输出音量，结束后自动恢复。默认关闭；降低比例 20%–100%（默认 70%，100% 显示为「静音」）。
 
-- 仅 macOS；Windows 路径不变。
-- 分别处理主声道与分声道；读不到原音量时不修改，避免恢复时写入错误值。
-- 正常结束、识别失败、超时、Esc、候选选择、取消等所有结束路径都会恢复。
+- macOS 与 Windows 均支持。
+- 按相对比例只降不升；用户录音期间手动调节音量后自动让权，不会被覆盖。
+- 输出设备切换、硬件音量量化等边界行为与上游实现一致。
+- fork 差异：与提示音联动，开始音播完后再开始压低，避免提示音被压掉。
 
-相关文件：`crates/core/src/audio/volume.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
+相关文件：`crates/platform/src/volume.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
 
 ## 3. 录音提示音
 
@@ -53,7 +54,7 @@ cargo test -p voicekey-core --lib -- --include-ignored --test-threads=1
 
 - 音效方案：**极简**——各阶段固定音效（macOS 复用系统音 Tink/Pop，其余平台用内置音，完成/错误不发声）；**自定义**——四个事件逐项挑选内置音效。
 - 提示音资源随安装包分发（`resources/sounds/*`）；播放失败自动跳过，不影响录音与识别流程。
-- 与「录音时调整音量」联动：开始音播完后才把系统音量单次压到目标值，结束后恢复，避免音量往返。
+- 与「录音时降低音量」联动：开始音播完后才开始压低系统音量，结束后恢复，避免提示音被压掉。
 
 相关文件：`app/src-tauri/src/sound.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
 
