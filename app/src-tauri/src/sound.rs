@@ -145,11 +145,13 @@ mod system {
         static PLAYING: RefCell<HashMap<String, objc2::rc::Id<NSSound>>> = RefCell::new(HashMap::new());
     }
 
-    /// 主线程调用：播放系统命名提示音；返回是否成功发声
+    /// 主线程调用：播放系统命名提示音；返回是否成功发声。
+    /// 播放中重复触发时先 stop 再 play，强制从头重播（连点试听立即打断上一遍）
     pub fn play_named(name: &str) -> bool {
         let Some(sound) = (unsafe { NSSound::soundNamed(&NSString::from_str(name)) }) else {
             return false;
         };
+        unsafe { sound.stop() };
         sound.play();
         PLAYING.with(|cache| cache.borrow_mut().insert(name.to_string(), sound));
         true
