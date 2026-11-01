@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "taskIds": ["1", "2", "3", "4", "5"],
+  "revision": 2,
+  "stage": "build",
+  "sessionId": "tray-wave-curvature-20261101",
+  "evidence": [
+    { "kind": "command", "argv": ["cargo", "build"], "result": "pass" },
+    { "kind": "command", "argv": ["cargo", "test", "--workspace"], "result": "pass", "note": "56 passed, 0 failed, 4 ignored" },
+    { "kind": "pixel-diff", "target": "app/src-tauri/icons/tray.png", "result": "pass", "note": "vs env2 render RMS 0.0087; vs env1 0.1733" },
+    { "kind": "visual", "artifact": "/tmp/vk-tray-final.png", "result": "pass" }
+  ],
+  "unresolved": [],
+  "reviewRounds": 0
+}
