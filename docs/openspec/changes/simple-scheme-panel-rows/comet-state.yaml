@@ -2,7 +2,7 @@
 change_id: e785adf1-34a5-4c00-8025-9074f565cba1
 workflow: tweak
 language: zh-CN
-phase: build
+phase: verify
 context_compression: off
 build_mode: direct
 build_pause: null
@@ -31,7 +31,7 @@ classic_profile: null
 classic_migration: null
 run_checkpoint:
   schema: comet.workflow-run-checkpoint.v1
-  hash: e38ed0295e50054c80cfa34b38b8b91404f683162c6f7e0a9c969b87ddbe8f2b
+  hash: 076de3cdf63d94b925d22d0426a06670197b6787a16c71ff4761e050338b3590
   run:
     protocolVersion: 1
     schemaVersion: 1
@@ -58,7 +58,7 @@ run_checkpoint:
       branchStatus: pending
       buildMode: direct
       buildPause: null
-      checkEpoch: 1
+      checkEpoch: 2
       classicMigration: null
       classicProfile: null
       contextCompression: off
@@ -69,7 +69,7 @@ run_checkpoint:
       handoffHash: null
       isolation: current
       language: zh-CN
-      phase: build
+      phase: verify
       plan: null
       reviewMode: off
       subagentDispatch: null
@@ -81,7 +81,7 @@ run_checkpoint:
       verifyResult: pending
       workflow: tweak
     status: running
-    sequence: 3
+    sequence: 6
     actions:
       - attempt: 1
         claim:
@@ -126,6 +126,15 @@ run_checkpoint:
         stepId: tweak.open
         type: invoke_skill
       - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: classic-builder/simple-scheme-panel-rows:3/1
+          token: portable-c6717e1bd76ee0e4d4b349f67ccc7e1c48b2f20e2eb640147a9f77cbabf84f53
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
         id: simple-scheme-panel-rows:3
         input:
           input:
@@ -143,15 +152,146 @@ run_checkpoint:
               contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
               ref: docs/openspec/changes/simple-scheme-panel-rows
         inputHash: a4f083991ce0a9249312e978b622f01751030bd823b3caeb151df547375bcfc5
+        outcome:
+          actionId: simple-scheme-panel-rows:3
+          attempt: 1
+          claimToken: portable-c6717e1bd76ee0e4d4b349f67ccc7e1c48b2f20e2eb640147a9f77cbabf84f53
+          inputHash: a4f083991ce0a9249312e978b622f01751030bd823b3caeb151df547375bcfc5
+          outcomeId: 00cf963b-3238-4d66-93c4-6f6f24c72142
+          output:
+            event: build-complete
+          status: succeeded
         protocolVersion: 1
-        receipts: []
+        receipts:
+          - hash: 13fcddab9f05b8ea409fdcca61782b0c479bb00465b3df77977bc66037f28c05
+            outcomeId: 00cf963b-3238-4d66-93c4-6f6f24c72142
         reconciliations: []
         ref: comet-build
         requiredCapabilities: []
         retry: manual
         runId: simple-scheme-panel-rows
-        status: pending
+        status: succeeded
         stepId: tweak.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-295e85f008eb968975ef685e05af10928ad21b9c80a0d7d62ca998bb4a3dd69d
+        executionOrigin:
+          workflow:
+            hash: fdf07b67da7ac398b4edb7c9909de416a5ef83a8db900f0772e4859731a215cd
+            id: comet-classic-tweak
+            version: "1"
+        id: simple-scheme-panel-rows:4
+        input:
+          input:
+            change: simple-scheme-panel-rows
+            changeDir: docs/openspec/changes/simple-scheme-panel-rows
+            workspaceBaseline:
+              ref: 07bac25a-29a3-4a1e-a708-58e27392c55a
+          outputs:
+            tweak.build.execute:
+              event: build-complete
+            tweak.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+                ref: docs/openspec/changes/simple-scheme-panel-rows
+            tweak.open.evidence:
+              contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+              ref: docs/openspec/changes/simple-scheme-panel-rows
+        inputHash: fa73e5d8a7d47def52b8b2c3bd2436b3d1c4fa6507c115aba9eb2cad7ed0ed91
+        outcome:
+          actionId: simple-scheme-panel-rows:4
+          attempt: 1
+          claimToken: portable-295e85f008eb968975ef685e05af10928ad21b9c80a0d7d62ca998bb4a3dd69d
+          inputHash: fa73e5d8a7d47def52b8b2c3bd2436b3d1c4fa6507c115aba9eb2cad7ed0ed91
+          outcomeId: 8e99fd07-b1ba-429a-b700-52ad52d907d8
+          output:
+            argv:
+              - cargo
+              - build
+            changedDuringExecution: []
+            checkEpoch: 1
+            contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+            cwd: .
+            environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+            exitCode: 0
+            inputAfter: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+            inputBefore: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+            manifestHash: 826b5fcb58a0dbd8fc9ca3f9182f418494555192010881b955cecd8ab062ffa8
+            manifestRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/d2421a3d-e486-41cd-aafd-8db575bd2167.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 03f0e2a9b6a9ea477d0a26249d3dd0ee2775ac48269393509f8223d2c1fd48ad
+            outcomeId: 8e99fd07-b1ba-429a-b700-52ad52d907d8
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: simple-scheme-panel-rows
+        status: succeeded
+        stepId: tweak.build.check
+        type: call_tool
+      - attempt: 1
+        id: simple-scheme-panel-rows:6
+        input:
+          input:
+            change: simple-scheme-panel-rows
+            changeDir: docs/openspec/changes/simple-scheme-panel-rows
+            workspaceBaseline:
+              ref: 07bac25a-29a3-4a1e-a708-58e27392c55a
+          outputs:
+            tweak.build.check:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+              inputBefore: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+              manifestHash: 826b5fcb58a0dbd8fc9ca3f9182f418494555192010881b955cecd8ab062ffa8
+              manifestRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/d2421a3d-e486-41cd-aafd-8db575bd2167.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            tweak.build.check.evidence:
+              contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+              ref: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+            tweak.build.execute:
+              event: build-complete
+            tweak.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+                ref: docs/openspec/changes/simple-scheme-panel-rows
+            tweak.open.evidence:
+              contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+              ref: docs/openspec/changes/simple-scheme-panel-rows
+        inputHash: 51b34ca932514b70c5024a1e640e850c50bc9d7cb7669f72235f9ca66213c2e1
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: simple-scheme-panel-rows
+        status: pending
+        stepId: tweak.verify.run
         type: invoke_skill
     actionContexts:
       simple-scheme-panel-rows:1:
@@ -172,6 +312,71 @@ run_checkpoint:
               contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
               ref: docs/openspec/changes/simple-scheme-panel-rows
         sequence: 3
+      simple-scheme-panel-rows:4:
+        results:
+          tweak.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          tweak.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+                ref: docs/openspec/changes/simple-scheme-panel-rows
+          tweak.open.evidence:
+            sequence: 2
+            value:
+              contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+              ref: docs/openspec/changes/simple-scheme-panel-rows
+        sequence: 4
+      simple-scheme-panel-rows:6:
+        results:
+          tweak.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+              inputBefore: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+              manifestHash: 826b5fcb58a0dbd8fc9ca3f9182f418494555192010881b955cecd8ab062ffa8
+              manifestRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/d2421a3d-e486-41cd-aafd-8db575bd2167.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          tweak.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+              ref: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+          tweak.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          tweak.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+                ref: docs/openspec/changes/simple-scheme-panel-rows
+          tweak.open.evidence:
+            sequence: 2
+            value:
+              contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+              ref: docs/openspec/changes/simple-scheme-panel-rows
+        sequence: 6
     waits: []
     evidenceWaits:
       - id: simple-scheme-panel-rows:2
@@ -191,9 +396,88 @@ run_checkpoint:
           ref: docs/openspec/changes/simple-scheme-panel-rows
           contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
           submissionId: 7afce9f8-5119-4fbd-a9eb-2e4f5f2027cf
+      - id: simple-scheme-panel-rows:5
+        stepId: tweak.build.check.evidence
+        sequence: 5
+        kind: classic-build-check
+        status: resolved
+        results:
+          tweak.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+              inputBefore: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+              manifestHash: 826b5fcb58a0dbd8fc9ca3f9182f418494555192010881b955cecd8ab062ffa8
+              manifestRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/d2421a3d-e486-41cd-aafd-8db575bd2167.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          tweak.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          tweak.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+                ref: docs/openspec/changes/simple-scheme-panel-rows
+          tweak.open.evidence:
+            sequence: 2
+            value:
+              contentHash: e7c263d7f9b1b5f753dd8376cf08a100b28985bc7283a8f3ed46571a53325b8a
+              ref: docs/openspec/changes/simple-scheme-panel-rows
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+          contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+          submissionId: e9fed4f3-ca9c-42ae-89e2-dec416fd892a
     ready: []
     joins: {}
     outputs:
+      tweak.build.check:
+        sequence: 4
+        value:
+          argv:
+            - cargo
+            - build
+          changedDuringExecution: []
+          checkEpoch: 1
+          contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+          cwd: .
+          environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+          exitCode: 0
+          inputAfter: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+          inputBefore: 2e6a2690ccc1bc8b17677f2c5f2c85d6640044514e75c8727a2389e82248d756
+          manifestHash: 826b5fcb58a0dbd8fc9ca3f9182f418494555192010881b955cecd8ab062ffa8
+          manifestRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/d2421a3d-e486-41cd-aafd-8db575bd2167.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      tweak.build.check.evidence:
+        sequence: 5
+        value:
+          contentHash: 1a8481d074814b93df8dccd37ed52fccc79d7c24c7cd9ef287e86b0461e8b0bc
+          ref: .comet/runtime/classic-sdk-checks/3049a0bc15e9fc24e78e3108f5a24a159c42b19e4086630ec793ada6849f4c50/b60d2dcb-5cb0-4ff4-a470-56836a92cefd.log
+      tweak.build.execute:
+        sequence: 3
+        value:
+          event: build-complete
       tweak.open:
         sequence: 1
         value:
@@ -208,6 +492,6 @@ run_checkpoint:
           ref: docs/openspec/changes/simple-scheme-panel-rows
     children: []
     lineage: []
-  sourceRevision: 4
-  sourceHash: 21755d3696e6a7ea1634a7d1f3723cf60631b1eb030460a3f6874d588d3ed9fc
-check_epoch: 1
+  sourceRevision: 9
+  sourceHash: 2d37453df484882cbe493775c5a0a4a973673c2f3473710d27661f303ab4c5ee
+check_epoch: 2

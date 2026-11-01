@@ -38,7 +38,7 @@
 
   const EVENTS: { key: "soundStart" | "soundProcessing" | "soundDone" | "soundError"; event: SimpleSchemeRow["event"]; label: string; desc: string }[] = [
     { key: "soundStart", event: "start", label: "录音开始", desc: "开始录入语音时" },
-    { key: "soundProcessing", event: "processing", label: "识别处理", desc: "识别完成、音量恢复后（提示结果就绪）" },
+    { key: "soundProcessing", event: "processing", label: "识别处理", desc: "识别完成、音量恢复后" },
     { key: "soundDone", event: "done", label: "识别完成", desc: "结果就绪或上屏时" },
     { key: "soundError", event: "error", label: "识别失败", desc: "出错、超时或没有内容时" },
   ];
@@ -99,11 +99,11 @@
       </div>
     {/each}
     <div class="row">
-      <div class="lbl">{evInfo("done").label}<small>{evInfo("done").desc}（纯双音极简风格）</small></div>
+      <div class="lbl">{evInfo("done").label}<small>{evInfo("done").desc}</small></div>
       <b class="sound-name muted">不发声</b>
     </div>
     <div class="row">
-      <div class="lbl">{evInfo("error").label}<small>{evInfo("error").desc}（与 cometix-dictation 一致）</small></div>
+      <div class="lbl">{evInfo("error").label}<small>{evInfo("error").desc}</small></div>
       <b class="sound-name muted">不发声</b>
     </div>
   {:else}
