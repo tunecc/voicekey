@@ -16,6 +16,8 @@
 2. **播放路径统一**：`play(event)` 取逐事件值 → macOS 用 `NSSound(named:)` 主线程直放；Windows 查同名内置 wav（tink/pop/error 存在）作兜底，无同名则静音。`simple_scheme_system_name`/`SIMPLE_SCHEME`/`simple_scheme_rows` 删除；`play_id`（试听）校验系统音名后直放。
 3. **UI 回归逐事件选择器**：四行 = 描述 + 选择器（「不发声」+ 系统铃声）+ 试听；`list_sounds` 改返回系统铃声（id=name=英文名）；`simple_scheme` 命令移除。
 
+3. **提示音会话代数门闩**：快速连续开始/停止时，延迟提示音（处理音/失败音的恢复等待）会跨会话堆积错拍。`Ctl.chime_gen`（AtomicU64）在每次开始录音时递增；延迟任务到期发现代数变化即丢弃。用户实测反馈的「连续点击出现奇怪声音」由此消除。
+
 ## Risks / Trade-offs
 
 - [spec 一天内第三次调整（固定映射→逐事件）] → 用户驱动的迭代；delta spec 覆盖

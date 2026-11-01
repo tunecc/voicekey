@@ -149,6 +149,9 @@ pub struct Ctl {
     flush_pending: bool,
     /// 本次录音结束时刻：「处理」提示音须在音量还原完成后播放，以此估算剩余还原窗口
     stopped_at: Option<Instant>,
+    /// 提示音会话代数：每次开始录音递增；延迟提示音到期时代数已变则丢弃，
+    /// 避免快速连续开始/停止时新旧提示音错拍重叠（发出奇怪声音）
+    chime_gen: std::sync::Arc<std::sync::atomic::AtomicU64>,
     /// 按下到判定长按之间已经打开的麦克风，确认开始后把这段音频交出去
     primed: Option<Primed>,
 }
@@ -211,6 +214,7 @@ pub fn spawn(app: AppHandle, qwen: Arc<QwenEngine>, rx: UnboundedReceiver<Msg>) 
         last_emit: Instant::now(),
         flush_pending: false,
         stopped_at: None,
+        chime_gen: std::sync::Arc::new(std::sync::atomic::AtomicU64::new(0)),
         primed: None,
     };
     tauri::async_runtime::spawn(ctl.run(rx));
@@ -404,6 +408,8 @@ impl Ctl {
         };
         // 成功开麦（含预开麦转正）发开始音。开始音必须在压低音量之前发
         // （cometix-dictation 同序：开麦 → 播开始音 → 压音量），否则音没播完就被压掉。
+        // 新会话开始：递增提示音代数，上一会话尚在排队/等待的延迟提示音全部作废
+        self.chime_gen.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         crate::sound::play(&self.app, SoundEvent::Start);
         // Press 时的 arm() 只是预开麦，误触/短按取消都不应碰系统音量；只有确认真正进入聆听后才开始 duck。
         // 压低延迟到开始提示音播完（按 play_duration）；handler 以 enabled && self.recording 把关，
@@ -503,13 +509,19 @@ impl Ctl {
         ui::set_tray_active(&self.app, false);
     }
 
-    /// 录音结束后的单音提示（失败音）：等系统输出音量恢复后再播，避免卡在还原淡入的前半段听不清。
+    /// 录音结束后的单音提示（处理音/失败音）：等系统输出音量恢复后再播，避免卡在还原淡入的前半段听不清。
+    /// 带会话代数门闩：等待期间用户再次开始录音（代数递增）则丢弃本条，避免新旧提示音错拍重叠。
     fn play_after_restore(&self, event: SoundEvent) {
         let app = self.app.clone();
         let restore_wait = self.restore_wait();
+        let gen = self.chime_gen.clone();
+        let my_gen = gen.load(std::sync::atomic::Ordering::Relaxed);
         tauri::async_runtime::spawn(async move {
             if !restore_wait.is_zero() {
                 tokio::time::sleep(restore_wait).await;
+            }
+            if gen.load(std::sync::atomic::Ordering::Relaxed) != my_gen {
+                return;
             }
             crate::sound::play(&app, event);
         });
