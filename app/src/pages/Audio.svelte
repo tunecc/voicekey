@@ -42,7 +42,6 @@
     { key: "soundDone", event: "done", label: "识别完成", desc: "结果就绪或上屏时" },
     { key: "soundError", event: "error", label: "识别失败", desc: "出错、超时或没有内容时" },
   ];
-  const evInfo = (event: SimpleSchemeRow["event"]) => EVENTS.find((e) => e.event === event)!;
 </script>
 
 <h2>音频</h2>
@@ -90,22 +89,19 @@
     </div>
   </div>
   {#if s.soundScheme === "simple"}
-    {#each schemeRows as row (row.event)}
-      {@const ev = evInfo(row.event)}
+    <!-- 按固定事件序渲染：映射表命中的行显示音效名与试听，未映射的事件显示「不发声」 -->
+    {#each EVENTS as ev (ev.event)}
+      {@const row = schemeRows.find((r) => r.event === ev.event)}
       <div class="row">
         <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
-        <b class="sound-name">{row.soundName}</b>
-        <button class="btn" onclick={() => previewSound(row.soundId)} aria-label={`试听${ev.label}`}>试听</button>
+        {#if row}
+          <b class="sound-name">{row.soundName}</b>
+          <button class="btn" onclick={() => previewSound(row.soundId)} aria-label={`试听${ev.label}`}>试听</button>
+        {:else}
+          <b class="sound-name muted">不发声</b>
+        {/if}
       </div>
     {/each}
-    <div class="row">
-      <div class="lbl">{evInfo("done").label}<small>{evInfo("done").desc}</small></div>
-      <b class="sound-name muted">不发声</b>
-    </div>
-    <div class="row">
-      <div class="lbl">{evInfo("error").label}<small>{evInfo("error").desc}</small></div>
-      <b class="sound-name muted">不发声</b>
-    </div>
   {:else}
     {#each EVENTS as ev}
       <div class="row">

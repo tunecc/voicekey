@@ -47,15 +47,16 @@ pub fn is_known_scheme(scheme: &str) -> bool {
     matches!(scheme, SCHEME_SIMPLE | SCHEME_CUSTOM)
 }
 
-/// 简洁方案固定映射（纯双音复刻 cometix-dictation）：开始=轻叮、处理=轻啵；完成与失败不发声。
-/// macOS 播系统音 Tink/Pop（见 `simple_scheme_system_name`），Windows 及系统音不可用时播池内 CC0 兜底音。
+/// 简洁方案固定映射（复刻 cometix-dictation 双音并扩展失败音）：开始=轻叮、结果就绪=轻啵、失败=警示。
+/// macOS 播系统音 Tink/Pop/Basso（见 `simple_scheme_system_name`），Windows 及系统音不可用时播池内 CC0 兜底音；完成不发声。
 pub const SIMPLE_SCHEME: &[(SoundEvent, &str)] = &[
     (SoundEvent::Start, "tink"),
     (SoundEvent::Processing, "pop"),
+    (SoundEvent::Error, "error"),
 ];
 
-/// 简洁方案在 macOS 上使用的系统音名（NSSound(named:)，与 cometix-dictation 同源同声）；
-/// 非 macOS 平台无对应系统音，回退池内兜底音。完成与失败在简洁方案下不发声。
+/// 简洁方案在 macOS 上使用的系统音名（NSSound(named:)，与 cometix-dictation 同源同声；
+/// 失败音 Basso 为本 fork 扩展）。非 macOS 平台无对应系统音，回退池内兜底音。完成在简洁方案下不发声。
 pub fn simple_scheme_system_name(event: SoundEvent) -> Option<&'static str> {
     if !cfg!(target_os = "macos") {
         return None;
@@ -63,7 +64,8 @@ pub fn simple_scheme_system_name(event: SoundEvent) -> Option<&'static str> {
     match event {
         SoundEvent::Start => Some("Tink"),
         SoundEvent::Processing => Some("Pop"),
-        SoundEvent::Done | SoundEvent::Error => None,
+        SoundEvent::Error => Some("Basso"),
+        SoundEvent::Done => None,
     }
 }
 
@@ -469,9 +471,9 @@ mod tests {
         s.sound_done = "switch".into();
         assert_eq!(gated_id(SoundEvent::Start, &s), Some("tink"));
         assert_eq!(gated_id(SoundEvent::Processing, &s), Some("pop"));
-        // 纯双音复刻：完成与失败不发声
+        // 完成不发声；失败播「警示」兜底（macOS 系统音 Basso）
         assert_eq!(gated_id(SoundEvent::Done, &s), None, "简洁方案完成不发声");
-        assert_eq!(gated_id(SoundEvent::Error, &s), None, "简洁方案失败不发声");
+        assert_eq!(gated_id(SoundEvent::Error, &s), Some("error"), "简洁方案失败播警示兜底音");
     }
 
     #[test]
@@ -487,13 +489,20 @@ mod tests {
 
     #[test]
     fn simple_scheme_mapping_is_pure_two_sound_replica() {
-        assert_eq!(SIMPLE_SCHEME.len(), 2, "纯双音：仅开始与处理两个映射");
+        assert_eq!(SIMPLE_SCHEME.len(), 3, "开始/处理/失败三个映射，完成不发声");
         let mut seen = std::collections::HashSet::new();
         for (event, id) in SIMPLE_SCHEME {
             assert!(is_known(id), "映射音效 {id} 必须在内置池中（Windows 兜底）");
             assert!(seen.insert(*id), "映射音效必须互不相同：{id} 重复");
-            assert!(matches!(event, SoundEvent::Start | SoundEvent::Processing), "只允许开始/处理映射");
+            assert!(
+                matches!(event, SoundEvent::Start | SoundEvent::Processing | SoundEvent::Error),
+                "只允许开始/处理/失败映射"
+            );
         }
+        assert!(
+            !SIMPLE_SCHEME.iter().any(|(e, _)| matches!(e, SoundEvent::Done)),
+            "完成事件保持不发声"
+        );
     }
 
     #[test]
@@ -501,12 +510,13 @@ mod tests {
         if cfg!(target_os = "macos") {
             assert_eq!(simple_scheme_system_name(SoundEvent::Start), Some("Tink"));
             assert_eq!(simple_scheme_system_name(SoundEvent::Processing), Some("Pop"));
+            assert_eq!(simple_scheme_system_name(SoundEvent::Error), Some("Basso"));
         } else {
             assert_eq!(simple_scheme_system_name(SoundEvent::Start), None);
             assert_eq!(simple_scheme_system_name(SoundEvent::Processing), None);
+            assert_eq!(simple_scheme_system_name(SoundEvent::Error), None);
         }
         assert_eq!(simple_scheme_system_name(SoundEvent::Done), None, "完成不发声");
-        assert_eq!(simple_scheme_system_name(SoundEvent::Error), None, "失败不发声");
     }
 
     /// 方案切换不得动逐事件设置：简洁门控只读，切回自定义后原选择仍生效
@@ -535,15 +545,16 @@ mod tests {
     #[test]
     fn simple_scheme_rows_cover_sounding_events_with_pool_labels() {
         let rows = simple_scheme_rows();
-        assert_eq!(rows.len(), 2, "纯双音：仅开始与处理两行");
+        assert_eq!(rows.len(), 3, "开始/处理/失败三行发声映射");
         for row in &rows {
             assert!(is_known(row.sound_id), "soundId 必须在内置池中");
             assert!(!row.sound_name.is_empty(), "soundName 必须来自音效池中文名");
         }
         let ids: Vec<_> = rows.iter().map(|r| r.sound_id).collect();
-        assert_eq!(ids, vec!["tink", "pop"], "行序与固定映射一致");
+        assert_eq!(ids, vec!["tink", "pop", "error"], "行序与固定映射一致");
         assert_eq!(rows[0].event, "start");
         assert_eq!(rows[1].event, "processing");
+        assert_eq!(rows[2].event, "error");
     }
 
     /// 前端按 camelCase 读取：序列化键名必须是 soundId/soundName，否则设置页映射行为空
