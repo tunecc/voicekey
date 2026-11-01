@@ -275,6 +275,11 @@ pub(crate) fn output_volume_for(original: &OutputVolumeSnapshot) -> Option<Outpu
     current.same_device(original).then_some(current)
 }
 
+/// Windows 端 endpoint id 即稳定身份：按 UID 重解析与直读等价，保持接口对称。
+pub(crate) fn output_volume_by_uid(uid: &str) -> Option<OutputVolumeSnapshot> {
+    output_snapshot(audio_device(Some(uid))?)
+}
+
 pub(crate) fn output_volume_write(
     desired: &OutputVolumeSnapshot,
     expected: &OutputVolumeSnapshot,

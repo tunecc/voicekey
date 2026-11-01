@@ -1,0 +1,213 @@
+# comet-execution: managed-run
+change_id: fc74f3e6-8ca4-4c40-962f-eb0a709f5b41
+workflow: hotfix
+language: zh-CN
+phase: build
+context_compression: off
+build_mode: direct
+build_pause: null
+subagent_dispatch: null
+tdd_mode: direct
+review_mode: off
+isolation: current
+verify_mode: light
+auto_transition: true
+base_ref: 60152cbd288838f72cfb8e203e0d6d6929ad1a10
+design_doc: null
+plan: null
+verify_result: pending
+verify_failures: 0
+verification_report: null
+branch_status: pending
+created_at: 2026-11-01
+verified_at: null
+archive_confirmation: null
+archived: false
+bound_branch: main
+direct_override: null
+handoff_context: null
+handoff_hash: null
+classic_profile: null
+classic_migration: null
+run_checkpoint:
+  schema: comet.workflow-run-checkpoint.v1
+  hash: 0751c03e2a40b620854a3013bd19a6d47113e7b8d971cf5fb97613b10fa991d3
+  run:
+    protocolVersion: 1
+    schemaVersion: 1
+    runId: volume-restore-device-churn
+    revision: 1
+    workflow:
+      id: comet-classic-hotfix
+      version: "1"
+      hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+    definitionHashes:
+      '["comet-classic-hotfix","1"]': 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+    initialStateHash: deb4827bae6817369cdf246a9e4d535793b4b502d40b73829ac6233f244c992c
+    input:
+      change: volume-restore-device-churn
+      changeDir: docs/openspec/changes/volume-restore-device-churn
+      workspaceBaseline:
+        ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+    state:
+      archiveConfirmation: null
+      archived: false
+      autoTransition: true
+      baseRef: 60152cbd288838f72cfb8e203e0d6d6929ad1a10
+      boundBranch: main
+      branchStatus: pending
+      buildMode: direct
+      buildPause: null
+      checkEpoch: 1
+      classicMigration: null
+      classicProfile: null
+      contextCompression: off
+      createdAt: 2026-11-01
+      designDoc: null
+      directOverride: null
+      handoffContext: null
+      handoffHash: null
+      isolation: current
+      language: zh-CN
+      phase: build
+      plan: null
+      reviewMode: off
+      subagentDispatch: null
+      tddMode: direct
+      verificationReport: null
+      verifiedAt: null
+      verifyFailures: 0
+      verifyMode: light
+      verifyResult: pending
+      workflow: hotfix
+    status: running
+    sequence: 3
+    actions:
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-21326e6050d504d0b8d7d84fc651d019d49a226aea1d52b39924fcf7ace9f6f8
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:1
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs: {}
+        inputHash: 525392ec5465942f795d579a04bbb40d3b95e95df99efa64d7c510b84a6e25d2
+        outcome:
+          actionId: volume-restore-device-churn:1
+          attempt: 1
+          claimToken: portable-21326e6050d504d0b8d7d84fc651d019d49a226aea1d52b39924fcf7ace9f6f8
+          inputHash: 525392ec5465942f795d579a04bbb40d3b95e95df99efa64d7c510b84a6e25d2
+          outcomeId: aef1c601-8a68-4810-a193-b0909f5b62f3
+          output:
+            event: open-complete
+            requirementsEvidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 59ac82e1826198cb724c57afb930704b80128ad926d267bcc5eb42d01776980e
+            outcomeId: aef1c601-8a68-4810-a193-b0909f5b62f3
+        reconciliations: []
+        ref: comet-hotfix
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.open
+        type: invoke_skill
+      - attempt: 1
+        id: volume-restore-device-churn:3
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.open.evidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        inputHash: 1e0e9919dd6a42bd84913c432ed98211f539f4dc946cb27d639701db4df7b2e5
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: pending
+        stepId: hotfix.build.execute
+        type: invoke_skill
+    actionContexts:
+      volume-restore-device-churn:1:
+        results: {}
+        sequence: 1
+      volume-restore-device-churn:3:
+        results:
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        sequence: 3
+    waits: []
+    evidenceWaits:
+      - id: volume-restore-device-churn:2
+        stepId: hotfix.open.evidence
+        sequence: 2
+        kind: classic-open-artifacts
+        status: resolved
+        results:
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+        receipt:
+          ref: docs/openspec/changes/volume-restore-device-churn
+          contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+          submissionId: 146149fe-0991-4ca3-8017-990fd1ede11c
+    ready: []
+    joins: {}
+    outputs:
+      hotfix.open:
+        sequence: 1
+        value:
+          event: open-complete
+          requirementsEvidence:
+            contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+            ref: docs/openspec/changes/volume-restore-device-churn
+      hotfix.open.evidence:
+        sequence: 2
+        value:
+          contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+          ref: docs/openspec/changes/volume-restore-device-churn
+    children: []
+    lineage: []
+  sourceRevision: 4
+  sourceHash: 8b86ee336f65088e9ca06fa1e5bccd6aeb28cac005a191aad061f2b4111ab4e2
+check_epoch: 1

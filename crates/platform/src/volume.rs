@@ -15,6 +15,9 @@ const MIN_FADE_STEPS: usize = 14;
 const MAX_FADE_STEPS: usize = 23;
 const HOLD_POLL: Duration = Duration::from_millis(120);
 const VOLUME_EPSILON: f32 = 0.002;
+/// 恢复/持有阶段设备按 UID 连续重解析失败的容忍上限：过渡中 20ms/tick 约 800ms，
+/// 持有轮询 120ms/tick 约 4.8s；超过才认定设备已消失并放弃，瞬时重枚举/读失败一律自愈重试。
+const DEVICE_LOST_TICKS_MAX: u32 = 40;
 
 #[derive(Clone, Debug)]
 pub(crate) struct OutputVolumeValue {
@@ -70,6 +73,9 @@ impl OutputVolumeSnapshot {
 trait Backend {
     fn default_snapshot(&mut self) -> Option<OutputVolumeSnapshot>;
     fn snapshot(&mut self, device: &OutputVolumeSnapshot) -> Option<OutputVolumeSnapshot>;
+    /// 按稳定 UID（device_id）重新解析设备；系统重枚举后 AudioObjectID 会变，UID 才是可靠身份。
+    /// 返回 None 表示该 UID 已不在系统中。
+    fn resolve_by_uid(&mut self, device: &OutputVolumeSnapshot) -> Option<OutputVolumeSnapshot>;
     fn write(
         &mut self,
         desired: &OutputVolumeSnapshot,
@@ -86,6 +92,10 @@ impl Backend for SystemBackend {
 
     fn snapshot(&mut self, device: &OutputVolumeSnapshot) -> Option<OutputVolumeSnapshot> {
         crate::imp::output_volume_for(device)
+    }
+
+    fn resolve_by_uid(&mut self, device: &OutputVolumeSnapshot) -> Option<OutputVolumeSnapshot> {
+        crate::imp::output_volume_by_uid(&device.device_id)
     }
 
     fn write(
@@ -120,6 +130,9 @@ struct DuckState {
     /// 已完成本轮向下过渡。真实声卡可能把 0..1 标量量化到固定步进，因此“成功写入后的实际值”
     /// 不一定精确等于数学目标；完成后只监控所有权/设备变化，不反复重跑同一段 fade。
     duck_settled: bool,
+    /// 租约设备按 UID 连续重解析失败的次数；超过 DEVICE_LOST_TICKS_MAX 才认定设备已消失。
+    /// 瞬时读失败或设备重枚举（同 UID 换对象 ID）都会被自愈并清零。
+    device_lost_ticks: u32,
     fraction: f32,
     lease: Option<Lease>,
     transition: Option<Transition>,
@@ -131,6 +144,7 @@ impl DuckState {
             active: false,
             yielded: false,
             duck_settled: false,
+            device_lost_ticks: 0,
             fraction: fraction.clamp(0.0, 1.0),
             lease: None,
             transition: None,
@@ -145,6 +159,7 @@ impl DuckState {
         // 改变方向时从“当前实际值”重新起一条 smoothstep，避免快速开始/结束时出现跳变。
         self.transition = None;
         self.duck_settled = false;
+        self.device_lost_ticks = 0;
         if !active {
             // stop 是一个明确的会话边界：下一次 start 可以重新以用户当前音量为基线。
             self.yielded = false;
@@ -187,6 +202,36 @@ impl DuckState {
         }
     }
 
+    /// 租约设备按 UID 重解析自愈：对象 ID 被系统重分配或瞬时读失败时，
+    /// 以稳定 UID（device_id）重新定位同一物理设备并刷新租约记录的 ID，音量值保持不变。
+    /// 返回 false 表示该 UID 已不在系统中（计入连续失败，超过阈值按设备消失处理）。
+    fn heal_lease_via_uid<B: Backend>(&mut self, backend: &mut B) -> bool {
+        let Some(lease) = self.lease.as_ref() else { return false };
+        let Some(fresh) = backend.resolve_by_uid(&lease.original) else {
+            self.device_lost_ticks += 1;
+            return false;
+        };
+        if fresh.device_id != lease.original.device_id {
+            self.device_lost_ticks += 1;
+            return false;
+        }
+        let lease = self.lease.as_mut().unwrap();
+        lease.original.native_id = fresh.native_id;
+        lease.applied.native_id = fresh.native_id;
+        self.device_lost_ticks = 0;
+        true
+    }
+
+    /// 快照带回了同 UID 设备的新对象 ID（重枚举自愈）：刷新租约记录的 ID，随后按值正常比对。
+    fn heal_lease_native_id(&mut self, current: &OutputVolumeSnapshot) {
+        let Some(lease) = self.lease.as_mut() else { return };
+        if lease.applied.device_id != current.device_id || lease.applied.native_id == current.native_id {
+            return;
+        }
+        lease.original.native_id = current.native_id;
+        lease.applied.native_id = current.native_id;
+    }
+
     fn tick_active<B: Backend>(&mut self, backend: &mut B) {
         if self.yielded {
             return;
@@ -196,9 +241,12 @@ impl DuckState {
             return;
         };
 
-        if let Some(lease) = &self.lease {
-            if !default.same_device(&lease.original) {
-                // 默认输出切走后，旧设备已经不可听：若它仍保持我们的值就立即还原，绝不把旧设备音量套到新设备。
+        if self.lease.as_ref().is_some_and(|lease| !default.same_device(&lease.original)) {
+            // 先按 UID 重解析自愈：同设备换 ID（重枚举）不是设备切换；UID 已消失或默认输出确实切走时，
+            // 旧设备已经不可听：若它仍保持我们的值就立即还原，绝不把旧设备音量套到新设备。
+            if !self.heal_lease_via_uid(backend)
+                || !default.same_device(&self.lease.as_ref().unwrap().original)
+            {
                 self.restore_immediately(backend);
                 self.lease = None;
                 self.transition = None;
@@ -220,13 +268,18 @@ impl DuckState {
                 applied: default,
             });
             self.duck_settled = false;
+            self.device_lost_ticks = 0;
         }
 
-        let Some(lease) = &self.lease else { return };
-        let Some(current) = backend.snapshot(&lease.original) else {
+        let current = {
+            let Some(lease) = self.lease.as_ref() else { return };
+            backend.snapshot(&lease.original)
+        };
+        let Some(current) = current else {
             return;
         };
-        if !current.matches(&lease.applied) {
+        self.heal_lease_native_id(&current);
+        if self.lease.as_ref().is_none_or(|lease| !current.matches(&lease.applied)) {
             // 音量键、控制中心、外设软件等都可能在聆听中改音量；此时用户意图优先，本轮不再自动接管。
             self.lease = None;
             self.transition = None;
@@ -238,7 +291,10 @@ impl DuckState {
         if self.duck_settled {
             return;
         }
-        let target = lease.original.scaled(self.fraction);
+        let target = {
+            let lease = self.lease.as_ref().unwrap();
+            lease.original.scaled(self.fraction)
+        };
         if self.ensure_transition(target) {
             self.duck_settled = true;
             return;
@@ -249,22 +305,47 @@ impl DuckState {
     }
 
     fn tick_restore<B: Backend>(&mut self, backend: &mut B) {
-        let Some(lease) = &self.lease else { return };
-        let Some(current) = backend.snapshot(&lease.original) else {
-            // 原设备已不可用时不能把旧值套到当前设备，也不能无限轮询一个已拔掉的对象；安全放弃恢复。
+        if self.lease.is_none() {
+            return;
+        }
+        if self.device_lost_ticks > DEVICE_LOST_TICKS_MAX {
+            // 设备 UID 持续不可解析（拔出/蓝牙断开）：安全放弃恢复，状态归于静止；
+            // 压低值留在已消失的设备上，绝不把旧值套到任何现有设备。
             self.lease = None;
             self.transition = None;
             self.duck_settled = false;
+            self.device_lost_ticks = 0;
             return;
+        }
+        let mut current = {
+            let Some(lease) = self.lease.as_ref() else { return };
+            backend.snapshot(&lease.original)
         };
-        if !current.matches(&lease.applied) {
+        if current.is_none() {
+            // 对象 ID 失效或瞬时读失败：按 UID 重解析自愈，设备仍在系统里就继续还原，不再一次失败就放弃。
+            if !self.heal_lease_via_uid(backend) {
+                return;
+            }
+            current = {
+                let Some(lease) = self.lease.as_ref() else { return };
+                backend.snapshot(&lease.original)
+            };
+            if current.is_none() {
+                // 重解析命中但快照仍失败：计入连续失败，下个 tick 再试。
+                self.device_lost_ticks += 1;
+                return;
+            }
+        }
+        let Some(current) = current else { return };
+        self.heal_lease_native_id(&current);
+        if self.lease.as_ref().is_none_or(|lease| !current.matches(&lease.applied)) {
             // 用户已经接管，绝不能为了“恢复”覆盖他的最新选择。
             self.lease = None;
             self.transition = None;
             self.duck_settled = false;
             return;
         }
-        let target = lease.original.clone();
+        let target = self.lease.as_ref().unwrap().original.clone();
         if self.ensure_transition(target) {
             self.lease = None;
             return;
@@ -519,6 +600,18 @@ mod tests {
         fn set_user_volume(&mut self, id: &str, value: f32) {
             self.devices.get_mut(id).unwrap().values[0].value = value;
         }
+
+        /// 模拟 macOS 设备重枚举：同一物理设备（同 device_id/UID）以新的 AudioObjectID 重新出现
+        fn reenumerate(&mut self, id: &str, new_native_id: u64) {
+            let mut snap = self.devices.get(id).unwrap().clone();
+            snap.native_id = new_native_id;
+            self.devices.insert(id.into(), snap);
+        }
+
+        /// 模拟设备彻底消失（UID 不在系统里了）
+        fn remove_device(&mut self, id: &str) {
+            self.devices.remove(id);
+        }
     }
 
     impl Backend for FakeBackend {
@@ -531,6 +624,10 @@ mod tests {
                 .get(&device.device_id)
                 .filter(|v| v.native_id == device.native_id)
                 .cloned()
+        }
+
+        fn resolve_by_uid(&mut self, device: &OutputVolumeSnapshot) -> Option<OutputVolumeSnapshot> {
+            self.devices.get(&device.device_id).cloned()
         }
 
         fn write(
@@ -835,5 +932,75 @@ mod tests {
         assert!((backend.volume("speaker") - 0.8).abs() < 0.003);
         ticks(&mut state, &mut backend, MAX_FADE_STEPS);
         assert!((backend.volume("headset") - 0.18).abs() < 0.003);
+    }
+
+    #[test]
+    fn restore_survives_device_reenumeration() {
+        let mut backend = FakeBackend::new("speaker", 0.8);
+        let mut state = DuckState::new(0.3);
+        state.set_active(true);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS);
+        assert!((backend.volume("speaker") - 0.24).abs() < 0.003);
+
+        // 录音停止前后设备被系统重枚举：同一物理设备（同 UID）以新的 AudioObjectID 出现，
+        // 恢复必须自愈并完整还原，而不是放弃后把音量永远留在压低值。
+        backend.reenumerate("speaker", 99);
+
+        state.set_active(false);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS + DEVICE_LOST_TICKS_MAX as usize + 4);
+        assert!((backend.volume("speaker") - 0.8).abs() < 0.003);
+        assert!(state.lease.is_none());
+    }
+
+    #[test]
+    fn hold_phase_reenumeration_keeps_original_baseline_and_restores() {
+        let mut backend = FakeBackend::new("speaker", 0.8);
+        let mut state = DuckState::new(0.3);
+        state.set_active(true);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS);
+        assert!((backend.volume("speaker") - 0.24).abs() < 0.003);
+
+        // 持有阶段设备被重枚举：必须自愈并保住最初 0.8 的基线，不能把压低后的 0.24 当新基线越压越低。
+        backend.reenumerate("speaker", 99);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS);
+        assert!((backend.volume("speaker") - 0.24).abs() < 0.003);
+
+        state.set_active(false);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS + DEVICE_LOST_TICKS_MAX as usize + 4);
+        assert!((backend.volume("speaker") - 0.8).abs() < 0.003);
+        assert!(state.lease.is_none());
+    }
+
+    #[test]
+    fn reenumeration_with_user_change_still_yields() {
+        let mut backend = FakeBackend::new("speaker", 0.8);
+        let mut state = DuckState::new(0.3);
+        state.set_active(true);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS);
+
+        // 重枚举窗口里用户手动改了音量：自愈后仍按值比对让权，绝不覆盖用户选择。
+        backend.reenumerate("speaker", 99);
+        backend.set_user_volume("speaker", 0.55);
+
+        state.set_active(false);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS + DEVICE_LOST_TICKS_MAX as usize + 4);
+        assert!((backend.volume("speaker") - 0.55).abs() < 0.003);
+        assert!(state.lease.is_none());
+    }
+
+    #[test]
+    fn disappeared_device_abandons_restore_after_window() {
+        let mut backend = FakeBackend::new("speaker", 0.8);
+        let mut state = DuckState::new(0.3);
+        state.set_active(true);
+        ticks(&mut state, &mut backend, MAX_FADE_STEPS);
+
+        // 设备彻底消失（UID 不在系统里）：有限重试后放弃，状态归于静止且不再写任何设备。
+        backend.remove_device("speaker");
+
+        state.set_active(false);
+        ticks(&mut state, &mut backend, DEVICE_LOST_TICKS_MAX as usize + 4);
+        assert!(state.lease.is_none());
+        assert!(state.quiescent());
     }
 }

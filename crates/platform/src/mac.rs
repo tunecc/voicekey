@@ -6,9 +6,10 @@ use core_foundation::dictionary::CFDictionary;
 use core_foundation::string::{CFString, CFStringRef};
 use coreaudio_sys::{
     kAudioDevicePropertyDeviceUID, kAudioDevicePropertyMute, kAudioDevicePropertyVolumeScalar,
-    kAudioHardwarePropertyDefaultOutputDevice, kAudioObjectPropertyElementMain, kAudioObjectPropertyScopeGlobal,
-    kAudioObjectPropertyScopeOutput, kAudioObjectSystemObject, AudioObjectGetPropertyData, AudioObjectHasProperty,
-    AudioObjectID, AudioObjectIsPropertySettable, AudioObjectPropertyAddress, AudioObjectSetPropertyData,
+    kAudioHardwarePropertyDefaultOutputDevice, kAudioHardwarePropertyDevices, kAudioObjectPropertyElementMain,
+    kAudioObjectPropertyScopeGlobal, kAudioObjectPropertyScopeOutput, kAudioObjectSystemObject,
+    AudioObjectGetPropertyData, AudioObjectGetPropertyDataSize, AudioObjectHasProperty, AudioObjectID,
+    AudioObjectIsPropertySettable, AudioObjectPropertyAddress, AudioObjectSetPropertyData,
 };
 use std::ffi::c_void;
 use std::sync::atomic::{AtomicPtr, Ordering};
@@ -508,8 +509,51 @@ pub(crate) fn output_volume_default() -> Option<OutputVolumeSnapshot> {
 }
 
 pub(crate) fn output_volume_for(original: &OutputVolumeSnapshot) -> Option<OutputVolumeSnapshot> {
-    let current = output_snapshot(original.native_id as AudioObjectID)?;
-    current.same_device(original).then_some(current)
+    if let Some(current) = output_snapshot(original.native_id as AudioObjectID) {
+        if current.same_device(original) {
+            return Some(current);
+        }
+    }
+    // 直读失败或对象 ID 已被系统重分配（设备重枚举）：按稳定 UID 重新定位同一物理设备
+    output_volume_by_uid(&original.device_id)
+}
+
+/// 按稳定 UID 枚举全部音频设备重新定位：AudioObjectID 在设备列表变化时会被重分配，UID 才是可靠身份。
+pub(crate) fn output_volume_by_uid(uid: &str) -> Option<OutputVolumeSnapshot> {
+    let mut address = audio_address(
+        kAudioHardwarePropertyDevices,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMain,
+    );
+    let mut size = 0u32;
+    let status = unsafe {
+        AudioObjectGetPropertyDataSize(kAudioObjectSystemObject, &mut address, 0, std::ptr::null(), &mut size)
+    };
+    if status != 0 || size == 0 {
+        return None;
+    }
+    let count = size as usize / std::mem::size_of::<AudioObjectID>();
+    let mut devices = vec![0 as AudioObjectID; count];
+    let status = unsafe {
+        AudioObjectGetPropertyData(
+            kAudioObjectSystemObject,
+            &mut address,
+            0,
+            std::ptr::null(),
+            &mut size,
+            devices.as_mut_ptr() as *mut c_void,
+        )
+    };
+    if status != 0 {
+        return None;
+    }
+    devices.into_iter().find_map(|device| {
+        if device_uid(device).as_deref() == Some(uid) {
+            output_snapshot(device)
+        } else {
+            None
+        }
+    })
 }
 
 pub(crate) fn output_volume_write(
