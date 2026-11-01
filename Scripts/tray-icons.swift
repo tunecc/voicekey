@@ -5,6 +5,7 @@
 //
 // 模板图标由 macOS 按 alpha 着色，因此素材用黑色 + 透明度绘制。
 // tray-icon 会把图标缩放到 18pt 高，资产按 44px/18pt 输出。
+// write 只输出单张 tray.png：空闲与录音中共用「录音中」形态。
 
 import AppKit
 
@@ -131,7 +132,7 @@ func drawCandidate(_ candidate: Candidate, state: TrayState, tint: NSColor) {
         let alpha: CGFloat = state == .idle ? 0.85 : 1.0
         let line = appWavePath(
             from: 1.7, to: 16.3, centerY: 9.0, amplitude: amplitude,
-            cycles: 1.5, phase: 0.6, envelopePower: 1.0
+            cycles: 1.5, phase: 0.6, envelopePower: 2.0
         )
         line.lineWidth = state == .idle ? 2.4 : 2.75
         tint.withAlphaComponent(alpha).setStroke()
@@ -148,7 +149,7 @@ func drawCandidate(_ candidate: Candidate, state: TrayState, tint: NSColor) {
         let amplitude: CGFloat = state == .idle ? 2.5 : 3.8
         let line = appWavePath(
             from: 3.2, to: 14.8, centerY: 9.0, amplitude: amplitude,
-            cycles: 1.5, phase: 0.6, envelopePower: 1.0
+            cycles: 1.5, phase: 0.6, envelopePower: 2.0
         )
         line.lineWidth = state == .idle ? 2.1 : 2.5
         NSGraphicsContext.saveGraphicsState()
@@ -377,13 +378,12 @@ case "write":
         exit(1)
     }
     let dir = URL(fileURLWithPath: args.count > 2 ? args[2] : "app/src-tauri/icons")
-    for state in TrayState.allCases {
-        let image = render(candidate, state, tint: .black, scale: assetScale)
-        let (width, height) = pixelSize(candidate, scale: assetScale)
-        let name = state == .idle ? "tray.png" : "tray-active.png"
-        write(image, pixelWidth: width, pixelHeight: height, to: dir.appendingPathComponent(name))
-        print("wrote \(dir.appendingPathComponent(name).path) (\(width)x\(height))")
-    }
+    // 单一图标：空闲与录音中共用「录音中」形态（用户确认更接近完整 App 图标）。
+    let image = render(candidate, .active, tint: .black, scale: assetScale)
+    let (width, height) = pixelSize(candidate, scale: assetScale)
+    let url = dir.appendingPathComponent("tray.png")
+    write(image, pixelWidth: width, pixelHeight: height, to: url)
+    print("wrote \(url.path) (\(width)x\(height))")
 
 default:
     print("用法：swift Scripts/tray-icons.swift preview [输出目录] | write <a-g> [资源目录]")
