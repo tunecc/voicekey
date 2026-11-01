@@ -1,0 +1,2927 @@
+# comet-execution: managed-run
+change_id: fc74f3e6-8ca4-4c40-962f-eb0a709f5b41
+workflow: hotfix
+language: zh-CN
+phase: archive
+context_compression: off
+build_mode: direct
+build_pause: null
+subagent_dispatch: null
+tdd_mode: direct
+review_mode: off
+isolation: current
+verify_mode: light
+auto_transition: true
+base_ref: 60152cbd288838f72cfb8e203e0d6d6929ad1a10
+design_doc: null
+plan: null
+verify_result: pass
+verify_failures: 0
+verification_report: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+branch_status: pending
+created_at: 2026-11-01
+verified_at: 2026-11-01
+archive_confirmation: confirmed
+archived: true
+bound_branch: main
+direct_override: null
+handoff_context: null
+handoff_hash: null
+classic_profile: null
+classic_migration: null
+run_checkpoint:
+  schema: comet.workflow-run-checkpoint.v1
+  hash: 7f4250bbd4b81349ded394be168adeeb213e963c60d1bc1772c08f48ee6e1e02
+  run:
+    protocolVersion: 1
+    schemaVersion: 1
+    runId: volume-restore-device-churn
+    revision: 1
+    workflow:
+      id: comet-classic-hotfix
+      version: "1"
+      hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+    definitionHashes:
+      '["comet-classic-hotfix","1"]': 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+    initialStateHash: deb4827bae6817369cdf246a9e4d535793b4b502d40b73829ac6233f244c992c
+    input:
+      change: volume-restore-device-churn
+      changeDir: docs/openspec/changes/volume-restore-device-churn
+      workspaceBaseline:
+        ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+    state:
+      archiveConfirmation: confirmed
+      archived: true
+      autoTransition: true
+      baseRef: 60152cbd288838f72cfb8e203e0d6d6929ad1a10
+      boundBranch: main
+      branchStatus: pending
+      buildMode: direct
+      buildPause: null
+      checkEpoch: 8
+      classicMigration: null
+      classicProfile: null
+      contextCompression: off
+      createdAt: 2026-11-01
+      designDoc: null
+      directOverride: null
+      handoffContext: null
+      handoffHash: null
+      isolation: current
+      language: zh-CN
+      phase: archive
+      plan: null
+      reviewMode: off
+      subagentDispatch: null
+      tddMode: direct
+      verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+      verifiedAt: 2026-11-01
+      verifyFailures: 0
+      verifyMode: light
+      verifyResult: pass
+      workflow: hotfix
+    status: running
+    sequence: 26
+    actions:
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-21326e6050d504d0b8d7d84fc651d019d49a226aea1d52b39924fcf7ace9f6f8
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:1
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs: {}
+        inputHash: 525392ec5465942f795d579a04bbb40d3b95e95df99efa64d7c510b84a6e25d2
+        outcome:
+          actionId: volume-restore-device-churn:1
+          attempt: 1
+          claimToken: portable-21326e6050d504d0b8d7d84fc651d019d49a226aea1d52b39924fcf7ace9f6f8
+          inputHash: 525392ec5465942f795d579a04bbb40d3b95e95df99efa64d7c510b84a6e25d2
+          outcomeId: aef1c601-8a68-4810-a193-b0909f5b62f3
+          output:
+            event: open-complete
+            requirementsEvidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 59ac82e1826198cb724c57afb930704b80128ad926d267bcc5eb42d01776980e
+            outcomeId: aef1c601-8a68-4810-a193-b0909f5b62f3
+        reconciliations: []
+        ref: comet-hotfix
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.open
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: classic-builder/volume-restore-device-churn:3/1
+          token: portable-befc5dba52183ec95836dc8afbd19774fc9b130a34ad29696bc4080bd707d80e
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:3
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.open.evidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        inputHash: 1e0e9919dd6a42bd84913c432ed98211f539f4dc946cb27d639701db4df7b2e5
+        outcome:
+          actionId: volume-restore-device-churn:3
+          attempt: 1
+          claimToken: portable-befc5dba52183ec95836dc8afbd19774fc9b130a34ad29696bc4080bd707d80e
+          inputHash: 1e0e9919dd6a42bd84913c432ed98211f539f4dc946cb27d639701db4df7b2e5
+          outcomeId: c04f91ed-f116-4c88-9a0b-9e5b61c7c005
+          output:
+            event: build-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 27470c543a17997f7444b368eb7ed71dcfb9631a50ee2ffe351f769db4aaae01
+            outcomeId: c04f91ed-f116-4c88-9a0b-9e5b61c7c005
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-6cbce27e2c1b2e29e122ca6b8de89e62f672f2aef04d74cdf0a9a4f819d876c5
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:4
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.open.evidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        inputHash: b19518ada6b90b9e5e5f0b2989236e421645c9b5084d5d1636e17d33bdfcfb46
+        outcome:
+          actionId: volume-restore-device-churn:4
+          attempt: 1
+          claimToken: portable-6cbce27e2c1b2e29e122ca6b8de89e62f672f2aef04d74cdf0a9a4f819d876c5
+          inputHash: b19518ada6b90b9e5e5f0b2989236e421645c9b5084d5d1636e17d33bdfcfb46
+          outcomeId: 1ec7cf79-bdbe-4eb1-8225-b5d591c3f41f
+          output:
+            argv:
+              - cargo
+              - build
+            changedDuringExecution: []
+            checkEpoch: 1
+            contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+            cwd: .
+            environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+            exitCode: 0
+            inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+            inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+            manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+            manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: e23b424b554470f68c58ca6ec04fd8913df079c36b2ab490e1163058668ffa1d
+            outcomeId: 1ec7cf79-bdbe-4eb1-8225-b5d591c3f41f
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.build.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-d7c59c6c1405f288faf73572929aee3cf02c2cf2ff605fbb79d6397f150a22ff
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:6
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.build.check:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.open.evidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        inputHash: 3ba405214a103c30b0c5f5cccc228e6ef39ef682487f7007c4342ef638290f7e
+        outcome:
+          actionId: volume-restore-device-churn:6
+          attempt: 1
+          claimToken: portable-d7c59c6c1405f288faf73572929aee3cf02c2cf2ff605fbb79d6397f150a22ff
+          inputHash: 3ba405214a103c30b0c5f5cccc228e6ef39ef682487f7007c4342ef638290f7e
+          outcomeId: 36d89eda-c37a-419d-853d-38246fe1ceb7
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 7292ca70d507072a2428fbc30a53b666dc627d5c4df8d1732321aa195aedc0d8
+            outcomeId: 36d89eda-c37a-419d-853d-38246fe1ceb7
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-a628715f23be82200740ad8003971352ceddc2fdb21266925ebd416b844884f2
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:8
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.build.check:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.open.evidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: 1bc562e5467e9601d375a367ecae003c78c97885ca0ede88347f1a2bcc46a05b
+        outcome:
+          actionId: volume-restore-device-churn:8
+          attempt: 1
+          claimToken: portable-a628715f23be82200740ad8003971352ceddc2fdb21266925ebd416b844884f2
+          inputHash: 1bc562e5467e9601d375a367ecae003c78c97885ca0ede88347f1a2bcc46a05b
+          outcomeId: a15c2984-c433-401f-847c-33a6872e32d2
+          output:
+            argv:
+              - cargo
+              - test
+              - --workspace
+            changedDuringExecution: []
+            checkEpoch: 2
+            contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+            cwd: .
+            deliveryInputs:
+              app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+              app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+            environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+            exitCode: 0
+            inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+            inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+            manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+            manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/d2cf548a-2b0c-4a26-8ddc-3b6b5baa6ca7.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: ffb9d9258ff227916613b1f8cbbd4b94f70ccdbd426e24d406ca76b0fcca9bfd
+            outcomeId: a15c2984-c433-401f-847c-33a6872e32d2
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-fb74d7a155c82b00d3b281f46eb9640f1d0acd8ff314b3fb5fd74890d2d3a820
+        executionOrigin:
+          workflow:
+            hash: 6f71bc84d0b99735ca7b6578709966e435eb6c732dcd702ad2771b5569fc9552
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:10
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.build.check:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+            hotfix.build.check.evidence:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+            hotfix.build.execute:
+              event: build-complete
+            hotfix.open:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.open.evidence:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/d2cf548a-2b0c-4a26-8ddc-3b6b5baa6ca7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: a90d16167c03d20aff8164c0517c4374def3b329d37951e90fd0551710b04ca7
+        outcome:
+          actionId: volume-restore-device-churn:10
+          attempt: 1
+          claimToken: portable-fb74d7a155c82b00d3b281f46eb9640f1d0acd8ff314b3fb5fd74890d2d3a820
+          inputHash: a90d16167c03d20aff8164c0517c4374def3b329d37951e90fd0551710b04ca7
+          outcomeId: ebecbd95-7edb-4a8b-8e88-8cd885240ea1
+          output:
+            summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+              + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+              项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到 origin，不建
+              PR。归档影响：change 目录移入
+              archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+            targetBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: a616649be5ee3ea19709128c236691f048dceae8aeaebd8b6c8b48752c5ffa47
+            outcomeId: ebecbd95-7edb-4a8b-8e88-8cd885240ea1
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-9cb8c29d3b023bec614d6c2178b2ab83a811ff49b4145acfae27308d79bdcf15
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:12
+        input:
+          activation:
+            expectedRevision: 17
+            fromPhase: archive
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs: {}
+        inputHash: d010e4ce0a9a15309fe8984aa16754d890258c4ead683a0a81ad08593f3b8cdb
+        outcome:
+          actionId: volume-restore-device-churn:12
+          attempt: 1
+          claimToken: portable-9cb8c29d3b023bec614d6c2178b2ab83a811ff49b4145acfae27308d79bdcf15
+          inputHash: d010e4ce0a9a15309fe8984aa16754d890258c4ead683a0a81ad08593f3b8cdb
+          outcomeId: 08e68c11-c3f7-4762-8b40-997e20fcd722
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: a7bc0e78b1715a738aa5c5025157f39906b577accda89a56dd6576b053cb4b16
+            outcomeId: 08e68c11-c3f7-4762-8b40-997e20fcd722
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-82c61bd48ca73050a7612abf617bf1ba0f839c8d69ba500be5944d2478fd1244
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:14
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: 981068f830dc2ce304a167e38110d06de858a519e69f365e99c22f41f0a210fc
+        outcome:
+          actionId: volume-restore-device-churn:14
+          attempt: 1
+          claimToken: portable-82c61bd48ca73050a7612abf617bf1ba0f839c8d69ba500be5944d2478fd1244
+          inputHash: 981068f830dc2ce304a167e38110d06de858a519e69f365e99c22f41f0a210fc
+          outcomeId: ccae0c23-6e44-4643-8d64-6b28f3b0fc0a
+          output:
+            argv:
+              - cargo
+              - test
+              - --workspace
+            changedDuringExecution: []
+            checkEpoch: 3
+            contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+            cwd: .
+            deliveryInputs:
+              app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+              app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+            environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+            exitCode: 0
+            inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+            inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+            manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+            manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 08ff95c5f8fac9e12e613860ff8fd044829bb80f47c03ec073a4aa0406978435
+            outcomeId: ccae0c23-6e44-4643-8d64-6b28f3b0fc0a
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-1915f9d8f58671366334c6fbac26b67e49c2d3125de317a43bbc90fb26b8002b
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:16
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: bc8fccb9550d552e92207d366ad9dcb09b1ebe84f274a1a60ae52a5694f3257d
+        outcome:
+          actionId: volume-restore-device-churn:16
+          attempt: 1
+          claimToken: portable-1915f9d8f58671366334c6fbac26b67e49c2d3125de317a43bbc90fb26b8002b
+          inputHash: bc8fccb9550d552e92207d366ad9dcb09b1ebe84f274a1a60ae52a5694f3257d
+          outcomeId: c88377e3-73a0-428c-abda-11eb080181f2
+          output:
+            remote: origin
+            summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+              + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+              项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到 origin，不建
+              PR。归档影响：change 目录移入
+              archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+            targetBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 54b9c7d1a64318a868a5b1039b9f4d662a1473a880d1b29113c52d1caeb156e3
+            outcomeId: c88377e3-73a0-428c-abda-11eb080181f2
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-175db39de0758aa6e5b8117c5b29f92847b0bc9a0615b3bb4ebacaacbbac031a
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:18
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.confirm:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: 8f76abaae8682c231bfbea7024cd6c545e4d47e927780ef7a39496d4092b50d0
+        outcome:
+          actionId: volume-restore-device-churn:18
+          attempt: 1
+          claimToken: portable-175db39de0758aa6e5b8117c5b29f92847b0bc9a0615b3bb4ebacaacbbac031a
+          inputHash: 8f76abaae8682c231bfbea7024cd6c545e4d47e927780ef7a39496d4092b50d0
+          outcomeId: 17255af6-e1d1-47c7-bbf9-ad87ee1fed4c
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 5a8d35c7a4e39a19a84b9e5fb6401f71a5ecafbe56512afe9a5b3f1b7c42f0ea
+            outcomeId: 17255af6-e1d1-47c7-bbf9-ad87ee1fed4c
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-1e261779f93d472dc60cccea6b23c0d48a1ecc1704967c13f101b28216a71d26
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:20
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.confirm:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: 8f76abaae8682c231bfbea7024cd6c545e4d47e927780ef7a39496d4092b50d0
+        outcome:
+          actionId: volume-restore-device-churn:20
+          attempt: 1
+          claimToken: portable-1e261779f93d472dc60cccea6b23c0d48a1ecc1704967c13f101b28216a71d26
+          inputHash: 8f76abaae8682c231bfbea7024cd6c545e4d47e927780ef7a39496d4092b50d0
+          outcomeId: 7731aae9-4bc3-4916-b8f1-c0c19db0b0af
+          output:
+            argv:
+              - cargo
+              - test
+              - --workspace
+            changedDuringExecution: []
+            checkEpoch: 5
+            contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+            cwd: .
+            deliveryInputs:
+              app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+              app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+            environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+            exitCode: 0
+            inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+            inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+            manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+            manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: e50bdf350c014c660b54b6c26534c06cf0744d7587e97148129e98084bf0ae46
+            outcomeId: 7731aae9-4bc3-4916-b8f1-c0c19db0b0af
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-9da289354e943140424ef1767e18b7a5aa04d6f362f11ca28333431127de4626
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:22
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.confirm:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: a414c80b51f5f6b6cc33fb1e6e4f943f7d89d8d32b19429370e7a09fdf26477b
+        outcome:
+          actionId: volume-restore-device-churn:22
+          attempt: 1
+          claimToken: portable-9da289354e943140424ef1767e18b7a5aa04d6f362f11ca28333431127de4626
+          inputHash: a414c80b51f5f6b6cc33fb1e6e4f943f7d89d8d32b19429370e7a09fdf26477b
+          outcomeId: 89800d0c-80ac-40a1-a1d1-dd7666f644b6
+          output:
+            remote: origin
+            summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+              + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass）。交付：用户已确认
+              B=归档并推送 main 到 origin，不建 PR。"
+            targetBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: f014a155d2c52e8dda7fe4840c1f992f0a8808123e66919fbb4bf9499534a623
+            outcomeId: 89800d0c-80ac-40a1-a1d1-dd7666f644b6
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive-preflight
+          token: portable-0b38783797ebb8fde991718f8ff2e5895ceb2ed3f19d5b9cd45ba181ac775806
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:24
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.confirm:
+              choice: push
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                    targetBranch: main
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: 4aefba2f4fbde20d9a6ddea27de2ea002a858a1415fcbd728eb28aa77fdd16b6
+        outcome:
+          actionId: volume-restore-device-churn:24
+          attempt: 1
+          claimToken: portable-0b38783797ebb8fde991718f8ff2e5895ceb2ed3f19d5b9cd45ba181ac775806
+          inputHash: 4aefba2f4fbde20d9a6ddea27de2ea002a858a1415fcbd728eb28aa77fdd16b6
+          outcomeId: 73af658d-6ce9-4511-bd3c-d7972b1680bf
+          output:
+            baseCommit: faf516988ccb33f0d182ff6313b15e28dc3cae54
+            deliveryAction: push
+            remote: origin
+            remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+            targetBranch: main
+            verifiedBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 9f067322d2fda8c08ea3950f2738f81bb627aa1aa5d32e41646509c28bde6530
+            outcomeId: 73af658d-6ce9-4511-bd3c-d7972b1680bf
+        reconciliations: []
+        ref: classic-archive-preflight
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.archive.preflight
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive
+          token: portable-7515c8ff9252e92863064e781179906a0621902900c23dcc9ffd1738aa174711
+        executionOrigin:
+          workflow:
+            hash: 20d76d7f41ad174555de3f79e409b6a6538f83a40617615cf8fd37b3760f14d9
+            id: comet-classic-hotfix
+            version: "1"
+        id: volume-restore-device-churn:25
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.confirm:
+              choice: push
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                    targetBranch: main
+            hotfix.archive.preflight:
+              baseCommit: faf516988ccb33f0d182ff6313b15e28dc3cae54
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: main
+              verifiedBranch: main
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: b3e6817757b03cb270514d01954e0c05541512d8014d84c4c71c9798929bb823
+        outcome:
+          actionId: volume-restore-device-churn:25
+          artifacts:
+            - sha256: 6637f560ff945a45bf4278ba3d4d25feb722b3003b967583ec89c561ac77a7ff
+              uri: docs/openspec/changes/archive/2026-11-01-volume-restore-device-churn/.comet/archive-manifest.json
+          attempt: 1
+          claimToken: portable-7515c8ff9252e92863064e781179906a0621902900c23dcc9ffd1738aa174711
+          inputHash: b3e6817757b03cb270514d01954e0c05541512d8014d84c4c71c9798929bb823
+          outcomeId: 01ab853d-72e4-49f2-9730-5ace3496cc48
+          output:
+            archiveDirectory: docs/openspec/changes/archive/2026-11-01-volume-restore-device-churn
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: a9237ca6548672ee2a5510699a6b228f927ebf7fb55bb4fe28b842847858b118
+            outcomeId: 01ab853d-72e4-49f2-9730-5ace3496cc48
+        reconciliations: []
+        ref: classic-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: succeeded
+        stepId: hotfix.archive.execute
+        type: call_tool
+      - attempt: 1
+        id: volume-restore-device-churn:26
+        input:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.confirm:
+              choice: push
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                    targetBranch: main
+            hotfix.archive.execute:
+              archiveDirectory: docs/openspec/changes/archive/2026-11-01-volume-restore-device-churn
+            hotfix.archive.preflight:
+              baseCommit: faf516988ccb33f0d182ff6313b15e28dc3cae54
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: main
+              verifiedBranch: main
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+            hotfix.verify.check:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+            hotfix.verify.check.evidence:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+            hotfix.verify.report.evidence:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+            hotfix.verify.run:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        inputHash: 2088f78ebada02cbd1f3fc7506f8ddcf2471ab6ed34d84f9da8a78e87378be8f
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: volume-restore-device-churn
+        status: pending
+        stepId: hotfix.archive.deliver
+        type: invoke_skill
+    commands:
+      - id: 7e93a813c2925dcb888330e9a8b466812d71ff68480ee3578ab4829d0b43e7ea
+        name: reopen-verification
+        inputHash: 33c952165058658b5db23eefd4d9fc6f3f2a34be6b0e07b0f29eca253d45c3aa
+        actionId: volume-restore-device-churn:12
+    actionContexts:
+      volume-restore-device-churn:1:
+        results: {}
+        sequence: 1
+      volume-restore-device-churn:10:
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/d2cf548a-2b0c-4a26-8ddc-3b6b5baa6ca7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 10
+      volume-restore-device-churn:12:
+        results: {}
+        sequence: 12
+      volume-restore-device-churn:14:
+        results:
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 14
+      volume-restore-device-churn:16:
+        results:
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 16
+      volume-restore-device-churn:18:
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 18
+      volume-restore-device-churn:20:
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 20
+      volume-restore-device-churn:22:
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 20
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 21
+            value:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 22
+      volume-restore-device-churn:24:
+        results:
+          hotfix.archive.confirm:
+            sequence: 23
+            value:
+              choice: push
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 22
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 20
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 21
+            value:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 24
+      volume-restore-device-churn:25:
+        results:
+          hotfix.archive.confirm:
+            sequence: 23
+            value:
+              choice: push
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                    targetBranch: main
+          hotfix.archive.preflight:
+            sequence: 24
+            value:
+              baseCommit: faf516988ccb33f0d182ff6313b15e28dc3cae54
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: main
+              verifiedBranch: main
+          hotfix.archive.prepare:
+            sequence: 22
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 20
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 21
+            value:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 25
+      volume-restore-device-churn:26:
+        results:
+          hotfix.archive.confirm:
+            sequence: 23
+            value:
+              choice: push
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                    targetBranch: main
+          hotfix.archive.execute:
+            sequence: 25
+            value:
+              archiveDirectory: docs/openspec/changes/archive/2026-11-01-volume-restore-device-churn
+          hotfix.archive.preflight:
+            sequence: 24
+            value:
+              baseCommit: faf516988ccb33f0d182ff6313b15e28dc3cae54
+              deliveryAction: push
+              remote: origin
+              remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+              targetBranch: main
+              verifiedBranch: main
+          hotfix.archive.prepare:
+            sequence: 22
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 20
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 21
+            value:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 26
+      volume-restore-device-churn:3:
+        results:
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        sequence: 3
+      volume-restore-device-churn:4:
+        results:
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        sequence: 4
+      volume-restore-device-churn:6:
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        sequence: 6
+      volume-restore-device-churn:8:
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        sequence: 8
+    waits:
+      - id: volume-restore-device-churn:11
+        stepId: hotfix.archive.confirm
+        sequence: 11
+        status: cancelled
+        proposal:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.prepare:
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+        proposalHash: 1419e6852914e3848b3cffc96966e489b23d29d0ed3d81f6749b1e9bddb84421
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results:
+          hotfix.archive.prepare:
+            sequence: 10
+            value:
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/d2cf548a-2b0c-4a26-8ddc-3b6b5baa6ca7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 9
+            value:
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+      - id: volume-restore-device-churn:17
+        stepId: hotfix.archive.confirm
+        sequence: 17
+        status: resolved
+        proposal:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+        proposalHash: 0f8a6b31e4f74a3b71ae9c02fc50365c885e21c6d0f73c292d0aaa6633f7b271
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results:
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        decision:
+          id: classic-archive-0f8a6b31e4f74a3b71ae9c02fc50365c885e21c6d0f73c292d0aaa6633f7b271-reverify
+          choice: reverify
+          proposalHash: 0f8a6b31e4f74a3b71ae9c02fc50365c885e21c6d0f73c292d0aaa6633f7b271
+      - id: volume-restore-device-churn:23
+        stepId: hotfix.archive.confirm
+        sequence: 23
+        status: resolved
+        proposal:
+          input:
+            change: volume-restore-device-churn
+            changeDir: docs/openspec/changes/volume-restore-device-churn
+            workspaceBaseline:
+              ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+          outputs:
+            hotfix.archive.prepare:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+        proposalHash: 876d136e90647f07c9cd831297b9bc5fb5d49eb91686048b33867f5e87b2533d
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 22
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 20
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 21
+            value:
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        decision:
+          id: classic-archive-876d136e90647f07c9cd831297b9bc5fb5d49eb91686048b33867f5e87b2533d-push
+          choice: push
+          proposalHash: 876d136e90647f07c9cd831297b9bc5fb5d49eb91686048b33867f5e87b2533d
+    evidenceWaits:
+      - id: volume-restore-device-churn:2
+        stepId: hotfix.open.evidence
+        sequence: 2
+        kind: classic-open-artifacts
+        status: resolved
+        results:
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+        receipt:
+          ref: docs/openspec/changes/volume-restore-device-churn
+          contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+          submissionId: 146149fe-0991-4ca3-8017-990fd1ede11c
+      - id: volume-restore-device-churn:5
+        stepId: hotfix.build.check.evidence
+        sequence: 5
+        kind: classic-build-check
+        status: resolved
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+          submissionId: 2362ebb7-6e25-4f14-9c48-740c43efe85a
+      - id: volume-restore-device-churn:7
+        stepId: hotfix.verify.report.evidence
+        sequence: 7
+        kind: classic-verification-report
+        status: resolved
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        receipt:
+          ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+          submissionId: 78e98534-3e72-4d98-9174-6c326faf2588
+      - id: volume-restore-device-churn:9
+        stepId: hotfix.verify.check.evidence
+        sequence: 9
+        kind: classic-verify-check
+        status: resolved
+        results:
+          hotfix.build.check:
+            sequence: 4
+            value:
+              argv:
+                - cargo
+                - build
+              changedDuringExecution: []
+              checkEpoch: 1
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              cwd: .
+              environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+              reusable: false
+              reused: false
+              scope: build
+              tier: full
+              timeoutMs: 300000
+          hotfix.build.check.evidence:
+            sequence: 5
+            value:
+              contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          hotfix.build.execute:
+            sequence: 3
+            value:
+              event: build-complete
+          hotfix.open:
+            sequence: 1
+            value:
+              event: open-complete
+              requirementsEvidence:
+                contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+                ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.open.evidence:
+            sequence: 2
+            value:
+              contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+              ref: docs/openspec/changes/volume-restore-device-churn
+          hotfix.verify.check:
+            sequence: 8
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 2
+              contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+              manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/d2cf548a-2b0c-4a26-8ddc-3b6b5baa6ca7.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.report.evidence:
+            sequence: 7
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 6
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/5b784593-057c-49cb-8ad3-2cdbd5c08e0f.log
+          contentHash: 5bf6dd853740bf31b1a0fd61ab3d8fd1a16c2a8cabf02f309b0dfd8ff24e30d8
+          submissionId: 57776608-9772-464b-bef6-4826be1d63ae
+      - id: volume-restore-device-churn:13
+        stepId: hotfix.verify.report.evidence
+        sequence: 13
+        kind: classic-verification-report
+        status: resolved
+        results:
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        receipt:
+          ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+          submissionId: 019873ba-2b79-4540-b15c-13307d7365f5
+      - id: volume-restore-device-churn:15
+        stepId: hotfix.verify.check.evidence
+        sequence: 15
+        kind: classic-verify-check
+        status: resolved
+        results:
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 12
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+          submissionId: 381f9fb7-7ac1-4bd7-baa8-77709e81b7c3
+      - id: volume-restore-device-churn:19
+        stepId: hotfix.verify.report.evidence
+        sequence: 19
+        kind: classic-verification-report
+        status: resolved
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 14
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 3
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              inputBefore: 6e660abeb8381119ca18a550842cb19ed753497b85874b80d4c8a3c9a155dc94
+              manifestHash: 645d918e6dd41d0bf0536eb814225096851ed83365fcadb48309da96d78564bf
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/80459c7e-2981-4fc6-a6d9-bb1e977d43f2.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          hotfix.verify.report.evidence:
+            sequence: 13
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        receipt:
+          ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+          submissionId: 75b31248-814b-450e-acdf-a7435ae853f8
+      - id: volume-restore-device-churn:21
+        stepId: hotfix.verify.check.evidence
+        sequence: 21
+        kind: classic-verify-check
+        status: resolved
+        results:
+          hotfix.archive.confirm:
+            sequence: 17
+            value:
+              choice: reverify
+              proposal:
+                input:
+                  change: volume-restore-device-churn
+                  changeDir: docs/openspec/changes/volume-restore-device-churn
+                  workspaceBaseline:
+                    ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+                outputs:
+                  hotfix.archive.prepare:
+                    remote: origin
+                    summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                      + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                      pass），RED 2 项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认
+                      B=归档并推送 main 到 origin，不建 PR。归档影响：change 目录移入
+                      archive/2026-11-01-volume-restore-device-churn，无 delta
+                      spec 合并。"
+                    targetBranch: main
+          hotfix.archive.prepare:
+            sequence: 16
+            value:
+              remote: origin
+              summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass），RED 2
+                项转绿、18/18 平台单测、全工作区测试通过、真机探针还原正确。交付：用户已确认 B=归档并推送 main 到
+                origin，不建 PR。归档影响：change 目录移入
+                archive/2026-11-01-volume-restore-device-churn，无 delta spec 合并。"
+              targetBranch: main
+          hotfix.verify.check:
+            sequence: 20
+            value:
+              argv:
+                - cargo
+                - test
+                - --workspace
+              changedDuringExecution: []
+              checkEpoch: 5
+              contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+              cwd: .
+              deliveryInputs:
+                app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+                app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+              environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+              exitCode: 0
+              inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+              manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+              manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+              receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+              reusable: false
+              reused: false
+              scope: verify
+              tier: full
+              timeoutMs: 300000
+          hotfix.verify.check.evidence:
+            sequence: 15
+            value:
+              contentHash: 72a06835d9d77eced009f1bd1f1742728b37a7ede459163d5cb959dec8a93c38
+              ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/9b37be34-208d-4d95-9b4d-62d56f0f99ad.log
+          hotfix.verify.report.evidence:
+            sequence: 19
+            value:
+              contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+              ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+          hotfix.verify.run:
+            sequence: 18
+            value:
+              event: verification-ready
+              verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+          submissionId: 9c5b9b30-e256-4a75-9fde-474232316156
+    ready: []
+    joins: {}
+    outputs:
+      hotfix.archive.confirm:
+        sequence: 23
+        value:
+          choice: push
+          proposal:
+            input:
+              change: volume-restore-device-churn
+              changeDir: docs/openspec/changes/volume-restore-device-churn
+              workspaceBaseline:
+                ref: 97288e50-3168-4a0d-91a5-55250edb3e5f
+            outputs:
+              hotfix.archive.prepare:
+                remote: origin
+                summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+                  + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result:
+                  pass）。交付：用户已确认 B=归档并推送 main 到 origin，不建 PR。"
+                targetBranch: main
+      hotfix.archive.execute:
+        sequence: 25
+        value:
+          archiveDirectory: docs/openspec/changes/archive/2026-11-01-volume-restore-device-churn
+      hotfix.archive.preflight:
+        sequence: 24
+        value:
+          baseCommit: faf516988ccb33f0d182ff6313b15e28dc3cae54
+          deliveryAction: push
+          remote: origin
+          remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+          targetBranch: main
+          verifiedBranch: main
+      hotfix.archive.prepare:
+        sequence: 22
+        value:
+          remote: origin
+          summary: "修复录音 ducking 恢复被设备重枚举打断导致系统音量停在低值：mac.rs 按 UID 重解析 + volume.rs 自愈与有限重试
+            + controller 电平表重启移出恢复窗口；验证 7 项 PASS（verify_result: pass）。交付：用户已确认
+            B=归档并推送 main 到 origin，不建 PR。"
+          targetBranch: main
+      hotfix.build.check:
+        sequence: 4
+        value:
+          argv:
+            - cargo
+            - build
+          changedDuringExecution: []
+          checkEpoch: 1
+          contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+          cwd: .
+          environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+          exitCode: 0
+          inputAfter: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+          inputBefore: 818eb3ec28358e2eb3bce251e7661e43de14e1db9b12c45a316a3bd6bf6d103b
+          manifestHash: b466085bf8f09a6cf4d6d9658e0a4d7f120cab900a353fca2e1edb52d14efe58
+          manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/bf6cdf1d-efca-4d4a-8297-5fc08162d0f0.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      hotfix.build.check.evidence:
+        sequence: 5
+        value:
+          contentHash: d6e2a67d3dd4e4d468c159edbf89c270c0f4de346031f5356df38c34baf24b38
+          ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/a9245a5f-2687-49ab-ab21-028c1f6d003e.log
+      hotfix.build.execute:
+        sequence: 3
+        value:
+          event: build-complete
+      hotfix.open:
+        sequence: 1
+        value:
+          event: open-complete
+          requirementsEvidence:
+            contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+            ref: docs/openspec/changes/volume-restore-device-churn
+      hotfix.open.evidence:
+        sequence: 2
+        value:
+          contentHash: 32f807aabc586ce182f2283147bffc9a717ba7152af92f53d975024ef6902c22
+          ref: docs/openspec/changes/volume-restore-device-churn
+      hotfix.verify.check:
+        sequence: 20
+        value:
+          argv:
+            - cargo
+            - test
+            - --workspace
+          changedDuringExecution: []
+          checkEpoch: 5
+          contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+          cwd: .
+          deliveryInputs:
+            app/src-tauri/src/controller.rs: git:89048d37cadc8d32dc60e59bec176cded4c10a73
+            app/src/pages/Audio.svelte: git:128a6556d5d98163fe93ac5756574bc01dc992db
+          environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+          exitCode: 0
+          inputAfter: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+          inputBefore: 58972bee63e60cecc240995da116ce4b0ca6a9ab39089582ef3063af87762d0d
+          manifestHash: 19c7a24d64b446d41636323c223fad16548be365587016cf6cf69ad5429c8b13
+          manifestRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/23e51eac-8b61-4353-a6a5-ce0b3f043ae3.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+          reusable: false
+          reused: false
+          scope: verify
+          tier: full
+          timeoutMs: 300000
+      hotfix.verify.check.evidence:
+        sequence: 21
+        value:
+          contentHash: 0b0e766c8a8d7001588399c5f799a74ee9ea9ee03349aea64fdac9255171abd2
+          ref: .comet/runtime/classic-sdk-checks/599500b1279845feaf0171f0352ea7681c9294a3eeb97af651ed0447bbc77e1f/2f5df5fe-8527-49bd-9e94-4c50bdacf324.log
+      hotfix.verify.report.evidence:
+        sequence: 19
+        value:
+          contentHash: 3bb0a65a8e91077ed0fec25bf029bc9daf0e3f86004468a327b0a4ef262cbcec
+          ref: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+      hotfix.verify.run:
+        sequence: 18
+        value:
+          event: verification-ready
+          verificationReport: docs/superpowers/reports/2026-11-01-volume-restore-device-churn-verify.md
+    children: []
+    lineage: []
+  sourceRevision: 40
+  sourceHash: 47158f34ce7627f7be350c067defd8be4112ef0e53e3fd2dd0666cb1ec805f09
+check_epoch: 8
