@@ -503,26 +503,6 @@ impl Ctl {
         ui::set_tray_active(&self.app, false);
     }
 
-    /// 识别结果就绪后的提示音序列：先播「处理」，按时长间隔后播「完成」。
-    /// 两音都必须在系统输出音量恢复后播放（还原淡入上限约 450ms）；
-    /// 识别延迟通常远大于该窗口，这里只对极端快速识别补足剩余等待，不追求精确对齐淡出曲线。
-    fn play_result_chimes(&self, done: SoundEvent) {
-        let app = self.app.clone();
-        let settings = self.settings();
-        let restore_wait = self.restore_wait();
-        tauri::async_runtime::spawn(async move {
-            if !restore_wait.is_zero() {
-                tokio::time::sleep(restore_wait).await;
-            }
-            crate::sound::play(&app, SoundEvent::Processing);
-            let gap = crate::sound::play_duration(&app, SoundEvent::Processing, &settings);
-            if !gap.is_zero() {
-                tokio::time::sleep(gap).await;
-            }
-            crate::sound::play(&app, done);
-        });
-    }
-
     /// 录音结束后的单音提示（失败音）：等系统输出音量恢复后再播，避免卡在还原淡入的前半段听不清。
     fn play_after_restore(&self, event: SoundEvent) {
         let app = self.app.clone();
@@ -739,8 +719,6 @@ impl Ctl {
                     // 流式定稿：有文字即完成；什么都没识别到按失败提示
                     if text.is_empty() {
                         self.play_after_restore(SoundEvent::Error);
-                    } else {
-                        self.play_result_chimes(SoundEvent::Done);
                     }
                 } else if text.is_empty() {
                     ui::hud(&self.app, "info", "没有识别到内容", ch);
@@ -749,7 +727,6 @@ impl Ctl {
                 } else {
                     ui::hud_hide(&self.app, 0);
                     pf::paste(&text);
-                    self.play_result_chimes(SoundEvent::Done);
                 }
             }
             Mode::Pick | Mode::Compare => {
@@ -795,7 +772,7 @@ impl Ctl {
                     // 候选面板保持等待用户挑选，挑选上屏不再发声
                     let has_final = self.rows.iter().any(|r| r.state == RowState::Final);
                     if has_final {
-                        self.play_result_chimes(SoundEvent::Done);
+                        // 多渠道结果就绪不另发声（完成固定不发声）；全失败仍发失败音
                     } else {
                         self.play_after_restore(SoundEvent::Error);
                     }
@@ -834,7 +811,10 @@ impl Ctl {
             return;
         }
         self.stop_recording();
-        // 「处理」提示音已移至识别结果就绪、音量恢复后播放（play_result_chimes）
+        // 进入识别处理时播「处理」音：等音量恢复窗口后再播，避免卡在还原淡入前半段听不清（Idle 无会话不发声）
+        if !matches!(self.mode, Mode::Idle) {
+            self.play_after_restore(SoundEvent::Processing);
+        }
         match self.mode {
             Mode::Single(ch) => ui::hud(&self.app, "wait", "", ch),
             Mode::Pick | Mode::Compare => {
@@ -977,12 +957,7 @@ impl Ctl {
         }
         let text = r.text.clone();
         let ch = r.channel;
-        // 识别中预先挑选的行定稿后自动上屏：结果就绪与挑选同时发生，在这里发完成音
-        //（手动挑选时完成音已在全部行出结果时发过，不重复）
-        let auto_chosen = self.choose_pending;
-        if auto_chosen {
-            self.play_result_chimes(SoundEvent::Done);
-        }
+        // 识别中预先挑选的行定稿后自动上屏；「完成」固定不发声，无提示音
         crate::update_settings(&self.app, |s| {
             s.last_pick = Some(ch);
             *s.pick_counts.entry(ch).or_default() += 1;
