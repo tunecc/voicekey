@@ -10,9 +10,10 @@
 |---|---|---|
 | macOS 麦克风释放 | 按名称选择麦克风时，语音结束后可能持续占用 | 已修复 |
 | 录音时调整音量 | 不支持 | macOS 支持，默认 15% |
+| 录音提示音 | 无 | 录音各阶段可播放提示音，极简/自定义两种方案 |
+| macOS 菜单栏图标 | 通用麦克风图形 | App 风格单线声波模板图，随菜单栏明暗自动着色 |
 | 云端安装包 | Release（需要签名 Secrets） | 手动 Desktop Build（未签名） |
 | 云端构建版本号 | `x.y.z` | `0.0.<run_number>` |
-| 开发流程 | — | Comet Classic + OpenSpec 产物 |
 
 ## 1. macOS：语音输入结束后释放麦克风
 
@@ -46,12 +47,22 @@ cargo test -p voicekey-core --lib -- --include-ignored --test-threads=1
 
 相关文件：`crates/core/src/audio/volume.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
 
-## 3. 云端安装包（Desktop Build）
+## 3. 录音提示音
+
+设置 → 音频 → **提示音**（默认开启）：录音各阶段播放提示音，音量跟随系统输出。覆盖四种事件：开始录音、识别处理、完成、出错。
+
+- 音效方案：**极简**——各阶段固定音效（macOS 复用系统音 Tink/Pop，其余平台用内置音，完成/错误不发声）；**自定义**——四个事件逐项挑选内置音效。
+- 提示音资源随安装包分发（`resources/sounds/*`）；播放失败自动跳过，不影响录音与识别流程。
+- 与「录音时调整音量」联动：开始音播完后才把系统音量单次压到目标值，结束后恢复，避免音量往返。
+
+相关文件：`app/src-tauri/src/sound.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
+
+## 4. 云端安装包（Desktop Build）
 
 [`desktop-build.yml`](.github/workflows/desktop-build.yml) 是手动触发的构建，不需要签名密钥：
 
 - 入口：Actions → **Desktop Build** → Run workflow（默认 `main`）
-- 产物：`VoiceKey-macOS`（universal DMG）、`VoiceKey-Windows`（NSIS `setup.exe` + MSI），构件保留 14 天
+- 产物按平台+架构分开：`VoiceKey-macOS-arm64`（仅 Apple Silicon 的 arm64 DMG，在 Intel runner 上交叉编译）、`VoiceKey-Windows-x64`（NSIS `setup.exe` + MSI），构件保留 14 天
 - 版本：`0.0.<run_number>`（MSI 不支持非数字预发布段）
 - macOS 使用 adhoc 签名、不做公证、不生成 updater 更新包；安装后需解除隔离：
 
@@ -65,15 +76,11 @@ xattr -dr com.apple.quarantine /Applications/VoiceKey.app
 - 应用内更新仍指向上游 Releases。`0.0.<run_number>` 低于上游 `1.7.x`，会一直提示有更新；安装更新会替换成不含本仓库差异的上游版本。
 - 正式签名发布仍使用原 [`release.yml`](.github/workflows/release.yml)；本 fork 没有配置它需要的 Secrets，需要时自行补上。
 
-## 4. 构建兼容性：stable Rust 1.97
+## 5. 构建兼容性：stable Rust 1.97
 
 上游 `voicekey-wtlocal` 使用的 `vdotq_s32` 仍在不稳定 feature `stdarch_neon_dotprod` 后面，stable Rust 1.97 会拒绝编译。本 fork 将其替换为等价的内联 `sdot` 汇编，并在运行时检测 ARMv8.2 dotprod 支持，缺失时回退标量实现。
 
 因此不需要 `RUSTC_BOOTSTRAP` 即可在 stable 工具链构建。相关文件：`crates/wtlocal/src/kernels.rs`。
-
-## 5. 开发流程产物
-
-仓库包含 Comet Classic 与 OpenSpec 的协作产物（`.comet/`、`docs/openspec/`、`docs/superpowers/`），以及对应 Agent 配置。它们只影响开发流程，不参与应用构建，也不影响安装包内容。
 
 ## 安装与上游
 
