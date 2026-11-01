@@ -147,6 +147,8 @@ pub struct Ctl {
     front: Option<pf::FrontApp>,
     last_emit: Instant,
     flush_pending: bool,
+    /// 本次录音结束时刻：「处理」提示音须在音量还原完成后播放，以此估算剩余还原窗口
+    stopped_at: Option<Instant>,
     /// 按下到判定长按之间已经打开的麦克风，确认开始后把这段音频交出去
     primed: Option<Primed>,
 }
@@ -208,6 +210,7 @@ pub fn spawn(app: AppHandle, qwen: Arc<QwenEngine>, rx: UnboundedReceiver<Msg>) 
         front: None,
         last_emit: Instant::now(),
         flush_pending: false,
+        stopped_at: None,
         primed: None,
     };
     tauri::async_runtime::spawn(ctl.run(rx));
@@ -486,10 +489,33 @@ impl Ctl {
         self.auto_stop = false;
         // 先发恢复意图；若此时还在淡入/淡出，worker 会从当前实际音量平滑反向，而不是排队跑完整段动画。
         self.volume_ducking.set_active(false);
+        self.stopped_at = Some(Instant::now());
         if let Some(mut r) = self.recorder.take() {
             r.stop();
         }
         ui::set_tray_active(&self.app, false);
+    }
+
+    /// 识别结果就绪后的提示音序列：先播「处理」，按时长间隔后播「完成」。
+    /// 「处理」提示音必须在系统输出音量恢复后播放（还原淡入上限约 450ms）；
+    /// 识别延迟通常远大于该窗口，这里只对极端快速识别补足剩余等待，不追求精确对齐淡出曲线。
+    fn play_result_chimes(&self, done: SoundEvent) {
+        const RESTORE_WINDOW: Duration = Duration::from_millis(450);
+        let since_stop = self.stopped_at.map_or(RESTORE_WINDOW, |t| t.elapsed());
+        let wait = RESTORE_WINDOW.saturating_sub(since_stop);
+        let app = self.app.clone();
+        let settings = self.settings();
+        tauri::async_runtime::spawn(async move {
+            if !wait.is_zero() {
+                tokio::time::sleep(wait).await;
+            }
+            crate::sound::play(&app, SoundEvent::Processing);
+            let gap = crate::sound::play_duration(&app, SoundEvent::Processing, &settings);
+            if !gap.is_zero() {
+                tokio::time::sleep(gap).await;
+            }
+            crate::sound::play(&app, done);
+        });
     }
 
     fn spawn_engine(&mut self, ch: Channel, seg: usize, audio: voicekey_core::Audio) {
@@ -687,7 +713,11 @@ impl Ctl {
                 } else if streamed {
                     ui::hud_hide(&self.app, 0);
                     // 流式定稿：有文字即完成；什么都没识别到按失败提示
-                    crate::sound::play(&self.app, if text.is_empty() { SoundEvent::Error } else { SoundEvent::Done });
+                    if text.is_empty() {
+                        crate::sound::play(&self.app, SoundEvent::Error);
+                    } else {
+                        self.play_result_chimes(SoundEvent::Done);
+                    }
                 } else if text.is_empty() {
                     ui::hud(&self.app, "info", "没有识别到内容", ch);
                     ui::hud_hide(&self.app, 1000);
@@ -695,7 +725,7 @@ impl Ctl {
                 } else {
                     ui::hud_hide(&self.app, 0);
                     pf::paste(&text);
-                    crate::sound::play(&self.app, SoundEvent::Done);
+                    self.play_result_chimes(SoundEvent::Done);
                 }
             }
             Mode::Pick | Mode::Compare => {
@@ -740,7 +770,11 @@ impl Ctl {
                     // 全部行出结果（结果就绪）：有可用结果发完成音，全部失败发失败音；
                     // 候选面板保持等待用户挑选，挑选上屏不再发声
                     let has_final = self.rows.iter().any(|r| r.state == RowState::Final);
-                    crate::sound::play(&self.app, if has_final { SoundEvent::Done } else { SoundEvent::Error });
+                    if has_final {
+                        self.play_result_chimes(SoundEvent::Done);
+                    } else {
+                        crate::sound::play(&self.app, SoundEvent::Error);
+                    }
                 }
                 self.emit_rows();
             }
@@ -776,10 +810,7 @@ impl Ctl {
             return;
         }
         self.stop_recording();
-        // 进入识别处理（单候选与多渠道统一发一次；Idle 无会话不发声）
-        if !matches!(self.mode, Mode::Idle) {
-            crate::sound::play(&self.app, SoundEvent::Processing);
-        }
+        // 「处理」提示音已移至识别结果就绪、音量恢复后播放（play_result_chimes）
         match self.mode {
             Mode::Single(ch) => ui::hud(&self.app, "wait", "", ch),
             Mode::Pick | Mode::Compare => {
@@ -926,7 +957,7 @@ impl Ctl {
         //（手动挑选时完成音已在全部行出结果时发过，不重复）
         let auto_chosen = self.choose_pending;
         if auto_chosen {
-            crate::sound::play(&self.app, SoundEvent::Done);
+            self.play_result_chimes(SoundEvent::Done);
         }
         crate::update_settings(&self.app, |s| {
             s.last_pick = Some(ch);
