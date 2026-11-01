@@ -135,14 +135,24 @@ fn play_system_quietly<R: Runtime>(app: &AppHandle<R>, name: &str, fallback_id: 
 #[cfg(target_os = "macos")]
 mod system {
     use objc2_app_kit::NSSound;
+    use objc2_foundation::NSString;
+    use std::cell::RefCell;
+    use std::collections::HashMap;
+
+    // NSSound 播放期间必须保持对象存活，否则会被提前析构、播放中途被切断；
+    // 按音名缓存实例（仅主线程访问，thread_local 无 Send 约束）。重复播放=干净地从头重播。
+    thread_local! {
+        static PLAYING: RefCell<HashMap<String, objc2::rc::Id<NSSound>>> = RefCell::new(HashMap::new());
+    }
 
     /// 主线程调用：播放系统命名提示音；返回是否成功发声
     pub fn play_named(name: &str) -> bool {
-        use objc2_foundation::NSString;
         let Some(sound) = (unsafe { NSSound::soundNamed(&NSString::from_str(name)) }) else {
             return false;
         };
-        unsafe { sound.play() }
+        sound.play();
+        PLAYING.with(|cache| cache.borrow_mut().insert(name.to_string(), sound));
+        true
     }
 }
 
