@@ -32,8 +32,6 @@ export interface Model { recording: boolean; rows: Row[]; sel: number }
 export const call = invoke;
 export const previewSound = (id: string) => call("preview_sound", { id });
 export const listSounds = () => call<{ id: string; name: string }[]>("list_sounds");
-export interface SimpleSchemeRow { event: "start" | "processing" | "done" | "error"; soundId: string; soundName: string }
-export const simpleScheme = () => call<SimpleSchemeRow[]>("simple_scheme");
 export const holdName = (s: Settings, keys: AppInfo["holdKeys"]) =>
   s.holdKey === "custom" ? (s.holdCombo?.name ?? "") : s.holdKey === "none" ? "未设置" : (keys.find((k) => k.id === s.holdKey)?.name ?? "");
 /** 点按快捷键的展示名：修饰键前缀 + 键名（与 Keys.svelte 录制卡同源），未设置返回空串 */

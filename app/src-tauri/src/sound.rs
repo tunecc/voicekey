@@ -17,81 +17,29 @@ use std::sync::OnceLock;
 use tauri::path::BaseDirectory;
 use tauri::{AppHandle, Manager, Runtime};
 
-/// 内置音效池：(id, 设置页显示名)。id 同时是 `resources/sounds/<id>.wav` 的文件名，是设置的单一来源。
-/// 注意："none" 是设置层保留字（表示该事件不发声，见 settings.rs），不得用作音效 id。
-pub const SOUNDS: &[(&str, &str)] = &[
-    ("switch", "咔哒"),
-    ("minimize", "下沉"),
-    ("confirmation", "叮咚"),
-    ("error", "警示"),
-    ("pluck", "弹拨"),
-    ("glass", "清脆"),
-    ("tink", "轻叮"),
-    ("pop", "轻啵"),
-    ("ding", "轻铃"),
-    ("soft-alert", "低鸣"),
+/// macOS 系统铃声集合（/System/Library/Sounds 标准音，NSSound(named:) 运行时引用，不随应用分发）。
+/// 设置值恒为该集合内的音名或 `none`（不发声，见 settings.rs 保留字）。
+pub const SYSTEM_SOUNDS: &[&str] = &[
+    "Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero", "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink",
 ];
 
-/// 各事件默认音效 id（音色挑选见 resources/sounds/LICENSE.md）
-pub const DEFAULT_START: &str = "switch";
-pub const DEFAULT_PROCESSING: &str = "minimize";
-pub const DEFAULT_DONE: &str = "confirmation";
-pub const DEFAULT_ERROR: &str = "error";
+/// 各事件默认音效（macOS 系统音名）；完成默认不发声（识别很快，完成不另发音效）
+pub const DEFAULT_START: &str = "Tink";
+pub const DEFAULT_PROCESSING: &str = "Pop";
+pub const DEFAULT_DONE: &str = "none";
+pub const DEFAULT_ERROR: &str = "Basso";
 
-/// 唯一音效方案：简洁（固定映射，复刻极简提示音风格）。历史 settings.json 的 scheme 字段被忽略，恒按此值处理
+/// 唯一音效方案标记：简洁。历史 settings.json 的 scheme 字段被忽略，恒按此值处理
 pub const SCHEME_SIMPLE: &str = "simple";
 
-/// 简洁方案固定映射（复刻 cometix-dictation 双音并扩展失败音）：开始=轻叮、结果就绪=轻啵、失败=警示。
-/// macOS 播系统音 Tink/Pop/Basso（见 `simple_scheme_system_name`），Windows 及系统音不可用时播池内 CC0 兜底音；完成不发声。
-pub const SIMPLE_SCHEME: &[(SoundEvent, &str)] = &[
-    (SoundEvent::Start, "tink"),
-    (SoundEvent::Processing, "pop"),
-    (SoundEvent::Error, "error"),
-];
-
-/// 简洁方案在 macOS 上使用的系统音名（NSSound(named:)，与 cometix-dictation 同源同声；
-/// 失败音 Basso 为本 fork 扩展）。非 macOS 平台无对应系统音，回退池内兜底音。完成在简洁方案下不发声。
-pub fn simple_scheme_system_name(event: SoundEvent) -> Option<&'static str> {
-    if !cfg!(target_os = "macos") {
-        return None;
+/// Windows 兜底：选中的系统音若有同名内置近似 WAV（resources/sounds/，CC0）则以其发声
+fn wav_fallback_id(name: &str) -> Option<&'static str> {
+    match name {
+        "Tink" => Some("tink"),
+        "Pop" => Some("pop"),
+        "Basso" => Some("error"),
+        _ => None,
     }
-    match event {
-        SoundEvent::Start => Some("Tink"),
-        SoundEvent::Processing => Some("Pop"),
-        SoundEvent::Error => Some("Basso"),
-        SoundEvent::Done => None,
-    }
-}
-
-/// 事件对外键名（设置页事件行与固定映射行的关联键）
-pub fn event_key(event: SoundEvent) -> &'static str {
-    match event {
-        SoundEvent::Start => "start",
-        SoundEvent::Processing => "processing",
-        SoundEvent::Done => "done",
-        SoundEvent::Error => "error",
-    }
-}
-
-/// 简洁方案只读映射行（设置页展示用；事件标签由前端事件表提供，避免双源）
-#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SimpleSchemeRow {
-    pub event: &'static str,
-    pub sound_id: &'static str,
-    pub sound_name: &'static str,
-}
-
-/// 简洁方案固定映射的展示数据，行序与 SIMPLE_SCHEME 一致
-pub fn simple_scheme_rows() -> Vec<SimpleSchemeRow> {
-    SIMPLE_SCHEME
-        .iter()
-        .map(|(event, id)| SimpleSchemeRow {
-            event: event_key(*event),
-            sound_id: id,
-            sound_name: SOUNDS.iter().find(|(known, _)| known == id).map(|(_, name)| *name).unwrap_or(""),
-        })
-        .collect()
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -102,7 +50,7 @@ pub enum SoundEvent {
     Error,
 }
 
-/// 事件对应的逐事件音效 id（自定义方案取值；不考虑总开关与方案门控）
+/// 事件对应的逐事件音效（macOS 系统音名或 `none`；不考虑总开关）
 pub fn event_id<'a>(event: SoundEvent, s: &'a Settings) -> &'a str {
     match event {
         SoundEvent::Start => &s.sound_start,
@@ -112,56 +60,54 @@ pub fn event_id<'a>(event: SoundEvent, s: &'a Settings) -> &'a str {
     }
 }
 
-/// 事件→音效的取值门控：总开关关闭时返回 None（不发声）；
-/// 恒按简洁固定映射取音效（历史逐事件设置被忽略）；映射音效不在内置池中时返回 None
+/// 事件→音效的取值门控：总开关关闭或该事件选「不发声」时返回 None；
+/// 选中的音效名必须在系统铃声集合中（sanitize 保证，此处防御性再查）
 pub fn gated_id<'a>(event: SoundEvent, s: &'a Settings) -> Option<&'a str> {
     if !s.sound_enabled {
         return None;
     }
-    let id = SIMPLE_SCHEME.iter().find(|(e, _)| *e == event)?.1;
-    is_known(id).then_some(id)
+    let id = event_id(event, s);
+    if id == crate::settings::NONE {
+        return None;
+    }
+    SYSTEM_SOUNDS.contains(&id).then_some(id)
 }
 
-/// 音效 id 是否在内置池中
+/// 音效名是否合法（系统铃声集合或 `none`）
 pub fn is_known(id: &str) -> bool {
-    SOUNDS.iter().any(|(known, _)| *known == id)
+    id == crate::settings::NONE || SYSTEM_SOUNDS.contains(&id)
 }
 
-/// 会话事件播放：遵循总开关。macOS 播系统音 Tink/Pop/Basso（cometix-dictation 同声 + 失败音扩展），
-/// 系统音不可用回退池内兜底音。
+/// 会话事件播放：遵循总开关与逐事件选择。macOS 用 NSSound(named:) 主线程直放；
+/// Windows 无系统音，按同名内置近似 WAV 兜底（无同名近似音则静音，已知平台限制）。
 pub fn play<R: Runtime>(app: &AppHandle<R>, event: SoundEvent) {
     let st = app.state::<AppState>();
     let s = st.settings.read().unwrap();
     if !s.sound_enabled {
         return;
     }
-    let system_name = simple_scheme_system_name(event);
-    let fallback_id = gated_id(event, &s).map(str::to_string);
+    let id = gated_id(event, &s).map(str::to_string);
     drop(s);
-    if let Some(name) = system_name {
-        play_system_quietly(app, name, fallback_id);
-        return;
-    }
-    if let Some(id) = fallback_id {
-        play_quietly(app, &id);
+    let Some(id) = id else { return };
+    #[cfg(target_os = "macos")]
+    play_system_quietly(app, &id, wav_fallback_id(&id).map(str::to_string));
+    #[cfg(not(target_os = "macos"))]
+    if let Some(wav) = wav_fallback_id(&id) {
+        play_quietly(app, wav);
     }
 }
 
-/// 试听播放：不受总开关约束；未知 id 静默忽略。
-/// 简洁方案下试听映射音效 id 时，播放该事件当前平台的实际音源（macOS 系统音，试听即所得）。
+/// 试听播放：不受总开关约束；未知音名静默忽略（试听即所得，播选中的系统铃声）
 pub fn play_id<R: Runtime>(app: &AppHandle<R>, id: &str) {
-    if !is_known(id) {
+    if !is_known(id) || id == crate::settings::NONE {
         return;
     }
-    // 试听即所得：映射表中的音效在 macOS 播实际系统音源
-    let event = SIMPLE_SCHEME.iter().find(|(_, sid)| *sid == id).map(|(e, _)| *e);
-    if let Some(event) = event {
-        if let Some(name) = simple_scheme_system_name(event) {
-            play_system_quietly(app, name, Some(id.to_string()));
-            return;
-        }
+    #[cfg(target_os = "macos")]
+    play_system_quietly(app, id, wav_fallback_id(id).map(str::to_string));
+    #[cfg(not(target_os = "macos"))]
+    if let Some(wav) = wav_fallback_id(id) {
+        play_quietly(app, wav);
     }
-    play_quietly(app, id);
 }
 
 /// macOS 系统音：投递到主线程用 NSSound 播放（cometix-dictation 同策略）；系统音不可用时
@@ -225,20 +171,22 @@ fn sound_path<R: Runtime>(app: &AppHandle<R>, id: &str) -> anyhow::Result<PathBu
 }
 
 /// 事件提示音的大致时长：「先播音、后压音量」的延迟依据。
-/// macOS 系统音用已知时长，其余读池内 WAV 头估算；不发声（总开关关/完成事件）为 0。
+/// 已知系统音用固定时长，其余读同名兜底 WAV 头估算；不发声（总开关关/「不发声」/完成事件）为 0。
 /// 附投递余量：主线程队列与音量生效各需几毫秒。
 pub fn play_duration<R: Runtime>(app: &AppHandle<R>, event: SoundEvent, s: &Settings) -> Duration {
     const MARGIN: Duration = Duration::from_millis(40);
     if !s.sound_enabled {
         return Duration::ZERO;
     }
-    let base = match simple_scheme_system_name(event) {
-        Some("Tink") => Some(Duration::from_millis(60)),
-        Some("Pop") => Some(Duration::from_millis(75)),
-        Some(_) => None,
-        None => gated_id(event, s).and_then(|id| pool_wav_duration(app, id)),
+    let id = event_id(event, s);
+    let base = match id {
+        "Tink" => Some(Duration::from_millis(60)),
+        "Pop" => Some(Duration::from_millis(75)),
+        _ => None,
     };
-    base.map(|d| d + MARGIN).unwrap_or_default()
+    base.or_else(|| wav_fallback_id(id).and_then(|wid| pool_wav_duration(app, wid)))
+        .map(|d| d + MARGIN)
+        .unwrap_or_default()
 }
 
 /// 解析池内 WAV 的时长：标准 PCM 头 byte_rate@28..32、data 大小@40..44；解析失败返回 None
@@ -345,30 +293,36 @@ mod tests {
     use super::*;
 
     #[test]
-    fn sound_pool_is_not_empty_and_ids_match_wav_files() {
-        assert!(!SOUNDS.is_empty(), "内置音效池不能为空");
+    fn system_sound_list_is_standard_and_unique() {
+        assert!(SYSTEM_SOUNDS.len() >= 14, "标准系统铃声应完整收录");
         let mut seen = std::collections::HashSet::new();
-        for (id, label) in SOUNDS {
-            assert!(!id.is_empty() && !label.is_empty());
-            assert!(seen.insert(*id), "重复音效 id：{id}");
-            let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("resources/sounds")
-                .join(format!("{id}.wav"));
-            assert!(path.is_file(), "缺少音效文件：{}", path.display());
+        for id in SYSTEM_SOUNDS {
+            assert!(!id.is_empty() && *id != crate::settings::NONE, "非法音名：{id}");
+            assert!(seen.insert(*id), "重复音名：{id}");
         }
+        // 默认值都在集合中；Basso/Tink/Pop 有同名兜底 WAV（Windows）
+        for id in [DEFAULT_START, DEFAULT_PROCESSING, DEFAULT_ERROR] {
+            assert!(SYSTEM_SOUNDS.contains(&id), "默认音效 {id} 必须在系统铃声集合中");
+        }
+        assert_eq!(DEFAULT_DONE, crate::settings::NONE, "完成默认不发声");
     }
 
     #[test]
-    fn is_known_only_accepts_pool_ids() {
+    fn is_known_accepts_system_sounds_and_none_only() {
+        assert!(is_known("Basso"));
+        assert!(is_known("Tink"));
+        assert!(is_known(crate::settings::NONE));
         assert!(!is_known(""));
         assert!(!is_known("nonexistent-sound"));
+        assert!(!is_known("switch"), "历史池内 id 不再属于合法值");
     }
 
     #[test]
-    fn simple_scheme_sound_ids_are_registered_in_the_pool() {
-        for id in ["tink", "pop", "ding", "soft-alert"] {
-            assert!(is_known(id), "简洁方案音效 {id} 必须登记在内置池中");
-        }
+    fn wav_fallback_covers_default_sounding_events() {
+        assert_eq!(wav_fallback_id("Tink"), Some("tink"));
+        assert_eq!(wav_fallback_id("Pop"), Some("pop"));
+        assert_eq!(wav_fallback_id("Basso"), Some("error"));
+        assert_eq!(wav_fallback_id("Glass"), None, "无同名近似音的选择在 Windows 静音（已知限制）");
     }
 
     #[test]
@@ -378,21 +332,12 @@ mod tests {
         for event in [SoundEvent::Start, SoundEvent::Processing, SoundEvent::Done, SoundEvent::Error] {
             assert_eq!(gated_id(event, &s), None, "总开关关闭时 {event:?} 不应发声");
         }
-        // 无论音效方案为何：简洁方案同样全静音
-        s.sound_scheme = SCHEME_SIMPLE.into();
-        for event in [SoundEvent::Start, SoundEvent::Processing, SoundEvent::Done, SoundEvent::Error] {
-            assert_eq!(gated_id(event, &s), None, "总开关关闭时简洁方案 {event:?} 不应发声");
-        }
     }
 
     #[test]
     fn master_switch_on_maps_each_event_to_its_own_setting() {
         let mut s = Settings::default();
         s.sound_enabled = true;
-        // 默认映射存在
-        for event in [SoundEvent::Start, SoundEvent::Processing, SoundEvent::Done, SoundEvent::Error] {
-            assert!(!event_id(event, &s).is_empty(), "{event:?} 必须有默认音效");
-        }
         // 改一个事件的选择只影响该事件
         let done_before = event_id(SoundEvent::Done, &s).to_string();
         s.sound_processing = done_before.clone();
@@ -402,72 +347,28 @@ mod tests {
     }
 
     #[test]
-    fn every_default_setting_id_is_in_the_pool() {
+    fn defaults_follow_per_event_system_sounds() {
         let s = Settings::default();
-        for id in [&s.sound_start, &s.sound_processing, &s.sound_done, &s.sound_error] {
-            assert!(is_known(id), "默认音效 {id} 必须在内置池中");
-        }
-    }
-
-
-    #[test]
-    fn simple_scheme_maps_start_and_processing_only() {
+        assert_eq!(event_id(SoundEvent::Start, &s), "Tink");
+        assert_eq!(event_id(SoundEvent::Processing, &s), "Pop");
+        assert_eq!(event_id(SoundEvent::Done, &s), crate::settings::NONE, "完成默认不发声");
+        assert_eq!(event_id(SoundEvent::Error, &s), "Basso");
         let mut s = Settings::default();
         s.sound_enabled = true;
-        s.sound_scheme = SCHEME_SIMPLE.into();
-        // 逐事件字段与映射不同：简洁方案应忽略它们，按固定映射发声
-        s.sound_start = "confirmation".into();
-        s.sound_done = "switch".into();
-        assert_eq!(gated_id(SoundEvent::Start, &s), Some("tink"));
-        assert_eq!(gated_id(SoundEvent::Processing, &s), Some("pop"));
-        // 完成不发声；失败播「警示」兜底（macOS 系统音 Basso）
-        assert_eq!(gated_id(SoundEvent::Done, &s), None, "简洁方案完成不发声");
-        assert_eq!(gated_id(SoundEvent::Error, &s), Some("error"), "简洁方案失败播警示兜底音");
-    }
-
-
-    #[test]
-    fn simple_scheme_mapping_is_pure_two_sound_replica() {
-        assert_eq!(SIMPLE_SCHEME.len(), 3, "开始/处理/失败三个映射，完成不发声");
-        let mut seen = std::collections::HashSet::new();
-        for (event, id) in SIMPLE_SCHEME {
-            assert!(is_known(id), "映射音效 {id} 必须在内置池中（Windows 兜底）");
-            assert!(seen.insert(*id), "映射音效必须互不相同：{id} 重复");
-            assert!(
-                matches!(event, SoundEvent::Start | SoundEvent::Processing | SoundEvent::Error),
-                "只允许开始/处理/失败映射"
-            );
-        }
-        assert!(
-            !SIMPLE_SCHEME.iter().any(|(e, _)| matches!(e, SoundEvent::Done)),
-            "完成事件保持不发声"
-        );
+        assert_eq!(gated_id(SoundEvent::Start, &s), Some("Tink"));
+        assert_eq!(gated_id(SoundEvent::Processing, &s), Some("Pop"));
+        assert_eq!(gated_id(SoundEvent::Done, &s), None, "「不发声」事件门控为 None");
+        assert_eq!(gated_id(SoundEvent::Error, &s), Some("Basso"));
     }
 
     #[test]
-    fn simple_scheme_system_names_follow_platform() {
-        if cfg!(target_os = "macos") {
-            assert_eq!(simple_scheme_system_name(SoundEvent::Start), Some("Tink"));
-            assert_eq!(simple_scheme_system_name(SoundEvent::Processing), Some("Pop"));
-            assert_eq!(simple_scheme_system_name(SoundEvent::Error), Some("Basso"));
-        } else {
-            assert_eq!(simple_scheme_system_name(SoundEvent::Start), None);
-            assert_eq!(simple_scheme_system_name(SoundEvent::Processing), None);
-            assert_eq!(simple_scheme_system_name(SoundEvent::Error), None);
-        }
-        assert_eq!(simple_scheme_system_name(SoundEvent::Done), None, "完成不发声");
-    }
-
-    /// 方案切换不得动逐事件设置：简洁门控只读，切回自定义后原选择仍生效
-    #[test]
-    fn simple_scheme_gating_never_touches_per_event_fields() {
+    fn gating_never_touches_per_event_fields() {
         let mut s = Settings::default();
         s.sound_enabled = true;
-        s.sound_start = "glass".into();
-        s.sound_processing = "pluck".into();
-        s.sound_done = "switch".into();
-        s.sound_error = "error".into();
-        s.sound_scheme = SCHEME_SIMPLE.into();
+        s.sound_start = "Glass".into();
+        s.sound_processing = "Funk".into();
+        s.sound_done = crate::settings::NONE.into();
+        s.sound_error = "Sosumi".into();
         let before = (s.sound_start.clone(), s.sound_processing.clone(), s.sound_done.clone(), s.sound_error.clone());
         for event in [SoundEvent::Start, SoundEvent::Processing, SoundEvent::Done, SoundEvent::Error] {
             let _ = gated_id(event, &s);
@@ -475,34 +376,8 @@ mod tests {
         assert_eq!(
             (s.sound_start.clone(), s.sound_processing.clone(), s.sound_done.clone(), s.sound_error.clone()),
             before,
-            "简洁方案门控必须只读，不改写逐事件字段"
+            "门控必须只读，不改写逐事件选择"
         );
-    }
-
-    #[test]
-    fn simple_scheme_rows_cover_sounding_events_with_pool_labels() {
-        let rows = simple_scheme_rows();
-        assert_eq!(rows.len(), 3, "开始/处理/失败三行发声映射");
-        for row in &rows {
-            assert!(is_known(row.sound_id), "soundId 必须在内置池中");
-            assert!(!row.sound_name.is_empty(), "soundName 必须来自音效池中文名");
-        }
-        let ids: Vec<_> = rows.iter().map(|r| r.sound_id).collect();
-        assert_eq!(ids, vec!["tink", "pop", "error"], "行序与固定映射一致");
-        assert_eq!(rows[0].event, "start");
-        assert_eq!(rows[1].event, "processing");
-        assert_eq!(rows[2].event, "error");
-    }
-
-    /// 前端按 camelCase 读取：序列化键名必须是 soundId/soundName，否则设置页映射行为空
-    #[test]
-    fn simple_scheme_rows_serialize_camel_case_keys() {
-        let value = serde_json::to_value(simple_scheme_rows()).unwrap();
-        let first = value.as_array().unwrap().first().unwrap();
-        assert!(first.get("soundId").is_some(), "缺少 camelCase 键 soundId：{first}");
-        assert!(first.get("soundName").is_some(), "缺少 camelCase 键 soundName：{first}");
-        assert!(first.get("event").is_some());
-        assert!(first.get("sound_id").is_none(), "不允许混入 snake_case 键");
     }
 
     /// RIFF 块链解析：标准头、ffmpeg 实际布局（fmt → LIST 元数据 → data）、坏头

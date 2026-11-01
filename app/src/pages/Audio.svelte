@@ -1,17 +1,17 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { app, save, refreshMics } from "../lib/store.svelte";
-  import { call, previewSound, simpleScheme, type SimpleSchemeRow } from "../lib/api";
+  import { call, listSounds, previewSound } from "../lib/api";
   import Meter from "../lib/Meter.svelte";
 
   const s = $derived(app.s!);
   const missing = $derived(s.mic && !app.mics.includes(s.mic));
-  let schemeRows = $state<SimpleSchemeRow[]>([]);
+  let sounds = $state<{ id: string; name: string }[]>([]);
   // 设置值和 UI 都直接表示“降低比例”；100% 只改变展示为“静音”，数值本身不做反转。
   const duckReductionLabel = $derived(s.lowerSystemVolumePercent === 100 ? "静音" : `−${s.lowerSystemVolumePercent}%`);
 
   onMount(() => {
-    simpleScheme().then((v) => (schemeRows = v));
+    listSounds().then((v) => (sounds = v));
     // 电平表只在设置窗处于前台时占用麦克风，切到其他应用立即释放。
     const onFocus = () => {
       refreshMics();
@@ -34,11 +34,13 @@
     save({ mic: v });
   }
 
-  const EVENTS: { key: "soundStart" | "soundProcessing" | "soundDone" | "soundError"; event: SimpleSchemeRow["event"]; label: string; desc: string }[] = [
-    { key: "soundStart", event: "start", label: "录音开始", desc: "开始录入语音时" },
-    { key: "soundProcessing", event: "processing", label: "识别处理", desc: "识别完成时轻啵一声" },
-    { key: "soundDone", event: "done", label: "识别完成", desc: "识别很快，完成不另发音效" },
-    { key: "soundError", event: "error", label: "识别失败", desc: "出错、超时或没有内容时" },
+  // 面板行：标题按会话时刻命名，副标题只描述该时刻（不提发声与否）；
+  // key 对应后端逐事件设置字段（存 macOS 系统音名或 none）
+  const CHIME_ROWS: { title: string; desc: string; key: "soundStart" | "soundProcessing" | "soundDone" | "soundError" }[] = [
+    { title: "录音开始", desc: "开始录入语音时", key: "soundStart" },
+    { title: "识别处理", desc: "录音结束，进入识别处理", key: "soundProcessing" },
+    { title: "识别完成", desc: "识别结果就绪或上屏时", key: "soundDone" },
+    { title: "识别失败", desc: "出错、超时或没有内容时", key: "soundError" },
   ];
 </script>
 
@@ -79,17 +81,15 @@
     <div class="lbl">提示音<small>{s.soundEnabled ? "录音各阶段播放提示音" : "已关闭，录音各阶段不播放提示音"}</small></div>
     <button class="sw" class:on={s.soundEnabled} onclick={() => save({ soundEnabled: !s.soundEnabled })} aria-label="提示音"></button>
   </div>
-  <!-- 按固定事件序渲染：映射表命中的行显示音效名与试听，未映射的事件显示「不发声」 -->
-  {#each EVENTS as ev (ev.event)}
-    {@const row = schemeRows.find((r) => r.event === ev.event)}
+  <!-- 逐事件系统铃声选择：每行一个选择器（不发声 + macOS 系统铃声），试听即所得 -->
+  {#each CHIME_ROWS as row (row.key)}
     <div class="row">
-      <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
-      {#if row}
-        <b class="sound-name">{row.soundName}</b>
-        <button class="btn" onclick={() => previewSound(row.soundId)} aria-label={`试听${ev.label}`}>试听</button>
-      {:else}
-        <b class="sound-name muted">不发声</b>
-      {/if}
+      <div class="lbl">{row.title}<small>{row.desc}</small></div>
+      <select class="sel" value={s[row.key]} onchange={(e) => save({ [row.key]: e.currentTarget.value })} aria-label={row.title}>
+        <option value="none">不发声</option>
+        {#each sounds as snd}<option value={snd.id}>{snd.name}</option>{/each}
+      </select>
+      {#if s[row.key] !== "none"}<button class="btn" onclick={() => previewSound(s[row.key])} aria-label={`试听${row.title}`}>试听</button>{/if}
     </div>
   {/each}
 </div>

@@ -227,12 +227,7 @@ fn preview_sound(app: AppHandle, id: String) {
 
 #[tauri::command]
 fn list_sounds() -> Vec<serde_json::Value> {
-    crate::sound::SOUNDS.iter().map(|(id, name)| json!({ "id": id, "name": name })).collect()
-}
-
-#[tauri::command]
-fn simple_scheme() -> Vec<crate::sound::SimpleSchemeRow> {
-    crate::sound::simple_scheme_rows()
+    crate::sound::SYSTEM_SOUNDS.iter().map(|id| json!({ "id": id, "name": id })).collect()
 }
 
 #[tauri::command]
@@ -264,7 +259,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             get_state, set_settings, perm_status, perm_action, microphones, record_shortcut,
             pick_choose, pick_key, pick_resize, compare_toggle, meter, open_url, model_download,
-            update_check, update_install, preview_sound, list_sounds, simple_scheme
+            update_check, update_install, preview_sound, list_sounds
         ])
         .setup(move |app| {
             #[cfg(target_os = "macos")]
