@@ -162,13 +162,8 @@ fn named_input<D>(devices: impl Iterator<Item = D>, name: &str, device_name: imp
 fn selected_device(host: &cpal::Host, name: &str) -> Option<cpal::Device> {
     #[cfg(target_os = "macos")]
     {
-        // cpal 只为非默认设备注册断连监听，该监听与 Stream 互相持有，导致 StreamInner 与 AudioUnit 永不析构；
-        // 选中的就是系统默认设备时直接用 default_input_device，避免每轮录音泄漏一个仍在运行的音频单元。
-        let default = host.default_input_device();
-        if default.as_ref().and_then(|d| d.name().ok()).as_deref() == Some(name) {
-            return default;
-        }
         // cpal 检查输入配置会建 AudioUnit，先匹配名称，避免触碰其他蓝牙设备。
+        // 默认设备的快路径由 Recorder::start 的 match 臂负责（保留 cpal 的 default 标记）。
         named_input(host.devices().ok()?, name, |d| d.name().ok(), |d| {
             d.supported_input_configs().map(|mut configs| configs.any(|c| c.channels() > 0)).unwrap_or(false)
         })

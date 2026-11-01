@@ -117,8 +117,6 @@
 </div>
 
 <style>
-  input[type="range"] { accent-color: var(--accent); width: 180px; }
-  .val { width: 44px; }
   .seg { display: flex; border: 1px solid var(--line); border-radius: var(--rs); overflow: hidden; flex: none; }
   .seg-btn { border: 0; background: var(--card2); padding: 6px 14px; cursor: pointer; color: var(--fg2); }
   .seg-btn + .seg-btn { border-left: 1px solid var(--line); }
