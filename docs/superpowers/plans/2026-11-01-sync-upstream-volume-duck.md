@@ -2,6 +2,7 @@
 change: sync-upstream-volume-duck
 design-doc: docs/openspec/changes/sync-upstream-volume-duck/design.md
 base-ref: 6144e16c7e4eb88b84f434db290b869b988e7664
+archived-with: 2026-11-01-sync-upstream-volume-duck
 ---
 
 <!-- comet-task-authority: docs/openspec/changes/sync-upstream-volume-duck/tasks.md -->

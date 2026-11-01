@@ -2,6 +2,8 @@
 comet_change: sync-upstream-volume-duck
 role: technical-design
 canonical_spec: openspec
+archived-with: 2026-11-01-sync-upstream-volume-duck
+status: final
 ---
 
 # Design

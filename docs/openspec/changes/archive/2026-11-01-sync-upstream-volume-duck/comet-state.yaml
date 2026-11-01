@@ -1,0 +1,3180 @@
+# comet-execution: managed-run
+change_id: 5beb761c-2701-45e2-a519-74599da36d7c
+workflow: full
+language: zh-CN
+phase: archive
+context_compression: off
+build_mode: autonomous
+build_pause: null
+subagent_dispatch: null
+tdd_mode: direct
+review_mode: standard
+isolation: current
+verify_mode: null
+auto_transition: true
+base_ref: 6144e16c7e4eb88b84f434db290b869b988e7664
+design_doc: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck/design.md
+plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+verify_result: pass
+verify_failures: 0
+verification_report: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+branch_status: pending
+created_at: 2026-11-01
+verified_at: 2026-11-01
+archive_confirmation: confirmed
+archived: true
+bound_branch: main
+direct_override: false
+handoff_context: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck/.comet/handoff/design-context.json
+handoff_hash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+classic_profile: null
+classic_migration: null
+run_checkpoint:
+  schema: comet.workflow-run-checkpoint.v2
+  hash: a1229fcb9de47e51eb2fdf51999c546fb9109fa57fc69752be279fbdeb45e7dd
+  run:
+    protocolVersion: 1
+    schemaVersion: 1
+    runId: sync-upstream-volume-duck
+    revision: 1
+    workflow:
+      id: comet-classic-full
+      version: "1"
+      hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+    definitionHashes:
+      '["comet-classic-full","1"]': ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+    initialStateHash: bf04da0a47791f04c69a3c60f90142e6a3d3f43129419e71034932d61e9f47c8
+    input:
+      change: sync-upstream-volume-duck
+      changeDir: docs/openspec/changes/sync-upstream-volume-duck
+      workspaceBaseline:
+        ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+    state:
+      archiveConfirmation: confirmed
+      archived: true
+      autoTransition: true
+      baseRef: 6144e16c7e4eb88b84f434db290b869b988e7664
+      boundBranch: main
+      branchStatus: pending
+      buildMode: autonomous
+      buildPause: null
+      checkEpoch: 8
+      classicMigration: null
+      classicProfile: null
+      contextCompression: off
+      createdAt: 2026-11-01
+      designDoc: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck/design.md
+      directOverride: false
+      handoffContext: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck/.comet/handoff/design-context.json
+      handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+      isolation: current
+      language: zh-CN
+      phase: archive
+      plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+      reviewMode: standard
+      subagentDispatch: null
+      tddMode: direct
+      verificationReport: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+      verifiedAt: 2026-11-01
+      verifyFailures: 0
+      verifyMode: null
+      verifyResult: pass
+      workflow: full
+    status: running
+    sequence: 30
+    actions:
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-a104427f13cd5b95a9d16ee2cc5f588f02a0e0f37847fc1ba50403b88d3e8587
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:1
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 271e87d4696a6baa59c398ec6d272c3390e639c8a2681a83dcf2c75fd26cef89
+        outcome:
+          actionId: sync-upstream-volume-duck:1
+          attempt: 1
+          claimToken: portable-a104427f13cd5b95a9d16ee2cc5f588f02a0e0f37847fc1ba50403b88d3e8587
+          inputHash: 271e87d4696a6baa59c398ec6d272c3390e639c8a2681a83dcf2c75fd26cef89
+          outcomeId: f58d3662-4b07-4490-bab9-c96a7ba567a3
+          output:
+            event: open-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: b2183b8c553c9ba8659da6a5f4ebd5dce09257fcc05ddf23d897407c4fedc091
+            outcomeId: f58d3662-4b07-4490-bab9-c96a7ba567a3
+        reconciliations: []
+        ref: comet-open
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.open
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-open-revalidate
+          token: portable-ace5f90445fbe301e98c3167128c8f09c0429edfc7ce1fd74e821e404efeed62
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:4
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 1bf40782ff0e56751ba506fd8ac1e68228f732efe621043163cfe7dc077e12ca
+        outcome:
+          actionId: sync-upstream-volume-duck:4
+          attempt: 1
+          claimToken: portable-ace5f90445fbe301e98c3167128c8f09c0429edfc7ce1fd74e821e404efeed62
+          inputHash: 1bf40782ff0e56751ba506fd8ac1e68228f732efe621043163cfe7dc077e12ca
+          outcomeId: sync-upstream-volume-duck:4:1:executor-result
+          output:
+            contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: c12daf0d9623d33877a508ce0e12d77fe92ffec26af13e6114312b2a57de83e0
+            outcomeId: sync-upstream-volume-duck:4:1:executor-result
+        reconciliations: []
+        ref: classic-open-revalidate
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.open.revalidate
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-d2ef174e2b64ff921fdf59aa90af433c55065ef0721aa64e7d9ecfae23ad1dd6
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:5
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: eec383af13745510d971e26d3a9fb43665b9940387a4d0805ea6c316aa38de87
+        outcome:
+          actionId: sync-upstream-volume-duck:5
+          attempt: 1
+          claimToken: portable-d2ef174e2b64ff921fdf59aa90af433c55065ef0721aa64e7d9ecfae23ad1dd6
+          inputHash: eec383af13745510d971e26d3a9fb43665b9940387a4d0805ea6c316aa38de87
+          outcomeId: 1a0071ad-e08b-4992-8aa8-789d92bc2cd1
+          output:
+            handoffContext: docs/openspec/changes/sync-upstream-volume-duck/.comet/handoff/design-context.json
+            handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+            proposal: "技术方案：merge commit 方式合并 upstream/main（6 提交：#8 音量 ducking、#7 麦克风修复、CI
+              修复）；9 个交集文件按决策表取舍——上游音量实现优先（OutputVolumeDucker：默认关闭、20-100% 按比例、默认
+              70%、平滑过渡、所有权让渡），fork 特有功能（录音提示音、菜单栏图标、自有更新源）原样保留；整体删除 fork
+              固定值音量实现（RecordingVolume、Settings.volume、旧 UI 行），不做 settings
+              迁移（无存量用户）；麦克风修复（上游 #7 与 fork #1 同一 bug 同一修法）以上游文本为准，保留 fork 的
+              devices::running() 与 live 测试；新增集成规则——上游在 stop_recording
+              单点还原音量，fork 专属结束路径（Esc 中止、多渠道挑选、取消预开麦）若绕过还原点则补挂
+              set_active(false)；release.yml 直接采纳上游。测试策略：workspace 测试 + clippy +
+              前端构建 + 实机音量三段验证 + 旧 settings.json 兼容 + fork 特性冒烟。Spec Patch：无。"
+            requirementsEvidence:
+              contentHash: 63c4912295fe633ca9903e96a42df598cdb2d8f7caf1cecf18c3198f2de06e53
+              ref: docs/openspec/changes/sync-upstream-volume-duck
+            sourceEvidence:
+              contentHash: 0d61906bfdc91b2520ba99d107b344a8a47891d22f9041105c92c37f2d38987c
+              ref: docs/openspec/changes/sync-upstream-volume-duck
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: ae3f81f755412705fcf513a968039817ea792508eeb8fb65e75c112afe902407
+            outcomeId: 1a0071ad-e08b-4992-8aa8-789d92bc2cd1
+        reconciliations: []
+        ref: comet-design
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.design.handoff
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-0d4fcab3b3e6dce85e11dc9feef510c30b96ca2260a86f4b63582964d917e553
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:7
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 5711e232324b25a8f59855878a3b76a93037675f6201e18aaf8a70705c4f0d6b
+        outcome:
+          actionId: sync-upstream-volume-duck:7
+          attempt: 1
+          claimToken: portable-0d4fcab3b3e6dce85e11dc9feef510c30b96ca2260a86f4b63582964d917e553
+          inputHash: 5711e232324b25a8f59855878a3b76a93037675f6201e18aaf8a70705c4f0d6b
+          outcomeId: 828b02dd-c29d-4bb8-b9ba-12f4ffaf740f
+          output:
+            designDoc: docs/openspec/changes/sync-upstream-volume-duck/design.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 8af95e641f59ccecddb5c9a6bd57dc8ed94de0e38fd6f803b3284de352f5f2fe
+            outcomeId: 828b02dd-c29d-4bb8-b9ba-12f4ffaf740f
+        reconciliations: []
+        ref: comet-design
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.design.document
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-0a49e31aa2e04db33e652f4a9dc0965323585f56d8015c7db51fef39099c6ace
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:9
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: a5988373054acd02463290f7543d55abd4afa288cde23f78823bec95fa78e83e
+        outcome:
+          actionId: sync-upstream-volume-duck:9
+          attempt: 1
+          claimToken: portable-0a49e31aa2e04db33e652f4a9dc0965323585f56d8015c7db51fef39099c6ace
+          inputHash: a5988373054acd02463290f7543d55abd4afa288cde23f78823bec95fa78e83e
+          outcomeId: 200bb7ad-3e0c-489c-ac96-4100bc9196b4
+          output:
+            boundBranch: main
+            buildMode: autonomous
+            directOverride: false
+            isolation: current
+            reviewMode: standard
+            subagentDispatch: null
+            tddMode: direct
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: f8203e7e5ff5ca69a08001a46a3495a24ce1e730dfcf6700c51e66e6aceb816a
+            outcomeId: 200bb7ad-3e0c-489c-ac96-4100bc9196b4
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.configure
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-19d07de2133a1cc94fb06f4790a35a707b27d9af6f28307d42f2f8b3f66d1a9d
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:11
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: af9909e25320fc00e794b3ab085b0fe7d2f095a97aff573ae7b1a89367cea719
+        outcome:
+          actionId: sync-upstream-volume-duck:11
+          attempt: 1
+          claimToken: portable-19d07de2133a1cc94fb06f4790a35a707b27d9af6f28307d42f2f8b3f66d1a9d
+          inputHash: af9909e25320fc00e794b3ab085b0fe7d2f095a97aff573ae7b1a89367cea719
+          outcomeId: 34fec686-50d5-434f-ab55-1a01d391d942
+          output:
+            designEvidence:
+              contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+              ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+            plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+            planEvidence:
+              contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+              ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+            taskRevision: 2e466d90143b641f60fe68313ce860becb255a291102c1be91b4248936bf712b
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 0b58dfccbf9eb91216b96f8db50adce30a06aebbf0b92c09ede1585995b42a6c
+            outcomeId: 34fec686-50d5-434f-ab55-1a01d391d942
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.plan
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: classic-builder/sync-upstream-volume-duck:13/1
+          token: portable-0e4918aa97eb9aae84901cd6bb46b39adc8ec0b90296be0bbcbfb9820d9eb160
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:13
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 6caa981e4d9f29d5784064301a7c6d4a6c70283aaf904e07e79eda23fab8a43e
+        outcome:
+          actionId: sync-upstream-volume-duck:13
+          attempt: 1
+          claimToken: portable-0e4918aa97eb9aae84901cd6bb46b39adc8ec0b90296be0bbcbfb9820d9eb160
+          inputHash: 6caa981e4d9f29d5784064301a7c6d4a6c70283aaf904e07e79eda23fab8a43e
+          outcomeId: e4f47a6a-b3b3-4dd3-a44b-83d7e8401eb2
+          output:
+            event: build-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: be3b652f94793adfef83702dc9b6d08bfd24a1af505f3f318bc08e015eb2e433
+            outcomeId: e4f47a6a-b3b3-4dd3-a44b-83d7e8401eb2
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-85ee0e11b685300f74a398ab9f5d2f45bad96c7885e5050c8146bf9abd3d11b7
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:14
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: ed6ce8a8c113a3389f38dff54708473bc76665a342014f5f809fe2ae428481a0
+        outcome:
+          actionId: sync-upstream-volume-duck:14
+          attempt: 1
+          claimToken: portable-85ee0e11b685300f74a398ab9f5d2f45bad96c7885e5050c8146bf9abd3d11b7
+          inputHash: ed6ce8a8c113a3389f38dff54708473bc76665a342014f5f809fe2ae428481a0
+          outcomeId: aa74925b-5667-4216-a14d-caaf01fd912c
+          output:
+            argv:
+              - cargo
+              - build
+            changedDuringExecution: []
+            checkEpoch: 2
+            contentHash: fc4e46a4aa79eb1d649f2678f5a9d822e8c1ef99f8dc8c810ce7ef260dbfa149
+            cwd: .
+            environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+            exitCode: 0
+            inputAfter: 6be5d4d21216eea3da6ba1fed64f1474042214760a6a7b2cfe1aa7b48fabbf60
+            inputBefore: 6be5d4d21216eea3da6ba1fed64f1474042214760a6a7b2cfe1aa7b48fabbf60
+            manifestHash: d9eefcf41e3c99a136225287f3f34ed0ac1af577dd76fec87cf8d0f399eda868
+            manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/70ff7055-c994-49df-b3cf-5b9e506c30ca.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/0f55d315-1943-41d5-8a46-6e56be3d955e.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 059628e5ce0a296dcdbb5415d29b3cc351c69ad564c803c4127c3e5fb68fd1c2
+            outcomeId: aa74925b-5667-4216-a14d-caaf01fd912c
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-d5c1bc06fa72c12b553f88cc6e49fc0bd97d2fd56d55e4f28465d0c5dac99e8d
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:16
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 67ecd841d0d9085fccd6eb624ead61de48b39a8aa361bd59d1c5c07cb7ed3e17
+        outcome:
+          actionId: sync-upstream-volume-duck:16
+          attempt: 1
+          claimToken: portable-d5c1bc06fa72c12b553f88cc6e49fc0bd97d2fd56d55e4f28465d0c5dac99e8d
+          inputHash: 67ecd841d0d9085fccd6eb624ead61de48b39a8aa361bd59d1c5c07cb7ed3e17
+          outcomeId: 1397a9dc-04b0-41c9-a15f-d648ec6f48c1
+          output:
+            event: verify-fail
+            reason: 独立审查 W1（fork selected_device 死代码与 tasks 3.1 声明不符）与 S2（Audio.svelte 死
+              CSS），均为局部安全修复
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 88f0f0dd9fa8b97cbe1a175224b1483ac874023672b20d29b0ed0c0e25132ea5
+            outcomeId: 1397a9dc-04b0-41c9-a15f-d648ec6f48c1
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-d97e6870371d041da7cde04180b88b7a4321bd639d960861a7b24040dcfd7b75
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:17
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: b2cc323fee34f719bdd36290c59ed9c46f0e605ffae6809eeceba99091a12ef9
+        outcome:
+          actionId: sync-upstream-volume-duck:17
+          attempt: 1
+          claimToken: portable-d97e6870371d041da7cde04180b88b7a4321bd639d960861a7b24040dcfd7b75
+          inputHash: b2cc323fee34f719bdd36290c59ed9c46f0e605ffae6809eeceba99091a12ef9
+          outcomeId: 635f25d7-e6b3-40a0-9af3-49318967b5bd
+          output:
+            designEvidence:
+              contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+              ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+            plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+            planEvidence:
+              contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+              ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+            taskRevision: 2e466d90143b641f60fe68313ce860becb255a291102c1be91b4248936bf712b
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 7664718f3ce0309eddaf26d2f22d5b7d06ef206f2b92117ac37522ab5be27942
+            outcomeId: 635f25d7-e6b3-40a0-9af3-49318967b5bd
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.plan
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: classic-builder/sync-upstream-volume-duck:19/1
+          token: portable-712a37f8c16b83cc23997e44fa50bdc8d149a861a41038da4323f35a04c02e8e
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:19
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: b2cc323fee34f719bdd36290c59ed9c46f0e605ffae6809eeceba99091a12ef9
+        outcome:
+          actionId: sync-upstream-volume-duck:19
+          attempt: 1
+          claimToken: portable-712a37f8c16b83cc23997e44fa50bdc8d149a861a41038da4323f35a04c02e8e
+          inputHash: b2cc323fee34f719bdd36290c59ed9c46f0e605ffae6809eeceba99091a12ef9
+          outcomeId: d449227c-33f4-4024-8533-26b777dce1f0
+          output:
+            event: build-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: bf502b08bce43221dfc8e12740f0fb755790ee759a66aaa209f6937f2dd7d61e
+            outcomeId: d449227c-33f4-4024-8533-26b777dce1f0
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-f800f2132ce63a2e30c3ea3af3656c02ff3136b783fc62acdc0f57ca5e6b93c6
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:20
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: b2cc323fee34f719bdd36290c59ed9c46f0e605ffae6809eeceba99091a12ef9
+        outcome:
+          actionId: sync-upstream-volume-duck:20
+          attempt: 1
+          claimToken: portable-f800f2132ce63a2e30c3ea3af3656c02ff3136b783fc62acdc0f57ca5e6b93c6
+          inputHash: b2cc323fee34f719bdd36290c59ed9c46f0e605ffae6809eeceba99091a12ef9
+          outcomeId: 42d7a778-4b21-4f58-af27-778bdd61103a
+          output:
+            argv:
+              - cargo
+              - build
+              - --workspace
+            changedDuringExecution: []
+            checkEpoch: 4
+            contentHash: 0450d546e0ff5f096a3aff0b9ab63cd2818abcb6b72a0e79291953cb5156c869
+            cwd: .
+            environment: 9d813d3459ff16856992c1d2f650b567563ef03c679786e67eefcacbbded3fb3
+            exitCode: 0
+            inputAfter: 0150e79a378f6c8a3eae3f19cde33acaceed01cee3884dce20cda4ebbbebff20
+            inputBefore: 0150e79a378f6c8a3eae3f19cde33acaceed01cee3884dce20cda4ebbbebff20
+            manifestHash: a5f8a65dec148a7a2c5aa31f5f4905caabe516a65c21b49a23e1c7d40682459f
+            manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/8ba78f62-c674-458c-b6ff-ef03c3f0e10c.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/eafd6f4b-fe2d-47b5-bc8a-9449f943c798.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 12d838f0bc630d20fd9f9a0ba6ef6d26292c097b90bb3482d4e2ece3ff5505b1
+            outcomeId: 42d7a778-4b21-4f58-af27-778bdd61103a
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.build.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-98a93c4efb6d40af6f6d6afd01bc28029335e9ca44eb153481b432c1f8d7c70b
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:22
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 0f47e0adb40462df39534247f65fc254c1ea84173725fc4b6fef4f5d4238bb46
+        outcome:
+          actionId: sync-upstream-volume-duck:22
+          attempt: 1
+          claimToken: portable-98a93c4efb6d40af6f6d6afd01bc28029335e9ca44eb153481b432c1f8d7c70b
+          inputHash: 0f47e0adb40462df39534247f65fc254c1ea84173725fc4b6fef4f5d4238bb46
+          outcomeId: d4b1bea9-1c66-4017-a048-7ab91c95912e
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 5b0ccb7c6f12141195e11250ab09a4ac97b100f687f4b2f0ce31fe3c49fa6173
+            outcomeId: d4b1bea9-1c66-4017-a048-7ab91c95912e
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-16f8baa037d29eed003a0817a2ad18a261d99a47ad2b572dc54d2e2c30b107ea
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:24
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 5ae92e70cfb9f77bcaf1b83d9714eff1944c2b5943c54791aadfb332cb65bb96
+        outcome:
+          actionId: sync-upstream-volume-duck:24
+          attempt: 1
+          claimToken: portable-16f8baa037d29eed003a0817a2ad18a261d99a47ad2b572dc54d2e2c30b107ea
+          inputHash: 5ae92e70cfb9f77bcaf1b83d9714eff1944c2b5943c54791aadfb332cb65bb96
+          outcomeId: ccb6a94b-36a9-4ce0-9d95-c96bd0dde587
+          output:
+            argv:
+              - cargo
+              - test
+              - --workspace
+            changedDuringExecution: []
+            checkEpoch: 5
+            contentHash: e7041bbe29421610911e1cbf0d2881b55f24740e8f8cf22a204c9351a1f6304d
+            cwd: .
+            deliveryInputs: {}
+            environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+            exitCode: 0
+            inputAfter: c3b7d1fd6fd2b10c93681c71a56dd842e5ca1a4ba473c462f31672795644a42d
+            inputBefore: c3b7d1fd6fd2b10c93681c71a56dd842e5ca1a4ba473c462f31672795644a42d
+            manifestHash: c1d42c4b7c168fb8e768d41fa2a9778bba6ffd41ce649b6ca299f7a17de8bdc3
+            manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/6d00bede-1a54-48d4-9a44-5a8b8df09a6f.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/28b28484-206a-4fac-ac2b-129b36d4d5a3.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 2583a249ec474344dd04203c79809acbeffce5bc7f78754319a471a5c3d99e6a
+            outcomeId: ccb6a94b-36a9-4ce0-9d95-c96bd0dde587
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-e198341220b55c49b8778deef712dbcd7b1d7554be8ce860e9a269891c1c92db
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:26
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: e4ec8063711f4e5cf08b78888c65164f8966faeec6c41e82223bc8755323fdac
+        outcome:
+          actionId: sync-upstream-volume-duck:26
+          attempt: 1
+          claimToken: portable-e198341220b55c49b8778deef712dbcd7b1d7554be8ce860e9a269891c1c92db
+          inputHash: e4ec8063711f4e5cf08b78888c65164f8966faeec6c41e82223bc8755323fdac
+          outcomeId: 6457b27a-a94f-4e1b-916a-6dfe5f000891
+          output:
+            remote: origin
+            summary: "同步上游 8 提交（PR #8 音量 ducking、#7 麦克风修复、#13 autorelease、v1.8.0），删除 fork
+              固定值音量实现切换为上游按比例方案，麦克风修复去重，fork 特性零回归。验证：独立审查通过、实机 5
+              项音量行为+提示音时序通过。交付：归档后推送 origin main。"
+            targetBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: f75958d74bf8cee49572e9f1ed3351ff2d2e66f03bffb8c68c41c4e0f24ec31b
+            outcomeId: 6457b27a-a94f-4e1b-916a-6dfe5f000891
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive-preflight
+          token: portable-931444f6a291fa346a38a75c25d6555fd81fdf14370f0bed8a091408616717fc
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:28
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 3c56012911c0953910cb49de4d708ac27bd074b1348858b774d314be2c7e761b
+        outcome:
+          actionId: sync-upstream-volume-duck:28
+          attempt: 1
+          claimToken: portable-931444f6a291fa346a38a75c25d6555fd81fdf14370f0bed8a091408616717fc
+          inputHash: 3c56012911c0953910cb49de4d708ac27bd074b1348858b774d314be2c7e761b
+          outcomeId: a7b96af6-d697-4a50-9e87-15905178ecf0
+          output:
+            baseCommit: b73fda7a6b83bc823af130c88ee84dae411d729e
+            deliveryAction: push
+            remote: origin
+            remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+            targetBranch: main
+            verifiedBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 6b1fb09065c554393d7eaff5f78d1eaab44247ffe04924816c2d437f9cb9871f
+            outcomeId: a7b96af6-d697-4a50-9e87-15905178ecf0
+        reconciliations: []
+        ref: classic-archive-preflight
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.archive.preflight
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive
+          token: portable-4cc347bf62ba3b6c6db884909e0e191dc978f657fae243b6a01afced647cd673
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: sync-upstream-volume-duck:29
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 043a27abdf7bf8c7d416df59dc7f10997a9f95aa42a658bcb57187a2ebf0240f
+        outcome:
+          actionId: sync-upstream-volume-duck:29
+          artifacts:
+            - sha256: f31e768884cb678013271d5294f0b3665e684a49dac0824df88856a708553811
+              uri: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck/.comet/archive-manifest.json
+          attempt: 1
+          claimToken: portable-4cc347bf62ba3b6c6db884909e0e191dc978f657fae243b6a01afced647cd673
+          inputHash: 043a27abdf7bf8c7d416df59dc7f10997a9f95aa42a658bcb57187a2ebf0240f
+          outcomeId: 666f19c4-0ea4-4aae-bae4-cd57726c6417
+          output:
+            archiveDirectory: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 046a3ade03baa6425b71a86b8c684bf7bae1b0daacc171a23dc0a6fe113c4f8c
+            outcomeId: 666f19c4-0ea4-4aae-bae4-cd57726c6417
+        reconciliations: []
+        ref: classic-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: succeeded
+        stepId: full.archive.execute
+        type: call_tool
+      - attempt: 1
+        id: sync-upstream-volume-duck:30
+        input:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs: {}
+        inputHash: 788f740e9e59316a7d2254dc148e362411307ee95d720909176e119c1033fd09
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: sync-upstream-volume-duck
+        status: pending
+        stepId: full.archive.deliver
+        type: invoke_skill
+    actionContexts:
+      sync-upstream-volume-duck:1:
+        results: {}
+        sequence: 1
+      sync-upstream-volume-duck:11:
+        results: {}
+        sequence: 11
+      sync-upstream-volume-duck:13:
+        results: {}
+        sequence: 13
+      sync-upstream-volume-duck:14:
+        results: {}
+        sequence: 14
+      sync-upstream-volume-duck:16:
+        results: {}
+        sequence: 16
+      sync-upstream-volume-duck:17:
+        results: {}
+        sequence: 17
+      sync-upstream-volume-duck:19:
+        results: {}
+        sequence: 19
+      sync-upstream-volume-duck:20:
+        results: {}
+        sequence: 20
+      sync-upstream-volume-duck:22:
+        results: {}
+        sequence: 22
+      sync-upstream-volume-duck:24:
+        results: {}
+        sequence: 24
+      sync-upstream-volume-duck:26:
+        results: {}
+        sequence: 26
+      sync-upstream-volume-duck:28:
+        results: {}
+        sequence: 28
+      sync-upstream-volume-duck:29:
+        results: {}
+        sequence: 29
+      sync-upstream-volume-duck:30:
+        results: {}
+        sequence: 30
+      sync-upstream-volume-duck:4:
+        results: {}
+        sequence: 4
+      sync-upstream-volume-duck:5:
+        results: {}
+        sequence: 5
+      sync-upstream-volume-duck:7:
+        results: {}
+        sequence: 7
+      sync-upstream-volume-duck:9:
+        results: {}
+        sequence: 9
+    waits:
+      - id: sync-upstream-volume-duck:3
+        stepId: full.open.confirm
+        sequence: 3
+        status: resolved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.open:
+              event: open-complete
+            full.open.evidence:
+              contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+              ref: docs/openspec/changes/sync-upstream-volume-duck
+        proposalHash: d581202c044299bbd4dedfa89bb84073c7ada62345bf487f49d581d89c562cd5
+        choices:
+          - approved
+          - rejected
+        results: {}
+        decision:
+          id: classic-open-f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+          choice: approved
+          proposalHash: d581202c044299bbd4dedfa89bb84073c7ada62345bf487f49d581d89c562cd5
+      - id: sync-upstream-volume-duck:6
+        stepId: full.design.confirm
+        sequence: 6
+        status: resolved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.design.handoff:
+              handoffContext: docs/openspec/changes/sync-upstream-volume-duck/.comet/handoff/design-context.json
+              handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+              proposal: "技术方案：merge commit 方式合并 upstream/main（6 提交：#8 音量 ducking、#7 麦克风修复、CI
+                修复）；9 个交集文件按决策表取舍——上游音量实现优先（OutputVolumeDucker：默认关闭、20-100%
+                按比例、默认 70%、平滑过渡、所有权让渡），fork 特有功能（录音提示音、菜单栏图标、自有更新源）原样保留；整体删除
+                fork 固定值音量实现（RecordingVolume、Settings.volume、旧 UI 行），不做 settings
+                迁移（无存量用户）；麦克风修复（上游 #7 与 fork #1 同一 bug 同一修法）以上游文本为准，保留 fork 的
+                devices::running() 与 live 测试；新增集成规则——上游在 stop_recording
+                单点还原音量，fork 专属结束路径（Esc 中止、多渠道挑选、取消预开麦）若绕过还原点则补挂
+                set_active(false)；release.yml 直接采纳上游。测试策略：workspace 测试 + clippy
+                + 前端构建 + 实机音量三段验证 + 旧 settings.json 兼容 + fork 特性冒烟。Spec
+                Patch：无。"
+              requirementsEvidence:
+                contentHash: 63c4912295fe633ca9903e96a42df598cdb2d8f7caf1cecf18c3198f2de06e53
+                ref: docs/openspec/changes/sync-upstream-volume-duck
+              sourceEvidence:
+                contentHash: 0d61906bfdc91b2520ba99d107b344a8a47891d22f9041105c92c37f2d38987c
+                ref: docs/openspec/changes/sync-upstream-volume-duck
+        proposalHash: 270fef9c621d74ed91eb35ce898d9d2806a4893bd801147352d679b8a0b1867e
+        choices:
+          - approved
+          - rejected
+        results: {}
+        decision:
+          id: classic-design-270fef9c621d74ed91eb35ce898d9d2806a4893bd801147352d679b8a0b1867e-approved
+          choice: approved
+          proposalHash: 270fef9c621d74ed91eb35ce898d9d2806a4893bd801147352d679b8a0b1867e
+      - id: sync-upstream-volume-duck:10
+        stepId: full.build.confirm
+        sequence: 10
+        status: resolved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.build.configure:
+              boundBranch: main
+              buildMode: autonomous
+              directOverride: false
+              isolation: current
+              reviewMode: standard
+              subagentDispatch: null
+              tddMode: direct
+        proposalHash: bf8799e698f04e7a2f680ac30fec8ebc7251a0e90477517ad58f9152dbc6aab8
+        choices:
+          - approved
+          - rejected
+        results: {}
+        decision:
+          id: 0630c6df-37d6-48ce-ab4c-2161ef38d687
+          choice: approved
+          proposalHash: bf8799e698f04e7a2f680ac30fec8ebc7251a0e90477517ad58f9152dbc6aab8
+      - id: sync-upstream-volume-duck:27
+        stepId: full.archive.confirm
+        sequence: 27
+        status: resolved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.archive.prepare:
+              remote: origin
+              summary: "同步上游 8 提交（PR #8 音量 ducking、#7 麦克风修复、#13 autorelease、v1.8.0），删除 fork
+                固定值音量实现切换为上游按比例方案，麦克风修复去重，fork 特性零回归。验证：独立审查通过、实机 5
+                项音量行为+提示音时序通过。交付：归档后推送 origin main。"
+              targetBranch: main
+        proposalHash: 1d73e8b1522a4fd513b5e2fcfa09f9fe94894a948c7bd43f3f7dc0fd7f0dc1f1
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results: {}
+        decision:
+          id: classic-archive-1d73e8b1522a4fd513b5e2fcfa09f9fe94894a948c7bd43f3f7dc0fd7f0dc1f1-push
+          choice: push
+          proposalHash: 1d73e8b1522a4fd513b5e2fcfa09f9fe94894a948c7bd43f3f7dc0fd7f0dc1f1
+    evidenceWaits:
+      - id: sync-upstream-volume-duck:2
+        stepId: full.open.evidence
+        sequence: 2
+        kind: classic-open-artifacts
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/openspec/changes/sync-upstream-volume-duck
+          contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+          submissionId: 2f639dca-af2f-4166-b809-efde0a3f4793
+      - id: sync-upstream-volume-duck:8
+        stepId: full.design.evidence
+        sequence: 8
+        kind: classic-design-document
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+          contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+          submissionId: 60c58dac-fe4f-4080-8437-537b73b0f7d0
+      - id: sync-upstream-volume-duck:12
+        stepId: full.build.plan.evidence
+        sequence: 12
+        kind: classic-build-plan
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+          contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+          submissionId: b4633898-b7f1-46d9-855e-08fb77e4385e
+      - id: sync-upstream-volume-duck:15
+        stepId: full.build.check.evidence
+        sequence: 15
+        kind: classic-build-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/0f55d315-1943-41d5-8a46-6e56be3d955e.log
+          contentHash: fc4e46a4aa79eb1d649f2678f5a9d822e8c1ef99f8dc8c810ce7ef260dbfa149
+          submissionId: 03a97d0f-b7ba-450d-a8f2-2e919929ec78
+      - id: sync-upstream-volume-duck:18
+        stepId: full.build.plan.evidence
+        sequence: 18
+        kind: classic-build-plan
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+          contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+          submissionId: 987cc4ad-17f9-42a8-b2f5-53f3070726af
+      - id: sync-upstream-volume-duck:21
+        stepId: full.build.check.evidence
+        sequence: 21
+        kind: classic-build-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/eafd6f4b-fe2d-47b5-bc8a-9449f943c798.log
+          contentHash: 0450d546e0ff5f096a3aff0b9ab63cd2818abcb6b72a0e79291953cb5156c869
+          submissionId: ccd51dbd-227e-4d7a-bdfa-8834a2512e81
+      - id: sync-upstream-volume-duck:23
+        stepId: full.verify.report.evidence
+        sequence: 23
+        kind: classic-verification-report
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+          contentHash: 1287fdd93d9e9d7240df0388b9ae888c829642ce9a8e03f646a96672af9d4001
+          submissionId: 261b3f48-fa98-4cbb-a433-38de2a562dfd
+      - id: sync-upstream-volume-duck:25
+        stepId: full.verify.check.evidence
+        sequence: 25
+        kind: classic-verify-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/28b28484-206a-4fac-ac2b-129b36d4d5a3.log
+          contentHash: e7041bbe29421610911e1cbf0d2881b55f24740e8f8cf22a204c9351a1f6304d
+          submissionId: b5fe3338-b17e-485f-8772-099afc379ed6
+    ready: []
+    joins: {}
+    outputs: {}
+    children: []
+    lineage: []
+  sourceRevision: 47
+  sourceHash: 3055edd6775ad20c681eab431156762bc7f88abd41b94aaaa6aac7212d68d407
+  pool:
+    version: 3
+    values:
+      - event: open-complete
+      - choice: approved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.open:
+              event: open-complete
+            full.open.evidence:
+              contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+              ref: docs/openspec/changes/sync-upstream-volume-duck
+      - contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+        ref: docs/openspec/changes/sync-upstream-volume-duck
+      - contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+      - choice: approved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.design.handoff:
+              handoffContext: docs/openspec/changes/sync-upstream-volume-duck/.comet/handoff/design-context.json
+              handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+              proposal: "技术方案：merge commit 方式合并 upstream/main（6 提交：#8 音量 ducking、#7 麦克风修复、CI
+                修复）；9 个交集文件按决策表取舍——上游音量实现优先（OutputVolumeDucker：默认关闭、20-100%
+                按比例、默认 70%、平滑过渡、所有权让渡），fork 特有功能（录音提示音、菜单栏图标、自有更新源）原样保留；整体删除
+                fork 固定值音量实现（RecordingVolume、Settings.volume、旧 UI 行），不做 settings
+                迁移（无存量用户）；麦克风修复（上游 #7 与 fork #1 同一 bug 同一修法）以上游文本为准，保留 fork 的
+                devices::running() 与 live 测试；新增集成规则——上游在 stop_recording
+                单点还原音量，fork 专属结束路径（Esc 中止、多渠道挑选、取消预开麦）若绕过还原点则补挂
+                set_active(false)；release.yml 直接采纳上游。测试策略：workspace 测试 + clippy
+                + 前端构建 + 实机音量三段验证 + 旧 settings.json 兼容 + fork 特性冒烟。Spec
+                Patch：无。"
+              requirementsEvidence:
+                contentHash: 63c4912295fe633ca9903e96a42df598cdb2d8f7caf1cecf18c3198f2de06e53
+                ref: docs/openspec/changes/sync-upstream-volume-duck
+              sourceEvidence:
+                contentHash: 0d61906bfdc91b2520ba99d107b344a8a47891d22f9041105c92c37f2d38987c
+                ref: docs/openspec/changes/sync-upstream-volume-duck
+      - handoffContext: docs/openspec/changes/sync-upstream-volume-duck/.comet/handoff/design-context.json
+        handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+        proposal: "技术方案：merge commit 方式合并 upstream/main（6 提交：#8 音量 ducking、#7 麦克风修复、CI
+          修复）；9 个交集文件按决策表取舍——上游音量实现优先（OutputVolumeDucker：默认关闭、20-100% 按比例、默认
+          70%、平滑过渡、所有权让渡），fork 特有功能（录音提示音、菜单栏图标、自有更新源）原样保留；整体删除 fork
+          固定值音量实现（RecordingVolume、Settings.volume、旧 UI 行），不做 settings
+          迁移（无存量用户）；麦克风修复（上游 #7 与 fork #1 同一 bug 同一修法）以上游文本为准，保留 fork 的
+          devices::running() 与 live 测试；新增集成规则——上游在 stop_recording 单点还原音量，fork
+          专属结束路径（Esc 中止、多渠道挑选、取消预开麦）若绕过还原点则补挂 set_active(false)；release.yml
+          直接采纳上游。测试策略：workspace 测试 + clippy + 前端构建 + 实机音量三段验证 + 旧 settings.json
+          兼容 + fork 特性冒烟。Spec Patch：无。"
+        requirementsEvidence:
+          contentHash: 63c4912295fe633ca9903e96a42df598cdb2d8f7caf1cecf18c3198f2de06e53
+          ref: docs/openspec/changes/sync-upstream-volume-duck
+        sourceEvidence:
+          contentHash: 0d61906bfdc91b2520ba99d107b344a8a47891d22f9041105c92c37f2d38987c
+          ref: docs/openspec/changes/sync-upstream-volume-duck
+      - designDoc: docs/openspec/changes/sync-upstream-volume-duck/design.md
+      - contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+        ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+      - boundBranch: main
+        buildMode: autonomous
+        directOverride: false
+        isolation: current
+        reviewMode: standard
+        subagentDispatch: null
+        tddMode: direct
+      - choice: approved
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.build.configure:
+              boundBranch: main
+              buildMode: autonomous
+              directOverride: false
+              isolation: current
+              reviewMode: standard
+              subagentDispatch: null
+              tddMode: direct
+      - designEvidence:
+          contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+          ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+        plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+        planEvidence:
+          contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+          ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+        taskRevision: 2e466d90143b641f60fe68313ce860becb255a291102c1be91b4248936bf712b
+      - contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+        ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+      - event: build-complete
+      - argv:
+          - cargo
+          - build
+        changedDuringExecution: []
+        checkEpoch: 2
+        contentHash: fc4e46a4aa79eb1d649f2678f5a9d822e8c1ef99f8dc8c810ce7ef260dbfa149
+        cwd: .
+        environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+        exitCode: 0
+        inputAfter: 6be5d4d21216eea3da6ba1fed64f1474042214760a6a7b2cfe1aa7b48fabbf60
+        inputBefore: 6be5d4d21216eea3da6ba1fed64f1474042214760a6a7b2cfe1aa7b48fabbf60
+        manifestHash: d9eefcf41e3c99a136225287f3f34ed0ac1af577dd76fec87cf8d0f399eda868
+        manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/70ff7055-c994-49df-b3cf-5b9e506c30ca.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/0f55d315-1943-41d5-8a46-6e56be3d955e.log
+        reusable: false
+        reused: false
+        scope: build
+        tier: full
+        timeoutMs: 300000
+      - contentHash: fc4e46a4aa79eb1d649f2678f5a9d822e8c1ef99f8dc8c810ce7ef260dbfa149
+        ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/0f55d315-1943-41d5-8a46-6e56be3d955e.log
+      - event: verify-fail
+        reason: 独立审查 W1（fork selected_device 死代码与 tasks 3.1 声明不符）与 S2（Audio.svelte 死
+          CSS），均为局部安全修复
+      - argv:
+          - cargo
+          - build
+          - --workspace
+        changedDuringExecution: []
+        checkEpoch: 4
+        contentHash: 0450d546e0ff5f096a3aff0b9ab63cd2818abcb6b72a0e79291953cb5156c869
+        cwd: .
+        environment: 9d813d3459ff16856992c1d2f650b567563ef03c679786e67eefcacbbded3fb3
+        exitCode: 0
+        inputAfter: 0150e79a378f6c8a3eae3f19cde33acaceed01cee3884dce20cda4ebbbebff20
+        inputBefore: 0150e79a378f6c8a3eae3f19cde33acaceed01cee3884dce20cda4ebbbebff20
+        manifestHash: a5f8a65dec148a7a2c5aa31f5f4905caabe516a65c21b49a23e1c7d40682459f
+        manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/8ba78f62-c674-458c-b6ff-ef03c3f0e10c.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/eafd6f4b-fe2d-47b5-bc8a-9449f943c798.log
+        reusable: false
+        reused: false
+        scope: build
+        tier: full
+        timeoutMs: 300000
+      - contentHash: 0450d546e0ff5f096a3aff0b9ab63cd2818abcb6b72a0e79291953cb5156c869
+        ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/eafd6f4b-fe2d-47b5-bc8a-9449f943c798.log
+      - contentHash: 1287fdd93d9e9d7240df0388b9ae888c829642ce9a8e03f646a96672af9d4001
+        ref: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+      - event: verification-ready
+        verificationReport: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+      - argv:
+          - cargo
+          - test
+          - --workspace
+        changedDuringExecution: []
+        checkEpoch: 5
+        contentHash: e7041bbe29421610911e1cbf0d2881b55f24740e8f8cf22a204c9351a1f6304d
+        cwd: .
+        deliveryInputs: {}
+        environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+        exitCode: 0
+        inputAfter: c3b7d1fd6fd2b10c93681c71a56dd842e5ca1a4ba473c462f31672795644a42d
+        inputBefore: c3b7d1fd6fd2b10c93681c71a56dd842e5ca1a4ba473c462f31672795644a42d
+        manifestHash: c1d42c4b7c168fb8e768d41fa2a9778bba6ffd41ce649b6ca299f7a17de8bdc3
+        manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/6d00bede-1a54-48d4-9a44-5a8b8df09a6f.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/28b28484-206a-4fac-ac2b-129b36d4d5a3.log
+        reusable: false
+        reused: false
+        scope: verify
+        tier: full
+        timeoutMs: 300000
+      - contentHash: e7041bbe29421610911e1cbf0d2881b55f24740e8f8cf22a204c9351a1f6304d
+        ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/28b28484-206a-4fac-ac2b-129b36d4d5a3.log
+      - choice: push
+        proposal:
+          input:
+            change: sync-upstream-volume-duck
+            changeDir: docs/openspec/changes/sync-upstream-volume-duck
+            workspaceBaseline:
+              ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+          outputs:
+            full.archive.prepare:
+              remote: origin
+              summary: "同步上游 8 提交（PR #8 音量 ducking、#7 麦克风修复、#13 autorelease、v1.8.0），删除 fork
+                固定值音量实现切换为上游按比例方案，麦克风修复去重，fork 特性零回归。验证：独立审查通过、实机 5
+                项音量行为+提示音时序通过。交付：归档后推送 origin main。"
+              targetBranch: main
+      - remote: origin
+        summary: "同步上游 8 提交（PR #8 音量 ducking、#7 麦克风修复、#13 autorelease、v1.8.0），删除 fork
+          固定值音量实现切换为上游按比例方案，麦克风修复去重，fork 特性零回归。验证：独立审查通过、实机 5
+          项音量行为+提示音时序通过。交付：归档后推送 origin main。"
+        targetBranch: main
+      - baseCommit: b73fda7a6b83bc823af130c88ee84dae411d729e
+        deliveryAction: push
+        remote: origin
+        remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+        targetBranch: main
+        verifiedBranch: main
+      - archiveDirectory: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck
+      - sequence: 9
+        value:
+          boundBranch: main
+          buildMode: autonomous
+          directOverride: false
+          isolation: current
+          reviewMode: standard
+          subagentDispatch: null
+          tddMode: direct
+      - sequence: 10
+        value:
+          choice: approved
+          proposal:
+            input:
+              change: sync-upstream-volume-duck
+              changeDir: docs/openspec/changes/sync-upstream-volume-duck
+              workspaceBaseline:
+                ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+            outputs:
+              full.build.configure:
+                boundBranch: main
+                buildMode: autonomous
+                directOverride: false
+                isolation: current
+                reviewMode: standard
+                subagentDispatch: null
+                tddMode: direct
+      - sequence: 6
+        value:
+          choice: approved
+          proposal:
+            input:
+              change: sync-upstream-volume-duck
+              changeDir: docs/openspec/changes/sync-upstream-volume-duck
+              workspaceBaseline:
+                ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+            outputs:
+              full.design.handoff:
+                handoffContext: docs/openspec/changes/sync-upstream-volume-duck/.comet/handoff/design-context.json
+                handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+                proposal: "技术方案：merge commit 方式合并 upstream/main（6 提交：#8 音量 ducking、#7 麦克风修复、CI
+                  修复）；9 个交集文件按决策表取舍——上游音量实现优先（OutputVolumeDucker：默认关闭、20-100%
+                  按比例、默认 70%、平滑过渡、所有权让渡），fork 特有功能（录音提示音、菜单栏图标、自有更新源）原样保留；整体删除
+                  fork 固定值音量实现（RecordingVolume、Settings.volume、旧 UI 行），不做
+                  settings 迁移（无存量用户）；麦克风修复（上游 #7 与 fork #1 同一 bug
+                  同一修法）以上游文本为准，保留 fork 的 devices::running() 与 live
+                  测试；新增集成规则——上游在 stop_recording 单点还原音量，fork 专属结束路径（Esc
+                  中止、多渠道挑选、取消预开麦）若绕过还原点则补挂 set_active(false)；release.yml
+                  直接采纳上游。测试策略：workspace 测试 + clippy + 前端构建 + 实机音量三段验证 + 旧
+                  settings.json 兼容 + fork 特性冒烟。Spec Patch：无。"
+                requirementsEvidence:
+                  contentHash: 63c4912295fe633ca9903e96a42df598cdb2d8f7caf1cecf18c3198f2de06e53
+                  ref: docs/openspec/changes/sync-upstream-volume-duck
+                sourceEvidence:
+                  contentHash: 0d61906bfdc91b2520ba99d107b344a8a47891d22f9041105c92c37f2d38987c
+                  ref: docs/openspec/changes/sync-upstream-volume-duck
+      - sequence: 7
+        value:
+          designDoc: docs/openspec/changes/sync-upstream-volume-duck/design.md
+      - sequence: 8
+        value:
+          contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+          ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+      - sequence: 5
+        value:
+          handoffContext: docs/openspec/changes/sync-upstream-volume-duck/.comet/handoff/design-context.json
+          handoffHash: cad91e2b3ec9679be918e3d0803ab119e08deb8fe8d7db6800cf1a8acf8fa7bc
+          proposal: "技术方案：merge commit 方式合并 upstream/main（6 提交：#8 音量 ducking、#7 麦克风修复、CI
+            修复）；9 个交集文件按决策表取舍——上游音量实现优先（OutputVolumeDucker：默认关闭、20-100% 按比例、默认
+            70%、平滑过渡、所有权让渡），fork 特有功能（录音提示音、菜单栏图标、自有更新源）原样保留；整体删除 fork
+            固定值音量实现（RecordingVolume、Settings.volume、旧 UI 行），不做 settings
+            迁移（无存量用户）；麦克风修复（上游 #7 与 fork #1 同一 bug 同一修法）以上游文本为准，保留 fork 的
+            devices::running() 与 live 测试；新增集成规则——上游在 stop_recording 单点还原音量，fork
+            专属结束路径（Esc 中止、多渠道挑选、取消预开麦）若绕过还原点则补挂 set_active(false)；release.yml
+            直接采纳上游。测试策略：workspace 测试 + clippy + 前端构建 + 实机音量三段验证 + 旧
+            settings.json 兼容 + fork 特性冒烟。Spec Patch：无。"
+          requirementsEvidence:
+            contentHash: 63c4912295fe633ca9903e96a42df598cdb2d8f7caf1cecf18c3198f2de06e53
+            ref: docs/openspec/changes/sync-upstream-volume-duck
+          sourceEvidence:
+            contentHash: 0d61906bfdc91b2520ba99d107b344a8a47891d22f9041105c92c37f2d38987c
+            ref: docs/openspec/changes/sync-upstream-volume-duck
+      - sequence: 1
+        value:
+          event: open-complete
+      - sequence: 3
+        value:
+          choice: approved
+          proposal:
+            input:
+              change: sync-upstream-volume-duck
+              changeDir: docs/openspec/changes/sync-upstream-volume-duck
+              workspaceBaseline:
+                ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+            outputs:
+              full.open:
+                event: open-complete
+              full.open.evidence:
+                contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+                ref: docs/openspec/changes/sync-upstream-volume-duck
+      - sequence: 2
+        value:
+          contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+          ref: docs/openspec/changes/sync-upstream-volume-duck
+      - sequence: 4
+        value:
+          contentHash: f246413af2bf5ebef406f1d7cf2cf712641bdb43c329ce906a5f653105d27534
+      - sequence: 11
+        value:
+          designEvidence:
+            contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+            ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+          plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+          planEvidence:
+            contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+            ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+          taskRevision: 2e466d90143b641f60fe68313ce860becb255a291102c1be91b4248936bf712b
+      - sequence: 12
+        value:
+          contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+          ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+      - sequence: 13
+        value:
+          event: build-complete
+      - sequence: 14
+        value:
+          argv:
+            - cargo
+            - build
+          changedDuringExecution: []
+          checkEpoch: 2
+          contentHash: fc4e46a4aa79eb1d649f2678f5a9d822e8c1ef99f8dc8c810ce7ef260dbfa149
+          cwd: .
+          environment: 0a6a8c43201b21cc0d3e1be2ed98b853ffc293565096580ccf22b9637512304d
+          exitCode: 0
+          inputAfter: 6be5d4d21216eea3da6ba1fed64f1474042214760a6a7b2cfe1aa7b48fabbf60
+          inputBefore: 6be5d4d21216eea3da6ba1fed64f1474042214760a6a7b2cfe1aa7b48fabbf60
+          manifestHash: d9eefcf41e3c99a136225287f3f34ed0ac1af577dd76fec87cf8d0f399eda868
+          manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/70ff7055-c994-49df-b3cf-5b9e506c30ca.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/0f55d315-1943-41d5-8a46-6e56be3d955e.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      - sequence: 15
+        value:
+          contentHash: fc4e46a4aa79eb1d649f2678f5a9d822e8c1ef99f8dc8c810ce7ef260dbfa149
+          ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/0f55d315-1943-41d5-8a46-6e56be3d955e.log
+      - sequence: 16
+        value:
+          event: verify-fail
+          reason: 独立审查 W1（fork selected_device 死代码与 tasks 3.1 声明不符）与 S2（Audio.svelte 死
+            CSS），均为局部安全修复
+      - sequence: 17
+        value:
+          designEvidence:
+            contentHash: fb2e04dd7fa1f0514f91bb6200744e8b35c16b0a654c0cbc7012d835743d0a72
+            ref: docs/openspec/changes/sync-upstream-volume-duck/design.md
+          plan: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+          planEvidence:
+            contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+            ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+          taskRevision: 2e466d90143b641f60fe68313ce860becb255a291102c1be91b4248936bf712b
+      - sequence: 18
+        value:
+          contentHash: 4577413449e8548687f506ac3ba2ef90872375033c6ec186b04dfc0cf0040963
+          ref: docs/superpowers/plans/2026-11-01-sync-upstream-volume-duck.md
+      - sequence: 19
+        value:
+          event: build-complete
+      - sequence: 20
+        value:
+          argv:
+            - cargo
+            - build
+            - --workspace
+          changedDuringExecution: []
+          checkEpoch: 4
+          contentHash: 0450d546e0ff5f096a3aff0b9ab63cd2818abcb6b72a0e79291953cb5156c869
+          cwd: .
+          environment: 9d813d3459ff16856992c1d2f650b567563ef03c679786e67eefcacbbded3fb3
+          exitCode: 0
+          inputAfter: 0150e79a378f6c8a3eae3f19cde33acaceed01cee3884dce20cda4ebbbebff20
+          inputBefore: 0150e79a378f6c8a3eae3f19cde33acaceed01cee3884dce20cda4ebbbebff20
+          manifestHash: a5f8a65dec148a7a2c5aa31f5f4905caabe516a65c21b49a23e1c7d40682459f
+          manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/8ba78f62-c674-458c-b6ff-ef03c3f0e10c.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/eafd6f4b-fe2d-47b5-bc8a-9449f943c798.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      - sequence: 21
+        value:
+          contentHash: 0450d546e0ff5f096a3aff0b9ab63cd2818abcb6b72a0e79291953cb5156c869
+          ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/eafd6f4b-fe2d-47b5-bc8a-9449f943c798.log
+      - sequence: 23
+        value:
+          contentHash: 1287fdd93d9e9d7240df0388b9ae888c829642ce9a8e03f646a96672af9d4001
+          ref: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+      - sequence: 22
+        value:
+          event: verification-ready
+          verificationReport: docs/superpowers/reports/2026-11-01-sync-upstream-volume-duck-verify.md
+      - sequence: 24
+        value:
+          argv:
+            - cargo
+            - test
+            - --workspace
+          changedDuringExecution: []
+          checkEpoch: 5
+          contentHash: e7041bbe29421610911e1cbf0d2881b55f24740e8f8cf22a204c9351a1f6304d
+          cwd: .
+          deliveryInputs: {}
+          environment: 26ca102520e55fa56d04d422f7d80b7ca30803547c339ada75db0f5f5f264adf
+          exitCode: 0
+          inputAfter: c3b7d1fd6fd2b10c93681c71a56dd842e5ca1a4ba473c462f31672795644a42d
+          inputBefore: c3b7d1fd6fd2b10c93681c71a56dd842e5ca1a4ba473c462f31672795644a42d
+          manifestHash: c1d42c4b7c168fb8e768d41fa2a9778bba6ffd41ce649b6ca299f7a17de8bdc3
+          manifestRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/6d00bede-1a54-48d4-9a44-5a8b8df09a6f.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/28b28484-206a-4fac-ac2b-129b36d4d5a3.log
+          reusable: false
+          reused: false
+          scope: verify
+          tier: full
+          timeoutMs: 300000
+      - sequence: 25
+        value:
+          contentHash: e7041bbe29421610911e1cbf0d2881b55f24740e8f8cf22a204c9351a1f6304d
+          ref: .comet/runtime/classic-sdk-checks/e42b3099fb6fc4bdc21d99e92acb072d23da614f54f2becfb6d13a974e8bc091/28b28484-206a-4fac-ac2b-129b36d4d5a3.log
+      - sequence: 27
+        value:
+          choice: push
+          proposal:
+            input:
+              change: sync-upstream-volume-duck
+              changeDir: docs/openspec/changes/sync-upstream-volume-duck
+              workspaceBaseline:
+                ref: 34b8ee0a-2b47-49f5-b3e2-eb1699f059f8
+            outputs:
+              full.archive.prepare:
+                remote: origin
+                summary: "同步上游 8 提交（PR #8 音量 ducking、#7 麦克风修复、#13 autorelease、v1.8.0），删除 fork
+                  固定值音量实现切换为上游按比例方案，麦克风修复去重，fork 特性零回归。验证：独立审查通过、实机 5
+                  项音量行为+提示音时序通过。交付：归档后推送 origin main。"
+                targetBranch: main
+      - sequence: 26
+        value:
+          remote: origin
+          summary: "同步上游 8 提交（PR #8 音量 ducking、#7 麦克风修复、#13 autorelease、v1.8.0），删除 fork
+            固定值音量实现切换为上游按比例方案，麦克风修复去重，fork 特性零回归。验证：独立审查通过、实机 5
+            项音量行为+提示音时序通过。交付：归档后推送 origin main。"
+          targetBranch: main
+      - sequence: 28
+        value:
+          baseCommit: b73fda7a6b83bc823af130c88ee84dae411d729e
+          deliveryAction: push
+          remote: origin
+          remoteIdentity: 84a1f1b27c2a3f52a8f7e969fb3b366911765acb6070c1de6bef18a0e1a5455a
+          targetBranch: main
+          verifiedBranch: main
+      - sequence: 29
+        value:
+          archiveDirectory: docs/openspec/changes/archive/2026-11-01-sync-upstream-volume-duck
+    nodes:
+      - key: full.open
+        value: 0
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 2
+        left: null
+        right: null
+        height: 1
+      - key: full.open.confirm
+        value: 1
+        left: 0
+        right: 1
+        height: 2
+      - key: full.open.revalidate
+        value: 3
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 2
+        left: null
+        right: 3
+        height: 2
+      - key: full.open.confirm
+        value: 1
+        left: 0
+        right: 4
+        height: 3
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 0
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 5
+        left: 6
+        right: 7
+        height: 2
+      - key: full.open.confirm
+        value: 1
+        left: 8
+        right: 4
+        height: 3
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 7
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 6
+        left: 10
+        right: 11
+        height: 2
+      - key: full.design.handoff
+        value: 5
+        left: 12
+        right: 7
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 13
+        right: 4
+        height: 4
+      - key: full.build.configure
+        value: 8
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 9
+        left: 15
+        right: 16
+        height: 2
+      - key: full.design.handoff
+        value: 5
+        left: 11
+        right: 7
+        height: 2
+      - key: full.design.document
+        value: 6
+        left: 17
+        right: 18
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 19
+        right: 4
+        height: 4
+      - key: full.build.plan
+        value: 10
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 11
+        left: 21
+        right: 22
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 15
+        right: 23
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 4
+        height: 3
+      - key: full.design.document
+        value: 6
+        left: 24
+        right: 25
+        height: 4
+      - key: full.build.execute
+        value: 12
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 9
+        left: 15
+        right: 27
+        height: 2
+      - key: full.build.plan.evidence
+        value: 11
+        left: null
+        right: 22
+        height: 2
+      - key: full.build.plan
+        value: 10
+        left: 28
+        right: 29
+        height: 3
+      - key: full.design.document
+        value: 6
+        left: 30
+        right: 25
+        height: 4
+      - key: full.build.check
+        value: 13
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 8
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 14
+        left: 32
+        right: 33
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 34
+        right: 27
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 35
+        right: 29
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 36
+        right: 25
+        height: 5
+      - key: full.open.evidence
+        value: 2
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 15
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 3
+        left: 38
+        right: 39
+        height: 2
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 40
+        height: 3
+      - key: full.design.document
+        value: 6
+        left: 36
+        right: 41
+        height: 5
+      - key: full.build.check
+        value: 16
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 17
+        left: 43
+        right: 33
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 44
+        right: 27
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 45
+        right: 29
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 46
+        right: 41
+        height: 5
+      - key: full.verify.report.evidence
+        value: 18
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 19
+        left: 48
+        right: null
+        height: 2
+      - key: full.open.revalidate
+        value: 3
+        left: 38
+        right: 49
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 50
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 46
+        right: 51
+        height: 5
+      - key: full.open.revalidate
+        value: 3
+        left: 38
+        right: null
+        height: 2
+      - key: full.verify.check.evidence
+        value: 21
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 19
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 18
+        left: 54
+        right: 55
+        height: 2
+      - key: full.verify.check
+        value: 20
+        left: 53
+        right: 56
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 57
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 46
+        right: 58
+        height: 5
+      - key: full.archive.confirm
+        value: 22
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check
+        value: 16
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.prepare
+        value: 23
+        left: 60
+        right: 61
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 33
+        right: 27
+        height: 2
+      - key: full.build.check.evidence
+        value: 17
+        left: 62
+        right: 63
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 64
+        right: 29
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 65
+        right: 58
+        height: 5
+      - key: full.archive.preflight
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.confirm
+        value: 22
+        left: null
+        right: 67
+        height: 2
+      - key: full.archive.prepare
+        value: 23
+        left: 68
+        right: 61
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 63
+        right: 29
+        height: 3
+      - key: full.build.check.evidence
+        value: 17
+        left: 69
+        right: 70
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 71
+        right: 58
+        height: 5
+      - key: full.archive.confirm
+        value: 22
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.preflight
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.execute
+        value: 25
+        left: 73
+        right: 74
+        height: 2
+      - key: full.archive.prepare
+        value: 23
+        left: 75
+        right: 61
+        height: 3
+      - key: full.build.check.evidence
+        value: 17
+        left: 76
+        right: 70
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 77
+        right: 58
+        height: 5
+      - key: full.build.configure
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 27
+        left: 79
+        right: 80
+        height: 2
+      - key: full.design.evidence
+        value: 30
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 31
+        left: 82
+        right: 83
+        height: 2
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: null
+        right: 85
+        height: 2
+      - key: full.open.confirm
+        value: 33
+        left: 84
+        right: 86
+        height: 3
+      - key: full.design.document
+        value: 29
+        left: 81
+        right: 87
+        height: 4
+      - key: full.build.plan
+        value: 36
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 37
+        left: 89
+        right: 90
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 79
+        right: 91
+        height: 3
+      - key: full.design.document
+        value: 29
+        left: 92
+        right: 87
+        height: 4
+      - key: full.build.execute
+        value: 38
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 27
+        left: 79
+        right: 94
+        height: 2
+      - key: full.build.plan.evidence
+        value: 37
+        left: null
+        right: 90
+        height: 2
+      - key: full.build.plan
+        value: 36
+        left: 95
+        right: 96
+        height: 3
+      - key: full.design.document
+        value: 29
+        left: 97
+        right: 87
+        height: 4
+      - key: full.build.check
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 40
+        left: 99
+        right: 100
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 101
+        right: 94
+        height: 3
+      - key: full.build.plan
+        value: 36
+        left: 102
+        right: 96
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 103
+        right: 87
+        height: 5
+      - key: full.open.evidence
+        value: 34
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 41
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 35
+        left: 105
+        right: 106
+        height: 2
+      - key: full.open.confirm
+        value: 33
+        left: 84
+        right: 107
+        height: 3
+      - key: full.design.document
+        value: 29
+        left: 103
+        right: 108
+        height: 5
+      - key: full.build.plan.evidence
+        value: 43
+        left: null
+        right: 90
+        height: 2
+      - key: full.build.plan
+        value: 42
+        left: 102
+        right: 110
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 111
+        right: 108
+        height: 5
+      - key: full.build.execute
+        value: 44
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 27
+        left: 101
+        right: 113
+        height: 3
+      - key: full.build.plan
+        value: 42
+        left: 114
+        right: 110
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 115
+        right: 108
+        height: 5
+      - key: full.build.check
+        value: 45
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 46
+        left: 117
+        right: 100
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 118
+        right: 113
+        height: 3
+      - key: full.build.plan
+        value: 42
+        left: 119
+        right: 110
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 120
+        right: 108
+        height: 5
+      - key: full.verify.report.evidence
+        value: 47
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 48
+        left: 122
+        right: null
+        height: 2
+      - key: full.open.revalidate
+        value: 35
+        left: 105
+        right: 123
+        height: 3
+      - key: full.open.confirm
+        value: 33
+        left: 84
+        right: 124
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 120
+        right: 125
+        height: 5
+      - key: full.open.revalidate
+        value: 35
+        left: 105
+        right: null
+        height: 2
+      - key: full.verify.check.evidence
+        value: 50
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 48
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 47
+        left: 128
+        right: 129
+        height: 2
+      - key: full.verify.check
+        value: 49
+        left: 127
+        right: 130
+        height: 3
+      - key: full.open.confirm
+        value: 33
+        left: 84
+        right: 131
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 120
+        right: 132
+        height: 5
+      - key: full.archive.confirm
+        value: 51
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check
+        value: 45
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.prepare
+        value: 52
+        left: 134
+        right: 135
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 100
+        right: 113
+        height: 2
+      - key: full.build.check.evidence
+        value: 46
+        left: 136
+        right: 137
+        height: 3
+      - key: full.build.plan
+        value: 42
+        left: 138
+        right: 110
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 139
+        right: 132
+        height: 5
+      - key: full.archive.preflight
+        value: 53
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.confirm
+        value: 51
+        left: null
+        right: 141
+        height: 2
+      - key: full.archive.prepare
+        value: 52
+        left: 142
+        right: 135
+        height: 3
+      - key: full.build.plan
+        value: 42
+        left: 137
+        right: 110
+        height: 3
+      - key: full.build.check.evidence
+        value: 46
+        left: 143
+        right: 144
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 145
+        right: 132
+        height: 5
+      - key: full.archive.confirm
+        value: 51
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.preflight
+        value: 53
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.execute
+        value: 54
+        left: 147
+        right: 148
+        height: 2
+      - key: full.archive.prepare
+        value: 52
+        left: 149
+        right: 135
+        height: 3
+      - key: full.build.check.evidence
+        value: 46
+        left: 150
+        right: 144
+        height: 4
+      - key: full.design.document
+        value: 29
+        left: 151
+        right: 132
+        height: 5
+      - key: full.open
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: null
+        right: null
+        height: 1
+      - key: full.open.confirm
+        value: 33
+        left: 153
+        right: 154
+        height: 2
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: null
+        right: 156
+        height: 2
+      - key: full.open.confirm
+        value: 33
+        left: 153
+        right: 157
+        height: 3
+      - key: full.design.confirm
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 31
+        left: 159
+        right: 160
+        height: 2
+      - key: full.open.confirm
+        value: 33
+        left: 161
+        right: 157
+        height: 3
+      - key: full.design.confirm
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 30
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 29
+        left: 163
+        right: 164
+        height: 2
+      - key: full.design.handoff
+        value: 31
+        left: 165
+        right: 160
+        height: 3
+      - key: full.open.confirm
+        value: 33
+        left: 166
+        right: 157
+        height: 4
+      - key: full.open.evidence
+        value: 34
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 32
+        left: null
+        right: 168
+        height: 2
+      - key: full.design.handoff
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.open.confirm
+        value: 33
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: 171
+        right: 172
+        height: 2
+      - key: full.open
+        value: 32
+        left: 170
+        right: 173
+        height: 3
+      - key: full.build.configure
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 30
+        left: 176
+        right: 177
+        height: 2
+      - key: full.design.confirm
+        value: 28
+        left: 175
+        right: 178
+        height: 3
+      - key: full.open
+        value: 32
+        left: 179
+        right: 173
+        height: 4
+      - key: full.archive.prepare
+        value: 52
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 46
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check
+        value: 45
+        left: 181
+        right: 182
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 43
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 42
+        left: null
+        right: 185
+        height: 2
+      - key: full.build.execute
+        value: 44
+        left: 184
+        right: 186
+        height: 3
+      - key: full.build.configure
+        value: 26
+        left: 183
+        right: 187
+        height: 4
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: 171
+        right: 189
+        height: 2
+      - key: full.verify.check.evidence
+        value: 50
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 48
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 47
+        left: 191
+        right: 192
+        height: 2
+      - key: full.verify.check
+        value: 49
+        left: 190
+        right: 193
+        height: 3
+      - key: full.open
+        value: 32
+        left: 178
+        right: 194
+        height: 4
+      - key: full.design.confirm
+        value: 28
+        left: 188
+        right: 195
+        height: 5
+      - key: full.open
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 29
+        left: 198
+        right: 199
+        height: 2
+      - key: full.open.confirm
+        value: 33
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: 201
+        right: 202
+        height: 2
+      - key: full.open
+        value: 32
+        left: 200
+        right: 203
+        height: 3
+      - key: full.build.configure
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 36
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 27
+        left: 205
+        right: 206
+        height: 2
+      - key: full.design.document
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 30
+        left: 208
+        right: 209
+        height: 2
+      - key: full.design.confirm
+        value: 28
+        left: 207
+        right: 210
+        height: 3
+      - key: full.open
+        value: 32
+        left: 211
+        right: 203
+        height: 4
+      - key: full.build.check
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 26
+        left: 213
+        right: null
+        height: 2
+      - key: full.build.execute
+        value: 38
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 37
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 36
+        left: 215
+        right: 216
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 214
+        right: 217
+        height: 3
+      - key: full.open
+        value: 32
+        left: 210
+        right: 203
+        height: 3
+      - key: full.design.confirm
+        value: 28
+        left: 218
+        right: 219
+        height: 4
+      - key: full.build.check
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 40
+        left: 221
+        right: 222
+        height: 2
+      - key: full.build.plan
+        value: 42
+        left: 215
+        right: 216
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 223
+        right: 224
+        height: 3
+      - key: full.verify.run
+        value: 41
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: 226
+        height: 2
+      - key: full.open.evidence
+        value: 34
+        left: 201
+        right: 227
+        height: 3
+      - key: full.open
+        value: 32
+        left: 210
+        right: 228
+        height: 4
+      - key: full.design.confirm
+        value: 28
+        left: 225
+        right: 229
+        height: 5
+      - key: full.build.check
+        value: 45
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 40
+        left: 231
+        right: 222
+        height: 2
+      - key: full.build.execute
+        value: 44
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 43
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 42
+        left: 233
+        right: 234
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 232
+        right: 235
+        height: 3
+      - key: full.design.confirm
+        value: 28
+        left: 236
+        right: 229
+        height: 5
+      - key: full.build.check.evidence
+        value: 46
+        left: 231
+        right: 222
+        height: 2
+      - key: full.build.confirm
+        value: 27
+        left: 238
+        right: 235
+        height: 3
+      - key: full.verify.run
+        value: 48
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: 240
+        height: 2
+      - key: full.open.evidence
+        value: 34
+        left: 201
+        right: 241
+        height: 3
+      - key: full.open
+        value: 32
+        left: 210
+        right: 242
+        height: 4
+      - key: full.design.confirm
+        value: 28
+        left: 239
+        right: 243
+        height: 5
+      - key: full.open.revalidate
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 34
+        left: 201
+        right: 245
+        height: 2
+      - key: full.verify.report.evidence
+        value: 47
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 48
+        left: 247
+        right: null
+        height: 2
+      - key: full.verify.check
+        value: 49
+        left: 246
+        right: 248
+        height: 3
+      - key: full.open
+        value: 32
+        left: 210
+        right: 249
+        height: 4
+      - key: full.design.confirm
+        value: 28
+        left: 239
+        right: 250
+        height: 5
+    maps:
+      - null
+      - 2
+      - 5
+      - 9
+      - 14
+      - 20
+      - 26
+      - 31
+      - 37
+      - 42
+      - 47
+      - 52
+      - 59
+      - 66
+      - 72
+      - 78
+      - 88
+      - 93
+      - 98
+      - 104
+      - 109
+      - 112
+      - 116
+      - 121
+      - 126
+      - 133
+      - 140
+      - 146
+      - 152
+      - 155
+      - 158
+      - 162
+      - 167
+      - 169
+      - 174
+      - 180
+      - 196
+      - 197
+      - 204
+      - 212
+      - 220
+      - 230
+      - 237
+      - 244
+      - 251
+    bindings:
+      - path:
+          - actions
+          - "0"
+          - input
+          - outputs
+        map: 0
+      - path:
+          - actions
+          - "1"
+          - input
+          - outputs
+        map: 1
+      - path:
+          - actions
+          - "2"
+          - input
+          - outputs
+        map: 2
+      - path:
+          - actions
+          - "3"
+          - input
+          - outputs
+        map: 3
+      - path:
+          - actions
+          - "4"
+          - input
+          - outputs
+        map: 4
+      - path:
+          - actions
+          - "5"
+          - input
+          - outputs
+        map: 5
+      - path:
+          - actions
+          - "6"
+          - input
+          - outputs
+        map: 6
+      - path:
+          - actions
+          - "7"
+          - input
+          - outputs
+        map: 7
+      - path:
+          - actions
+          - "8"
+          - input
+          - outputs
+        map: 8
+      - path:
+          - actions
+          - "9"
+          - input
+          - outputs
+        map: 9
+      - path:
+          - actions
+          - "10"
+          - input
+          - outputs
+        map: 9
+      - path:
+          - actions
+          - "11"
+          - input
+          - outputs
+        map: 9
+      - path:
+          - actions
+          - "12"
+          - input
+          - outputs
+        map: 10
+      - path:
+          - actions
+          - "13"
+          - input
+          - outputs
+        map: 11
+      - path:
+          - actions
+          - "14"
+          - input
+          - outputs
+        map: 12
+      - path:
+          - actions
+          - "15"
+          - input
+          - outputs
+        map: 13
+      - path:
+          - actions
+          - "16"
+          - input
+          - outputs
+        map: 14
+      - path:
+          - actions
+          - "17"
+          - input
+          - outputs
+        map: 15
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:1
+          - results
+        map: 0
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:11
+          - results
+        map: 16
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:13
+          - results
+        map: 17
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:14
+          - results
+        map: 18
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:16
+          - results
+        map: 19
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:17
+          - results
+        map: 20
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:19
+          - results
+        map: 21
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:20
+          - results
+        map: 22
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:22
+          - results
+        map: 23
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:24
+          - results
+        map: 24
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:26
+          - results
+        map: 25
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:28
+          - results
+        map: 26
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:29
+          - results
+        map: 27
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:30
+          - results
+        map: 28
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:4
+          - results
+        map: 29
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:5
+          - results
+        map: 30
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:7
+          - results
+        map: 31
+      - path:
+          - actionContexts
+          - sync-upstream-volume-duck:9
+          - results
+        map: 32
+      - path:
+          - outputs
+        map: 28
+      - path:
+          - waits
+          - "0"
+          - results
+        map: 33
+      - path:
+          - waits
+          - "1"
+          - results
+        map: 34
+      - path:
+          - waits
+          - "2"
+          - results
+        map: 35
+      - path:
+          - waits
+          - "3"
+          - results
+        map: 36
+      - path:
+          - evidenceWaits
+          - "0"
+          - results
+        map: 37
+      - path:
+          - evidenceWaits
+          - "1"
+          - results
+        map: 38
+      - path:
+          - evidenceWaits
+          - "2"
+          - results
+        map: 39
+      - path:
+          - evidenceWaits
+          - "3"
+          - results
+        map: 40
+      - path:
+          - evidenceWaits
+          - "4"
+          - results
+        map: 41
+      - path:
+          - evidenceWaits
+          - "5"
+          - results
+        map: 42
+      - path:
+          - evidenceWaits
+          - "6"
+          - results
+        map: 43
+      - path:
+          - evidenceWaits
+          - "7"
+          - results
+        map: 44
+  storageHash: e0ead2b57ffaa7327eb3c3407ee2bd13c375cbce2691d6f529f2494952e510b0
+check_epoch: 8
