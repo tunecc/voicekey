@@ -131,7 +131,7 @@ func drawCandidate(_ candidate: Candidate, state: TrayState, tint: NSColor) {
         let amplitude: CGFloat = state == .idle ? 3.6 : 5.2
         let alpha: CGFloat = state == .idle ? 0.85 : 1.0
         let line = appWavePath(
-            from: 1.7, to: 16.3, centerY: 9.0, amplitude: amplitude,
+            from: 1.7, to: 16.3, centerY: 10.14, amplitude: amplitude,
             cycles: 1.5, phase: 0.6, envelopePower: 2.0
         )
         line.lineWidth = state == .idle ? 2.4 : 2.75
