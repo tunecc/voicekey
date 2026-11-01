@@ -227,7 +227,8 @@ fn preview_sound(app: AppHandle, id: String) {
 
 #[tauri::command]
 fn list_sounds() -> Vec<serde_json::Value> {
-    crate::sound::SYSTEM_SOUNDS.iter().map(|id| json!({ "id": id, "name": id })).collect()
+    // 只列出当前平台能发声的音效：非 macOS 无兜底 WAV 的系统音不提供（review #3）
+    crate::sound::selectable_sounds().iter().map(|id| json!({ "id": id, "name": id })).collect()
 }
 
 #[tauri::command]
@@ -246,6 +247,12 @@ fn update_install(app: AppHandle) {
     update::install(&app);
 }
 
+/// 设置页「测试」按钮：用固定的两条示例转写真打一次 Jev，返回选中项与脱敏 key
+#[tauri::command]
+async fn jev_test(config: voicekey_core::jev::Config) -> Result<voicekey_core::jev::Tested, String> {
+    voicekey_core::jev::test(&config).await.map_err(|e| e.to_string())
+}
+
 fn main() {
     if let Some(code) = offline::worker_main() {
         std::process::exit(code);
@@ -259,7 +266,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             get_state, set_settings, perm_status, perm_action, microphones, record_shortcut,
             pick_choose, pick_key, pick_resize, compare_toggle, meter, open_url, model_download,
-            update_check, update_install, preview_sound, list_sounds
+            update_check, update_install, jev_test, preview_sound, list_sounds
         ])
         .setup(move |app| {
             #[cfg(target_os = "macos")]

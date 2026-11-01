@@ -1,119 +1,160 @@
 <p align="center"><img src="docs/icon.png" width="128" alt="VoiceKey"></p>
 
-<h1 align="center">VoiceKey（tunecc fork）</h1>
+<h1 align="center">VoiceKey</h1>
 
-本仓库是 [J3n5en/voicekey](https://github.com/J3n5en/voicekey) 的个人 fork。这里只记录与上游的差异；功能、截图、各平台说明、使用方式和源码构建请以上游 [README](https://github.com/J3n5en/voicekey#readme) 为准。
+<p align="center">macOS、Windows、iOS、Android 语音输入。桌面端按住或点按快捷键说话；iOS 是带语音的中文键盘；Android 不替换输入法，识别结果写进当前输入框。</p>
 
-## 差异一览
+<p align="center">
+  <img src="docs/screenshots/pick-live.png" width="420" alt="候选框：说话时各渠道实时出字">
+  <img src="docs/screenshots/pick-done.png" width="420" alt="候选框：定稿后选一条上屏">
+</p>
+<p align="center"><sub>多渠道候选框：说话时各渠道实时出字（左），松开后逐条定稿并显示耗时，数字键或回车选一条上屏（右）</sub></p>
 
-| 方面 | 上游 | 本 fork |
-|---|---|---|
-| macOS 麦克风释放 | 按名称选择麦克风时，语音结束后可能持续占用 | 已修复 |
-| 录音时降低音量 | 支持（PR #8，默认关闭） | 同上游；另与提示音联动，开始音播完后再压低 |
-| 录音提示音 | 无 | 录音各阶段可播放提示音，极简/自定义两种方案 |
-| macOS 菜单栏图标 | 通用麦克风图形 | App 风格单线声波模板图，随菜单栏明暗自动着色 |
-| 云端安装包 | Release（需要签名 Secrets） | 手动 Desktop Build（未签名） |
-| 云端构建版本号 | `x.y.z` | `0.0.<run_number>` |
+## 功能
 
-## 1. macOS：语音输入结束后释放麦克风
+以下为 macOS / Windows。
 
-**现象**：选择具体麦克风后，语音输入结束，系统麦克风指示仍常驻，进程持续占用设备。
+- **多个识别渠道**：豆包、微信、千问、百度、搜狗、讯飞、Chatterfly 云端识别，以及完全本地运行的离线识别：微信离线（macOS / Windows）、豆包离线（仅 Apple 芯片 Mac）
+- **多渠道候选**：勾选 2 个以上渠道同时识别，光标旁弹出候选框实时显示各渠道结果，按数字键或 ↑↓ + 回车选一条上屏；默认选中上次用的渠道
+- **渠道对比**：在设置里录一段话，并排比较各渠道的结果和速度
+- **长按说话**：按住快捷键开始，松开结束
+- **点按说话**：自定义快捷键，点一下开始，停顿 1–5 秒自动结束，再点一下可提前结束
+- **边说边上屏**：识别中的文字实时打到光标处，结束后按定稿修正；关闭后改为结束时一次性粘贴
+- **麦克风选择**、开机启动、浅色 / 深色主题、应用内自动更新
 
-**根因**：cpal 0.15.3 的 CoreAudio 后端只为非默认设备注册断连监听；监听闭包持有 `Stream` 克隆并存入 `StreamInner`，与 `Arc<StreamInner>` 形成引用环，而 `Stream` 没有 `Drop`。因此录音线程 `drop(stream)` 不会停止 `AudioUnit`。本仓库按名称选设备时走 `host.devices()`，这些设备的 `is_default` 恒为 `false`，每轮录音都会命中该路径。
+## 截图
 
-**修复**：
+| 识别渠道 | 渠道对比 |
+|---|---|
+| <img src="docs/screenshots/settings.png" alt="识别渠道设置"> | <img src="docs/screenshots/compare.png" alt="渠道对比"> |
 
-- 停止录音时先 `stream.pause()` 再 drop，直接停止音频单元；
-- 选中的设备就是系统默认输入时改走 `default_input_device()`，避开断连监听；
-- 设置页/引导页的输入电平表只跟随窗口焦点采集，失焦即停。
+单渠道模式下，屏幕底部显示声波浮层和实时文字：
 
-相关文件：`crates/core/src/audio.rs`、`crates/core/src/audio/devices.rs`、`app/src/pages/Audio.svelte`、`app/src/pages/Onboard.svelte`。
+<p align="center"><img src="docs/screenshots/hud.png" width="420" alt="声波浮层"></p>
 
-实机回归测试（macOS，需麦克风）：
+## iOS
 
-```bash
-cargo test -p voicekey-core --lib -- --include-ignored --test-threads=1
-```
+iOS 17+ 的中文键盘（仅 iPhone）。默认 26 键全拼，可切九宫格；功能键和顶栏可以拖动调整。左上角麦克风说话。键盘本身不能录音，由主 App 在后台收音，再把文字送回键盘。
 
-测试通过 `kAudioDevicePropertyDeviceIsRunning` 断言停止后输入设备不再运行。
+- 云端渠道与桌面端相同，没有离线引擎
+- 勾选多个渠道时，在键盘里对比结果再选一条上屏
+- 默认画中画待机：不占麦克风，点麦克风才录音；画中画不可用时改为常开麦
+- 操作按钮或快捷指令「VoiceKey 说话」：正在使用本键盘时开始，再按一次结束
+- 点按说话的静音自动结束可在 1–5 秒间设置
+- 拼音词库来自[雾凇拼音](https://github.com/iDvel/rime-ice)（GPL-3.0），并补了搜狗流行词和部分 AI 词
 
-## 2. 录音时降低音量
+语音和与主 App 通信需要「允许完全访问」；不开也能本地打字。安装或更新后，已在跑的键盘进程不会换成新版本，需到「设置 › 通用 › 键盘 › 键盘 › VoiceKey」删除后再添加。
 
-设置 → 音频 → **系统音频 → 录音时降低音量**（来自上游 PR #8）：确认开始录音后按比例平滑压低系统输出音量，结束后自动恢复。默认关闭；降低比例 20%–100%（默认 70%，100% 显示为「静音」）。
+## Android
 
-- macOS 与 Windows 均支持。
-- 按相对比例只降不升；用户录音期间手动调节音量后自动让权，不会被覆盖。
-- 输出设备切换、硬件音量量化等边界行为与上游实现一致。
-- fork 差异：与提示音联动，开始音播完后再开始压低，避免提示音被压掉。
+Android 8+（arm64）。不替换当前输入法：开启无障碍服务「VoiceKey 语音输入」后，在任意输入框长按音量下键，或点悬浮球说话，结果写入光标处。部分应用会隐藏控件树，Android 13 及以上改为经输入连接提交文字。
 
-相关文件：`crates/platform/src/volume.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
+- 渠道：豆包、微信、千问、百度、搜狗、讯飞，以及微信离线（约 100MB，本机推理）
+- 多渠道候选、边说边上屏、点按静音 1–5 秒自动结束
+- 长按音量下键只在输入框聚焦时生效，短按仍调音量
 
-## 3. 录音提示音
+国内系统清理后台会关掉无障碍。应用内有忽略电池优化、自启动和锁定最近任务的引导。
 
-设置 → 音频 → **提示音**（默认开启）：录音各阶段播放提示音，音量跟随系统输出。覆盖四种事件：开始录音、识别处理、完成、出错。
+## 安装
 
-- 音效方案：**极简**——各阶段固定音效（macOS 复用系统音 Tink/Pop，其余平台用内置音，完成/错误不发声）；**自定义**——四个事件逐项挑选内置音效。
-- 提示音资源随安装包分发（`resources/sounds/*`）；播放失败自动跳过，不影响录音与识别流程。
-- 与「录音时降低音量」联动：开始音播完后才开始压低系统音量，结束后恢复，避免提示音被压掉。
+从 [Releases](https://github.com/J3n5en/voicekey/releases) 下载桌面端安装包和 Android APK。iOS 不在 Release 里，需从源码构建。
 
-相关文件：`app/src-tauri/src/sound.rs`、`app/src-tauri/src/controller.rs`、`app/src-tauri/src/settings.rs`、`app/src/pages/Audio.svelte`。
+| 系统 | 文件 |
+|---|---|
+| macOS 13+（Apple 芯片与 Intel 通用） | `VoiceKey-x.y.z.dmg`，打开后拖到「应用程序」 |
+| Windows 10/11 x64 | `VoiceKey-x.y.z-x64-setup.exe` 或 `.msi` |
+| Android 8+（arm64） | `VoiceKey-x.y.z-android.apk`，首次安装需允许浏览器或文件管理器安装未知应用 |
 
-## 4. 云端安装包（Desktop Build）
+Android 装好后，在应用「关于与更新」里检查并更新：首次更新要允许 VoiceKey 安装未知应用，下载校验完成后在系统弹窗里确认安装。
 
-[`desktop-build.yml`](.github/workflows/desktop-build.yml) 是手动触发的构建，不需要签名密钥：
-
-- 入口：Actions → **Desktop Build** → Run workflow（默认 `main`）
-- 产物按平台+架构分开：`VoiceKey-macOS-arm64`（仅 Apple Silicon 的 arm64 DMG，在 Intel runner 上交叉编译）、`VoiceKey-Windows-x64`（NSIS `setup.exe` + MSI），构件保留 14 天
-- 版本：`0.0.<run_number>`（MSI 不支持非数字预发布段）
-- macOS 使用 adhoc 签名、不做公证、不生成 updater 更新包；安装后需解除隔离：
+macOS 发布包为自签名、未经 Apple 公证，首次运行前需解除隔离：
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/VoiceKey.app
 ```
 
-注意：
+之后的版本可在应用内更新（设置 → 通用，或菜单栏），无需重复上述步骤，已授予的权限也会保留。
 
-- adhoc 签名会随构建变化，macOS 可能要求重新授予辅助功能/麦克风权限。
-- 测试包不含 updater 产物；应用内更新指向本仓库的正式发布（见第 6 节），`0.0.<run_number>` 测试包不会再被上游版本覆盖。
-- 正式签名发布使用 [`release.yml`](.github/workflows/release.yml)，需要签名密钥等 Secrets（见第 6 节）。
+旧版原生 Swift 实现（仅 macOS 15+）保留在 [`legacy`](https://github.com/J3n5en/voicekey/tree/legacy) 分支。
 
-## 5. 构建兼容性：stable Rust 1.97
+## 使用
 
-上游 `voicekey-wtlocal` 使用的 `vdotq_s32` 仍在不稳定 feature `stdarch_neon_dotprod` 后面，stable Rust 1.97 会拒绝编译。本 fork 将其替换为等价的内联 `sdot` 汇编，并在运行时检测 ARMv8.2 dotprod 支持，缺失时回退标量实现。
+1. 首次启动会打开引导：授予 **辅助功能**（仅 macOS，用于监听快捷键和上屏）和 **麦克风** 权限，并试说一句
+2. 之后常驻菜单栏 / 系统托盘，可在托盘菜单切换渠道、暂停监听、打开设置
+3. 在任意输入框中说话
 
-因此不需要 `RUSTC_BOOTSTRAP` 即可在 stable 工具链构建。相关文件：`crates/wtlocal/src/kernels.rs`。
+| 设置项 | macOS 默认 | Windows 默认 |
+|---|---|---|
+| 识别渠道 | 豆包输入法 | 豆包输入法 |
+| 长按快捷键 | 右 ⌥ | 右 Alt |
+| 点按快捷键 | 右 ⌘ | 右 Ctrl |
+| 静音自动结束 | 1.5 秒 | 1.5 秒 |
+| 边说边上屏 | 开 | 开 |
 
-## 6. 更新通道与签名密钥
+单个修饰键可同时作为长按键和点按键：快速点一下为点按，按住超过 0.3 秒为长按。设为组合键的点按快捷键会被拦截，不再传给前台应用。
 
-应用内「检查更新」（设置 → 通用，或菜单栏）读取 `app/src-tauri/tauri.conf.json` 的 `plugins.updater`：
+**离线识别**：首次选择离线渠道时下载模型，之后断网也能用。
 
-- `endpoints`：本仓库 `https://github.com/tunecc/voicekey/releases/latest/download/latest.json`——打 tag 触发 [`release.yml`](.github/workflows/release.yml) 时自动生成，下载地址按 `$GITHUB_REPOSITORY` 指向本仓库
-- `pubkey`：本 fork 自己的 minisign 公钥，与发布签名的私钥配对
+- **微信离线**：下载微信输入法官方离线语音包（约 100MB，来自腾讯 CDN），解出模型保存在数据目录的 `wtoffline/` 下；由本项目自己实现的 int8 推理运行，不依赖官方程序，macOS 和 Windows 都可用。
+- **豆包离线**（仅 Apple 芯片 Mac）：下载引擎库（约 8MB，来自本仓库 [offline-libs](https://github.com/J3n5en/voicekey/releases/tag/offline-libs) Release）和模型（约 177MB，来自字节 CDN），保存在 `~/Library/Application Support/VoiceKey/offline/`；只在用到时启动后台进程，空闲 5 分钟后自动释放。
 
-发版前一次性配置（私钥永不入库，放在维护者本机）：
+## 从源码构建
+
+需要 Rust（stable）、Node 22+ 和 CMake；Windows 另需 MSVC 生成工具。
 
 ```bash
-# 1. 生成密钥对：~/.tauri/voicekey.key（私钥）与 ~/.tauri/voicekey.key.pub（公钥）
-#    --ci 为无口令密钥；如需口令保护，去掉 --ci 并记住口令
-npx tauri signer generate -w ~/.tauri/voicekey.key --ci
-
-# 2. 私钥内容配到仓库 Secrets（无口令密钥无需配置口令 Secret）
-gh secret set TAURI_SIGNING_PRIVATE_KEY --repo tunecc/voicekey < ~/.tauri/voicekey.key
-
-# 3. 公钥写入 tauri.conf.json 的 plugins.updater.pubkey（内容来自 cat ~/.tauri/voicekey.key.pub）
+cd app
+npm ci
+npx tauri dev                    # 开发运行
+npx tauri build --bundles app    # macOS：target/release/bundle/macos/VoiceKey.app
+npx tauri build                  # Windows：nsis / msi 安装包
 ```
 
-发版验证：合入后打 tag（如 `v1.7.3`；注意 tag 版本号需符合 MSI 规则——预发布段必须纯数字，如 `v1.7.2-1`，不能用 `fork.1` 这类字母段）触发 `release.yml` → Release 产物含 `latest.json` 且下载 URL 指向本仓库 → 已安装新版本的 app 内「检查更新」可发现新版本并完成验签安装；签名校验失败的更新会被拒绝安装，不影响当前版本。
+- iOS（需要 Xcode 与 XcodeGen）：`ios/build.sh`，产物 `ios/build/VoiceKey.ipa`；`ios/build.sh --unsigned` 出未签名包
+- Android（需要 Android NDK 与 cargo-ndk）：先 `android/build-rust.sh`，再在 `android/` 执行 `./gradlew :app:assembleRelease`
+- Opus 由 `audiopus_sys` 从源码静态编译，相关环境变量见 `.cargo/config.toml`
+- 打包 DMG：`Scripts/dmg.sh out.dmg path/to/VoiceKey.app app/src-tauri/icons/icon.icns`
+- 命令行测试识别：`cargo run -p voicekey-core --bin vk-test -- doubao|wetype|qwen|baidu|sogou|iflytek file.wav`（WAV 需 16kHz 单声道）
 
-注意：`release.yml` 除签名密钥外还需要既有的 macOS 签名证书 Secrets（`MACOS_CERTIFICATE` / `MACOS_CERTIFICATE_PASSWORD`）；`release` job 依赖全部平台构建成功，任一平台失败（如 Secrets 缺失）都不会发布 Release 和 `latest.json`。
+## 发布
 
-## 安装与上游
+推送 `v*` 标签后，GitHub Actions 构建 macOS 通用 DMG、Windows 安装包和 Android 签名 APK，连同应用内更新所需的更新包、`latest.json`（桌面）与 `android.json`（Android）一起创建 Release：
 
-- 上游正式安装包：[J3n5en/voicekey Releases](https://github.com/J3n5en/voicekey/releases)
-- 本 fork 的测试包：Actions → [Desktop Build](https://github.com/tunecc/voicekey/actions/workflows/desktop-build.yml) 最近一次成功运行
-- 上游源码与文档：[J3n5en/voicekey](https://github.com/J3n5en/voicekey)
+```bash
+git tag v1.0.1 && git push origin v1.0.1
+```
 
-本 fork 的 `main` 会合并上游发布；上述改动在每次同步后需要重新验证。
+需要的 Secrets：`TAURI_SIGNING_PRIVATE_KEY` / `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`（`npx tauri signer generate` 生成的更新签名密钥）、`MACOS_CERTIFICATE` / `MACOS_CERTIFICATE_PASSWORD`（`Scripts/gen-cert.sh` 生成的自签名证书，base64 编码的 p12）。
+
+Android 另需 4 个 Secrets：`ANDROID_KEYSTORE_BASE64`（release keystore 用 `base64` 编码）、`ANDROID_KEYSTORE_PASSWORD`、`ANDROID_KEY_ALIAS`、`ANDROID_KEY_PASSWORD`。tag 构建缺任何一个都会失败，不会发出 debug 签名包。签名一旦定下就不能换，换了已装用户无法覆盖升级，只能卸载重装。
+
+Android 的 versionCode 由标签推导：`vX.Y.Z` → `X×10000 + Y×100 + Z`（如 `v1.8.0` 为 10800），所以标签必须是 `vX.Y.Z` 形式，且 minor、patch 都不能超过 99，推出的值要大于现有的 6。应用内更新靠 versionCode 比较，新版必须比已装版本大。
+
+## 结构
+
+| 路径 | 内容 |
+|---|---|
+| `crates/core` | 识别引擎：豆包（protobuf + WebSocket）、微信（secp128r1 ECDH、AES-256-ECB、snappy）、千问（HMAC-SHA1、AES-128-CBC）；音频采集与重采样、Opus 编码 |
+| `crates/platform` | 平台层：全局快捷键（CGEventTap / WH_KEYBOARD_LL）、上屏、光标位置、权限 |
+| `crates/hanbao` | 离线引擎：编译 `Sources/CHanbao`，在 macOS 进程内加载安卓 ELF 引擎库 |
+| `crates/wtlocal` | 微信离线引擎：解析官方 xnet 模型，FBank 特征、int8 矩阵乘（NEON / AVX2）、40 层 Transformer 推理与流式解码 |
+| `app/src-tauri` | Tauri 应用：设置、快捷键状态机、会话调度、浮层窗口、托盘、离线资源下载 |
+| `app/src` | Svelte 界面：设置、引导、声波浮层、候选框、渠道对比 |
+| `design/` | 交互原型与渠道图标 |
+| `ios/` | iOS 主 App 与键盘扩展。拼音输入、画中画待机，和键盘的协议见 `ios/PROTOCOL.md` |
+| `android/` | Android 无障碍语音输入。`build-rust.sh` 把识别引擎编成 `libvoicekey.so` |
+
+音频以 16kHz 单声道、20ms 一帧采集。识别设备身份在本机运行时生成，保存在 `~/Library/Application Support/VoiceKey/`（Windows 为 `%APPDATA%\VoiceKey\`）。
+
+## 链接
+
+- 安装包：[github.com/J3n5en/voicekey/releases](https://github.com/J3n5en/voicekey/releases/latest)
+- 更新频道：[t.me/EnsoAI_news](https://t.me/EnsoAI_news)
+- 讨论群组：[t.me/EnsoCode_Official](https://t.me/EnsoCode_Official)
+
+## 友链
+
+- [Linux.Do](https://linux.do/) — 与社区一起分享、讨论、关注开发进展。
 
 ## 声明
 

@@ -35,11 +35,11 @@
   }
 
   // 面板行：标题按会话时刻命名，副标题只描述该时刻（不提发声与否）；
-  // key 对应后端逐事件设置字段（存 macOS 系统音名或 none）
-  const CHIME_ROWS: { title: string; desc: string; key: "soundStart" | "soundProcessing" | "soundDone" | "soundError" }[] = [
+  // key 对应后端逐事件设置字段（存 macOS 系统音名或 none）。
+  // 无「识别完成」行：识别很快，处理音即完成信号，独立完成音会与之短间隔连响
+  const CHIME_ROWS: { title: string; desc: string; key: "soundStart" | "soundProcessing" | "soundError" }[] = [
     { title: "录音开始", desc: "开始录入语音时", key: "soundStart" },
     { title: "识别处理", desc: "录音结束，进入识别处理", key: "soundProcessing" },
-    { title: "识别完成", desc: "识别结果就绪或上屏时", key: "soundDone" },
     { title: "识别失败", desc: "出错、超时或没有内容时", key: "soundError" },
   ];
 </script>
@@ -61,7 +61,6 @@
     <Meter />
   </div>
 </div>
-
 <h3>系统音频</h3>
 <div class="group">
   <div class="row">
@@ -96,9 +95,7 @@
 </div>
 
 <style>
-  .sound-name { font-weight: 600; flex: none; }
-  .btn:disabled { opacity: 0.4; cursor: default; }
-  .sound-name.muted { color: var(--fg2); font-weight: 400; }
   .duck-range { width: 160px; accent-color: var(--accent); }
   .duck-value { width: 42px; text-align: right; font-variant-numeric: tabular-nums; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
 </style>

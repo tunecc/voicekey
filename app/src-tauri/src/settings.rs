@@ -82,7 +82,7 @@ const LOWER_SYSTEM_VOLUME_PERCENT_MAX: u8 = 100;
 const LOWER_SYSTEM_VOLUME_PERCENT_STEP: u8 = 5;
 const LOWER_SYSTEM_VOLUME_PERCENT_DEFAULT: u8 = 70;
 
-/// 「无」保留字：音效逐事件与长按说话的显式停用取值（见 design.md D1）
+/// 「无」保留字：音效逐事件与长按说话的显式停用取值
 pub const NONE: &str = "none";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -105,18 +105,15 @@ pub struct Settings {
     pub last_pick: Option<Channel>,
     /// 候选框各渠道上屏次数，次数多的排前
     pub pick_counts: HashMap<Channel, u32>,
-    /// 音频反馈提示音总开关
+    /// 音频反馈提示音总开关；默认关闭——缺省键=关，升级用户不会被突然出声
+    /// （与 lower_system_volume 默认关闭原则一致，review #4）
     pub sound_enabled: bool,
-    /// 录音开始的提示音 id（见 crate::sound::SOUNDS）
+    /// 录音开始的提示音 id（见 crate::sound::SYSTEM_SOUNDS）
     pub sound_start: String,
     /// 进入识别处理的提示音 id
     pub sound_processing: String,
-    /// 识别完成的提示音 id
-    pub sound_done: String,
     /// 识别失败的提示音 id
     pub sound_error: String,
-    /// 音效方案：simple=简洁（固定映射）、custom=自定义（逐事件自选）
-    pub sound_scheme: String,
     pub autostart: bool,
     pub theme: String,
     /// 真正进入聆听后按相对比例压低系统输出；默认关闭，升级用户不会被突然改变系统声音。
@@ -124,6 +121,8 @@ pub struct Settings {
     /// 录音时相对原始系统音量降低的百分比；持久化为 settings.json 的 lowerSystemVolumePercent。
     pub lower_system_volume_percent: u8,
     pub onboarded: bool,
+    /// 多渠道定稿后的 Jev 智能选择配置；默认关闭
+    pub jev: voicekey_core::jev::Config,
 }
 
 impl Default for Settings {
@@ -142,17 +141,16 @@ impl Default for Settings {
             multi: Channel::engines().into_iter().filter(|&c| c != Channel::WetypeOffline).collect(),
             last_pick: None,
             pick_counts: HashMap::new(),
-            sound_enabled: true,
+            sound_enabled: false,
             sound_start: crate::sound::DEFAULT_START.into(),
             sound_processing: crate::sound::DEFAULT_PROCESSING.into(),
-            sound_done: crate::sound::DEFAULT_DONE.into(),
             sound_error: crate::sound::DEFAULT_ERROR.into(),
-            sound_scheme: crate::sound::SCHEME_SIMPLE.into(),
             autostart: false,
             theme: "system".into(),
             lower_system_volume: false,
             lower_system_volume_percent: LOWER_SYSTEM_VOLUME_PERCENT_DEFAULT,
             onboarded: false,
+            jev: voicekey_core::jev::Config::default(),
         }
     }
 }
@@ -186,15 +184,14 @@ impl Settings {
         for (id, default) in [
             (&mut self.sound_start, crate::sound::DEFAULT_START),
             (&mut self.sound_processing, crate::sound::DEFAULT_PROCESSING),
-            (&mut self.sound_done, crate::sound::DEFAULT_DONE),
             (&mut self.sound_error, crate::sound::DEFAULT_ERROR),
         ] {
-            if id != NONE && !crate::sound::is_known(id) {
+            // 非法值或当前平台不可选（无发声路径，如非 macOS 上无兜底 WAV 的系统音）
+            // 一律回退该事件默认值，避免「选了不响」（review #3）
+            if id != NONE && !crate::sound::selectable_sounds().contains(&id.as_str()) {
                 *id = default.into();
             }
         }
-        // 自定义方案已移除：恒按简洁固定映射发声，历史配置中的 scheme/逐事件字段被忽略
-        self.sound_scheme = crate::sound::SCHEME_SIMPLE.into();
         let percent = self
             .lower_system_volume_percent
             .clamp(LOWER_SYSTEM_VOLUME_PERCENT_MIN, LOWER_SYSTEM_VOLUME_PERCENT_MAX);
@@ -279,68 +276,65 @@ mod sound_settings_tests {
     /// 旧版配置文件没有提示音字段：反序列化后应得到默认值，不报错
     #[test]
     fn legacy_config_without_sound_fields_falls_back_to_defaults() {
-        let s: Settings = serde_json::from_str(r#"{"channel":"doubao","mic":"","volume":15}"#).unwrap();
-        assert!(s.sound_enabled, "提示音总开关默认开启");
+        let s: Settings = serde_json::from_str(r#"{"channel":"doubao","mic":""}"#).unwrap();
+        assert!(!s.sound_enabled, "缺省键=关：升级用户不被突然出声（review #4）");
         assert!(crate::sound::is_known(&s.sound_start), "默认开始音效必须在音效池中");
         assert!(crate::sound::is_known(&s.sound_processing));
-        assert!(crate::sound::is_known(&s.sound_done));
         assert!(crate::sound::is_known(&s.sound_error));
-    }
-
-    /// 旧版配置没有音效方案字段：serde 兜底为简洁（唯一方案）
-    #[test]
-    fn legacy_config_without_sound_scheme_falls_back_to_simple() {
-        let s: Settings = serde_json::from_str(r#"{"channel":"doubao","mic":"","volume":15}"#).unwrap();
-        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE);
-    }
-
-    /// 自定义方案已移除：无论历史配置为何值，sanitize 恒强制简洁
-    #[test]
-    fn sanitize_forces_simple_sound_scheme() {
-        let mut s = Settings::default();
-        s.sound_scheme = "custom".into();
-        s.sanitize();
-        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE, "历史 custom 被强制简洁");
-        s.sound_scheme = "weird".into();
-        s.sanitize();
-        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE, "非法值同样强制简洁");
     }
 
     /// 配置里出现未知/已下架音效 id：sanitize 应回退为该事件默认值
     #[test]
     fn sanitize_reverts_unknown_sound_ids_to_defaults() {
         let mut s = Settings::default();
-        let (start, processing, done, error) = (
-            s.sound_start.clone(),
-            s.sound_processing.clone(),
-            s.sound_done.clone(),
-            s.sound_error.clone(),
-        );
+        let (start, processing, error) =
+            (s.sound_start.clone(), s.sound_processing.clone(), s.sound_error.clone());
         s.sound_start = "nope".into();
-        s.sound_done = "".into();
+        s.sound_processing = "".into();
         s.sanitize();
         assert_eq!(s.sound_start, start);
-        assert_eq!(s.sound_done, done);
+        assert_eq!(s.sound_processing, processing);
         // 合法 id 原样保留
-        s.sound_processing = processing.clone();
         s.sound_error = error.clone();
         s.sanitize();
-        assert_eq!(s.sound_processing, processing);
         assert_eq!(s.sound_error, error);
+    }
+
+    /// 非 macOS：无同名兜底 WAV 的系统音不可发声，sanitize 回退该事件默认值（review #3）
+    #[cfg(not(target_os = "macos"))]
+    #[test]
+    fn sanitize_reverts_platform_unavailable_sound_ids() {
+        let mut s = Settings::default();
+        s.sound_start = "Hero".into();
+        s.sound_error = "Frog".into();
+        s.sanitize();
+        assert_eq!(s.sound_start, crate::sound::DEFAULT_START, "无兜底音回退默认");
+        assert_eq!(s.sound_error, crate::sound::DEFAULT_ERROR, "无兜底音回退默认");
+    }
+
+    /// macOS：系统铃声全量可选，合法选择不被 sanitize 回退
+    #[cfg(target_os = "macos")]
+    #[test]
+    fn sanitize_keeps_platform_available_sound_ids() {
+        let mut s = Settings::default();
+        s.sound_start = "Glass".into();
+        s.sound_error = "Frog".into();
+        s.sanitize();
+        assert_eq!(s.sound_start, "Glass", "macOS 上系统音都可选");
+        assert_eq!(s.sound_error, "Frog");
     }
 
     /// 「无」是显式合法取值：sanitize 不得把它回退成默认音效
     #[test]
     fn sanitize_keeps_none_sound_ids() {
         let mut s = Settings::default();
-        for id in [&mut s.sound_start, &mut s.sound_processing, &mut s.sound_done, &mut s.sound_error] {
+        for id in [&mut s.sound_start, &mut s.sound_processing, &mut s.sound_error] {
             *id = NONE.into();
         }
         s.sanitize();
         for (field, id) in [
             ("sound_start", s.sound_start.as_str()),
             ("sound_processing", s.sound_processing.as_str()),
-            ("sound_done", s.sound_done.as_str()),
             ("sound_error", s.sound_error.as_str()),
         ] {
             assert_eq!(id, NONE, "{field} 的「无」选择不得被 sanitize 回退");

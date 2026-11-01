@@ -66,8 +66,8 @@ test("none is a valid persisted value for per-event sound and hold settings", as
   const s = store();
   const ready = s.init();
   await new Promise(setImmediate);
-  s.save({ soundDone: "none" });
-  assert.equal(s.app.s.soundDone, "none");
+  s.save({ soundError: "none" });
+  assert.equal(s.app.s.soundError, "none");
   s.save({ holdKey: "none" });
   assert.equal(s.app.s.holdKey, "none");
 });
