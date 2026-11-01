@@ -73,14 +73,38 @@ xattr -dr com.apple.quarantine /Applications/VoiceKey.app
 注意：
 
 - adhoc 签名会随构建变化，macOS 可能要求重新授予辅助功能/麦克风权限。
-- 应用内更新仍指向上游 Releases。`0.0.<run_number>` 低于上游 `1.7.x`，会一直提示有更新；安装更新会替换成不含本仓库差异的上游版本。
-- 正式签名发布仍使用原 [`release.yml`](.github/workflows/release.yml)；本 fork 没有配置它需要的 Secrets，需要时自行补上。
+- 测试包不含 updater 产物；应用内更新指向本仓库的正式发布（见第 6 节），`0.0.<run_number>` 测试包不会再被上游版本覆盖。
+- 正式签名发布使用 [`release.yml`](.github/workflows/release.yml)，需要签名密钥等 Secrets（见第 6 节）。
 
 ## 5. 构建兼容性：stable Rust 1.97
 
 上游 `voicekey-wtlocal` 使用的 `vdotq_s32` 仍在不稳定 feature `stdarch_neon_dotprod` 后面，stable Rust 1.97 会拒绝编译。本 fork 将其替换为等价的内联 `sdot` 汇编，并在运行时检测 ARMv8.2 dotprod 支持，缺失时回退标量实现。
 
 因此不需要 `RUSTC_BOOTSTRAP` 即可在 stable 工具链构建。相关文件：`crates/wtlocal/src/kernels.rs`。
+
+## 6. 更新通道与签名密钥
+
+应用内「检查更新」（设置 → 通用，或菜单栏）读取 `app/src-tauri/tauri.conf.json` 的 `plugins.updater`：
+
+- `endpoints`：本仓库 `https://github.com/tunecc/voicekey/releases/latest/download/latest.json`——打 tag 触发 [`release.yml`](.github/workflows/release.yml) 时自动生成，下载地址按 `$GITHUB_REPOSITORY` 指向本仓库
+- `pubkey`：本 fork 自己的 minisign 公钥，与发布签名的私钥配对
+
+发版前一次性配置（私钥永不入库，放在维护者本机）：
+
+```bash
+# 1. 生成密钥对：~/.tauri/voicekey.key（私钥）与 ~/.tauri/voicekey.key.pub（公钥）
+#    --ci 为无口令密钥；如需口令保护，去掉 --ci 并记住口令
+npx tauri signer generate -w ~/.tauri/voicekey.key --ci
+
+# 2. 私钥内容配到仓库 Secrets（无口令密钥无需配置口令 Secret）
+gh secret set TAURI_SIGNING_PRIVATE_KEY --repo tunecc/voicekey < ~/.tauri/voicekey.key
+
+# 3. 公钥写入 tauri.conf.json 的 plugins.updater.pubkey（内容来自 cat ~/.tauri/voicekey.key.pub）
+```
+
+发版验证：合入后打 tag（如 `v1.7.3`；注意 tag 版本号需符合 MSI 规则——预发布段必须纯数字，如 `v1.7.2-1`，不能用 `fork.1` 这类字母段）触发 `release.yml` → Release 产物含 `latest.json` 且下载 URL 指向本仓库 → 已安装新版本的 app 内「检查更新」可发现新版本并完成验签安装；签名校验失败的更新会被拒绝安装，不影响当前版本。
+
+注意：`release.yml` 除签名密钥外还需要既有的 macOS 签名证书 Secrets（`MACOS_CERTIFICATE` / `MACOS_CERTIFICATE_PASSWORD`）；`release` job 依赖全部平台构建成功，任一平台失败（如 Secrets 缺失）都不会发布 Release 和 `latest.json`。
 
 ## 安装与上游
 

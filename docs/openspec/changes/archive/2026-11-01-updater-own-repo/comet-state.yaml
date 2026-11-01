@@ -1,0 +1,2613 @@
+# comet-execution: managed-run
+workflow: full
+language: zh-CN
+phase: archive
+context_compression: off
+build_mode: autonomous
+build_pause: null
+subagent_dispatch: null
+tdd_mode: tdd
+review_mode: standard
+isolation: current
+bound_branch: main
+verify_mode: null
+auto_transition: true
+base_ref: ff173c0d255caa3e33483a850ad6fb590c40d212
+design_doc: docs/openspec/changes/archive/2026-11-01-updater-own-repo/design.md
+plan: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+verify_result: pass
+verify_failures: 0
+check_epoch: 6
+verification_report: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+branch_status: pending
+created_at: 2026-11-01
+verified_at: 2026-11-01
+archive_confirmation: confirmed
+archived: true
+direct_override: false
+handoff_context: docs/openspec/changes/archive/2026-11-01-updater-own-repo/.comet/handoff/design-context.json
+handoff_hash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+classic_profile: null
+classic_migration: null
+run_checkpoint:
+  schema: comet.workflow-run-checkpoint.v2
+  hash: 5355b0921f00ebf0641dbc676174aa54bbeb49c336597566e62e37ea03d33852
+  run:
+    protocolVersion: 1
+    schemaVersion: 1
+    runId: updater-own-repo
+    revision: 1
+    workflow:
+      id: comet-classic-full
+      version: "1"
+      hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+    definitionHashes:
+      '["comet-classic-full","1"]': ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+    initialStateHash: df6611e10d265df5999eb5eaf017847a59d630a98da74e8575289fbdb6e15818
+    input:
+      change: updater-own-repo
+      changeDir: docs/openspec/changes/updater-own-repo
+      workspaceBaseline:
+        ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+    state:
+      archiveConfirmation: confirmed
+      archived: true
+      autoTransition: true
+      baseRef: ff173c0d255caa3e33483a850ad6fb590c40d212
+      boundBranch: main
+      branchStatus: pending
+      buildMode: autonomous
+      buildPause: null
+      checkEpoch: 6
+      classicMigration: null
+      classicProfile: null
+      contextCompression: off
+      createdAt: 2026-11-01
+      designDoc: docs/openspec/changes/archive/2026-11-01-updater-own-repo/design.md
+      directOverride: false
+      handoffContext: docs/openspec/changes/archive/2026-11-01-updater-own-repo/.comet/handoff/design-context.json
+      handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+      isolation: current
+      language: zh-CN
+      phase: archive
+      plan: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+      reviewMode: standard
+      subagentDispatch: null
+      tddMode: tdd
+      verificationReport: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+      verifiedAt: 2026-11-01
+      verifyFailures: 0
+      verifyMode: null
+      verifyResult: pass
+      workflow: full
+    status: running
+    sequence: 24
+    actions:
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-ea0c3ee81ff8c6d1297c3e28fccb5d5ab6a102ab54e7b7073b221c0efbef955b
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:1
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 4667a73ce34beda9739954984c4f4c9fd9694154b91c06326abeafb65ce5b93d
+        outcome:
+          actionId: updater-own-repo:1
+          attempt: 1
+          claimToken: portable-ea0c3ee81ff8c6d1297c3e28fccb5d5ab6a102ab54e7b7073b221c0efbef955b
+          inputHash: 4667a73ce34beda9739954984c4f4c9fd9694154b91c06326abeafb65ce5b93d
+          outcomeId: d0a51540-5026-4cc3-a428-877ac1287aeb
+          output:
+            event: open-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 714f2033c1b4ed654550f9ab554264c2926845ae078f227ef9f838783553c88b
+            outcomeId: d0a51540-5026-4cc3-a428-877ac1287aeb
+        reconciliations: []
+        ref: comet-open
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.open
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-open-revalidate
+          token: portable-b313f74dc7ad8cfcc4a89b176b8252ac02f6015b8da9516080a8fd30fcade1aa
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:4
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: eb6424a0ed951fb06ec846c8e2f7d32e5610f22cb97a8b96f43be7588cc06896
+        outcome:
+          actionId: updater-own-repo:4
+          attempt: 1
+          claimToken: portable-b313f74dc7ad8cfcc4a89b176b8252ac02f6015b8da9516080a8fd30fcade1aa
+          inputHash: eb6424a0ed951fb06ec846c8e2f7d32e5610f22cb97a8b96f43be7588cc06896
+          outcomeId: updater-own-repo:4:1:executor-result
+          output:
+            contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 54b4983e4061a5c524a862cc320137ce0253b679e2403a7f62bdc89dc6badf72
+            outcomeId: updater-own-repo:4:1:executor-result
+        reconciliations: []
+        ref: classic-open-revalidate
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.open.revalidate
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-ad4b0fd46d42b9a9edd734d84bffd192fa3f20cd62139ec8edee46ecd74fe404
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:5
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: d6e68f18250a005d5afb2f1354864e47f4a87161c3475b968c49459465b694aa
+        outcome:
+          actionId: updater-own-repo:5
+          attempt: 1
+          claimToken: portable-ad4b0fd46d42b9a9edd734d84bffd192fa3f20cd62139ec8edee46ecd74fe404
+          inputHash: d6e68f18250a005d5afb2f1354864e47f4a87161c3475b968c49459465b694aa
+          outcomeId: e9a3670c-74a6-4f18-ab45-a7863ed37696
+          output:
+            handoffContext: docs/openspec/changes/updater-own-repo/.comet/handoff/design-context.json
+            handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+            proposal: 沿用上次已确认的设计（endpoints+pubkey 写入 tauri.conf.json、README 补密钥步骤、不改
+              release.yml/离线库/应用标识），唯一变化：密钥对已在本机生成（~/.tauri/voicekey.key，无口令，tauri
+              signer generate --ci），公钥实测可签名——D1 的「维护者提供公钥」未知项已解除；D2 明确 Secrets
+              只需 TAURI_SIGNING_PRIVATE_KEY 一项（无口令密钥，口令 Secret
+              留空即合法）。风险取舍新增披露：无口令私钥意味着拿到密钥文件即可签名，属个人 fork 的常见取舍，密钥仅存本机与 GitHub
+              加密 Secrets。测试策略不变：配置 JSON 校验、cargo check、npm build；发布链路验收依赖打
+              tag（README 注明验证时点）。Spec Patch：无。
+            requirementsEvidence:
+              contentHash: 64f45a5d83278204017eaa21d4aa6bdc6d05bc3bd3c9d08f9e65318c2fc5dc81
+              ref: docs/openspec/changes/updater-own-repo
+            sourceEvidence:
+              contentHash: e3a171bc566ad3185907cca92f426de88c3d0cd5c8930cdc8ae0c7117654e814
+              ref: docs/openspec/changes/updater-own-repo
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 04dacd7014ad89db33ae4bbccefde78b697d48c63c40f61be208a5fbd177801f
+            outcomeId: e9a3670c-74a6-4f18-ab45-a7863ed37696
+        reconciliations: []
+        ref: comet-design
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.design.handoff
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-e1f80fc332398b3086778acfda22ea99b201ea1d20356e5fe15b5bfbd3c5d9af
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:7
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: e66f5e05121aa6402e6a10d7a576e332550cdee66c7e178b6ba2af0df8c4811b
+        outcome:
+          actionId: updater-own-repo:7
+          attempt: 1
+          claimToken: portable-e1f80fc332398b3086778acfda22ea99b201ea1d20356e5fe15b5bfbd3c5d9af
+          inputHash: e66f5e05121aa6402e6a10d7a576e332550cdee66c7e178b6ba2af0df8c4811b
+          outcomeId: 8e3c05b6-148e-4347-ae60-6b6d89b39468
+          output:
+            designDoc: docs/openspec/changes/updater-own-repo/design.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 9e76621b90f1a3490bc870c06f2fd5caa6cf4bd6414a97a603935dee8127bf54
+            outcomeId: 8e3c05b6-148e-4347-ae60-6b6d89b39468
+        reconciliations: []
+        ref: comet-design
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.design.document
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-ab9cc6db949de22e1c3033b45f0474044f177ebd5ddfd37615b6958c6d5c4b31
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:9
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 8f94c45b80e01bea8cd82c3c1d97eb8943a3613742033f9565873562c8ae11f1
+        outcome:
+          actionId: updater-own-repo:9
+          attempt: 1
+          claimToken: portable-ab9cc6db949de22e1c3033b45f0474044f177ebd5ddfd37615b6958c6d5c4b31
+          inputHash: 8f94c45b80e01bea8cd82c3c1d97eb8943a3613742033f9565873562c8ae11f1
+          outcomeId: 2dec3395-2395-45dc-b379-f9f03f9a8737
+          output:
+            boundBranch: main
+            buildMode: autonomous
+            directOverride: false
+            isolation: current
+            reviewMode: standard
+            subagentDispatch: null
+            tddMode: tdd
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 1922a0452b650209bd648a54120488bdf208eb891a38a55af45ed9b3d4c0da99
+            outcomeId: 2dec3395-2395-45dc-b379-f9f03f9a8737
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.build.configure
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-3facf27cb14b914f712976c501b2515e227a68af3acaf39c6f5498179e5cfb91
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:11
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 335595da32e071cf03dac1eb917ef9d2d1880078b6c9887419d94d8f29cac724
+        outcome:
+          actionId: updater-own-repo:11
+          attempt: 1
+          claimToken: portable-3facf27cb14b914f712976c501b2515e227a68af3acaf39c6f5498179e5cfb91
+          inputHash: 335595da32e071cf03dac1eb917ef9d2d1880078b6c9887419d94d8f29cac724
+          outcomeId: 4193ee9c-77e8-4957-b03f-eb7e4db06643
+          output:
+            designEvidence:
+              contentHash: 27de6de61ae8cd8a4cc1c920a15dfc2be34d1845a793554bd7b8fe3fee6100f4
+              ref: docs/openspec/changes/updater-own-repo/design.md
+            plan: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+            planEvidence:
+              contentHash: 57b91fc59d5fa266f21491d883d5fd9ac923e3c494e6fe04f30d012942743af6
+              ref: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+            taskRevision: e953a407a43f0eb00a3da46fde5f947cb6b83a93e9e6b14c480c567fe8dd036f
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 27fb2cfe240bec34ec2ccc2acfcb1f39e990e4dc28645a01f90c574e7300b59f
+            outcomeId: 4193ee9c-77e8-4957-b03f-eb7e4db06643
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.build.plan
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          sessionId: zcode-main-session-updater-own-repo
+          token: portable-481f6209a94f04204c8d30690a5a24e6fe42c2865f409e8e2195a14712ed6d13
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:13
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 8cd75f4b52fd3e5700de7e44f12880fd988792e4125c11f873637afe2d718ed2
+        outcome:
+          actionId: updater-own-repo:13
+          attempt: 1
+          claimToken: portable-481f6209a94f04204c8d30690a5a24e6fe42c2865f409e8e2195a14712ed6d13
+          inputHash: 8cd75f4b52fd3e5700de7e44f12880fd988792e4125c11f873637afe2d718ed2
+          outcomeId: b7c987b7-108b-4eb0-8b9d-c2a2d847b962
+          output:
+            event: build-complete
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 26d92274afb538042ca6c2aeca9c463a84722f17d8b5ed36bde07e9991d8b17e
+            outcomeId: b7c987b7-108b-4eb0-8b9d-c2a2d847b962
+        reconciliations: []
+        ref: comet-build
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.build.execute
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-52951323ced77337d87d8e8a80a186683bc880d4bf5200f2fd2c337c119a186f
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:14
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: c8c445b154f8ab1e95c933b3001f7685ec86185eab2baee1a90ff403641874e1
+        outcome:
+          actionId: updater-own-repo:14
+          attempt: 1
+          claimToken: portable-52951323ced77337d87d8e8a80a186683bc880d4bf5200f2fd2c337c119a186f
+          inputHash: c8c445b154f8ab1e95c933b3001f7685ec86185eab2baee1a90ff403641874e1
+          outcomeId: 9aad5d7a-41fc-4a64-9c4b-3b93fb01c34b
+          output:
+            argv:
+              - cargo
+              - check
+              - -p
+              - voicekey
+            changedDuringExecution: []
+            checkEpoch: 2
+            contentHash: 1603b85a3c63e56daf7dcddfb79ab7e69dffb725364bb6c42a5a8989651b07a3
+            cwd: .
+            environment: bd82536b8c253ece9839601cc822b27cb8c935e7a84b75cf618ebe52d427036d
+            exitCode: 0
+            inputAfter: e28eaa5551e8fc027a6672e6b7e454002a07d455f987cfc3e7efd6ec6edc5972
+            inputBefore: e28eaa5551e8fc027a6672e6b7e454002a07d455f987cfc3e7efd6ec6edc5972
+            manifestHash: 8f8243ae897b4db1e9151e2e07e9a5cbe6605a3743b83da5f5ed6885525a3de4
+            manifestRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/42cc42ca-7d99-4a56-988a-6bea5bef8985.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/ce476419-9ec0-4b4a-9bda-aa96059e9b31.log
+            reusable: false
+            reused: false
+            scope: build
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: ab0aae4fba000b7e2751f3c9ec0875debb91db7755792dacf69e1abd1af1c9b6
+            outcomeId: 9aad5d7a-41fc-4a64-9c4b-3b93fb01c34b
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.build.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-guard
+          token: portable-e688694ed2969a2fad2ab1021fe2c216e2adefbc427a7ebc74c09f4f4b011bd2
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:16
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: d83de596bc50a18d149c7c25fe4bad1397c236a8e7ddfb56dbfaedf80aae5156
+        outcome:
+          actionId: updater-own-repo:16
+          attempt: 1
+          claimToken: portable-e688694ed2969a2fad2ab1021fe2c216e2adefbc427a7ebc74c09f4f4b011bd2
+          inputHash: d83de596bc50a18d149c7c25fe4bad1397c236a8e7ddfb56dbfaedf80aae5156
+          outcomeId: 8025b201-055b-40b6-8413-ad68e127f49a
+          output:
+            event: verification-ready
+            verificationReport: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: d42c023fed52a0f60b91c8c198a8d6e4ef536cfe538a0dac742904a2ed38583f
+            outcomeId: 8025b201-055b-40b6-8413-ad68e127f49a
+        reconciliations: []
+        ref: comet-verify
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.verify.run
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-check
+          token: portable-0eec0bbc1ebbfab418fdc92443cca69c59a2ea3c57b3e2df095f8f9b6a4a94ce
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:18
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: ac971bcaf4ba71a53d96eed71b397272e820ed373822ff22aeb8a7c6546d68d8
+        outcome:
+          actionId: updater-own-repo:18
+          attempt: 1
+          claimToken: portable-0eec0bbc1ebbfab418fdc92443cca69c59a2ea3c57b3e2df095f8f9b6a4a94ce
+          inputHash: ac971bcaf4ba71a53d96eed71b397272e820ed373822ff22aeb8a7c6546d68d8
+          outcomeId: 87a8fe4b-797b-4c93-9ab9-644bfc8f32c2
+          output:
+            argv:
+              - cargo
+              - check
+              - -p
+              - voicekey
+            changedDuringExecution: []
+            checkEpoch: 3
+            contentHash: 0b01d4c01c1966d8f9dfa93675938699f71b13065420ce2edec70260975911d9
+            cwd: .
+            deliveryInputs:
+              README.md: git:3560ef98339f1fe0700a4312f4d591f40d961021
+              app/src-tauri/tauri.conf.json: git:6fc9caa4b297e1a261296d3c6dea63b763fc73f2
+            environment: bd82536b8c253ece9839601cc822b27cb8c935e7a84b75cf618ebe52d427036d
+            exitCode: 0
+            inputAfter: 23735e0fd103d79e7ea95bc6f365cff35fbcb1ed26b9831f733d99702d602380
+            inputBefore: 23735e0fd103d79e7ea95bc6f365cff35fbcb1ed26b9831f733d99702d602380
+            manifestHash: 42dd9fd9a2c2177dacc42b74323efc9d1d7d91a8da6e1bb43f98b557088cb268
+            manifestRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/1185de37-4dbe-4a11-be97-bfe738177711.manifest
+            receiptRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/a7ce9703-15ab-48c4-817b-a8bb6bd64e34.log
+            reusable: false
+            reused: false
+            scope: verify
+            tier: full
+            timeoutMs: 300000
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: db481997b737d73798cbbe10451f3ca9ce0037cbc661b8702a69b06c058fb6ed
+            outcomeId: 87a8fe4b-797b-4c93-9ab9-644bfc8f32c2
+        reconciliations: []
+        ref: classic-check
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.verify.check
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-state
+          token: portable-d4f082bfcd829869e3862069de31a65eca48e762e712cd42a8a515ed384c500f
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:20
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: c2c34f5c0bc3608d5a3009684f4631cd4d553c97170fc37ab65d71b9d52d6f9c
+        outcome:
+          actionId: updater-own-repo:20
+          attempt: 1
+          claimToken: portable-d4f082bfcd829869e3862069de31a65eca48e762e712cd42a8a515ed384c500f
+          inputHash: c2c34f5c0bc3608d5a3009684f4631cd4d553c97170fc37ab65d71b9d52d6f9c
+          outcomeId: d401e660-4a07-451d-8633-1a7225df7e02
+          output:
+            summary: 归档 updater-own-repo：应用内更新检查迁移到本仓库 tunecc/voicekey（endpoints+自有
+              pubkey），本机生成无口令签名密钥对，TAURI_SIGNING_PRIVATE_KEY Secret 已配置，README
+              新增第 6 节更新通道与签名密钥步骤并修正第 4 节过时描述。验证 PASS（独立审查两轮 APPROVED；cargo
+              check/npm build 通过；私钥零入库）。交付方式：仅归档（local，不推送）；用户在归档确认环节明确选择 A。
+            targetBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 6a49545412d7095d23e5d293f8c9c51fd5485d6b4ab42ef35eddecdf4e818f53
+            outcomeId: d401e660-4a07-451d-8633-1a7225df7e02
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.archive.prepare
+        type: invoke_skill
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive-preflight
+          token: portable-bc975b603614050370ea881d5b7a853b70b581bca9902a6d42a2d5e457bfe2e0
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:22
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 9d63fcf571d054192527822e9fa450117bd130f42add3ab17738989ff2657ad1
+        outcome:
+          actionId: updater-own-repo:22
+          attempt: 1
+          claimToken: portable-bc975b603614050370ea881d5b7a853b70b581bca9902a6d42a2d5e457bfe2e0
+          inputHash: 9d63fcf571d054192527822e9fa450117bd130f42add3ab17738989ff2657ad1
+          outcomeId: cbea138b-5c60-45b6-80b8-3ee234c99054
+          output:
+            baseCommit: 7e0f39604492579f3bbd970ff674460cf19b8b8f
+            deliveryAction: local
+            targetBranch: main
+            verifiedBranch: main
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: 559e46335a53616916b9cb4bfbc4a395c8af4a77c350e79ab5246cba464586dc
+            outcomeId: cbea138b-5c60-45b6-80b8-3ee234c99054
+        reconciliations: []
+        ref: classic-archive-preflight
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.archive.preflight
+        type: call_tool
+      - attempt: 1
+        claim:
+          executorId: comet-classic-archive
+          token: portable-e2e58cf0a49aeebda8f0d7364ff742587029de32cbd0c3327a96aa3d54810430
+        executionOrigin:
+          workflow:
+            hash: ee198afdb53add0c23f98202aae8cdbe4079b9f4ebf7a62ed4ab8411ed591db5
+            id: comet-classic-full
+            version: "1"
+        id: updater-own-repo:23
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 0f99dd95cc3429f7bc3fc756553463fab182d0c50d55b2b0644fd5f0862311a2
+        outcome:
+          actionId: updater-own-repo:23
+          artifacts:
+            - sha256: 2cf8e991867f4a25a87b7308a8f94f3b99365c02c75d82d6e95c4ba087acabd6
+              uri: docs/openspec/changes/archive/2026-11-01-updater-own-repo/.comet/archive-manifest.json
+          attempt: 1
+          claimToken: portable-e2e58cf0a49aeebda8f0d7364ff742587029de32cbd0c3327a96aa3d54810430
+          inputHash: 0f99dd95cc3429f7bc3fc756553463fab182d0c50d55b2b0644fd5f0862311a2
+          outcomeId: 967915a1-3de6-44c0-8830-0d96f90d8c30
+          output:
+            archiveDirectory: docs/openspec/changes/archive/2026-11-01-updater-own-repo
+          status: succeeded
+        protocolVersion: 1
+        receipts:
+          - hash: aad1dca94e6f18bf8002a97a3e5accb2926636f51d74302cdf338c577dfea8e7
+            outcomeId: 967915a1-3de6-44c0-8830-0d96f90d8c30
+        reconciliations: []
+        ref: classic-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: succeeded
+        stepId: full.archive.execute
+        type: call_tool
+      - attempt: 1
+        id: updater-own-repo:24
+        input:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs: {}
+        inputHash: 63cecffe13c835c0f74afe8aefcea90286b0cb7ea5f0385d8913994e2b1b7433
+        protocolVersion: 1
+        receipts: []
+        reconciliations: []
+        ref: comet-archive
+        requiredCapabilities: []
+        retry: manual
+        runId: updater-own-repo
+        status: pending
+        stepId: full.archive.deliver
+        type: invoke_skill
+    actionContexts:
+      updater-own-repo:1:
+        results: {}
+        sequence: 1
+      updater-own-repo:11:
+        results: {}
+        sequence: 11
+      updater-own-repo:13:
+        results: {}
+        sequence: 13
+      updater-own-repo:14:
+        results: {}
+        sequence: 14
+      updater-own-repo:16:
+        results: {}
+        sequence: 16
+      updater-own-repo:18:
+        results: {}
+        sequence: 18
+      updater-own-repo:20:
+        results: {}
+        sequence: 20
+      updater-own-repo:22:
+        results: {}
+        sequence: 22
+      updater-own-repo:23:
+        results: {}
+        sequence: 23
+      updater-own-repo:24:
+        results: {}
+        sequence: 24
+      updater-own-repo:4:
+        results: {}
+        sequence: 4
+      updater-own-repo:5:
+        results: {}
+        sequence: 5
+      updater-own-repo:7:
+        results: {}
+        sequence: 7
+      updater-own-repo:9:
+        results: {}
+        sequence: 9
+    waits:
+      - id: updater-own-repo:3
+        stepId: full.open.confirm
+        sequence: 3
+        status: resolved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.open:
+              event: open-complete
+            full.open.evidence:
+              contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+              ref: docs/openspec/changes/updater-own-repo
+        proposalHash: e52892aeb6cd6ab5ca640e48a455395a5020d6450d7d28250a045a8a511ef8a2
+        choices:
+          - approved
+          - rejected
+        results: {}
+        decision:
+          id: classic-open-6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+          choice: approved
+          proposalHash: e52892aeb6cd6ab5ca640e48a455395a5020d6450d7d28250a045a8a511ef8a2
+      - id: updater-own-repo:6
+        stepId: full.design.confirm
+        sequence: 6
+        status: resolved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.design.handoff:
+              handoffContext: docs/openspec/changes/updater-own-repo/.comet/handoff/design-context.json
+              handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+              proposal: 沿用上次已确认的设计（endpoints+pubkey 写入 tauri.conf.json、README 补密钥步骤、不改
+                release.yml/离线库/应用标识），唯一变化：密钥对已在本机生成（~/.tauri/voicekey.key，无口令，tauri
+                signer generate --ci），公钥实测可签名——D1 的「维护者提供公钥」未知项已解除；D2 明确 Secrets
+                只需 TAURI_SIGNING_PRIVATE_KEY 一项（无口令密钥，口令 Secret
+                留空即合法）。风险取舍新增披露：无口令私钥意味着拿到密钥文件即可签名，属个人 fork 的常见取舍，密钥仅存本机与 GitHub
+                加密 Secrets。测试策略不变：配置 JSON 校验、cargo check、npm build；发布链路验收依赖打
+                tag（README 注明验证时点）。Spec Patch：无。
+              requirementsEvidence:
+                contentHash: 64f45a5d83278204017eaa21d4aa6bdc6d05bc3bd3c9d08f9e65318c2fc5dc81
+                ref: docs/openspec/changes/updater-own-repo
+              sourceEvidence:
+                contentHash: e3a171bc566ad3185907cca92f426de88c3d0cd5c8930cdc8ae0c7117654e814
+                ref: docs/openspec/changes/updater-own-repo
+        proposalHash: 83689b0755d555bbe225b648d1630fede830111d952f10a682eebea8c6f8758a
+        choices:
+          - approved
+          - rejected
+        results: {}
+        decision:
+          id: classic-design-83689b0755d555bbe225b648d1630fede830111d952f10a682eebea8c6f8758a-approved
+          choice: approved
+          proposalHash: 83689b0755d555bbe225b648d1630fede830111d952f10a682eebea8c6f8758a
+      - id: updater-own-repo:10
+        stepId: full.build.confirm
+        sequence: 10
+        status: resolved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.build.configure:
+              boundBranch: main
+              buildMode: autonomous
+              directOverride: false
+              isolation: current
+              reviewMode: standard
+              subagentDispatch: null
+              tddMode: tdd
+        proposalHash: d93e63ef7073cf76d50290bb96f77315f0de614147cd41fb981e470dfa52a8f7
+        choices:
+          - approved
+          - rejected
+        results: {}
+        decision:
+          id: classic-build-d93e63ef7073cf76d50290bb96f77315f0de614147cd41fb981e470dfa52a8f7-approved
+          choice: approved
+          proposalHash: d93e63ef7073cf76d50290bb96f77315f0de614147cd41fb981e470dfa52a8f7
+      - id: updater-own-repo:21
+        stepId: full.archive.confirm
+        sequence: 21
+        status: resolved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.archive.prepare:
+              summary: 归档 updater-own-repo：应用内更新检查迁移到本仓库 tunecc/voicekey（endpoints+自有
+                pubkey），本机生成无口令签名密钥对，TAURI_SIGNING_PRIVATE_KEY Secret 已配置，README
+                新增第 6 节更新通道与签名密钥步骤并修正第 4 节过时描述。验证 PASS（独立审查两轮 APPROVED；cargo
+                check/npm build 通过；私钥零入库）。交付方式：仅归档（local，不推送）；用户在归档确认环节明确选择 A。
+              targetBranch: main
+        proposalHash: 0c88e2fc32cfc0b295fc83417b826817b8a7ec9945396579c5736390af232531
+        choices:
+          - local
+          - push
+          - pr
+          - reverify
+          - later
+        results: {}
+        decision:
+          id: classic-archive-0c88e2fc32cfc0b295fc83417b826817b8a7ec9945396579c5736390af232531-local
+          choice: local
+          proposalHash: 0c88e2fc32cfc0b295fc83417b826817b8a7ec9945396579c5736390af232531
+    evidenceWaits:
+      - id: updater-own-repo:2
+        stepId: full.open.evidence
+        sequence: 2
+        kind: classic-open-artifacts
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/openspec/changes/updater-own-repo
+          contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+          submissionId: a86747c6-b8fd-49ed-81d1-1b6cde88a97b
+      - id: updater-own-repo:8
+        stepId: full.design.evidence
+        sequence: 8
+        kind: classic-design-document
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/openspec/changes/updater-own-repo/design.md
+          contentHash: 27de6de61ae8cd8a4cc1c920a15dfc2be34d1845a793554bd7b8fe3fee6100f4
+          submissionId: aa77e698-a056-4e54-afee-2bdc1ae1d4dd
+      - id: updater-own-repo:12
+        stepId: full.build.plan.evidence
+        sequence: 12
+        kind: classic-build-plan
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+          contentHash: 57b91fc59d5fa266f21491d883d5fd9ac923e3c494e6fe04f30d012942743af6
+          submissionId: bb473ed5-0e17-437c-b77b-28c943a68409
+      - id: updater-own-repo:15
+        stepId: full.build.check.evidence
+        sequence: 15
+        kind: classic-build-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/ce476419-9ec0-4b4a-9bda-aa96059e9b31.log
+          contentHash: 1603b85a3c63e56daf7dcddfb79ab7e69dffb725364bb6c42a5a8989651b07a3
+          submissionId: 5bf068ae-8fa6-473a-b203-f72926e70ddb
+      - id: updater-own-repo:17
+        stepId: full.verify.report.evidence
+        sequence: 17
+        kind: classic-verification-report
+        status: resolved
+        results: {}
+        receipt:
+          ref: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+          contentHash: d3df5389be8a11aafbdf4276f15da2710621eb906554a65c00cc9d3e7dcc97e8
+          submissionId: 68965600-78c3-4e26-b7ab-f4fe43046249
+      - id: updater-own-repo:19
+        stepId: full.verify.check.evidence
+        sequence: 19
+        kind: classic-verify-check
+        status: resolved
+        results: {}
+        receipt:
+          ref: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/a7ce9703-15ab-48c4-817b-a8bb6bd64e34.log
+          contentHash: 0b01d4c01c1966d8f9dfa93675938699f71b13065420ce2edec70260975911d9
+          submissionId: 6cd76661-6c95-496a-8948-b4e02b6b83f9
+    ready: []
+    joins: {}
+    outputs: {}
+    children: []
+    lineage: []
+  sourceRevision: 37
+  sourceHash: b8f58ebb78ed1e614670374279736fa678464e442f6b3598bb78db0fa3bfcead
+  pool:
+    version: 3
+    values:
+      - event: open-complete
+      - choice: approved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.open:
+              event: open-complete
+            full.open.evidence:
+              contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+              ref: docs/openspec/changes/updater-own-repo
+      - contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+        ref: docs/openspec/changes/updater-own-repo
+      - contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+      - choice: approved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.design.handoff:
+              handoffContext: docs/openspec/changes/updater-own-repo/.comet/handoff/design-context.json
+              handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+              proposal: 沿用上次已确认的设计（endpoints+pubkey 写入 tauri.conf.json、README 补密钥步骤、不改
+                release.yml/离线库/应用标识），唯一变化：密钥对已在本机生成（~/.tauri/voicekey.key，无口令，tauri
+                signer generate --ci），公钥实测可签名——D1 的「维护者提供公钥」未知项已解除；D2 明确 Secrets
+                只需 TAURI_SIGNING_PRIVATE_KEY 一项（无口令密钥，口令 Secret
+                留空即合法）。风险取舍新增披露：无口令私钥意味着拿到密钥文件即可签名，属个人 fork 的常见取舍，密钥仅存本机与 GitHub
+                加密 Secrets。测试策略不变：配置 JSON 校验、cargo check、npm build；发布链路验收依赖打
+                tag（README 注明验证时点）。Spec Patch：无。
+              requirementsEvidence:
+                contentHash: 64f45a5d83278204017eaa21d4aa6bdc6d05bc3bd3c9d08f9e65318c2fc5dc81
+                ref: docs/openspec/changes/updater-own-repo
+              sourceEvidence:
+                contentHash: e3a171bc566ad3185907cca92f426de88c3d0cd5c8930cdc8ae0c7117654e814
+                ref: docs/openspec/changes/updater-own-repo
+      - handoffContext: docs/openspec/changes/updater-own-repo/.comet/handoff/design-context.json
+        handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+        proposal: 沿用上次已确认的设计（endpoints+pubkey 写入 tauri.conf.json、README 补密钥步骤、不改
+          release.yml/离线库/应用标识），唯一变化：密钥对已在本机生成（~/.tauri/voicekey.key，无口令，tauri
+          signer generate --ci），公钥实测可签名——D1 的「维护者提供公钥」未知项已解除；D2 明确 Secrets 只需
+          TAURI_SIGNING_PRIVATE_KEY 一项（无口令密钥，口令 Secret
+          留空即合法）。风险取舍新增披露：无口令私钥意味着拿到密钥文件即可签名，属个人 fork 的常见取舍，密钥仅存本机与 GitHub 加密
+          Secrets。测试策略不变：配置 JSON 校验、cargo check、npm build；发布链路验收依赖打 tag（README
+          注明验证时点）。Spec Patch：无。
+        requirementsEvidence:
+          contentHash: 64f45a5d83278204017eaa21d4aa6bdc6d05bc3bd3c9d08f9e65318c2fc5dc81
+          ref: docs/openspec/changes/updater-own-repo
+        sourceEvidence:
+          contentHash: e3a171bc566ad3185907cca92f426de88c3d0cd5c8930cdc8ae0c7117654e814
+          ref: docs/openspec/changes/updater-own-repo
+      - designDoc: docs/openspec/changes/updater-own-repo/design.md
+      - contentHash: 27de6de61ae8cd8a4cc1c920a15dfc2be34d1845a793554bd7b8fe3fee6100f4
+        ref: docs/openspec/changes/updater-own-repo/design.md
+      - boundBranch: main
+        buildMode: autonomous
+        directOverride: false
+        isolation: current
+        reviewMode: standard
+        subagentDispatch: null
+        tddMode: tdd
+      - choice: approved
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.build.configure:
+              boundBranch: main
+              buildMode: autonomous
+              directOverride: false
+              isolation: current
+              reviewMode: standard
+              subagentDispatch: null
+              tddMode: tdd
+      - designEvidence:
+          contentHash: 27de6de61ae8cd8a4cc1c920a15dfc2be34d1845a793554bd7b8fe3fee6100f4
+          ref: docs/openspec/changes/updater-own-repo/design.md
+        plan: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+        planEvidence:
+          contentHash: 57b91fc59d5fa266f21491d883d5fd9ac923e3c494e6fe04f30d012942743af6
+          ref: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+        taskRevision: e953a407a43f0eb00a3da46fde5f947cb6b83a93e9e6b14c480c567fe8dd036f
+      - contentHash: 57b91fc59d5fa266f21491d883d5fd9ac923e3c494e6fe04f30d012942743af6
+        ref: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+      - event: build-complete
+      - argv:
+          - cargo
+          - check
+          - -p
+          - voicekey
+        changedDuringExecution: []
+        checkEpoch: 2
+        contentHash: 1603b85a3c63e56daf7dcddfb79ab7e69dffb725364bb6c42a5a8989651b07a3
+        cwd: .
+        environment: bd82536b8c253ece9839601cc822b27cb8c935e7a84b75cf618ebe52d427036d
+        exitCode: 0
+        inputAfter: e28eaa5551e8fc027a6672e6b7e454002a07d455f987cfc3e7efd6ec6edc5972
+        inputBefore: e28eaa5551e8fc027a6672e6b7e454002a07d455f987cfc3e7efd6ec6edc5972
+        manifestHash: 8f8243ae897b4db1e9151e2e07e9a5cbe6605a3743b83da5f5ed6885525a3de4
+        manifestRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/42cc42ca-7d99-4a56-988a-6bea5bef8985.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/ce476419-9ec0-4b4a-9bda-aa96059e9b31.log
+        reusable: false
+        reused: false
+        scope: build
+        tier: full
+        timeoutMs: 300000
+      - contentHash: 1603b85a3c63e56daf7dcddfb79ab7e69dffb725364bb6c42a5a8989651b07a3
+        ref: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/ce476419-9ec0-4b4a-9bda-aa96059e9b31.log
+      - contentHash: d3df5389be8a11aafbdf4276f15da2710621eb906554a65c00cc9d3e7dcc97e8
+        ref: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+      - event: verification-ready
+        verificationReport: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+      - argv:
+          - cargo
+          - check
+          - -p
+          - voicekey
+        changedDuringExecution: []
+        checkEpoch: 3
+        contentHash: 0b01d4c01c1966d8f9dfa93675938699f71b13065420ce2edec70260975911d9
+        cwd: .
+        deliveryInputs:
+          README.md: git:3560ef98339f1fe0700a4312f4d591f40d961021
+          app/src-tauri/tauri.conf.json: git:6fc9caa4b297e1a261296d3c6dea63b763fc73f2
+        environment: bd82536b8c253ece9839601cc822b27cb8c935e7a84b75cf618ebe52d427036d
+        exitCode: 0
+        inputAfter: 23735e0fd103d79e7ea95bc6f365cff35fbcb1ed26b9831f733d99702d602380
+        inputBefore: 23735e0fd103d79e7ea95bc6f365cff35fbcb1ed26b9831f733d99702d602380
+        manifestHash: 42dd9fd9a2c2177dacc42b74323efc9d1d7d91a8da6e1bb43f98b557088cb268
+        manifestRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/1185de37-4dbe-4a11-be97-bfe738177711.manifest
+        receiptRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/a7ce9703-15ab-48c4-817b-a8bb6bd64e34.log
+        reusable: false
+        reused: false
+        scope: verify
+        tier: full
+        timeoutMs: 300000
+      - contentHash: 0b01d4c01c1966d8f9dfa93675938699f71b13065420ce2edec70260975911d9
+        ref: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/a7ce9703-15ab-48c4-817b-a8bb6bd64e34.log
+      - choice: local
+        proposal:
+          input:
+            change: updater-own-repo
+            changeDir: docs/openspec/changes/updater-own-repo
+            workspaceBaseline:
+              ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+          outputs:
+            full.archive.prepare:
+              summary: 归档 updater-own-repo：应用内更新检查迁移到本仓库 tunecc/voicekey（endpoints+自有
+                pubkey），本机生成无口令签名密钥对，TAURI_SIGNING_PRIVATE_KEY Secret 已配置，README
+                新增第 6 节更新通道与签名密钥步骤并修正第 4 节过时描述。验证 PASS（独立审查两轮 APPROVED；cargo
+                check/npm build 通过；私钥零入库）。交付方式：仅归档（local，不推送）；用户在归档确认环节明确选择 A。
+              targetBranch: main
+      - summary: 归档 updater-own-repo：应用内更新检查迁移到本仓库 tunecc/voicekey（endpoints+自有
+          pubkey），本机生成无口令签名密钥对，TAURI_SIGNING_PRIVATE_KEY Secret 已配置，README 新增第 6
+          节更新通道与签名密钥步骤并修正第 4 节过时描述。验证 PASS（独立审查两轮 APPROVED；cargo check/npm build
+          通过；私钥零入库）。交付方式：仅归档（local，不推送）；用户在归档确认环节明确选择 A。
+        targetBranch: main
+      - baseCommit: 7e0f39604492579f3bbd970ff674460cf19b8b8f
+        deliveryAction: local
+        targetBranch: main
+        verifiedBranch: main
+      - archiveDirectory: docs/openspec/changes/archive/2026-11-01-updater-own-repo
+      - sequence: 9
+        value:
+          boundBranch: main
+          buildMode: autonomous
+          directOverride: false
+          isolation: current
+          reviewMode: standard
+          subagentDispatch: null
+          tddMode: tdd
+      - sequence: 10
+        value:
+          choice: approved
+          proposal:
+            input:
+              change: updater-own-repo
+              changeDir: docs/openspec/changes/updater-own-repo
+              workspaceBaseline:
+                ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+            outputs:
+              full.build.configure:
+                boundBranch: main
+                buildMode: autonomous
+                directOverride: false
+                isolation: current
+                reviewMode: standard
+                subagentDispatch: null
+                tddMode: tdd
+      - sequence: 6
+        value:
+          choice: approved
+          proposal:
+            input:
+              change: updater-own-repo
+              changeDir: docs/openspec/changes/updater-own-repo
+              workspaceBaseline:
+                ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+            outputs:
+              full.design.handoff:
+                handoffContext: docs/openspec/changes/updater-own-repo/.comet/handoff/design-context.json
+                handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+                proposal: 沿用上次已确认的设计（endpoints+pubkey 写入 tauri.conf.json、README 补密钥步骤、不改
+                  release.yml/离线库/应用标识），唯一变化：密钥对已在本机生成（~/.tauri/voicekey.key，无口令，tauri
+                  signer generate --ci），公钥实测可签名——D1 的「维护者提供公钥」未知项已解除；D2 明确
+                  Secrets 只需 TAURI_SIGNING_PRIVATE_KEY 一项（无口令密钥，口令 Secret
+                  留空即合法）。风险取舍新增披露：无口令私钥意味着拿到密钥文件即可签名，属个人 fork 的常见取舍，密钥仅存本机与
+                  GitHub 加密 Secrets。测试策略不变：配置 JSON 校验、cargo check、npm
+                  build；发布链路验收依赖打 tag（README 注明验证时点）。Spec Patch：无。
+                requirementsEvidence:
+                  contentHash: 64f45a5d83278204017eaa21d4aa6bdc6d05bc3bd3c9d08f9e65318c2fc5dc81
+                  ref: docs/openspec/changes/updater-own-repo
+                sourceEvidence:
+                  contentHash: e3a171bc566ad3185907cca92f426de88c3d0cd5c8930cdc8ae0c7117654e814
+                  ref: docs/openspec/changes/updater-own-repo
+      - sequence: 7
+        value:
+          designDoc: docs/openspec/changes/updater-own-repo/design.md
+      - sequence: 8
+        value:
+          contentHash: 27de6de61ae8cd8a4cc1c920a15dfc2be34d1845a793554bd7b8fe3fee6100f4
+          ref: docs/openspec/changes/updater-own-repo/design.md
+      - sequence: 5
+        value:
+          handoffContext: docs/openspec/changes/updater-own-repo/.comet/handoff/design-context.json
+          handoffHash: 90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56
+          proposal: 沿用上次已确认的设计（endpoints+pubkey 写入 tauri.conf.json、README 补密钥步骤、不改
+            release.yml/离线库/应用标识），唯一变化：密钥对已在本机生成（~/.tauri/voicekey.key，无口令，tauri
+            signer generate --ci），公钥实测可签名——D1 的「维护者提供公钥」未知项已解除；D2 明确 Secrets 只需
+            TAURI_SIGNING_PRIVATE_KEY 一项（无口令密钥，口令 Secret
+            留空即合法）。风险取舍新增披露：无口令私钥意味着拿到密钥文件即可签名，属个人 fork 的常见取舍，密钥仅存本机与 GitHub 加密
+            Secrets。测试策略不变：配置 JSON 校验、cargo check、npm build；发布链路验收依赖打 tag（README
+            注明验证时点）。Spec Patch：无。
+          requirementsEvidence:
+            contentHash: 64f45a5d83278204017eaa21d4aa6bdc6d05bc3bd3c9d08f9e65318c2fc5dc81
+            ref: docs/openspec/changes/updater-own-repo
+          sourceEvidence:
+            contentHash: e3a171bc566ad3185907cca92f426de88c3d0cd5c8930cdc8ae0c7117654e814
+            ref: docs/openspec/changes/updater-own-repo
+      - sequence: 1
+        value:
+          event: open-complete
+      - sequence: 3
+        value:
+          choice: approved
+          proposal:
+            input:
+              change: updater-own-repo
+              changeDir: docs/openspec/changes/updater-own-repo
+              workspaceBaseline:
+                ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+            outputs:
+              full.open:
+                event: open-complete
+              full.open.evidence:
+                contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+                ref: docs/openspec/changes/updater-own-repo
+      - sequence: 2
+        value:
+          contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+          ref: docs/openspec/changes/updater-own-repo
+      - sequence: 4
+        value:
+          contentHash: 6d78aca8a91d21bd746a86e86ec004e1063a4300d39386d24712ae2394ec185f
+      - sequence: 11
+        value:
+          designEvidence:
+            contentHash: 27de6de61ae8cd8a4cc1c920a15dfc2be34d1845a793554bd7b8fe3fee6100f4
+            ref: docs/openspec/changes/updater-own-repo/design.md
+          plan: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+          planEvidence:
+            contentHash: 57b91fc59d5fa266f21491d883d5fd9ac923e3c494e6fe04f30d012942743af6
+            ref: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+          taskRevision: e953a407a43f0eb00a3da46fde5f947cb6b83a93e9e6b14c480c567fe8dd036f
+      - sequence: 12
+        value:
+          contentHash: 57b91fc59d5fa266f21491d883d5fd9ac923e3c494e6fe04f30d012942743af6
+          ref: docs/superpowers/plans/2026-11-01-updater-own-repo.md
+      - sequence: 13
+        value:
+          event: build-complete
+      - sequence: 14
+        value:
+          argv:
+            - cargo
+            - check
+            - -p
+            - voicekey
+          changedDuringExecution: []
+          checkEpoch: 2
+          contentHash: 1603b85a3c63e56daf7dcddfb79ab7e69dffb725364bb6c42a5a8989651b07a3
+          cwd: .
+          environment: bd82536b8c253ece9839601cc822b27cb8c935e7a84b75cf618ebe52d427036d
+          exitCode: 0
+          inputAfter: e28eaa5551e8fc027a6672e6b7e454002a07d455f987cfc3e7efd6ec6edc5972
+          inputBefore: e28eaa5551e8fc027a6672e6b7e454002a07d455f987cfc3e7efd6ec6edc5972
+          manifestHash: 8f8243ae897b4db1e9151e2e07e9a5cbe6605a3743b83da5f5ed6885525a3de4
+          manifestRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/42cc42ca-7d99-4a56-988a-6bea5bef8985.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/ce476419-9ec0-4b4a-9bda-aa96059e9b31.log
+          reusable: false
+          reused: false
+          scope: build
+          tier: full
+          timeoutMs: 300000
+      - sequence: 15
+        value:
+          contentHash: 1603b85a3c63e56daf7dcddfb79ab7e69dffb725364bb6c42a5a8989651b07a3
+          ref: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/ce476419-9ec0-4b4a-9bda-aa96059e9b31.log
+      - sequence: 17
+        value:
+          contentHash: d3df5389be8a11aafbdf4276f15da2710621eb906554a65c00cc9d3e7dcc97e8
+          ref: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+      - sequence: 16
+        value:
+          event: verification-ready
+          verificationReport: docs/superpowers/reports/2026-11-01-updater-own-repo-verify.md
+      - sequence: 18
+        value:
+          argv:
+            - cargo
+            - check
+            - -p
+            - voicekey
+          changedDuringExecution: []
+          checkEpoch: 3
+          contentHash: 0b01d4c01c1966d8f9dfa93675938699f71b13065420ce2edec70260975911d9
+          cwd: .
+          deliveryInputs:
+            README.md: git:3560ef98339f1fe0700a4312f4d591f40d961021
+            app/src-tauri/tauri.conf.json: git:6fc9caa4b297e1a261296d3c6dea63b763fc73f2
+          environment: bd82536b8c253ece9839601cc822b27cb8c935e7a84b75cf618ebe52d427036d
+          exitCode: 0
+          inputAfter: 23735e0fd103d79e7ea95bc6f365cff35fbcb1ed26b9831f733d99702d602380
+          inputBefore: 23735e0fd103d79e7ea95bc6f365cff35fbcb1ed26b9831f733d99702d602380
+          manifestHash: 42dd9fd9a2c2177dacc42b74323efc9d1d7d91a8da6e1bb43f98b557088cb268
+          manifestRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/1185de37-4dbe-4a11-be97-bfe738177711.manifest
+          receiptRef: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/a7ce9703-15ab-48c4-817b-a8bb6bd64e34.log
+          reusable: false
+          reused: false
+          scope: verify
+          tier: full
+          timeoutMs: 300000
+      - sequence: 19
+        value:
+          contentHash: 0b01d4c01c1966d8f9dfa93675938699f71b13065420ce2edec70260975911d9
+          ref: .comet/runtime/classic-sdk-checks/80ce0d58f75c7bcbc5b6ed685bdcd7099d28b13a8b38032f2aa5de77faf44b88/a7ce9703-15ab-48c4-817b-a8bb6bd64e34.log
+      - sequence: 21
+        value:
+          choice: local
+          proposal:
+            input:
+              change: updater-own-repo
+              changeDir: docs/openspec/changes/updater-own-repo
+              workspaceBaseline:
+                ref: 5d5461da-9b39-4d02-8b6e-2a7b949d67b9
+            outputs:
+              full.archive.prepare:
+                summary: 归档 updater-own-repo：应用内更新检查迁移到本仓库 tunecc/voicekey（endpoints+自有
+                  pubkey），本机生成无口令签名密钥对，TAURI_SIGNING_PRIVATE_KEY Secret
+                  已配置，README 新增第 6 节更新通道与签名密钥步骤并修正第 4 节过时描述。验证 PASS（独立审查两轮
+                  APPROVED；cargo check/npm build
+                  通过；私钥零入库）。交付方式：仅归档（local，不推送）；用户在归档确认环节明确选择 A。
+                targetBranch: main
+      - sequence: 20
+        value:
+          summary: 归档 updater-own-repo：应用内更新检查迁移到本仓库 tunecc/voicekey（endpoints+自有
+            pubkey），本机生成无口令签名密钥对，TAURI_SIGNING_PRIVATE_KEY Secret 已配置，README 新增第
+            6 节更新通道与签名密钥步骤并修正第 4 节过时描述。验证 PASS（独立审查两轮 APPROVED；cargo check/npm
+            build 通过；私钥零入库）。交付方式：仅归档（local，不推送）；用户在归档确认环节明确选择 A。
+          targetBranch: main
+      - sequence: 22
+        value:
+          baseCommit: 7e0f39604492579f3bbd970ff674460cf19b8b8f
+          deliveryAction: local
+          targetBranch: main
+          verifiedBranch: main
+      - sequence: 23
+        value:
+          archiveDirectory: docs/openspec/changes/archive/2026-11-01-updater-own-repo
+    nodes:
+      - key: full.open
+        value: 0
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 2
+        left: null
+        right: null
+        height: 1
+      - key: full.open.confirm
+        value: 1
+        left: 0
+        right: 1
+        height: 2
+      - key: full.open.revalidate
+        value: 3
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 2
+        left: null
+        right: 3
+        height: 2
+      - key: full.open.confirm
+        value: 1
+        left: 0
+        right: 4
+        height: 3
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 0
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 5
+        left: 6
+        right: 7
+        height: 2
+      - key: full.open.confirm
+        value: 1
+        left: 8
+        right: 4
+        height: 3
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 7
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 6
+        left: 10
+        right: 11
+        height: 2
+      - key: full.design.handoff
+        value: 5
+        left: 12
+        right: 7
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 13
+        right: 4
+        height: 4
+      - key: full.build.configure
+        value: 8
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 9
+        left: 15
+        right: 16
+        height: 2
+      - key: full.design.handoff
+        value: 5
+        left: 11
+        right: 7
+        height: 2
+      - key: full.design.document
+        value: 6
+        left: 17
+        right: 18
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 19
+        right: 4
+        height: 4
+      - key: full.build.plan
+        value: 10
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 4
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 11
+        left: 21
+        right: 22
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 15
+        right: 23
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 4
+        height: 3
+      - key: full.design.document
+        value: 6
+        left: 24
+        right: 25
+        height: 4
+      - key: full.build.execute
+        value: 12
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 9
+        left: 15
+        right: 27
+        height: 2
+      - key: full.build.plan.evidence
+        value: 11
+        left: null
+        right: 22
+        height: 2
+      - key: full.build.plan
+        value: 10
+        left: 28
+        right: 29
+        height: 3
+      - key: full.design.document
+        value: 6
+        left: 30
+        right: 25
+        height: 4
+      - key: full.build.check
+        value: 13
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 8
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 14
+        left: 32
+        right: 33
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 34
+        right: 27
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 35
+        right: 29
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 36
+        right: 25
+        height: 5
+      - key: full.open.evidence
+        value: 2
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 16
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 15
+        left: null
+        right: 39
+        height: 2
+      - key: full.open.revalidate
+        value: 3
+        left: 38
+        right: 40
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 41
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 36
+        right: 42
+        height: 5
+      - key: full.open.revalidate
+        value: 3
+        left: 38
+        right: null
+        height: 2
+      - key: full.verify.check.evidence
+        value: 18
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 15
+        left: 45
+        right: 39
+        height: 2
+      - key: full.verify.check
+        value: 17
+        left: 44
+        right: 46
+        height: 3
+      - key: full.open.confirm
+        value: 1
+        left: 18
+        right: 47
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 36
+        right: 48
+        height: 5
+      - key: full.archive.confirm
+        value: 19
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check
+        value: 13
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.prepare
+        value: 20
+        left: 50
+        right: 51
+        height: 2
+      - key: full.build.confirm
+        value: 9
+        left: 33
+        right: 27
+        height: 2
+      - key: full.build.check.evidence
+        value: 14
+        left: 52
+        right: 53
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 54
+        right: 29
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 55
+        right: 48
+        height: 5
+      - key: full.archive.preflight
+        value: 21
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.confirm
+        value: 19
+        left: null
+        right: 57
+        height: 2
+      - key: full.archive.prepare
+        value: 20
+        left: 58
+        right: 51
+        height: 3
+      - key: full.build.plan
+        value: 10
+        left: 53
+        right: 29
+        height: 3
+      - key: full.build.check.evidence
+        value: 14
+        left: 59
+        right: 60
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 61
+        right: 48
+        height: 5
+      - key: full.archive.confirm
+        value: 19
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.preflight
+        value: 21
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.execute
+        value: 22
+        left: 63
+        right: 64
+        height: 2
+      - key: full.archive.prepare
+        value: 20
+        left: 65
+        right: 51
+        height: 3
+      - key: full.build.check.evidence
+        value: 14
+        left: 66
+        right: 60
+        height: 4
+      - key: full.design.document
+        value: 6
+        left: 67
+        right: 48
+        height: 5
+      - key: full.build.configure
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 25
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 24
+        left: 69
+        right: 70
+        height: 2
+      - key: full.design.evidence
+        value: 27
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 28
+        left: 72
+        right: 73
+        height: 2
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: null
+        right: 75
+        height: 2
+      - key: full.open.confirm
+        value: 30
+        left: 74
+        right: 76
+        height: 3
+      - key: full.design.document
+        value: 26
+        left: 71
+        right: 77
+        height: 4
+      - key: full.build.plan
+        value: 33
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 25
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 34
+        left: 79
+        right: 80
+        height: 2
+      - key: full.build.confirm
+        value: 24
+        left: 69
+        right: 81
+        height: 3
+      - key: full.design.document
+        value: 26
+        left: 82
+        right: 77
+        height: 4
+      - key: full.build.execute
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 24
+        left: 69
+        right: 84
+        height: 2
+      - key: full.build.plan.evidence
+        value: 34
+        left: null
+        right: 80
+        height: 2
+      - key: full.build.plan
+        value: 33
+        left: 85
+        right: 86
+        height: 3
+      - key: full.design.document
+        value: 26
+        left: 87
+        right: 77
+        height: 4
+      - key: full.build.check
+        value: 36
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 37
+        left: 89
+        right: 90
+        height: 2
+      - key: full.build.confirm
+        value: 24
+        left: 91
+        right: 84
+        height: 3
+      - key: full.build.plan
+        value: 33
+        left: 92
+        right: 86
+        height: 4
+      - key: full.design.document
+        value: 26
+        left: 93
+        right: 77
+        height: 5
+      - key: full.open.evidence
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 38
+        left: null
+        right: 96
+        height: 2
+      - key: full.open.revalidate
+        value: 32
+        left: 95
+        right: 97
+        height: 3
+      - key: full.open.confirm
+        value: 30
+        left: 74
+        right: 98
+        height: 4
+      - key: full.design.document
+        value: 26
+        left: 93
+        right: 99
+        height: 5
+      - key: full.open.revalidate
+        value: 32
+        left: 95
+        right: null
+        height: 2
+      - key: full.verify.check.evidence
+        value: 41
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 38
+        left: 102
+        right: 96
+        height: 2
+      - key: full.verify.check
+        value: 40
+        left: 101
+        right: 103
+        height: 3
+      - key: full.open.confirm
+        value: 30
+        left: 74
+        right: 104
+        height: 4
+      - key: full.design.document
+        value: 26
+        left: 93
+        right: 105
+        height: 5
+      - key: full.archive.confirm
+        value: 42
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check
+        value: 36
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.prepare
+        value: 43
+        left: 107
+        right: 108
+        height: 2
+      - key: full.build.confirm
+        value: 24
+        left: 90
+        right: 84
+        height: 2
+      - key: full.build.check.evidence
+        value: 37
+        left: 109
+        right: 110
+        height: 3
+      - key: full.build.plan
+        value: 33
+        left: 111
+        right: 86
+        height: 4
+      - key: full.design.document
+        value: 26
+        left: 112
+        right: 105
+        height: 5
+      - key: full.archive.preflight
+        value: 44
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.confirm
+        value: 42
+        left: null
+        right: 114
+        height: 2
+      - key: full.archive.prepare
+        value: 43
+        left: 115
+        right: 108
+        height: 3
+      - key: full.build.plan
+        value: 33
+        left: 110
+        right: 86
+        height: 3
+      - key: full.build.check.evidence
+        value: 37
+        left: 116
+        right: 117
+        height: 4
+      - key: full.design.document
+        value: 26
+        left: 118
+        right: 105
+        height: 5
+      - key: full.archive.confirm
+        value: 42
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.preflight
+        value: 44
+        left: null
+        right: null
+        height: 1
+      - key: full.archive.execute
+        value: 45
+        left: 120
+        right: 121
+        height: 2
+      - key: full.archive.prepare
+        value: 43
+        left: 122
+        right: 108
+        height: 3
+      - key: full.build.check.evidence
+        value: 37
+        left: 123
+        right: 117
+        height: 4
+      - key: full.design.document
+        value: 26
+        left: 124
+        right: 105
+        height: 5
+      - key: full.open
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.open.confirm
+        value: 30
+        left: 126
+        right: 127
+        height: 2
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: null
+        right: 129
+        height: 2
+      - key: full.open.confirm
+        value: 30
+        left: 126
+        right: 130
+        height: 3
+      - key: full.design.confirm
+        value: 25
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 28
+        left: 132
+        right: 133
+        height: 2
+      - key: full.open.confirm
+        value: 30
+        left: 134
+        right: 130
+        height: 3
+      - key: full.design.confirm
+        value: 25
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 27
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 26
+        left: 136
+        right: 137
+        height: 2
+      - key: full.design.handoff
+        value: 28
+        left: 138
+        right: 133
+        height: 3
+      - key: full.open.confirm
+        value: 30
+        left: 139
+        right: 130
+        height: 4
+      - key: full.open.evidence
+        value: 31
+        left: null
+        right: null
+        height: 1
+      - key: full.open
+        value: 29
+        left: null
+        right: 141
+        height: 2
+      - key: full.design.handoff
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.open.confirm
+        value: 30
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: 144
+        right: 145
+        height: 2
+      - key: full.open
+        value: 29
+        left: 143
+        right: 146
+        height: 3
+      - key: full.build.configure
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 27
+        left: 149
+        right: 150
+        height: 2
+      - key: full.design.confirm
+        value: 25
+        left: 148
+        right: 151
+        height: 3
+      - key: full.open
+        value: 29
+        left: 152
+        right: 146
+        height: 4
+      - key: full.archive.prepare
+        value: 43
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 37
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check
+        value: 36
+        left: 154
+        right: 155
+        height: 2
+      - key: full.build.confirm
+        value: 24
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 34
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 33
+        left: null
+        right: 158
+        height: 2
+      - key: full.build.execute
+        value: 35
+        left: 157
+        right: 159
+        height: 3
+      - key: full.build.configure
+        value: 23
+        left: 156
+        right: 160
+        height: 4
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: 144
+        right: 162
+        height: 2
+      - key: full.verify.check.evidence
+        value: 41
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.report.evidence
+        value: 38
+        left: 164
+        right: 165
+        height: 2
+      - key: full.verify.check
+        value: 40
+        left: 163
+        right: 166
+        height: 3
+      - key: full.open
+        value: 29
+        left: 151
+        right: 167
+        height: 4
+      - key: full.design.confirm
+        value: 25
+        left: 161
+        right: 168
+        height: 5
+      - key: full.open
+        value: 29
+        left: null
+        right: null
+        height: 1
+      - key: full.design.confirm
+        value: 25
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.design.document
+        value: 26
+        left: 171
+        right: 172
+        height: 2
+      - key: full.open.confirm
+        value: 30
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: 174
+        right: 175
+        height: 2
+      - key: full.open
+        value: 29
+        left: 173
+        right: 176
+        height: 3
+      - key: full.build.configure
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 33
+        left: null
+        right: null
+        height: 1
+      - key: full.build.confirm
+        value: 24
+        left: 178
+        right: 179
+        height: 2
+      - key: full.design.document
+        value: 26
+        left: null
+        right: null
+        height: 1
+      - key: full.design.handoff
+        value: 28
+        left: null
+        right: null
+        height: 1
+      - key: full.design.evidence
+        value: 27
+        left: 181
+        right: 182
+        height: 2
+      - key: full.design.confirm
+        value: 25
+        left: 180
+        right: 183
+        height: 3
+      - key: full.open
+        value: 29
+        left: 184
+        right: 176
+        height: 4
+      - key: full.build.check
+        value: 36
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 23
+        left: 186
+        right: null
+        height: 2
+      - key: full.build.execute
+        value: 35
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan.evidence
+        value: 34
+        left: null
+        right: null
+        height: 1
+      - key: full.build.plan
+        value: 33
+        left: 188
+        right: 189
+        height: 2
+      - key: full.build.confirm
+        value: 24
+        left: 187
+        right: 190
+        height: 3
+      - key: full.open
+        value: 29
+        left: 183
+        right: 176
+        height: 3
+      - key: full.design.confirm
+        value: 25
+        left: 191
+        right: 192
+        height: 4
+      - key: full.build.check
+        value: 36
+        left: null
+        right: null
+        height: 1
+      - key: full.build.configure
+        value: 23
+        left: null
+        right: null
+        height: 1
+      - key: full.build.check.evidence
+        value: 37
+        left: 194
+        right: 195
+        height: 2
+      - key: full.build.confirm
+        value: 24
+        left: 196
+        right: 190
+        height: 3
+      - key: full.verify.run
+        value: 39
+        left: null
+        right: null
+        height: 1
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: 198
+        height: 2
+      - key: full.open.evidence
+        value: 31
+        left: 174
+        right: 199
+        height: 3
+      - key: full.open
+        value: 29
+        left: 183
+        right: 200
+        height: 4
+      - key: full.design.confirm
+        value: 25
+        left: 197
+        right: 201
+        height: 5
+      - key: full.open.revalidate
+        value: 32
+        left: null
+        right: null
+        height: 1
+      - key: full.open.evidence
+        value: 31
+        left: 174
+        right: 203
+        height: 2
+      - key: full.verify.report.evidence
+        value: 38
+        left: null
+        right: null
+        height: 1
+      - key: full.verify.run
+        value: 39
+        left: 205
+        right: null
+        height: 2
+      - key: full.verify.check
+        value: 40
+        left: 204
+        right: 206
+        height: 3
+      - key: full.open
+        value: 29
+        left: 183
+        right: 207
+        height: 4
+      - key: full.design.confirm
+        value: 25
+        left: 197
+        right: 208
+        height: 5
+    maps:
+      - null
+      - 2
+      - 5
+      - 9
+      - 14
+      - 20
+      - 26
+      - 31
+      - 37
+      - 43
+      - 49
+      - 56
+      - 62
+      - 68
+      - 78
+      - 83
+      - 88
+      - 94
+      - 100
+      - 106
+      - 113
+      - 119
+      - 125
+      - 128
+      - 131
+      - 135
+      - 140
+      - 142
+      - 147
+      - 153
+      - 169
+      - 170
+      - 177
+      - 185
+      - 193
+      - 202
+      - 209
+    bindings:
+      - path:
+          - actions
+          - "0"
+          - input
+          - outputs
+        map: 0
+      - path:
+          - actions
+          - "1"
+          - input
+          - outputs
+        map: 1
+      - path:
+          - actions
+          - "2"
+          - input
+          - outputs
+        map: 2
+      - path:
+          - actions
+          - "3"
+          - input
+          - outputs
+        map: 3
+      - path:
+          - actions
+          - "4"
+          - input
+          - outputs
+        map: 4
+      - path:
+          - actions
+          - "5"
+          - input
+          - outputs
+        map: 5
+      - path:
+          - actions
+          - "6"
+          - input
+          - outputs
+        map: 6
+      - path:
+          - actions
+          - "7"
+          - input
+          - outputs
+        map: 7
+      - path:
+          - actions
+          - "8"
+          - input
+          - outputs
+        map: 8
+      - path:
+          - actions
+          - "9"
+          - input
+          - outputs
+        map: 9
+      - path:
+          - actions
+          - "10"
+          - input
+          - outputs
+        map: 10
+      - path:
+          - actions
+          - "11"
+          - input
+          - outputs
+        map: 11
+      - path:
+          - actions
+          - "12"
+          - input
+          - outputs
+        map: 12
+      - path:
+          - actions
+          - "13"
+          - input
+          - outputs
+        map: 13
+      - path:
+          - actionContexts
+          - updater-own-repo:1
+          - results
+        map: 0
+      - path:
+          - actionContexts
+          - updater-own-repo:11
+          - results
+        map: 14
+      - path:
+          - actionContexts
+          - updater-own-repo:13
+          - results
+        map: 15
+      - path:
+          - actionContexts
+          - updater-own-repo:14
+          - results
+        map: 16
+      - path:
+          - actionContexts
+          - updater-own-repo:16
+          - results
+        map: 17
+      - path:
+          - actionContexts
+          - updater-own-repo:18
+          - results
+        map: 18
+      - path:
+          - actionContexts
+          - updater-own-repo:20
+          - results
+        map: 19
+      - path:
+          - actionContexts
+          - updater-own-repo:22
+          - results
+        map: 20
+      - path:
+          - actionContexts
+          - updater-own-repo:23
+          - results
+        map: 21
+      - path:
+          - actionContexts
+          - updater-own-repo:24
+          - results
+        map: 22
+      - path:
+          - actionContexts
+          - updater-own-repo:4
+          - results
+        map: 23
+      - path:
+          - actionContexts
+          - updater-own-repo:5
+          - results
+        map: 24
+      - path:
+          - actionContexts
+          - updater-own-repo:7
+          - results
+        map: 25
+      - path:
+          - actionContexts
+          - updater-own-repo:9
+          - results
+        map: 26
+      - path:
+          - outputs
+        map: 22
+      - path:
+          - waits
+          - "0"
+          - results
+        map: 27
+      - path:
+          - waits
+          - "1"
+          - results
+        map: 28
+      - path:
+          - waits
+          - "2"
+          - results
+        map: 29
+      - path:
+          - waits
+          - "3"
+          - results
+        map: 30
+      - path:
+          - evidenceWaits
+          - "0"
+          - results
+        map: 31
+      - path:
+          - evidenceWaits
+          - "1"
+          - results
+        map: 32
+      - path:
+          - evidenceWaits
+          - "2"
+          - results
+        map: 33
+      - path:
+          - evidenceWaits
+          - "3"
+          - results
+        map: 34
+      - path:
+          - evidenceWaits
+          - "4"
+          - results
+        map: 35
+      - path:
+          - evidenceWaits
+          - "5"
+          - results
+        map: 36
+  storageHash: 4f3043bdb61ee2fc231b2ce9f049030894073c211334e850023958d5ff40668b
+change_id: fab19be4-d5ac-4459-b7ac-d49bf0b1998f

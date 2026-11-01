@@ -1,0 +1,16 @@
+{
+  "change": "updater-own-repo",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "task_hash_policy": "task-content-v1",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "90cfc79c98ca1b4318b40389155f9d47e53c388bb35011b86a31c55403d5ce56",
+  "files": [
+    { "path": "docs/openspec/changes/updater-own-repo/proposal.md", "sha256": "59b89ada64910e1864220b0fe0167ebe76987cbfd6d5e05ed109f0bf037c2725" },
+    { "path": "docs/openspec/changes/updater-own-repo/design.md", "sha256": "a122ef6840e2c518f8c3759fb1b7d1b430d8b367cf95335f9058b2d20f654abd" },
+    { "path": "docs/openspec/changes/updater-own-repo/tasks.md", "sha256": "e953a407a43f0eb00a3da46fde5f947cb6b83a93e9e6b14c480c567fe8dd036f" },
+    { "path": "docs/openspec/changes/updater-own-repo/.openspec.yaml", "sha256": "108f7b3dae33488206672f31b510275110c0194c93062eb1970e19ca60c08722" },
+    { "path": "docs/openspec/changes/updater-own-repo/specs/app-update-channel/spec.md", "sha256": "072e0039419eec5b6cbe9ce96a0d02e3a76998e64b5f2205214e110172a10fcf" }
+  ]
+}

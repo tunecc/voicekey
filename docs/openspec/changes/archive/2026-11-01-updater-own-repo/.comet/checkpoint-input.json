@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "taskIds": [
+    "f756a6c2-a228-42cc-ba93-c91025a90864",
+    "2e83a875-14ce-4b3e-b526-7c9ee4458e39",
+    "a864a9f9-f687-405e-af48-ab61f03b318a",
+    "bf872e1e-b277-4e44-ab57-696940f06e25",
+    "0a484a12-0d67-4d7f-8449-f83a30c06eca",
+    "5e1ba350-0ea6-4b72-92c5-5a2abfc778d3"
+  ],
+  "revision": "e953a407a43f0eb00a3da46fde5f947cb6b83a93e9e6b14c480c567fe8dd036f",
+  "stage": "implementing",
+  "sessionId": "zcode-main-session-updater-own-repo",
+  "evidence": [
+    "tauri.conf.json：endpoints 指向 tunecc/voicekey latest.json；pubkey 与 ~/.tauri/voicekey.key.pub 字节一致（grep 实测）",
+    "密钥对本机生成（无口令），tauri signer sign 试签成功；Secret TAURI_SIGNING_PRIVATE_KEY 已经 gh secret set 写入 fork 仓库并经 gh secret list 确认",
+    "README：第 4 节过时描述更新 + 新增第 6 节更新通道与签名密钥（生成/Secrets/验证步骤）",
+    "cargo check -p voicekey 通过（3 个预存在警告未恶化）；npm run build 通过"
+  ],
+  "unresolved": [],
+  "reviewRounds": 0
+}
