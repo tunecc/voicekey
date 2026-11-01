@@ -226,7 +226,14 @@ impl Ctl {
                     let was_idle = self.mode == Mode::Idle;
                     self.handle(m);
                     if !was_idle && self.mode == Mode::Idle {
-                        self.refresh_meter();
+                        // 会话刚结束：立即重启电平表会开麦、引发设备枚举活动，可能落在约 450ms 的
+                        // 音量恢复窗口内；延迟到恢复完成后再重启。期间若开始新会话，
+                        // RefreshMeter 的 Idle 门控会自然跳过，由新会话结束时再重启。
+                        let tx = self.tx.clone();
+                        tauri::async_runtime::spawn(async move {
+                            tokio::time::sleep(Duration::from_millis(600)).await;
+                            let _ = tx.send(Msg::RefreshMeter);
+                        });
                     }
                 }
                 _ = retry.tick() => {
