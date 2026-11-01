@@ -16,10 +16,11 @@ const compiled = compileModule(js, { generate: "server" }).js.code
 function store() {
   const listeners = new Map();
   const requests = [];
-  const api = runInNewContext(`${compiled}\n({ app, init, refreshMics });`, {
+  const api = runInNewContext(`${compiled}\n({ app, init, refreshMics, save });`, {
     on: async (name, handler) => { listeners.set(name, handler); },
     call: (name) => {
       if (name === "get_state") return Promise.resolve({ settings: { mic: "", theme: "system" } });
+      if (name === "set_settings") return Promise.resolve();
       assert.equal(name, "microphones");
       return new Promise((resolve) => requests.push(resolve));
     },
@@ -59,4 +60,14 @@ test("overlapping page/focus refresh keeps the latest response", async () => {
   s.requests[0]([]);
   await first;
   assert.deepEqual(Array.from(s.app.mics), ["Bluetooth"]);
+});
+
+test("none is a valid persisted value for per-event sound and hold settings", async () => {
+  const s = store();
+  const ready = s.init();
+  await new Promise(setImmediate);
+  s.save({ soundDone: "none" });
+  assert.equal(s.app.s.soundDone, "none");
+  s.save({ holdKey: "none" });
+  assert.equal(s.app.s.holdKey, "none");
 });

@@ -18,6 +18,7 @@ use tauri::path::BaseDirectory;
 use tauri::{AppHandle, Manager, Runtime};
 
 /// 内置音效池：(id, 设置页显示名)。id 同时是 `resources/sounds/<id>.wav` 的文件名，是设置的单一来源。
+/// 注意："none" 是设置层保留字（表示该事件不发声，见 settings.rs），不得用作音效 id。
 pub const SOUNDS: &[(&str, &str)] = &[
     ("switch", "咔哒"),
     ("minimize", "下沉"),
@@ -438,6 +439,24 @@ mod tests {
         s.sound_enabled = true;
         s.sound_start = "removed-sound".into();
         assert_eq!(gated_id(SoundEvent::Start, &s), None, "未知音效 id 不应发声");
+    }
+
+    /// 「无」是显式停用取值：自定义方案下该事件不发声，其余事件不受影响。
+    /// play_duration 的 0 时长路径需 AppHandle，纯单元不可覆盖（集成验证见验证报告）。
+    #[test]
+    fn none_id_gates_event_silence() {
+        let mut s = Settings::default();
+        s.sound_enabled = true;
+        for field in [&mut s.sound_start, &mut s.sound_processing, &mut s.sound_done, &mut s.sound_error] {
+            *field = crate::settings::NONE.into();
+        }
+        for event in [SoundEvent::Start, SoundEvent::Processing, SoundEvent::Done, SoundEvent::Error] {
+            assert_eq!(gated_id(event, &s), None, "{event:?} 置「无」时不应发声");
+        }
+        // 混合配置：仅一个事件置「无」，其余事件保持可选音效（逐事件独立）
+        s.sound_done = DEFAULT_DONE.into();
+        assert_eq!(gated_id(SoundEvent::Done, &s), Some(DEFAULT_DONE), "其余事件不受「无」影响");
+        assert_eq!(gated_id(SoundEvent::Start, &s), None, "已置「无」的事件保持静音");
     }
 
     #[test]

@@ -35,7 +35,13 @@ export const listSounds = () => call<{ id: string; name: string }[]>("list_sound
 export interface SimpleSchemeRow { event: "start" | "processing" | "done" | "error"; soundId: string; soundName: string }
 export const simpleScheme = () => call<SimpleSchemeRow[]>("simple_scheme");
 export const holdName = (s: Settings, keys: AppInfo["holdKeys"]) =>
-  s.holdKey === "custom" ? (s.holdCombo?.name ?? "") : (keys.find((k) => k.id === s.holdKey)?.name ?? "");
+  s.holdKey === "custom" ? (s.holdCombo?.name ?? "") : s.holdKey === "none" ? "未设置" : (keys.find((k) => k.id === s.holdKey)?.name ?? "");
+/** 点按快捷键的展示名：修饰键前缀 + 键名（与 Keys.svelte 录制卡同源），未设置返回空串 */
+export const shortcutTitle = (sc: Shortcut | null, platform: "mac" | "win" | undefined) => {
+  if (!sc) return "";
+  const table: [number, string][] = platform === "mac" ? [[1, "⌃"], [2, "⌥"], [4, "⇧"], [8, "⌘"]] : [[1, "Ctrl+"], [2, "Alt+"], [4, "Shift+"], [8, "Win+"]];
+  return table.filter(([b]) => sc.mods & b).map(([, n]) => n).join("") + sc.name;
+};
 export const on = <T>(name: string, f: (p: T) => void): Promise<UnlistenFn> => listen<T>(name, (e) => f(e.payload));
 
 export const CH: Record<Channel, { name: string; short: string; desc: string; tags: string[]; logo: string }> = {

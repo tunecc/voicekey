@@ -256,12 +256,25 @@ pub fn pick_hide<R: Runtime>(app: &AppHandle<R>) {
     }
 }
 
+/// 托盘头部触发方式描述：按长按/点按是否设置组合生成，停用侧或空名不出现（见 design.md D3）
+fn tray_head(hold: Option<&str>, tap: Option<&str>) -> String {
+    let hold = hold.filter(|h| !h.is_empty());
+    let tap = tap.filter(|t| !t.is_empty());
+    match (hold, tap) {
+        (Some(h), Some(t)) => format!("长按 {h} 或点按 {t} 说话"),
+        (Some(h), None) => format!("长按 {h} 说话"),
+        (None, Some(t)) => format!("点按 {t} 说话"),
+        (None, None) => "语音输入".into(),
+    }
+}
+
 fn tray_menu<R: Runtime>(app: &AppHandle<R>, s: &Settings, paused: bool) -> tauri::Result<Menu<R>> {
     let head = if paused {
         "已暂停监听".to_string()
     } else {
-        let tap = s.tap_shortcut.as_ref().map(|t| format!(" 或点按 {}", t.title())).unwrap_or_default();
-        format!("长按 {}{} 说话", s.hold_name(), tap)
+        let hold = (s.hold_key != crate::settings::NONE).then(|| s.hold_name());
+        let tap = s.tap_shortcut.as_ref().map(|t| t.title());
+        tray_head(hold.as_deref(), tap.as_deref())
     };
     let mut items: Vec<Box<dyn IsMenuItem<R>>> = vec![
         Box::new(MenuItem::with_id(app, "head", head, false, None::<&str>)?),
@@ -397,5 +410,19 @@ mod tests {
         let ph = cap_len(1400.0, area, gap);
         assert!(ar_y + area - ph - gap >= ar_y + gap);
         assert!(ph + gap * 2.0 <= area + f64::EPSILON);
+    }
+
+    /// 托盘头部按 hold/tap 设置状态组合生成：停用侧不出现，两侧皆无时用中性文案
+    #[test]
+    fn tray_head_combines_enabled_sides_only() {
+        use super::tray_head;
+        assert_eq!(tray_head(Some("右 ⌘"), Some("右 ⌥")), "长按 右 ⌘ 或点按 右 ⌥ 说话");
+        assert_eq!(tray_head(Some("右 ⌘"), None), "长按 右 ⌘ 说话");
+        assert_eq!(tray_head(None, Some("右 Ctrl")), "点按 右 Ctrl 说话");
+        assert_eq!(tray_head(None, None), "语音输入");
+        for text in [tray_head(Some(""), None), tray_head(None, Some(""))] {
+            assert!(!text.contains("长按  "), "文案不得出现空按键名：{text}");
+            assert!(!text.contains("点按  "), "文案不得出现空按键名：{text}");
+        }
     }
 }

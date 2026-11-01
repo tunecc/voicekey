@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { app, init } from "./lib/store.svelte";
-  import { holdName } from "./lib/api";
+  import { holdName, shortcutTitle } from "./lib/api";
   import Logo from "./lib/Logo.svelte";
   import Recog from "./pages/Recog.svelte";
   import Keys from "./pages/Keys.svelte";
@@ -25,6 +25,8 @@
   });
 
   const hold = $derived(app.s && app.info ? holdName(app.s, app.info.holdKeys) : "");
+  const holdOn = $derived(app.s?.holdKey !== "none");
+  const tap = $derived(shortcutTitle(app.s?.tapShortcut ?? null, app.info?.platform));
 </script>
 
 {#if app.s && app.info}
@@ -46,7 +48,10 @@
         {/each}
         <div class="foot">
           {#if app.perms.accessibility}
-            <span class="dot"></span><span>就绪 · 长按 <b>{hold}</b> 说话</span>
+            <span class="dot"></span>
+            {#if holdOn}<span>就绪 · 长按 <b>{hold}</b> 说话</span>
+            {:else if tap}<span>就绪 · 点按 <b>{tap}</b> 说话</span>
+            {:else}<span>就绪 · 语音输入</span>{/if}
           {:else}
             <span class="dot bad"></span><span>需要辅助功能权限</span>
           {/if}

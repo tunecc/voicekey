@@ -98,9 +98,10 @@
       <div class="row">
         <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
         <select class="sel" value={s[ev.key]} onchange={(e) => save({ [ev.key]: e.currentTarget.value })} aria-label={ev.label}>
+          <option value="none">无</option>
           {#each sounds as snd}<option value={snd.id}>{snd.name}</option>{/each}
         </select>
-        <button class="btn" onclick={() => previewSound(s[ev.key])} aria-label={`试听${ev.label}`}>试听</button>
+        {#if s[ev.key] !== "none"}<button class="btn" onclick={() => previewSound(s[ev.key])} aria-label={`试听${ev.label}`}>试听</button>{/if}
       </div>
     {/each}
   {/if}

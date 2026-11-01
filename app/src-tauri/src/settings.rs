@@ -78,11 +78,14 @@ pub struct Combo {
 
 pub const CUSTOM_HOLD: &str = "custom";
 
+/// 「无」保留字：音效逐事件与长按说话的显式停用取值（见 design.md D1）
+pub const NONE: &str = "none";
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 pub struct Settings {
     pub channel: Channel,
-    /// 预设键 id，或 CUSTOM_HOLD 表示使用 hold_combo
+    /// 预设键 id、CUSTOM_HOLD（使用 hold_combo）或 NONE（停用长按说话）
     pub hold_key: String,
     pub hold_combo: Option<Combo>,
     pub tap_shortcut: Option<Shortcut>,
@@ -169,7 +172,7 @@ impl Settings {
             self.channel = Channel::Doubao;
         }
         let custom = self.hold_key == CUSTOM_HOLD && self.hold_combo.as_ref().is_some_and(|c| crate::hotkey::valid_hold(&c.codes));
-        if !custom && !voicekey_platform::hold_keys().iter().any(|k| k.id == self.hold_key) {
+        if !custom && self.hold_key != NONE && !voicekey_platform::hold_keys().iter().any(|k| k.id == self.hold_key) {
             self.hold_key = voicekey_platform::hold_keys()[0].id.into();
         }
         self.silence = self.silence.clamp(1.0, 5.0);
@@ -180,7 +183,7 @@ impl Settings {
             (&mut self.sound_done, crate::sound::DEFAULT_DONE),
             (&mut self.sound_error, crate::sound::DEFAULT_ERROR),
         ] {
-            if !crate::sound::is_known(id) {
+            if id != NONE && !crate::sound::is_known(id) {
                 *id = default.into();
             }
         }
@@ -205,6 +208,7 @@ impl Settings {
     pub fn hold_name(&self) -> String {
         match &self.hold_combo {
             Some(c) if self.hold_key == CUSTOM_HOLD => c.name.clone(),
+            _ if self.hold_key == NONE => "未设置".into(),
             _ => voicekey_platform::hold_keys().iter().find(|k| k.id == self.hold_key).map_or("", |k| k.name).into(),
         }
     }
@@ -265,5 +269,35 @@ mod sound_settings_tests {
         s.sanitize();
         assert_eq!(s.sound_processing, processing);
         assert_eq!(s.sound_error, error);
+    }
+
+    /// 「无」是显式合法取值：sanitize 不得把它回退成默认音效
+    #[test]
+    fn sanitize_keeps_none_sound_ids() {
+        let mut s = Settings::default();
+        for id in [&mut s.sound_start, &mut s.sound_processing, &mut s.sound_done, &mut s.sound_error] {
+            *id = NONE.into();
+        }
+        s.sanitize();
+        for (field, id) in [
+            ("sound_start", s.sound_start.as_str()),
+            ("sound_processing", s.sound_processing.as_str()),
+            ("sound_done", s.sound_done.as_str()),
+            ("sound_error", s.sound_error.as_str()),
+        ] {
+            assert_eq!(id, NONE, "{field} 的「无」选择不得被 sanitize 回退");
+        }
+    }
+
+    /// 长按说话可置「无」：sanitize 保留该选择；触发码为空、名称显示未设置
+    #[test]
+    fn sanitize_keeps_none_hold_key() {
+        let mut s = Settings::default();
+        s.hold_key = NONE.into();
+        s.hold_combo = None;
+        s.sanitize();
+        assert_eq!(s.hold_key, NONE, "长按「无」不得被 sanitize 回退成预设键");
+        assert!(s.hold_codes().is_empty(), "长按「无」不得产生任何触发码");
+        assert_eq!(s.hold_name(), "未设置");
     }
 }

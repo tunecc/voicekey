@@ -29,6 +29,7 @@
     <h4>长按说话</h4>
     <small>适合短句，松手即识别完成</small>
     <select class="sel" value={s.holdKey} onchange={(e) => save({ holdKey: e.currentTarget.value })}>
+      <option value="none">无（停用长按）</option>
       {#each app.info!.holdKeys as k}<option value={k.id}>{k.name}</option>{/each}
       {#if s.holdCombo}<option value="custom">{s.holdCombo.name}</option>{/if}
     </select>

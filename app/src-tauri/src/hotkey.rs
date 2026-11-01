@@ -398,6 +398,46 @@ mod tests {
         assert!(!valid_hold(&[]));
     }
 
+    /// 长按「无」（hold=0 且无组合）：未配置为点按的修饰键按下/松开直通系统，不产生任何热键事件
+    #[test]
+    fn disabled_hold_ignores_other_modifiers() {
+        let (ctrl, alt) = (mod_code(pf::CTRL), mod_code(pf::ALT));
+        let aflag = pf::modifier(alt).unwrap().0;
+        let mut cfg = Config::default();
+        cfg.tap = Some(Shortcut { code: ctrl, mods: 0, name: "右 ⌘".into() });
+        let sh = Shared::default();
+        *sh.config.write().unwrap() = cfg;
+        let st = Arc::new(Mutex::new(State::default()));
+        let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel();
+        let step = |e: KeyEvent| handle(&sh, &st, &tx, &e);
+        assert!(!step(ev(KeyKind::Modifier(true), alt, aflag)), "非点按修饰键按下不应吞掉");
+        assert!(rx.try_recv().is_err(), "hold 停用时其他修饰键按下不产生事件");
+        assert!(!step(ev(KeyKind::Modifier(false), alt, aflag)));
+        assert!(rx.try_recv().is_err(), "hold 停用时其他修饰键松开不产生事件");
+    }
+
+    /// 长按「无」不影响点按：阈值内点按仍产生 Tap，按住超过阈值也不进入长按
+    #[test]
+    fn hold_disabled_tap_works_without_long_press() {
+        let ctrl = mod_code(pf::CTRL);
+        let cflag = pf::modifier(ctrl).unwrap().0;
+        let mut cfg = Config::default();
+        cfg.tap = Some(Shortcut { code: ctrl, mods: 0, name: "右 ⌘".into() });
+        let sh = Shared::default();
+        *sh.config.write().unwrap() = cfg;
+        let st = Arc::new(Mutex::new(State::default()));
+        let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel();
+        let step = |e: KeyEvent| handle(&sh, &st, &tx, &e);
+        let swallowed = step(ev(KeyKind::Modifier(true), ctrl, cflag));
+        assert_eq!(swallowed, cfg!(windows), "仅 Windows 吞掉点按修饰键按下");
+        assert!(matches!(rx.try_recv(), Ok(HotEvent::Press)));
+        let swallowed_up = step(ev(KeyKind::Modifier(false), ctrl, 0));
+        assert_eq!(swallowed_up, cfg!(windows));
+        assert!(matches!(rx.try_recv(), Ok(HotEvent::Tap)), "阈值内松开应产生点按");
+        std::thread::sleep(THRESHOLD + Duration::from_millis(120));
+        assert!(rx.try_recv().is_err(), "hold 停用后按住超过阈值不得产生 LongPress");
+    }
+
     #[test]
     fn chord_press_long_press_and_release() {
         let (ctrl, alt) = (mod_code(pf::CTRL), mod_code(pf::ALT));
