@@ -23,11 +23,12 @@ pub const SYSTEM_SOUNDS: &[&str] = &[
     "Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero", "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink",
 ];
 
-/// 各事件默认音效（macOS 系统音名）；完成默认不发声（识别很快，完成不另发音效）
+/// 各事件默认音效（macOS 系统音名）；完成与失败默认不发声——完成因识别很快不另发音效，
+/// 失败与英文原版 cometix-dictation 对齐（仅视觉提示），需要时可在面板手动选择失败音
 pub const DEFAULT_START: &str = "Tink";
 pub const DEFAULT_PROCESSING: &str = "Pop";
 pub const DEFAULT_DONE: &str = "none";
-pub const DEFAULT_ERROR: &str = "Basso";
+pub const DEFAULT_ERROR: &str = "none";
 
 /// 唯一音效方案标记：简洁。历史 settings.json 的 scheme 字段被忽略，恒按此值处理
 pub const SCHEME_SIMPLE: &str = "simple";
@@ -300,11 +301,12 @@ mod tests {
             assert!(!id.is_empty() && *id != crate::settings::NONE, "非法音名：{id}");
             assert!(seen.insert(*id), "重复音名：{id}");
         }
-        // 默认值都在集合中；Basso/Tink/Pop 有同名兜底 WAV（Windows）
-        for id in [DEFAULT_START, DEFAULT_PROCESSING, DEFAULT_ERROR] {
+        // 发声默认值都在集合中；完成与失败默认「不发声」
+        for id in [DEFAULT_START, DEFAULT_PROCESSING] {
             assert!(SYSTEM_SOUNDS.contains(&id), "默认音效 {id} 必须在系统铃声集合中");
         }
         assert_eq!(DEFAULT_DONE, crate::settings::NONE, "完成默认不发声");
+        assert_eq!(DEFAULT_ERROR, crate::settings::NONE, "失败默认不发声");
     }
 
     #[test]
@@ -352,13 +354,13 @@ mod tests {
         assert_eq!(event_id(SoundEvent::Start, &s), "Tink");
         assert_eq!(event_id(SoundEvent::Processing, &s), "Pop");
         assert_eq!(event_id(SoundEvent::Done, &s), crate::settings::NONE, "完成默认不发声");
-        assert_eq!(event_id(SoundEvent::Error, &s), "Basso");
+        assert_eq!(event_id(SoundEvent::Error, &s), crate::settings::NONE, "失败默认不发声");
         let mut s = Settings::default();
         s.sound_enabled = true;
         assert_eq!(gated_id(SoundEvent::Start, &s), Some("Tink"));
         assert_eq!(gated_id(SoundEvent::Processing, &s), Some("Pop"));
         assert_eq!(gated_id(SoundEvent::Done, &s), None, "「不发声」事件门控为 None");
-        assert_eq!(gated_id(SoundEvent::Error, &s), Some("Basso"));
+        assert_eq!(gated_id(SoundEvent::Error, &s), None, "失败默认不发声");
     }
 
     #[test]

@@ -89,13 +89,15 @@
         <option value="none">不发声</option>
         {#each sounds as snd}<option value={snd.id}>{snd.name}</option>{/each}
       </select>
-      {#if s[row.key] !== "none"}<button class="btn" onclick={() => previewSound(s[row.key])} aria-label={`试听${row.title}`}>试听</button>{/if}
+      <!-- 「不发声」时试听置灰（不可点），保持行内布局稳定 -->
+      <button class="btn" disabled={s[row.key] === "none"} onclick={() => previewSound(s[row.key])} aria-label={`试听${row.title}`}>试听</button>
     </div>
   {/each}
 </div>
 
 <style>
   .sound-name { font-weight: 600; flex: none; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
   .sound-name.muted { color: var(--fg2); font-weight: 400; }
   .duck-range { width: 160px; accent-color: var(--accent); }
   .duck-value { width: 42px; text-align: right; font-variant-numeric: tabular-nums; }
