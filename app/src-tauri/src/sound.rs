@@ -38,14 +38,8 @@ pub const DEFAULT_PROCESSING: &str = "minimize";
 pub const DEFAULT_DONE: &str = "confirmation";
 pub const DEFAULT_ERROR: &str = "error";
 
-/// 音效方案：simple=简洁（固定映射，复刻极简提示音风格）；custom=自定义（逐事件自选）
+/// 唯一音效方案：简洁（固定映射，复刻极简提示音风格）。历史 settings.json 的 scheme 字段被忽略，恒按此值处理
 pub const SCHEME_SIMPLE: &str = "simple";
-pub const SCHEME_CUSTOM: &str = "custom";
-
-/// 方案值是否合法
-pub fn is_known_scheme(scheme: &str) -> bool {
-    matches!(scheme, SCHEME_SIMPLE | SCHEME_CUSTOM)
-}
 
 /// 简洁方案固定映射（复刻 cometix-dictation 双音并扩展失败音）：开始=轻叮、结果就绪=轻啵、失败=警示。
 /// macOS 播系统音 Tink/Pop/Basso（见 `simple_scheme_system_name`），Windows 及系统音不可用时播池内 CC0 兜底音；完成不发声。
@@ -119,17 +113,12 @@ pub fn event_id<'a>(event: SoundEvent, s: &'a Settings) -> &'a str {
 }
 
 /// 事件→音效的取值门控：总开关关闭时返回 None（不发声）；
-/// 简洁方案按固定映射取音效（忽略逐事件设置），自定义方案按逐事件设置；
-/// 配置的 id 不在内置池中时返回 None
+/// 恒按简洁固定映射取音效（历史逐事件设置被忽略）；映射音效不在内置池中时返回 None
 pub fn gated_id<'a>(event: SoundEvent, s: &'a Settings) -> Option<&'a str> {
     if !s.sound_enabled {
         return None;
     }
-    let id = if s.sound_scheme == SCHEME_SIMPLE {
-        SIMPLE_SCHEME.iter().find(|(e, _)| *e == event)?.1
-    } else {
-        event_id(event, s)
-    };
+    let id = SIMPLE_SCHEME.iter().find(|(e, _)| *e == event)?.1;
     is_known(id).then_some(id)
 }
 
@@ -138,30 +127,24 @@ pub fn is_known(id: &str) -> bool {
     SOUNDS.iter().any(|(known, _)| *known == id)
 }
 
-/// 会话事件播放：遵循总开关与音效方案。简洁方案在 macOS 播系统音 Tink/Pop（cometix-dictation 同声），
-/// 系统音不可用回退池内兜底音；自定义方案按逐事件设置。
+/// 会话事件播放：遵循总开关。macOS 播系统音 Tink/Pop/Basso（cometix-dictation 同声 + 失败音扩展），
+/// 系统音不可用回退池内兜底音。
 pub fn play<R: Runtime>(app: &AppHandle<R>, event: SoundEvent) {
     let st = app.state::<AppState>();
     let s = st.settings.read().unwrap();
     if !s.sound_enabled {
         return;
     }
-    if s.sound_scheme == SCHEME_SIMPLE {
-        let system_name = simple_scheme_system_name(event);
-        let fallback_id = gated_id(event, &s).map(str::to_string);
-        drop(s);
-        if let Some(name) = system_name {
-            play_system_quietly(app, name, fallback_id);
-            return;
-        }
-        if let Some(id) = fallback_id {
-            play_quietly(app, &id);
-        }
+    let system_name = simple_scheme_system_name(event);
+    let fallback_id = gated_id(event, &s).map(str::to_string);
+    drop(s);
+    if let Some(name) = system_name {
+        play_system_quietly(app, name, fallback_id);
         return;
     }
-    let Some(id) = gated_id(event, &s).map(str::to_string) else { return };
-    drop(s);
-    play_quietly(app, &id);
+    if let Some(id) = fallback_id {
+        play_quietly(app, &id);
+    }
 }
 
 /// 试听播放：不受总开关约束；未知 id 静默忽略。
@@ -170,19 +153,14 @@ pub fn play_id<R: Runtime>(app: &AppHandle<R>, id: &str) {
     if !is_known(id) {
         return;
     }
-    let st = app.state::<AppState>();
-    let s = st.settings.read().unwrap();
-    if s.sound_scheme == SCHEME_SIMPLE {
-        let event = SIMPLE_SCHEME.iter().find(|(_, sid)| *sid == id).map(|(e, _)| *e);
-        if let Some(event) = event {
-            if let Some(name) = simple_scheme_system_name(event) {
-                drop(s);
-                play_system_quietly(app, name, Some(id.to_string()));
-                return;
-            }
+    // 试听即所得：映射表中的音效在 macOS 播实际系统音源
+    let event = SIMPLE_SCHEME.iter().find(|(_, sid)| *sid == id).map(|(e, _)| *e);
+    if let Some(event) = event {
+        if let Some(name) = simple_scheme_system_name(event) {
+            play_system_quietly(app, name, Some(id.to_string()));
+            return;
         }
     }
-    drop(s);
     play_quietly(app, id);
 }
 
@@ -247,22 +225,18 @@ fn sound_path<R: Runtime>(app: &AppHandle<R>, id: &str) -> anyhow::Result<PathBu
 }
 
 /// 事件提示音的大致时长：「先播音、后压音量」的延迟依据。
-/// 简洁方案 macOS 用系统音已知时长，其余读池内 WAV 头估算；不发声（总开关关/简洁完成失败）为 0。
+/// macOS 系统音用已知时长，其余读池内 WAV 头估算；不发声（总开关关/完成事件）为 0。
 /// 附投递余量：主线程队列与音量生效各需几毫秒。
 pub fn play_duration<R: Runtime>(app: &AppHandle<R>, event: SoundEvent, s: &Settings) -> Duration {
     const MARGIN: Duration = Duration::from_millis(40);
     if !s.sound_enabled {
         return Duration::ZERO;
     }
-    let base = if s.sound_scheme == SCHEME_SIMPLE {
-        match simple_scheme_system_name(event) {
-            Some("Tink") => Some(Duration::from_millis(60)),
-            Some("Pop") => Some(Duration::from_millis(75)),
-            Some(_) => None,
-            None => gated_id(event, s).and_then(|id| pool_wav_duration(app, id)),
-        }
-    } else {
-        gated_id(event, s).and_then(|id| pool_wav_duration(app, id))
+    let base = match simple_scheme_system_name(event) {
+        Some("Tink") => Some(Duration::from_millis(60)),
+        Some("Pop") => Some(Duration::from_millis(75)),
+        Some(_) => None,
+        None => gated_id(event, s).and_then(|id| pool_wav_duration(app, id)),
     };
     base.map(|d| d + MARGIN).unwrap_or_default()
 }
@@ -435,31 +409,6 @@ mod tests {
         }
     }
 
-    #[test]
-    fn gated_id_rejects_unknown_configured_ids() {
-        let mut s = Settings::default();
-        s.sound_enabled = true;
-        s.sound_start = "removed-sound".into();
-        assert_eq!(gated_id(SoundEvent::Start, &s), None, "未知音效 id 不应发声");
-    }
-
-    /// 「无」是显式停用取值：自定义方案下该事件不发声，其余事件不受影响。
-    /// play_duration 的 0 时长路径需 AppHandle，纯单元不可覆盖（集成验证见验证报告）。
-    #[test]
-    fn none_id_gates_event_silence() {
-        let mut s = Settings::default();
-        s.sound_enabled = true;
-        for field in [&mut s.sound_start, &mut s.sound_processing, &mut s.sound_done, &mut s.sound_error] {
-            *field = crate::settings::NONE.into();
-        }
-        for event in [SoundEvent::Start, SoundEvent::Processing, SoundEvent::Done, SoundEvent::Error] {
-            assert_eq!(gated_id(event, &s), None, "{event:?} 置「无」时不应发声");
-        }
-        // 混合配置：仅一个事件置「无」，其余事件保持可选音效（逐事件独立）
-        s.sound_done = DEFAULT_DONE.into();
-        assert_eq!(gated_id(SoundEvent::Done, &s), Some(DEFAULT_DONE), "其余事件不受「无」影响");
-        assert_eq!(gated_id(SoundEvent::Start, &s), None, "已置「无」的事件保持静音");
-    }
 
     #[test]
     fn simple_scheme_maps_start_and_processing_only() {
@@ -476,16 +425,6 @@ mod tests {
         assert_eq!(gated_id(SoundEvent::Error, &s), Some("error"), "简洁方案失败播警示兜底音");
     }
 
-    #[test]
-    fn custom_scheme_keeps_per_event_selection() {
-        let mut s = Settings::default();
-        s.sound_enabled = true;
-        s.sound_scheme = SCHEME_CUSTOM.into();
-        assert_eq!(gated_id(SoundEvent::Start, &s), Some(s.sound_start.as_str()));
-        assert_eq!(gated_id(SoundEvent::Processing, &s), Some(s.sound_processing.as_str()));
-        assert_eq!(gated_id(SoundEvent::Done, &s), Some(s.sound_done.as_str()));
-        assert_eq!(gated_id(SoundEvent::Error, &s), Some(s.sound_error.as_str()));
-    }
 
     #[test]
     fn simple_scheme_mapping_is_pure_two_sound_replica() {
@@ -538,8 +477,6 @@ mod tests {
             before,
             "简洁方案门控必须只读，不改写逐事件字段"
         );
-        s.sound_scheme = SCHEME_CUSTOM.into();
-        assert_eq!(gated_id(SoundEvent::Start, &s), Some("glass"), "切回自定义后保留原选择");
     }
 
     #[test]

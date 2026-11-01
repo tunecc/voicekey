@@ -1,18 +1,16 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { app, save, refreshMics } from "../lib/store.svelte";
-  import { call, listSounds, previewSound, simpleScheme, type SimpleSchemeRow } from "../lib/api";
+  import { call, previewSound, simpleScheme, type SimpleSchemeRow } from "../lib/api";
   import Meter from "../lib/Meter.svelte";
 
   const s = $derived(app.s!);
   const missing = $derived(s.mic && !app.mics.includes(s.mic));
-  let sounds = $state<{ id: string; name: string }[]>([]);
   let schemeRows = $state<SimpleSchemeRow[]>([]);
   // 设置值和 UI 都直接表示“降低比例”；100% 只改变展示为“静音”，数值本身不做反转。
   const duckReductionLabel = $derived(s.lowerSystemVolumePercent === 100 ? "静音" : `−${s.lowerSystemVolumePercent}%`);
 
   onMount(() => {
-    listSounds().then((v) => (sounds = v));
     simpleScheme().then((v) => (schemeRows = v));
     // 电平表只在设置窗处于前台时占用麦克风，切到其他应用立即释放。
     const onFocus = () => {
@@ -38,8 +36,8 @@
 
   const EVENTS: { key: "soundStart" | "soundProcessing" | "soundDone" | "soundError"; event: SimpleSchemeRow["event"]; label: string; desc: string }[] = [
     { key: "soundStart", event: "start", label: "录音开始", desc: "开始录入语音时" },
-    { key: "soundProcessing", event: "processing", label: "识别处理", desc: "识别完成、音量恢复后" },
-    { key: "soundDone", event: "done", label: "识别完成", desc: "结果就绪或上屏时" },
+    { key: "soundProcessing", event: "processing", label: "识别处理", desc: "识别完成时轻啵一声" },
+    { key: "soundDone", event: "done", label: "识别完成", desc: "识别很快，完成不另发音效" },
     { key: "soundError", event: "error", label: "识别失败", desc: "出错、超时或没有内容时" },
   ];
 </script>
@@ -81,46 +79,22 @@
     <div class="lbl">提示音<small>{s.soundEnabled ? "录音各阶段播放提示音" : "已关闭，录音各阶段不播放提示音"}</small></div>
     <button class="sw" class:on={s.soundEnabled} onclick={() => save({ soundEnabled: !s.soundEnabled })} aria-label="提示音"></button>
   </div>
-  <div class="row">
-    <div class="lbl">音效方案<small>{s.soundScheme === "simple" ? "极简风格，各阶段使用固定音效" : "四个事件各自挑选音效"}</small></div>
-    <div class="seg" role="radiogroup" aria-label="音效方案">
-      <button class="seg-btn" class:on={s.soundScheme === "simple"} role="radio" aria-checked={s.soundScheme === "simple"} onclick={() => save({ soundScheme: "simple" })}>简洁</button>
-      <button class="seg-btn" class:on={s.soundScheme === "custom"} role="radio" aria-checked={s.soundScheme === "custom"} onclick={() => save({ soundScheme: "custom" })}>自定义</button>
+  <!-- 按固定事件序渲染：映射表命中的行显示音效名与试听，未映射的事件显示「不发声」 -->
+  {#each EVENTS as ev (ev.event)}
+    {@const row = schemeRows.find((r) => r.event === ev.event)}
+    <div class="row">
+      <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
+      {#if row}
+        <b class="sound-name">{row.soundName}</b>
+        <button class="btn" onclick={() => previewSound(row.soundId)} aria-label={`试听${ev.label}`}>试听</button>
+      {:else}
+        <b class="sound-name muted">不发声</b>
+      {/if}
     </div>
-  </div>
-  {#if s.soundScheme === "simple"}
-    <!-- 按固定事件序渲染：映射表命中的行显示音效名与试听，未映射的事件显示「不发声」 -->
-    {#each EVENTS as ev (ev.event)}
-      {@const row = schemeRows.find((r) => r.event === ev.event)}
-      <div class="row">
-        <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
-        {#if row}
-          <b class="sound-name">{row.soundName}</b>
-          <button class="btn" onclick={() => previewSound(row.soundId)} aria-label={`试听${ev.label}`}>试听</button>
-        {:else}
-          <b class="sound-name muted">不发声</b>
-        {/if}
-      </div>
-    {/each}
-  {:else}
-    {#each EVENTS as ev}
-      <div class="row">
-        <div class="lbl">{ev.label}<small>{ev.desc}</small></div>
-        <select class="sel" value={s[ev.key]} onchange={(e) => save({ [ev.key]: e.currentTarget.value })} aria-label={ev.label}>
-          <option value="none">无</option>
-          {#each sounds as snd}<option value={snd.id}>{snd.name}</option>{/each}
-        </select>
-        {#if s[ev.key] !== "none"}<button class="btn" onclick={() => previewSound(s[ev.key])} aria-label={`试听${ev.label}`}>试听</button>{/if}
-      </div>
-    {/each}
-  {/if}
+  {/each}
 </div>
 
 <style>
-  .seg { display: flex; border: 1px solid var(--line); border-radius: var(--rs); overflow: hidden; flex: none; }
-  .seg-btn { border: 0; background: var(--card2); padding: 6px 14px; cursor: pointer; color: var(--fg2); }
-  .seg-btn + .seg-btn { border-left: 1px solid var(--line); }
-  .seg-btn.on { background: var(--accent); color: #fff; }
   .sound-name { font-weight: 600; flex: none; }
   .sound-name.muted { color: var(--fg2); font-weight: 400; }
   .duck-range { width: 160px; accent-color: var(--accent); }

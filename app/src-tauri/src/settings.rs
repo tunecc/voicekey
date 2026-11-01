@@ -147,7 +147,7 @@ impl Default for Settings {
             sound_processing: crate::sound::DEFAULT_PROCESSING.into(),
             sound_done: crate::sound::DEFAULT_DONE.into(),
             sound_error: crate::sound::DEFAULT_ERROR.into(),
-            sound_scheme: crate::sound::SCHEME_CUSTOM.into(),
+            sound_scheme: crate::sound::SCHEME_SIMPLE.into(),
             autostart: false,
             theme: "system".into(),
             lower_system_volume: false,
@@ -193,9 +193,8 @@ impl Settings {
                 *id = default.into();
             }
         }
-        if !crate::sound::is_known_scheme(&self.sound_scheme) {
-            self.sound_scheme = crate::sound::SCHEME_CUSTOM.into();
-        }
+        // 自定义方案已移除：恒按简洁固定映射发声，历史配置中的 scheme/逐事件字段被忽略
+        self.sound_scheme = crate::sound::SCHEME_SIMPLE.into();
         let percent = self
             .lower_system_volume_percent
             .clamp(LOWER_SYSTEM_VOLUME_PERCENT_MIN, LOWER_SYSTEM_VOLUME_PERCENT_MAX);
@@ -288,23 +287,23 @@ mod sound_settings_tests {
         assert!(crate::sound::is_known(&s.sound_error));
     }
 
-    /// 旧版配置没有音效方案字段：serde 兜底为自定义（保持既有用户行为）
+    /// 旧版配置没有音效方案字段：serde 兜底为简洁（唯一方案）
     #[test]
-    fn legacy_config_without_sound_scheme_falls_back_to_custom() {
+    fn legacy_config_without_sound_scheme_falls_back_to_simple() {
         let s: Settings = serde_json::from_str(r#"{"channel":"doubao","mic":"","volume":15}"#).unwrap();
-        assert_eq!(s.sound_scheme, crate::sound::SCHEME_CUSTOM);
+        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE);
     }
 
-    /// 非法音效方案值：sanitize 回退自定义；合法值原样保留
+    /// 自定义方案已移除：无论历史配置为何值，sanitize 恒强制简洁
     #[test]
-    fn sanitize_reverts_unknown_sound_scheme_to_custom() {
+    fn sanitize_forces_simple_sound_scheme() {
         let mut s = Settings::default();
-        s.sound_scheme = crate::sound::SCHEME_SIMPLE.into();
+        s.sound_scheme = "custom".into();
         s.sanitize();
-        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE, "合法值保留");
+        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE, "历史 custom 被强制简洁");
         s.sound_scheme = "weird".into();
         s.sanitize();
-        assert_eq!(s.sound_scheme, crate::sound::SCHEME_CUSTOM, "非法值回退 custom");
+        assert_eq!(s.sound_scheme, crate::sound::SCHEME_SIMPLE, "非法值同样强制简洁");
     }
 
     /// 配置里出现未知/已下架音效 id：sanitize 应回退为该事件默认值
