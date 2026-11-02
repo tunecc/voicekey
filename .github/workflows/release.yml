@@ -47,13 +47,19 @@ jobs:
           [[ "$GITHUB_REF_TYPE" == tag ]] || VER="0.0.0"
           echo "VER=$VER" >> "$GITHUB_ENV"
 
-      # 固定的自签名证书：签名标识不随版本变化，更新后辅助功能等授权不丢失
+      # 固定的自签名证书：签名标识不随版本变化，更新后辅助功能等授权不丢失。
+      # 未配置 MACOS_CERTIFICATE 时跳过导入，回退 ad-hoc 签名（SIGNING_IDENTITY=-）。
       - name: Signing certificate (macOS)
         if: runner.os == 'macOS'
         env:
           MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
           MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
         run: |
+          if [[ -z "$MACOS_CERTIFICATE" ]]; then
+            echo "SIGNING_IDENTITY=-" >> "$GITHUB_ENV"
+            echo "未配置 MACOS_CERTIFICATE，跳过证书导入，使用 ad-hoc 签名"
+            exit 0
+          fi
           KC="$RUNNER_TEMP/sign.keychain-db"
           KP=$(openssl rand -hex 16)
           echo "$MACOS_CERTIFICATE" | base64 --decode > "$RUNNER_TEMP/cert.p12"
@@ -64,6 +70,7 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KP" "$KC" >/dev/null
           security list-keychains -d user -s "$KC" $(security list-keychains -d user | tr -d '"')
           rm "$RUNNER_TEMP/cert.p12"
+          echo "SIGNING_IDENTITY=VoiceKey Self-Signed" >> "$GITHUB_ENV"
 
       - name: Build
         working-directory: app
@@ -72,7 +79,8 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: |
           npm ci
-          npx tauri build --target ${{ matrix.target }} --config "{\"version\":\"$VER\",\"bundle\":{\"createUpdaterArtifacts\":true,\"macOS\":{\"signingIdentity\":\"VoiceKey Self-Signed\"}}}"
+          # macOS 签名标识由证书步骤写入 GITHUB_ENV；未配置证书时回退 ad-hoc（-）
+          npx tauri build --target ${{ matrix.target }} --config "{\"version\":\"$VER\",\"bundle\":{\"createUpdaterArtifacts\":true,\"macOS\":{\"signingIdentity\":\"${SIGNING_IDENTITY:--}\"}}}"
 
       - name: Package (macOS)
         if: runner.os == 'macOS'
